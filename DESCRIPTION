@@ -1,11 +1,9 @@
-Package:  mina
-Version:  1.0.0
-Date:  2019-04-12
-Depends:  R (>= 3.0.0)
-Imports: vegan
-Title:  MIcrobial Network Analysis
-Author:  Rui Guan <guan@mpipz.mpg.de>
-Maintainer:  Rui Guan <guan@mpipz.mpg.de>
-Description:  Functions for microbial community compare and network analysis
-License:  GPL (>= 2)
-URL: https://github.com/Guan06/MINA
+Package: mina
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.4.1)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
