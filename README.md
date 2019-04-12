@@ -1,2 +1,2 @@
 # MINA
-# by guan@mpipz.mpg.de
+### by guan@mpipz.mpg.de
