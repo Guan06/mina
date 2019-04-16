@@ -7,7 +7,7 @@
 addDes(mina, file)
 }
 \arguments{
-\item{mina}{An object of the class mina.}
+\item{mina}{An object of the class mina with Tab defined.}
 
 \item{file}{The descriptive table.}
 }
@@ -16,9 +16,10 @@ mina with descriptive table.
 }
 \description{
 This includes functions for adding descriptive table (e.g. design file)
-to mina object for later analysis.
+to mina object for later analysis. The samples in first column "SampleID" 
+should be the same as the samples in the quantitative table.
 }
 \examples{
-addTab(mina, "design.txt")
+addDes(mina, "design.txt")
 
 }

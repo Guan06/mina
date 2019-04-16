@@ -2,4 +2,6 @@
 
 export(addDes)
 export(addTab)
+export(check_mina_de)
+export(check_mina_qu)
 exportClasses(mina)

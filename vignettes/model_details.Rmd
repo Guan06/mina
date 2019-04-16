@@ -15,6 +15,43 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+# Overview
+
+The package is used for microbial profiling data analysis, including community similarity / dissimilarity / distance calculation and network comparison.
+
+# About this vignette
+
+## Typesetting Legend <a id="sec:typeset-legend"></a>
+
+- **bold** - Bold is used for emphasis.
+- *italics* - Italics are used for package names, and special words, phrases.
+- `code font` - The font for code, usually courrier-like, but depends on the theme.
+- `myFun()` - Code font word with `()` attached at the right-end, is a function name.
+- [Hyperlink](#sec:typeset-legend) - Hyperlinks are
+clickable text that will jump to sections and external pages.
+
+## Import data
+
+The first step is to import quantitative table of microbial community profiling data (e.g. OTU table) and corresponding descriptive file (e.g. design file) into the object.
+To load data, use the `new()` for all avaliable file or `addTab()` and `addDes()` to import them seperately.
+
+### Example
+
+Import files together:
+
+```{r, eval=FALSE}
+m <- new(mina, Tab = "otu_table.txt", desTab = "design.txt")
+```
+Import files seperately:
+```{r, eval=FALSE}
+m1 <- new(mina)
+m1 <- addTab(m1, "otu_table.txt")
+m1 <- addDes(m1, "design.txt")
+```
+
+
+## Supported Analysis
+
 
 Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
 

@@ -7,15 +7,14 @@
 check_mina_qu(object)
 }
 \arguments{
-\item{mina}{a mina object.}
+\item{object}{a mina object.}
 }
 \value{
-TRUE if the object contains quantitative table.
+TRUE if the object contains quantitative table and is not empty.
 }
 \description{
 Check the object and return TRUE if the object includes quantitative table.
 }
 \examples{
 check_mina_qu(mina)
-export
 }

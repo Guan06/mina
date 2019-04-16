@@ -7,15 +7,14 @@
 check_mina_de(object)
 }
 \arguments{
-\item{mina}{a mina object.}
+\item{object}{a mina object.}
 }
 \value{
-TRUE if the object contains descriptive table.
+TRUE if the object contains non-empty descriptive table and has the same samples as quantitative table.
 }
 \description{
 Check the object and return TRUE if the object includes descriptive table.
 }
 \examples{
 check_mina_de(mina)
-export
 }
