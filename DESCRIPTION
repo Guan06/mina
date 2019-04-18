@@ -1,7 +1,7 @@
 Package: mina
 Title: What the Package Does (one line, title case)
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R: person("Rui", "Guan", email = "guan@mpipz.mpg.de", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends: R (>= 3.4.1)
 License: What license is it under?
@@ -12,3 +12,10 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
+Collate: 
+    'add.R'
+    'allClasses.R'
+    'allGenerics.R'
+    'check.R'
+    'com_dis.R'
+    'norm_tab.R'
