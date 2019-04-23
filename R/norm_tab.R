@@ -1,71 +1,70 @@
 ###############################################################################
 
-#' Normalize the quantitative table with mina input.
-#'
-#' @include allClasses.R allGenerics.R
-#'
-#' @param mina An object of the class mina with @tab defined.
-#' @param method The method used for normalization.
-#' @param depth (optional) The depth for subsampling by rarefying, using the minimum sample
-#' depth by default.
-#' @param replace (optional) Whether to sample with replacement (\code{TRUE} by
-#' default) or without replacement (\code{FALSE}) when using method `raref`.
-#' @examples
-#' mina <- norm_tab(mina, method = "raref", depth = min(colSums(mina@tab)),
-#'                  replace = TRUE)
-#' mina <- norm_tab(mina, method = "total")
-#' @return mina An object of the class mina with @norm added.
-#' @exportMethod norm_tab
-
-setMethod("norm_tab", signature("mina", "ANY"), function(mina, method) {
-    stop("You must specify a `method` argument as a character string.
-         \nIt was missing / NA / not a character string.
-         \nSee `?norm_tab_method_list`")
-})
-
-setMethod("norm_tab", signature("mina", "character"),
-          function(mina, method, ...) {
-              # get the extra arguments to pass to functions (this can be empty)
-              extra <- list(...)
-
-              if (method == "raref") {
-                  mina@norm <- norm_by_raref(mina@tab, extra)
-              }
-              if (method == "total") {
-                  mina@norm <- norm_by_total(mina@tab)
-              }
-              return(mina)
-          }
-)
-
 #' Normalize the quantitative table with matrix input.
 #'
-#' @include allClasses.R allGenerics.R
-#' @param mat An matrix of the quantitative table.
+#' @include all_classes.R all_generics.R
+#' @param x An matrix of the quantitative table.
 #' @param method The method used for normalization.
 #' @param depth (optional) The depth for subsampling by rarefying, using the
 #' minimum sample depth by default.
 #' @param replace (optional) Whether to sample with replacement (\code{TRUE} by
 #' default) or without replacement (\code{FALSE}) when using method `raref`.
 #' @examples
-#' norm_tab(mat, method = "raref", depth = min(colSums(mat)), replace = TRUE)
-#' norm_tab(mat, method = "total")
-#' @return norm_mat Normalized matrix of the quantitative table.
+#' norm_tab(x, method = "raref", depth = min(colSums(mat)), replace = TRUE)
+#' norm_tab(x, method = "total")
+#' @return norm_x Normalized matrix of the quantitative table.
 #' @exportMethod norm_tab
 
 setMethod("norm_tab", signature("matrix", "character"),
-          function(mina, method, ...) {
-              mat <- mina
+          function(x, method, ...) {
+              x <- as.matrix(x)
               # get the extra arguments to pass to functions (this can be empty)
               extra <- list(...)
 
               if (method == "raref") {
-                  norm_mat <- norm_by_raref(mat, extra)
+                  norm_x <- norm_by_raref(x, extra)
               }
               if (method == "total") {
-                  norm_mat <- norm_by_total(mat)
+                  norm_x <- norm_by_total(x)
               }
-              return(norm_mat)
+              return(norm_x)
+          }
+)
+
+#' Normalize the quantitative table with mina input.
+#'
+#' @include all_classes.R all_generics.R
+#'
+#' @param x An object of the class mina with @tab defined.
+#' @param method The method used for normalization.
+#' @param depth (optional) The depth for subsampling by rarefying, using the
+#' minimum sample depth by default.
+#' @param replace (optional) Whether to sample with replacement (\code{TRUE} by
+#' default) or without replacement (\code{FALSE}) when using method `raref`.
+#' @examples
+#' x <- norm_tab(x, method = "raref", depth = min(colSums(mina@tab)),
+#'                  replace = TRUE)
+#' x <- norm_tab(x, method = "raref", depth = 1000, replace = FALSE)
+#' x <- norm_tab(x, method = "total")
+#' @return x An object of the class mina with @norm added.
+#' @exportMethod norm_tab
+
+setMethod("norm_tab", signature("mina", "ANY"),
+          function(x, method) {
+             stop("You must specify a `method` argument as a character string.
+                    \nIt was missing / NA / not a character string.
+                    \nSee `?norm_tab_method_list`")
+          }
+)
+
+setMethod("norm_tab", signature("mina", "character"),
+          function(x, method, ...) {
+              mat <- as.matrix(x@tab)
+              # get the extra arguments to pass to functions (this can be empty)
+              extra <- list(...)
+
+              x@norm <- norm_tab(mat, method, extra)
+              return(x)
           }
 )
 

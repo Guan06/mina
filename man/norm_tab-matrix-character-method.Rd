@@ -5,12 +5,12 @@
 \alias{norm_tab,matrix,character-method}
 \title{Normalize the quantitative table with matrix input.}
 \usage{
-\S4method{norm_tab}{matrix,character}(mina, method, ...)
+\S4method{norm_tab}{matrix,character}(x, method, ...)
 }
 \arguments{
-\item{method}{The method used for normalization.}
+\item{x}{An matrix of the quantitative table.}
 
-\item{mat}{An matrix of the quantitative table.}
+\item{method}{The method used for normalization.}
 
 \item{depth}{(optional) The depth for subsampling by rarefying, using the
 minimum sample depth by default.}
@@ -19,12 +19,12 @@ minimum sample depth by default.}
 default) or without replacement (\code{FALSE}) when using method `raref`.}
 }
 \value{
-norm_mat Normalized matrix of the quantitative table.
+norm_x Normalized matrix of the quantitative table.
 }
 \description{
 Normalize the quantitative table with matrix input.
 }
 \examples{
-norm_tab(mat, method = "raref", depth = min(colSums(mat)), replace = TRUE)
-norm_tab(mat, method = "total")
+norm_tab(x, method = "raref", depth = min(colSums(mat)), replace = TRUE)
+norm_tab(x, method = "total")
 }

@@ -5,27 +5,28 @@
 \alias{norm_tab,mina,ANY-method}
 \title{Normalize the quantitative table with mina input.}
 \usage{
-\S4method{norm_tab}{mina,ANY}(mina, method)
+\S4method{norm_tab}{mina,ANY}(x, method)
 }
 \arguments{
-\item{mina}{An object of the class mina with @tab defined.}
+\item{x}{An object of the class mina with @tab defined.}
 
 \item{method}{The method used for normalization.}
 
-\item{depth}{(optional) The depth for subsampling by rarefying, using the minimum sample
-depth by default.}
+\item{depth}{(optional) The depth for subsampling by rarefying, using the
+minimum sample depth by default.}
 
 \item{replace}{(optional) Whether to sample with replacement (\code{TRUE} by
 default) or without replacement (\code{FALSE}) when using method `raref`.}
 }
 \value{
-mina An object of the class mina with @norm added.
+x An object of the class mina with @norm added.
 }
 \description{
 Normalize the quantitative table with mina input.
 }
 \examples{
-mina <- norm_tab(mina, method = "raref", depth = min(colSums(mina@tab)),
+x <- norm_tab(x, method = "raref", depth = min(colSums(mina@tab)),
                  replace = TRUE)
-mina <- norm_tab(mina, method = "total")
+x <- norm_tab(x, method = "raref", depth = 1000, replace = FALSE)
+x <- norm_tab(x, method = "total")
 }
