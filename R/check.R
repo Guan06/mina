@@ -58,7 +58,7 @@ check_mina_de <- function(x){
     }
 
     samples1 <- sort(colnames(x@tab))
-    samples2 <- sort(xt@des_tab$SampleID)
+    samples2 <- sort(x@des_tab$SampleID)
 
     if (samples1 != samples2){
         msg <- "The samples in Tab and desTab are different!"

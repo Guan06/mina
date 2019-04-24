@@ -12,14 +12,14 @@ add_tab(x, file)
 \item{file}{The table to be added to the object.}
 }
 \value{
-x An object of the class mina with table indicated in file added.
+x An object of the class mina with @tab added.
 }
 \description{
 This includes functions for adding quantitative table (e.g. OTU table) to
 mina object for later analysis.
 }
 \examples{
-add_tab(mina, "otu_table.txt")
-add_tab(mina, "asv_table.rds")
+add_tab(x, "otu_table.txt")
+add_tab(x, "asv_table.rds")
 
 }

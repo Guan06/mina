@@ -1,5 +1,4 @@
 ################################################################################
-
 #' Add quantitative table to the object.
 #'
 #' This includes functions for adding quantitative table (e.g. OTU table) to
@@ -7,13 +6,13 @@
 #'
 #' @param x An object of the class mina.
 #' @param file The table to be added to the object.
-#' @return x An object of the class mina with table indicated in file added.
+#' @return x An object of the class mina with @tab added.
 #'
 #' @examples
-#' add_tab(mina, "otu_table.txt")
-#' add_tab(mina, "asv_table.rds")
+#' add_tab(x, "otu_table.txt")
+#' add_tab(x, "asv_table.rds")
 #'
-#' @exportMethod add
+#' @export
 
 add_tab <- function(x, file) {
     type <- unlist(strsplit(file, ".", fixed = TRUE))[2]
@@ -32,18 +31,19 @@ add_tab <- function(x, file) {
     return(x)
 }
 
+################################################################################
 #' Add descriptive table to the object.
 #'
 #' This includes functions for adding descriptive table (e.g. design file)
 #' to mina object for later analysis. The samples in first column "Sample_ID"
 #' should be the same as the samples in the quantitative table.
 #'
-#' @param x An object of the class mina with Tab defined.
+#' @param x An object of the class mina with @tab defined.
 #' @param file The descriptive table.
-#' @return mina An object of the class mina with descriptive table added.
+#' @return x An object of the class mina with @des_tab added.
 #'
 #' @examples
-#' add_des(mina, "design.txt")
+#' add_des(x, "design.txt")
 #'
 #' @export
 
@@ -56,7 +56,7 @@ add_des <- function(x, file) {
 
     x@des_tab <- des_tab
 
-    c <- check_mina_de(mina)
+    c <- check_mina_de(x)
 
-    if (c == TRUE) mina else c
+    if (c == TRUE) x else c
 }
