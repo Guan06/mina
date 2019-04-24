@@ -2,23 +2,24 @@
 % Please edit documentation in R/add.R
 \name{add_tab}
 \alias{add_tab}
-\title{Add tables to the object}
+\title{Add quantitative table to the object.}
 \usage{
-add_tab(mina, file)
+add_tab(x, file)
 }
 \arguments{
-\item{mina}{An object of the class mina.}
+\item{x}{An object of the class mina.}
 
-\item{file}{The quantitative table.}
+\item{file}{The table to be added to the object.}
 }
 \value{
-mina An object of the class mina with quantitative table added.
+x An object of the class mina with table indicated in file added.
 }
 \description{
-This includes functions for adding quantitative table (e.g. OTU table)
-to mina object for later analysis.
+This includes functions for adding quantitative table (e.g. OTU table) to
+mina object for later analysis.
 }
 \examples{
 add_tab(mina, "otu_table.txt")
+add_tab(mina, "asv_table.rds")
 
 }

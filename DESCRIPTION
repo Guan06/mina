@@ -18,4 +18,5 @@ Collate:
     'all_generics.R'
     'check.R'
     'com_dis.R'
+    'data.R'
     'norm_tab.R'

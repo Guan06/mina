@@ -2,12 +2,12 @@
 % Please edit documentation in R/add.R
 \name{add_des}
 \alias{add_des}
-\title{Add tables to the object}
+\title{Add descriptive table to the object.}
 \usage{
-add_des(mina, file)
+add_des(x, file)
 }
 \arguments{
-\item{mina}{An object of the class mina with Tab defined.}
+\item{x}{An object of the class mina with Tab defined.}
 
 \item{file}{The descriptive table.}
 }
@@ -16,7 +16,7 @@ mina An object of the class mina with descriptive table added.
 }
 \description{
 This includes functions for adding descriptive table (e.g. design file)
-to mina object for later analysis. The samples in first column "SampleID" 
+to mina object for later analysis. The samples in first column "Sample_ID"
 should be the same as the samples in the quantitative table.
 }
 \examples{

@@ -4,10 +4,10 @@
 \alias{check_mina_qu}
 \title{Check the object and return TRUE if the object includes quantitative table.}
 \usage{
-check_mina_qu(object)
+check_mina_qu(x)
 }
 \arguments{
-\item{object}{a mina object.}
+\item{x}{An object of class mina.}
 }
 \value{
 TRUE if the object contains quantitative table and is not empty.
@@ -16,5 +16,5 @@ TRUE if the object contains quantitative table and is not empty.
 Check the object and return TRUE if the object includes quantitative table.
 }
 \examples{
-check_mina_qu(mina)
+check_mina_qu(x)
 }

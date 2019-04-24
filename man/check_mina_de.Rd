@@ -4,10 +4,10 @@
 \alias{check_mina_de}
 \title{Check the object and return TRUE if the object includes descriptive table.}
 \usage{
-check_mina_de(object)
+check_mina_de(x)
 }
 \arguments{
-\item{object}{a mina object.}
+\item{x}{An object of class mina.}
 }
 \value{
 TRUE if the object contains non-empty descriptive table and has the same samples as quantitative table.
@@ -16,5 +16,5 @@ TRUE if the object contains non-empty descriptive table and has the same samples
 Check the object and return TRUE if the object includes descriptive table.
 }
 \examples{
-check_mina_de(mina)
+check_mina_de(x)
 }
