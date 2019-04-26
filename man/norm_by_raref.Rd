@@ -5,13 +5,12 @@
 \title{Function for normalization by rarefying the samples into the same depth,
 modified from \code{\link[phyloseq]{rarefy_even_depth}}.}
 \usage{
-norm_by_raref(x, depth = min(colSums(x)), replace = TRUE)
+norm_by_raref(x, depth = 1000, replace = TRUE)
 }
 \arguments{
 \item{x}{A quantitative table with sample in columns and compostions in rows.}
 
-\item{depth}{(optional) The depth for rarefying, the minimum sample depth by
-default.}
+\item{depth}{(optional) The depth for rarefying, 1000 by default.}
 
 \item{replace}{(optional) Whether to sample with replacement (\code{TRUE}) or
 without replacement (\code{FALSE}). Default \code{TRUE} for computational

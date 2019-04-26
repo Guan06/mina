@@ -38,21 +38,21 @@ clickable text that will jump to sections and external pages.
 The first step is to import quantitative table of microbial community profiling
 data (e.g. OTU table) and corresponding descriptive file (e.g. design file) into
 the object.
-To load data, use the `new()` for all avaliable file or `addTab()` and
-`addDes()` to import them seperately.
+To load data, use the `new()` for all avaliable file or `add_tab()` and
+`add_des()` to import them seperately.
 
 For the quantitative file (e.g. OTU table), rows are compositions of the
 community and columns are samples. The corresponding descriptive file(e.g.
 design file) should
 have the same samples as quantitative table. The first column of descriptive
-file is "**SampleID**" which contains IDs of samples.
+file is "**Sample_\_ID**" which contains IDs of samples.
 
 #### Example
 
 Import files together:
 
 ```{r, eval=FALSE}
-m <- new(mina, Tab = "otu_table.txt", desTab = "design.txt")
+m <- new(mina, tab = "otu_table.txt", des_tab = "design.txt")
 ```
 Import files seperately:
 ```{r, eval=FALSE}

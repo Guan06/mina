@@ -1,6 +1,6 @@
-# mina
+# MINA
 
-The goal of mina is to compare the microbial profiling data at the community and network levels.
+The goal of MINA(MIcrobial Network Analysis) is to compare the microbial profiling data at the community and network levels.
 
 ## Installation
 

@@ -13,34 +13,37 @@ Class "mina" includes the quantitative table and descriptive table.
 \section{Slots}{
 
 \describe{
-\item{\code{tab}}{the quantitative table of the dataset.}
+\item{\code{tab}}{The quantitative table of the dataset.}
 
-\item{\code{des_tab}}{the descriptive table of the samples listed in Tab.}
+\item{\code{des_tab}}{The descriptive table of the samples listed in @tab.}
 
-\item{\code{norm}}{the normalized quantitative table of Tab.}
+\item{\code{norm}}{The normalized quantitative table of @tab.}
 
-\item{\code{dis}}{the distance / dissimilarity matrix between samples in Tab and desTab.}
+\item{\code{dis}}{The distance / dissimilarity matrix between samples in @tab and}
 
-\item{\code{dmr}}{the list of dimensionality reduction result, includes points and variance.}
+\item{\code{dmr}}{The list of dimensionality reduction result, includes points and
+variance.}
 
-\item{\code{adj}}{the adjacency matrix between pairwise compositions (e.g. OTUs/ASVs)}
+\item{\code{adj}}{The adjacency matrix between pairwise compositions (e.g. OTUs/ASVs)}
 
-\item{\code{cls}}{the cluster information for each composition}
+\item{\code{cls}}{The cluster information for each composition.}
 
-\item{\code{cls_tab}}{the cluster quantitative table}
+\item{\code{cls_tab}}{The cluster quantitative table.}
 
-\item{\code{dis_net}}{the distance between networks of different environmental communities.}
+\item{\code{dis_net}}{The distance between networks of different environmental
+communities.}
 
-\item{\code{multi}}{the list of subsampled adjacency matrices for each environment.}
+\item{\code{multi}}{The list of subsampled adjacency matrices for each environment.}
 
-\item{\code{perm}}{the list of permutated adjacency matrices for each pairwise environmental comparison.}
+\item{\code{perm}}{The list of permutated adjacency matrices for each pairwise
+environmental comparison.}
 
-\item{\code{sig}}{the average distance between subsampled environmental community networks and corresponding
-significance.}
+\item{\code{sig}}{The average distance between subsampled environmental community
+networks and corresponding significance.}
 }}
 
 \examples{
-new(mina, tab = "otu_table.txt", des_tab = "design.txt")
+new("mina", tab = as.matrix(maize_asv), des_tab = maize_des)
 }
 \author{
 Rui Guan \url{https://github.com/Guan06}

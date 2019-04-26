@@ -23,15 +23,15 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #' @aliases mina-class show, mina-method comDis
 #' @docType class
 #' @slot tab The quantitative table of the dataset.
-#' @slot des_tab The descriptive table of the samples listed in tab.
-#' @slot norm The normalized quantitative table of Tab.
-#' @slot dis The distance / dissimilarity matrix between samples in tab and
-#' des_tab.
+#' @slot des_tab The descriptive table of the samples listed in @tab.
+#' @slot norm The normalized quantitative table of @tab.
+#' @slot dis The distance / dissimilarity matrix between samples in @tab and
+#' @des_tab.
 #' @slot dmr The list of dimensionality reduction result, includes points and
 #' variance.
 #' @slot adj The adjacency matrix between pairwise compositions (e.g. OTUs/ASVs)
-#' @slot cls The cluster information for each composition
-#' @slot cls_tab The cluster quantitative table
+#' @slot cls The cluster information for each composition.
+#' @slot cls_tab The cluster quantitative table.
 #' @slot dis_net The distance between networks of different environmental
 #' communities.
 #' @slot multi The list of subsampled adjacency matrices for each environment.
@@ -66,15 +66,3 @@ setClass("mina",
 
 
 ################################################################################
-# Modified from https://github.com/joey711/phyloseq/blob/master/R/allClasses.R
-# Use setClassUnion to define the unholy NULL-data union as a virtual class.
-# This is a way of dealing with the expected scenarios in which one or more of
-# the component data classes is not available, in which case NULL will be used
-# instead.
-################################################################################
-#' @keywords internal
-setClassUnion("mat_or_NULL", c("matrix", "NULL"))
-#' @keywords internal
-setClassUnion("df_or_NULL", c("data.frame", "NULL"))
-#' @keywords internal
-setClassUnion("lst_or_NULL", c("list", "NULL"))

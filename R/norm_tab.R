@@ -3,14 +3,14 @@
 #' Normalize the quantitative table with matrix input.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An matrix of the quantitative table.
+#' @param x A matrix of the quantitative table.
 #' @param method The method used for normalization.
 #' @param depth (optional) The depth for subsampling by rarefying, using the
 #' minimum sample depth by default.
 #' @param replace (optional) Whether to sample with replacement (\code{TRUE} by
 #' default) or without replacement (\code{FALSE}) when using method `raref`.
 #' @examples
-#' norm_tab(x, method = "raref", depth = min(colSums(mat)), replace = TRUE)
+#' norm_tab(x, method = "raref", depth = 1000, replace = TRUE)
 #' norm_tab(x, method = "total")
 #' @return norm_x Normalized matrix of the quantitative table.
 #' @exportMethod norm_tab
@@ -37,20 +37,18 @@ setMethod("norm_tab", signature("matrix", "character"),
 #'
 #' @param x An object of the class mina with @tab defined.
 #' @param method The method used for normalization.
-#' @param depth (optional) The depth for subsampling by rarefying, using the
-#' minimum sample depth by default.
+#' @param depth (optional) The depth for subsampling by rarefying, 1000 by
+#' default.
 #' @param replace (optional) Whether to sample with replacement (\code{TRUE} by
 #' default) or without replacement (\code{FALSE}) when using method `raref`.
 #' @examples
-#' x <- norm_tab(x, method = "raref", depth = min(colSums(mina@tab)),
-#'                  replace = TRUE)
-#' x <- norm_tab(x, method = "raref", depth = 1000, replace = FALSE)
+#' x <- norm_tab(x, method = "raref", depth = 1000, replace = TRUE)
 #' x <- norm_tab(x, method = "total")
 #' @return x An object of the class mina with @norm added.
 #' @exportMethod norm_tab
 
 setMethod("norm_tab", signature("mina", "ANY"),
-          function(x, method) {
+          function(x, method, ...) {
              stop("You must specify a `method` argument as a character string.
                     \nIt was missing / NA / not a character string.
                     \nSee `?norm_tab_method_list`")
@@ -59,11 +57,9 @@ setMethod("norm_tab", signature("mina", "ANY"),
 
 setMethod("norm_tab", signature("mina", "character"),
           function(x, method, ...) {
-              mat <- as.matrix(x@tab)
               # get the extra arguments to pass to functions (this can be empty)
-              extra <- list(...)
-
-              x@norm <- norm_tab(mat, method, extra)
+              #extra <- list(...)
+              x@norm <- norm_tab(x@tab, method, ...)
               return(x)
           }
 )
@@ -88,8 +84,7 @@ norm_by_total <- function(x) {
 #' Function for normalization by rarefying the samples into the same depth,
 #' modified from \code{\link[phyloseq]{rarefy_even_depth}}.
 #' @param x A quantitative table with sample in columns and compostions in rows.
-#' @param depth (optional) The depth for rarefying, the minimum sample depth by
-#' default.
+#' @param depth (optional) The depth for rarefying, 1000 by default.
 #' @param replace (optional) Whether to sample with replacement (\code{TRUE}) or
 #' without replacement (\code{FALSE}). Default \code{TRUE} for computational
 #' efficiency.
@@ -98,13 +93,14 @@ norm_by_total <- function(x) {
 #' @return A normalized quantitative table.
 #' @keywords internal
 
-norm_by_raref <- function(x, depth = min(colSums(x)), replace = TRUE) {
+norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
     # Make sure depth is of length 1.
     if (length(depth) > 1) {
         warning("`depth` had more than one value. ",
                 "Using only the first. \n ... \n")
         depth <- depth[1]
     }
+
     if (depth <= 0) {
         stop("`depth` less than or equal to zero. ",
              "Need positive depth to work.")
@@ -116,9 +112,12 @@ norm_by_raref <- function(x, depth = min(colSums(x)), replace = TRUE) {
         message(length(rmsamples), " samples removed for low depth")
         x <- x[, colSums(x) >= depth]
     }
+
     if (ncol(x) <= 0) stop("No sample has more reads than `depth`.")
+
     x_norm <- apply(x, 2, rarefaction_subsample,
                     depth = depth, replace = replace)
+
     rownames(x_norm) <- rownames(x)
     return(x_norm)
 }

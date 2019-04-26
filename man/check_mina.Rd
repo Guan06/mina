@@ -12,7 +12,7 @@ check_mina(x)
 \item{x}{An object of class mina.}
 }
 \value{
-TRUE if the object is valid or empty.
+TRUE if the object is valid.
 }
 \description{
 Check the tab and des_tab file. Return TRUE if they are NULL or both

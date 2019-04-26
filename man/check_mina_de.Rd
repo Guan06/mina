@@ -2,7 +2,8 @@
 % Please edit documentation in R/check.R
 \name{check_mina_de}
 \alias{check_mina_de}
-\title{Check the object and return TRUE if the object includes descriptive table.}
+\title{Check the object and return TRUE if the object includes descriptive table
+contains the same samples as quantitative table.}
 \usage{
 check_mina_de(x)
 }
@@ -10,10 +11,12 @@ check_mina_de(x)
 \item{x}{An object of class mina.}
 }
 \value{
-TRUE if the object contains non-empty descriptive table and has the same samples as quantitative table.
+TRUE if the object contains non-empty descriptive table and has the
+same samples as quantitative table.
 }
 \description{
-Check the object and return TRUE if the object includes descriptive table.
+Check the object and return TRUE if the object includes descriptive table
+contains the same samples as quantitative table.
 }
 \examples{
 check_mina_de(x)

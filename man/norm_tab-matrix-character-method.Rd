@@ -8,7 +8,7 @@
 \S4method{norm_tab}{matrix,character}(x, method, ...)
 }
 \arguments{
-\item{x}{An matrix of the quantitative table.}
+\item{x}{A matrix of the quantitative table.}
 
 \item{method}{The method used for normalization.}
 
@@ -25,6 +25,6 @@ norm_x Normalized matrix of the quantitative table.
 Normalize the quantitative table with matrix input.
 }
 \examples{
-norm_tab(x, method = "raref", depth = min(colSums(mat)), replace = TRUE)
+norm_tab(x, method = "raref", depth = 1000, replace = TRUE)
 norm_tab(x, method = "total")
 }
