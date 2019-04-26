@@ -15,8 +15,9 @@ VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 Collate: 
     'add.R'
-    'all_classes.R'
     'all_generics.R'
+    'all_classes.R'
+    'adj.R'
     'check.R'
     'com_dis.R'
     'data.R'
