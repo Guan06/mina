@@ -9,7 +9,7 @@
 #' fit_tabs(x)
 #' @export
 
-setGeneric("fit_tabs", function(x, ...) {
+setGeneric("fit_tabs", function(x) {
     standardGeneric("fit_tabs")
 })
 
@@ -23,6 +23,6 @@ setGeneric("fit_tabs", function(x, ...) {
 #' norm_tab(x, method = "total")
 #' @export
 
-setGeneric("norm_tab", function(x, method, ...) {
+setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
     standardGeneric("norm_tab")
 })

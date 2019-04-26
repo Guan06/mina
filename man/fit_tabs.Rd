@@ -5,7 +5,7 @@
 \title{Filter the quantitative and descriptive table to make them have the same
 samples, the intersect samples will be remained.}
 \usage{
-fit_tabs(x, ...)
+fit_tabs(x)
 }
 \arguments{
 \item{x}{An object of the class mina with @tab and @des_tab defined or a

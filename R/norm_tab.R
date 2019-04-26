@@ -15,14 +15,10 @@
 #' @return norm_x Normalized matrix of the quantitative table.
 #' @exportMethod norm_tab
 
-setMethod("norm_tab", signature("matrix", "character"),
-          function(x, method, ...) {
-              x <- as.matrix(x)
-              # get the extra arguments to pass to functions (this can be empty)
-              extra <- list(...)
-
+setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
+          function(x, method, depth = 1000, replace = TRUE) {
               if (method == "raref") {
-                  norm_x <- norm_by_raref(x, extra)
+                  norm_x <- norm_by_raref(x, depth = depth, replace = replace)
               }
               if (method == "total") {
                   norm_x <- norm_by_total(x)
@@ -47,19 +43,18 @@ setMethod("norm_tab", signature("matrix", "character"),
 #' @return x An object of the class mina with @norm added.
 #' @exportMethod norm_tab
 
-setMethod("norm_tab", signature("mina", "ANY"),
-          function(x, method, ...) {
+setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY"),
+          function(x, method, depth = 1000, replace = TRUE) {
              stop("You must specify a `method` argument as a character string.
                     \nIt was missing / NA / not a character string.
                     \nSee `?norm_tab_method_list`")
           }
 )
 
-setMethod("norm_tab", signature("mina", "character"),
-          function(x, method, ...) {
-              # get the extra arguments to pass to functions (this can be empty)
-              #extra <- list(...)
-              x@norm <- norm_tab(x@tab, method, ...)
+setMethod("norm_tab", signature("mina", "character", "ANY", "ANY"),
+          function(x, method, depth = 1000, replace = TRUE) {
+              x@norm <- norm_tab(x@tab, method,
+                                 depth = depth, replace = replace)
               return(x)
           }
 )

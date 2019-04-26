@@ -4,7 +4,9 @@
 \name{fit_tabs,ANY-method}
 \alias{fit_tabs,ANY-method}
 \title{Filter the quantitative and descriptive table to make them have the same
-samples, samples present in both tables are remained.}
+samples, samples present in both tables are remained. If @norm table exist in
+the `mina` object, descriptive table will be filtered again to only keep
+samples present in @norm.}
 \usage{
 \S4method{fit_tabs}{ANY}(x)
 }
@@ -16,7 +18,9 @@ x The same object as input with fitted @tab and @des_tab.
 }
 \description{
 Filter the quantitative and descriptive table to make them have the same
-samples, samples present in both tables are remained.
+samples, samples present in both tables are remained. If @norm table exist in
+the `mina` object, descriptive table will be filtered again to only keep
+samples present in @norm.
 }
 \examples{
 x <- fit_tabs(x)

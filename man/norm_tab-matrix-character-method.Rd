@@ -5,7 +5,8 @@
 \alias{norm_tab,matrix,character-method}
 \title{Normalize the quantitative table with matrix input.}
 \usage{
-\S4method{norm_tab}{matrix,character}(x, method, ...)
+\S4method{norm_tab}{matrix,character}(x, method, depth = 1000,
+  replace = TRUE)
 }
 \arguments{
 \item{x}{A matrix of the quantitative table.}
