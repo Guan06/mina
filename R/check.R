@@ -16,10 +16,10 @@ check_mina <- function(x){
     }
 
     errors <- character()
-    #if (!check_mina_qu(x)) errors <- c(errors, check_mina_qu(x))
-    errors <- c(errors, check_mina_de(x))
+    if (!check_mina_qu(x)) errors <- c(errors, check_mina_qu(x))
+    if (!check_mina_de(x)) errors <- c(errors, check_mina_de(x))
 
-    if (length(errors) == 0 ) TRUE else errors
+    if (length(errors) == 0 ) TRUE else stop(errors)
 }
 
 ###############################################################################
@@ -55,7 +55,7 @@ check_mina_qu <- function(x){
 check_mina_de <- function(x){
     errors <- character()
 
-    errors <- c(errors, check_mina_qu(x))
+    if (!check_mina_qu(x)) errors <- c(errors, check_mina_qu(x))
 
     if(class(x@des_tab) == "NULL") {
         stop("The @des_tab of this object does not exist!")
@@ -68,5 +68,5 @@ check_mina_de <- function(x){
         msg <- "The samples in @tab and @des_tab are different!"
         errors <- c(errors, msg)
     }
-    if (length(errors) == 0) TRUE else errors
+    if (length(errors) == 0) TRUE else stop(errors)
 }

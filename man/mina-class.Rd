@@ -19,7 +19,7 @@ Class "mina" includes the quantitative table and descriptive table.
 
 \item{\code{norm}}{The normalized quantitative table of @tab.}
 
-\item{\code{dis}}{The distance / dissimilarity matrix between samples in @tab and}
+\item{\code{dis}}{The distance / dissimilarity matrix between samples in @tab.}
 
 \item{\code{dmr}}{The list of dimensionality reduction result, includes points and
 variance.}

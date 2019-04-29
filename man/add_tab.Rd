@@ -19,7 +19,7 @@ This includes functions for adding quantitative table (e.g. OTU table) to
 mina object for later analysis.
 }
 \examples{
-add_tab(x, "otu_table.txt")
-add_tab(x, "asv_table.rds")
+x <- add_tab(x, "otu_table.txt")
+x <- add_tab(x, "asv_table.rds")
 
 }

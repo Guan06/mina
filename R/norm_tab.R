@@ -45,9 +45,7 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
 
 setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY"),
           function(x, method, depth = 1000, replace = TRUE) {
-             stop("You must specify a `method` argument as a character string.
-                    \nIt was missing / NA / not a character string.
-                    \nSee `?norm_tab_method_list`")
+             stop("Must specify a `method`. See `? norm_tab_method_list`")
           }
 )
 
@@ -114,6 +112,7 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
                     depth = depth, replace = replace)
 
     rownames(x_norm) <- rownames(x)
+    x_norm <- x_norm[rowSums(x_norm) > 0, ]
     return(x_norm)
 }
 

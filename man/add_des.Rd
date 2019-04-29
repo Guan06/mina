@@ -16,10 +16,12 @@ x An object of the class mina with @des_tab added.
 }
 \description{
 This includes functions for adding descriptive table (e.g. design file)
-to mina object for later analysis. The samples in first column "Sample_ID"
-should be the same as the samples in the quantitative table.
+to mina object for later analysis. The first colname should be "Sample_ID".
+Note that samples will not be check if they are the same one as in @tab, use
+check_mina_de(x) for the output of add_des().
 }
 \examples{
-add_des(x, "design.txt")
+x <- add_des(x, "design.txt")
+x <- add_des(x, "design.csv")
 
 }

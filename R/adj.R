@@ -4,8 +4,8 @@
 #' object as input.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An object of the class mina with @norm defined or any quantitative
-#' matrix.
+#' @import foreach, bigmemory, doMC
+#' @param x An object of the class mina with @norm defined.
 #' @param method The correlation coeffient used for adjacacency matrix.
 #' @param threads (optional) The number of threads used for parallel running, 80
 #' by default.
@@ -20,9 +20,7 @@
 
 setMethod("adj", signature("mina", "ANY", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {
-              stop("You must specify a `method` argument as a characte.
-                   \n It was missing / NA / not a character string.
-                   \n See `?adj_method_list`")
+              stop("Must specify a `method`. See `? adj_method_list`")
           }
 )
 
@@ -89,14 +87,15 @@ cor_par <- function(x, method = "pearson", threads = 80, nblocks = 400) {
     use <- "na.or.complete"
 
     # Register cluster
-    registerDoMC(cores=use.cores)
+    registerDoMC(cores = threads)
 
     # Preallocate blocks for parallel processing
     # => based on https://gist.github.com/bobthecat/5024079
     n_el <- ncol(x)
 
     if (n_el < 2 * nblocks) {
-        return(cor(x, method = method, use = use))
+        x_rho <- cor(x, method = method, use = use)
+        return(as.matrix(x_rho))
     }
 
     size_split <- floor(n_el / nblocks)
@@ -110,7 +109,7 @@ cor_par <- function(x, method = "pearson", threads = 80, nblocks = 400) {
 
     dat_split <- mclapply(my_split, function(g) {
                                     as.matrix(x[, g])
-                                    }, mc_cores = threads)
+                                    }, mc.cores = threads)
 
     # Get combinations of splits
     my_combs <- expand.grid(1 : length(my_split), 1:length(my_split))
@@ -137,7 +136,7 @@ cor_par <- function(x, method = "pearson", threads = 80, nblocks = 400) {
         # Store
         curr_x_rho <- attach.big.matrix(x_rho_desc)
         curr_x_rho[g_1, g_2] <- curr_rho
-        curr_x_rho[g.2, g.1] <- t(curr_rho)
+        curr_x_rho[g_2, g_1] <- t(curr_rho)
         # Return
         TRUE
     }
