@@ -5,7 +5,7 @@
 \alias{mina-class}
 \alias{show,}
 \alias{mina-method}
-\alias{comDis}
+\alias{com_dis}
 \title{Class "mina" includes the quantitative table and descriptive table.}
 \description{
 Class "mina" includes the quantitative table and descriptive table.

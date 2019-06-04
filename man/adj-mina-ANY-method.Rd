@@ -9,8 +9,7 @@ object as input.}
 \S4method{adj}{mina,ANY}(x, method, threads = 80, nblocks = 400)
 }
 \arguments{
-\item{x}{An object of the class mina with @norm defined or any quantitative
-matrix.}
+\item{x}{An object of the class mina with @norm defined.}
 
 \item{method}{The correlation coeffient used for adjacacency matrix.}
 
@@ -21,7 +20,7 @@ by default.}
 400 by default.}
 }
 \value{
-x An object of the class mina with @adj added.
+x The same `mina` object with @adj added.
 }
 \description{
 Calculate the adjacacency matrix of @norm by correlation with `mina` class

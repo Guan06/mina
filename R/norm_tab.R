@@ -119,7 +119,7 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
 #' Rarefaction subsample function, one sample, modified from
 #' \code{\link[phyloseq]{rarefaction_subsample}} which is a internal function.
 #' Resample with replacement for default. As mentioned in
-#' \code{\link[phyloseq]}, this is set for computational efficiency.
+#' \pkg{phyloseq}, this is set for computational efficiency.
 #' @param x A column of quantitative table.
 #' @param depth The depth for rarefying.
 #' @param replace Whether to sample with or without replacement.
@@ -149,19 +149,23 @@ rarefaction_subsample <- function(x, depth, replace = TRUE){
 
 ###############################################################################
 
-#' List of normalization method supported in \code{\link[mina]{norm_tab}}
+#' List of normalization methods supported in \code{\link[mina]{norm_tab}}
 #'
 #' Normalization methods should be specified by exact string match.
 #' @format A list of character vectors.
-#' \describe {
-#'    raref By downsampling all samples to specific depth.
-#'    total Devided by the total reads of each sample.
+#' \describe{
+#'    \item{
+#'        raref By downsampling all samples to specific depth.
+#'    }
+#'    \item{
+#'        total Devided by the total read of each sample.
+#'    }
 #'
 #' }
 #' @seealso \code{\link[mina]{norm_tab}}
 #' @export
 #' @examples
-#' norm_tab_method_list
+#' ? norm_tab_method_list
 
 norm_tab_method_list <- list(
     raref = "raref",

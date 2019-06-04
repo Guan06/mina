@@ -3,11 +3,15 @@
 \docType{data}
 \name{norm_tab_method_list}
 \alias{norm_tab_method_list}
-\title{List of normalization method supported in \code{\link[mina]{norm_tab}}}
+\title{List of normalization methods supported in \code{\link[mina]{norm_tab}}}
 \format{A list of character vectors.
-\describe {
-   raref By downsampling all samples to specific depth.
-   total Devided by the total reads of each sample.
+\describe{
+   \item{
+       raref By downsampling all samples to specific depth.
+   }
+   \item{
+       total Devided by the total read of each sample.
+   }
 
 }}
 \usage{
@@ -17,7 +21,7 @@ norm_tab_method_list
 Normalization methods should be specified by exact string match.
 }
 \examples{
-norm_tab_method_list
+? norm_tab_method_list
 }
 \seealso{
 \code{\link[mina]{norm_tab}}

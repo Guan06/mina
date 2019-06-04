@@ -42,3 +42,19 @@ setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
 setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
     standardGeneric("adj")
 })
+
+###############################################################################
+
+#' Calculate the community dissimilarity / distance matrix of @norm.
+#' @param x An object of the class mina with @norm defined or any quantitative
+#' matrix.
+#' @param method The dissimilarity / distance method used.
+#' @param threads (optional) The number of threads used for parallel running.
+#' @param nblocks (optional) The number of row / column for splitted sub-matrix.
+#' @examples
+#' x <- adj(x, method = "bray")
+#' @export
+
+setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
+    standardGeneric("com_dis")
+})

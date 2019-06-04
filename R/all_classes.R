@@ -19,7 +19,7 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #' Class "mina" includes the quantitative table and descriptive table.
 #'
 #' @name mina-class
-#' @aliases mina-class show, mina-method comDis
+#' @aliases mina-class show, mina-method com_dis
 #' @docType class
 #' @slot tab The quantitative table of the dataset.
 #' @slot des_tab The descriptive table of the samples listed in @tab.
@@ -42,6 +42,7 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #' new("mina", tab = as.matrix(maize_asv), des_tab = maize_des)
 #' @author Rui Guan \url{https://github.com/Guan06}
 #' @exportClass mina
+
 setClass("mina",
          representation(tab = "mat_or_NULL",
                    des_tab = "df_or_NULL",

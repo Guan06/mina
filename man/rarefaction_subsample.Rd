@@ -5,7 +5,7 @@
 \title{Rarefaction subsample function, one sample, modified from
 \code{\link[phyloseq]{rarefaction_subsample}} which is a internal function.
 Resample with replacement for default. As mentioned in
-\code{\link[phyloseq]}, this is set for computational efficiency.}
+\pkg{phyloseq}, this is set for computational efficiency.}
 \usage{
 rarefaction_subsample(x, depth, replace = TRUE)
 }
@@ -20,7 +20,7 @@ rarefaction_subsample(x, depth, replace = TRUE)
 Rarefaction subsample function, one sample, modified from
 \code{\link[phyloseq]{rarefaction_subsample}} which is a internal function.
 Resample with replacement for default. As mentioned in
-\code{\link[phyloseq]}, this is set for computational efficiency.
+\pkg{phyloseq}, this is set for computational efficiency.
 }
 \examples{
 rarefaction_subsample(otu_table[, 1], depth = 1000, replace = FALSE)

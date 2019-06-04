@@ -28,6 +28,11 @@ test_that("Test that this is an object of class mina with @des_tab added", {
             expect_true(class(maize1@des_tab) == "data.frame")
 })
 
+test_that("Test that this object has the same samples in @tab and @des_tab", {
+            expect_true(check_mina_de(maize1))
+})
+
+maize1@des_tab <- maize1@des_tab[1:100, ]
 test_that("Test that this object does not have same samples in @tab and
          @des_tab, should output error message", {
          expect_error(check_mina_de(maize1),
