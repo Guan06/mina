@@ -156,7 +156,7 @@ cor_par <- function(x, method = "pearson", threads = 80, nblocks = 400) {
 #' master/functions.community_similarity.R
 #'
 #' @include all_classes.R all_generics.R
-#' @import foreach bigmemory doMC plyr
+#' @import foreach bigmemory doMC plyr biganalytics
 #' @importFrom parallel mclapply
 #' @param x An matrix for correlation calculation.
 #' @param threads (optional) The number of threads used for parallel running, 80
@@ -169,8 +169,6 @@ cor_par <- function(x, method = "pearson", threads = 80, nblocks = 400) {
 #' @keywords internal
 
 sparcc <- function(x, threads = 80, nblocks = 400) {
-    use <- "na.or.complete"
-
     # add pseudocount to avoid issues with 0 in log-space
     pseudocount <- 10^-6
     x <- x + pseudocount
@@ -182,6 +180,7 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
     # => based on https://gist.github.com/bobthecat/5024079
     nr <- nrow(x)
     size_split <- floor(nr / nblocks)
+    if (size_split < 1) { size_split <- 1 }
 
     my_split <- list()
     length(my_split) <- nblocks
@@ -190,7 +189,7 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
     my_split[[nblocks]] <- (size_split * (nblocks - 1)) : nr
 
     dat_split <- mclapply(my_split, function(g) {
-                                    as.matrix(x[, g])
+                                    as.matrix(x[g, ])
                                     }, mc.cores = threads)
 
     # Get combinations of splits
@@ -200,7 +199,7 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
 
     # Preallocate T matrix as big.matrix
     x_cor <- big.matrix(nrow = nr, ncol = nr,
-                        dimnames = list(rownames(x), rownames(x)), shared=T)
+                        dimnames = list(rownames(x), rownames(x)), shared = T)
     x_cor_desc <- describe(x_cor)
 
     # Compute Aitchinson's T matrix iterate through each block combination,
@@ -211,16 +210,16 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
         curr_comb <- my_combs[i, ]
         g_1 <- my_split[[curr_comb[1]]]
         g_2 <- my_split[[curr_comb[2]]]
-        data_1 <- dat_split[[curr_comb[1]]]
-        data_2 <- dat_split[[curr_comb[2]]]
+        dat_1 <- dat_split[[curr_comb[1]]]
+        dat_2 <- dat_split[[curr_comb[2]]]
 
-        curr_cor <- apply(data_1, 1, function(x) {
-                        apply(data_2, 1, function(y) { var(log(x / y)) })
+        curr_cor <- apply(dat_1, 1, function(x) {
+                        apply(dat_2, 1, function(y) { var(log(x / y)) })
                     })
         # Store
         curr_x_cor <- attach.big.matrix(x_cor_desc)
-        curr_x_cor[g_1, g_2] <- curr_cor
-        curr_x_cor[g_2, g_1] <- t(curr_cor)
+        curr_x_cor[g_2, g_1] <- curr_cor
+        curr_x_cor[g_1, g_2] <- t(curr_cor)
         # Return
         TRUE
     }

@@ -22,13 +22,13 @@ setMethod("com_dis", signature("matrix", "ANY", "ANY", "ANY"),
 setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {
               if (method == "tina"){
-                  dis <- tina(x, threads = threads, nblocks = nblocks)
+                  y <- tina(x, threads = threads, nblocks = nblocks)
               } else {
                   x <- t(x)
-                  dis <- dis_par(x, method = method, threads = threads,
-                                   nblocks = nbolcks)
+                  y <- dis_par(x, method = method, threads = threads,
+                                   nblocks = nblocks)
               }
-              return(dis)
+              return(y)
           }
 )
 
@@ -64,7 +64,7 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 
 ###############################################################################
 
-#' Function for dis_par dissimilarity / distance calculation. Modified from
+#' Function for `dis_par` dissimilarity / distance calculation. Modified from
 #' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
 #' master/functions.community_similarity.R
 #'
@@ -80,7 +80,7 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' @examples
 #' y <- dis_par(x, method = "bray", threads = 80, nblocks = 400)
 #' @return y The dissimilarity / distance matrix.
-#' @keywords internal
+#' @export
 
 dis_par <- function(x, method = "bray", threads = 80, nblocks = 400) {
     use <- "na.or.complete"
@@ -119,7 +119,7 @@ dis_par <- function(x, method = "bray", threads = 80, nblocks = 400) {
 
     # Compute dissimilarity / distance matrix iterate through each block
     # combination, calculate matrix between blocks and store them in the
-    # preallocated matrix on both symmetric sides of the diagonal.
+    # preallocated matrix on bxh symmetric sides of the diagonal.
 
     results <- foreach(i = 1 : nrow(my_combs)) %dopar% {
         # Get current combination and data
@@ -153,6 +153,148 @@ dis_par <- function(x, method = "bray", threads = 80, nblocks = 400) {
 
 ###############################################################################
 
+#' Function for `tina` dissimilarity / distance calculation. Modified from
+#' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
+#' master/functions.community_similarity.R
+#' Pearson / Spearman could be used for calculating correlation and weighted /
+#' unweighted Jaccard could be used for the calculation of similarity.
+#'
+#' @include all_classes.R all_generics.R
+#' @import foreach bigmemory doMC dplyr vegan
+#' @importFrom parallel mclapply
+#' @param x An matrix for `tina` dissimilarity calculation.
+#' @param cor_method The method for correlation, "pearson" and "spearman" are
+#' available.
+#' @param sim_method The method for similarity, "w_ja" and "uw_ja" are
+#' available for weighted and unweighted Jaccard similarity respectively.
+#' @param threads (optional) The number of threads used for parallel running,
+#' 80 by default.
+#' @param nblocks (optional) The number of row / column for splitted sub-matrix,
+#' 400 by default.
+#' @examples
+#' t <- tina(x, cor_method = "spearman", sim_method = "w_ja", threads = 80,
+#'           nblocks = 400)
+#' @return t The output `tina` dissimilarity matrix.
+#' @export
+
+tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
+                 threads = 80, nblocks = 400) {
+    x_sparcc <- sparcc(x, threads = threads, nblocks = nblocks)
+    tmp.S <- cor_par(x_sparcc, method = cor_method, threads = threads,
+                     nblocks = nblocks)
+    Cij <- 0.5 * (tmp.S + 1)
+    t <- sim_par(x, Cij, sim_method = sim_method, threads = threads,
+                 nblocks = nblocks)
+    t[t < 0] <- 0
+    return(t)
+}
+
+###############################################################################
+
+#' Function for community similarity calculation used by `tina`, modified from
+#' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
+#' master/functions.community_similarity.R
+#'
+#' @include all_classes.R all_generics.R
+#' @import plyr foreach bigmemory doMC
+#' @importFrom parallel mclapply
+#' @param x An quantitative matrix.
+#' @param y The sparcc matrix of x.
+#' @param sim_method The method for similarity, "w_ja" and "uw_ja" are
+#' available for weighted and unweighted Jaccard similarity respectively.
+#' @param threads (optional) The number of threads used for parallel running,
+#' 80 by default.
+#' @param nblocks (optional) The number of row / column for splitted sub-matrix,
+#' 400 by default.
+#' @examples
+#' s <- sim_par(x, y, sim_method = "w_ja", threads = 80, nblocks = 400)
+#' @return s The output similarity matrix.
+#' @keywords internal
+
+sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
+    registerDoMC(cores = threads)
+
+    samples <- colnames(x)
+    x_occ_list <- apply((x > 0), 2, which)
+    x_count_list <- alply(x, .margins=2,
+                           .fun=function(x_vec) { x_vec[x_vec > 0] },
+                           .parallel=T)
+    names(x_occ_list) <- names(x_count_list) <- samples
+
+    if (sim_method == "uw_ja") {
+        smpl_csums <- mclapply(x_occ_list,
+                                 function(a_l) {
+                                     colSums(y[a_l, ]) / length(a_l)
+                                 }, mc.cores = threads)
+        names(smpl_csums) <- samples
+
+        smpl_self <- lapply(samples,
+                            function(a) {
+                                al <- x_occ_list[[a]]
+                                sum(smpl_csums[[a]][al]) / length(al)
+                            } )
+        smpl_self <- unlist(smpl_self)
+        names(smpl_self) <- samples
+
+        cs_list <- mclapply(samples,
+                            function(a) {
+                                a_sums <- smpl_csums[[a]]
+                                a_self <- smpl_self[a]
+                                unlist(lapply(samples,
+                                              function(b) {
+                                                  b_list <- x_occ_list[[b]]
+                                                  b_self <- smpl_self[b]
+                                                  m <- sum(a_sums[b_list])
+                                                  ab <- sqrt(a_self * b_self)
+                                                  n <- length(b_list) * ab
+                                                  1 - m / n
+                                              }
+                                             )
+                                )
+                            }, mc.cores = threads)
+    }
+
+
+    if (sim_method == "w_ja") {
+        x_rel_count <- lapply(x_count_list,
+                              function(a_count) { a_count / sum(a_count) } )
+
+        smpl_self <- unlist(mclapply(x_rel_count,
+                                     function(a_rel) {
+                                         a_list <- names(a_rel)
+                                         a_y <- y[a_list, a_list]
+                                         sum(a_y * outer(a_rel, a_rel))
+                                     }, mc.cores = threads))
+
+        cs_list <- mclapply(samples,
+                            function(a) {
+                                a_rel <- x_rel_count[[a]]
+                                a_list <- names(a_rel)
+                                a_y <- a_rel * y[a_list,]
+                                unlist(lapply(samples,
+                                              function(b) {
+                                                  b_rel <- x_rel_count[[b]]
+                                                  b_list <- names(b_rel)
+                                                  curr_y <- a_y[, b_list]
+                                                  m <- sum(b_rel * t(curr_y))
+                                                  a <- smpl_self[a]
+                                                  b <- smpl_self[b]
+                                                  n <- sqrt(a * b)
+                                                  1 - m / n
+                                              } ) )
+                            }, mc.cores = threads)
+    }
+
+    file.remove(list.files("/dev/shm/", full.name=T))
+
+    s <- do.call("rbind", cs_list)
+    rownames(s) <- colnames(s) <- samples
+    return(s)
+}
+
+
+###############################################################################
+
 #' List of dissimilarity / distance supported in \code{\link[mina]{com_dis}}
 #'
 #' Dissimilarity / distance should be specified by exact string match.
@@ -162,21 +304,21 @@ dis_par <- function(x, method = "bray", threads = 80, nblocks = 400) {
 #' \describe{
 #'   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
 #'
-#'   \item{\code{manhattan}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{euclidean}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{canberra}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{bray}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{kulczynski}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{jaccard}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{gower}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{altGower}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{morisita}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{horn}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{mountford}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{raup}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{binomial}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{chao}}{\code{\link[vegan]{vegdist}}}
-#'   \item{\code{cao}}{\code{\link[vegan]{vegdist}}}
+#'   \item{\code{manhattan}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{euclidean}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{canberra}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{bray}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{kulczynski}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{jaccard}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{gower}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{altGower}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{morisita}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{horn}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{mountford}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{raup}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{binomial}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{chao}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{\code{cao}}{ from \code{\link[vegan]{vegdist}}}
 #' }
 #'
 #' @export
