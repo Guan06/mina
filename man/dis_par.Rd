@@ -2,7 +2,7 @@
 % Please edit documentation in R/com_dis.R
 \name{dis_par}
 \alias{dis_par}
-\title{Function for dis_par dissimilarity / distance calculation. Modified from
+\title{Function for `dis_par` dissimilarity / distance calculation. Modified from
 https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
 master/functions.community_similarity.R}
 \usage{
@@ -23,11 +23,10 @@ dis_par(x, method = "bray", threads = 80, nblocks = 400)
 y The dissimilarity / distance matrix.
 }
 \description{
-Function for dis_par dissimilarity / distance calculation. Modified from
+Function for `dis_par` dissimilarity / distance calculation. Modified from
 https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
 master/functions.community_similarity.R
 }
 \examples{
 y <- dis_par(x, method = "bray", threads = 80, nblocks = 400)
 }
-\keyword{internal}

@@ -9,21 +9,21 @@
 \describe{
   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
 
-  \item{\code{manhattan}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{euclidean}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{canberra}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{bray}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{kulczynski}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{jaccard}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{gower}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{altGower}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{morisita}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{horn}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{mountford}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{raup}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{binomial}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{chao}}{\code{\link[vegan]{vegdist}}}
-  \item{\code{cao}}{\code{\link[vegan]{vegdist}}}
+  \item{\code{manhattan}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{euclidean}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{canberra}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{bray}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{kulczynski}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{jaccard}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{gower}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{altGower}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{morisita}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{horn}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{mountford}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{raup}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{binomial}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{chao}}{ from \code{\link[vegan]{vegdist}}}
+  \item{\code{cao}}{ from \code{\link[vegan]{vegdist}}}
 }}
 \usage{
 com_dis_list
