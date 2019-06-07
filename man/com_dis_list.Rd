@@ -10,21 +10,49 @@ method used.
 \describe{
   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
 
-  \item{\code{manhattan}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{euclidean}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{canberra}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{bray}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{kulczynski}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{jaccard}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{gower}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{altGower}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{morisita}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{horn}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{mountford}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{raup}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{binomial}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{chao}}{ from \code{\link[vegan]{vegdist}}}
-  \item{\code{cao}}{ from \code{\link[vegan]{vegdist}}}
+  \item{Dissimilarity / distance for weighted matrix from parallelDist:}
+  \item{\code{bhjattacharyya}}{ from \code{\link[parallelDist]{parDist}}}
+  \item{\code{canberra}}{ from \code{\link[parallelDist]{parDist}}}
+  \item{\code{bray}}{ from \code{\link[parallelDist]{parDist}}}
+  \item{\code{chord}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{divergence}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{euclidean}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{fJaccard}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{geodesic}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{hellinger}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{kullback}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{manhattan}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{maximum}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{minkowski}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{podani}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{soergel}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{wave}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{whittaker}}{ from \code{\link[parallelDist]{parDist}} }
+
+  \item{Distances for binary matrix from parallelDist:}
+  \item{\code{binary}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{braun-blanquet}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{consine}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{dice}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{fager}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{faith}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{hamman}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{hamming}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{kulczynski1}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{kulczynski2}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{michael}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{mountford}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{mozley}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{ochiai}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{phi}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{russel}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{simple matching}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{simpson}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{stiles}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{tanimoto}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{yule}}{ from \code{\link[parallelDist]{parDist}} }
+  \item{\code{yule2}}{ from \code{\link[parallelDist]{parDist}} }
+
 }}
 \usage{
 com_dis_list

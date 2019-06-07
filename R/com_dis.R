@@ -3,10 +3,13 @@
 #' Calculate the community dissimilarity / distance matrix of the input matrix.
 #'
 #' @include all_classes.R all_generics.R
+#' @importFrom parallelDist parDist
 #' @param x A matrix of the quantitative table.
 #' @param method The dissimilarity / distance method used.
-#' @param threads (optional) The number of threads used for parallel running.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix.
+#' @param threads (optional, only needed when method == "tina") The number of
+#' threads used for parallel running.
+#' @param nblocks (optional, only needed when method == "tina") The number of
+#' row / column for splitted sub-matrix.
 #' @examples
 #' y <- com_dis(x, method = "bray")
 #' y <- com_dis(x, method = "tina", threads = 80, nblocks = 400)
@@ -26,8 +29,7 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
                             threads = threads, nblocks = nblocks)
               } else {
                   x <- t(x)
-                  y <- dis_par(x, method = method, threads = threads,
-                                   nblocks = nblocks)
+                  y <- as.matrix(parDist(x, method = method))
               }
               return(y)
           }
@@ -39,10 +41,13 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
 #' class object as input.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An object of the class mina with @norm defined.
+#' @importFrom parallelDist parDist
+#' @param x An object of the class `mina` with @norm defined.
 #' @param method The dissimilarity / distance method used.
-#' @param threads (optional) The number of threads used for parallel running.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix.
+#' @param threads (optional, only needed when method == "tina") The number of
+#' threads used for parallel running.
+#' @param nblocks (optional, only needed when method == "tina") The number of
+#' row / column for splitted sub-matrix.'
 #' @examples
 #' x <- com_dis(x, method = "bray")
 #' x <- com_dis(x, method = "tina", threads = 40, nblocks = 200)
@@ -65,93 +70,6 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 
 ###############################################################################
 
-#' Function for `dis_par` dissimilarity / distance calculation. Modified from
-#' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-#' master/functions.community_similarity.R
-#'
-#' @include all_classes.R all_generics.R
-#' @import foreach bigmemory doMC dplyr vegan
-#' @importFrom parallel mclapply
-#' @param x An matrix for dissimilarity / distance calculation.
-#' @param method The method for dissimilarity / distance calculation.
-#' @param threads (optional) The number of threads used for parallel running,
-#' 80 by default.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix,
-#' 400 by default.
-#' @examples
-#' y <- dis_par(x, method = "bray", threads = 80, nblocks = 400)
-#' @return y The dissimilarity / distance matrix.
-#' @export
-
-dis_par <- function(x, method = "bray", threads = 80, nblocks = 400) {
-    use <- "na.or.complete"
-
-    # Register cluster
-    registerDoMC(cores = threads)
-
-    nr <- nrow(x)
-    if (nr < 2 * nblocks){
-        return(as.matrix(vegdist(x, method = method, use = use)))
-    }
-
-    size_split <- floor(nr / nblocks)
-    size_split <- size_split + 1
-    nblocks <- floor(nr / size_split)
-    nblocks <- nblocks + 1
-
-    my_split <- list()
-    length(my_split) <- nblocks
-    my_split[1 : (nblocks - 1)] <- split(1 : (size_split * (nblocks - 1)),
-                                        rep(1 : (nblocks - 1), each = size_split))
-    my_split[[nblocks]] <- (size_split * (nblocks - 1)) : nr
-
-    dat_split <- mclapply(my_split, function(g) { as.matrix(x[, g]) },
-                          mc.cores = threads)
-
-    # Get combinations of splits
-    my_combs <- expand.grid(1 : length(my_split), 1:length(my_split))
-    my_combs <- t(apply(my_combs, 1, sort))
-    my_combs <- unique(my_combs)
-
-    # Preallocate dissimilarity / distance matrix as big.matrix
-    x_dis <- big.matrix(nrow = nr, ncol = nr,
-                        dimnames = list(rownames(x), rownames(x)), shared=T)
-    x_dis_desc <- describe(x_dis)
-
-    # Compute dissimilarity / distance matrix iterate through each block
-    # combination, calculate matrix between blocks and store them in the
-    # preallocated matrix on bxh symmetric sides of the diagonal.
-
-    results <- foreach(i = 1 : nrow(my_combs)) %dopar% {
-        # Get current combination and data
-        curr_comb <- my_combs[i, ]
-
-        g_1 <- my_split[[curr_comb[1]]]
-        g_2 <- my_split[[curr_comb[2]]]
-        data_1 <- dat_split[[curr_comb[1]]]
-        data_2 <- dat_split[[curr_comb[2]]]
-
-        if (curr_comb[1] == curr_comb[2]) {
-            x_dis <- as.matrix(vegdist(data_1, method = method))
-        } else {
-            x_dis <- as.matrix(vegdist(rbind(data_1, data_2), method = method))
-            n1 <- nrow(data_1)
-            n2 <- nrow(dis)
-            x_dis <- x_dis[1 : n1, (n1 + 1) : n2]
-        }
-        # Store
-        curr_x_dis <- attach.big.matrix(x_dis_desc)
-        curr_x_dis[g_1, g_2] <- curr_dis
-        curr_x_dis[g_2, g_1] <- t(curr_dis)
-        # Return
-        TRUE
-    }
-
-    file.remove(list.files("/dev/shm/", full.name = T))
-    return(as.matrix(x_dis))
-}
-
-
 ###############################################################################
 
 #' Function for `tina` dissimilarity / distance calculation. Modified from
@@ -161,8 +79,6 @@ dis_par <- function(x, method = "bray", threads = 80, nblocks = 400) {
 #' unweighted Jaccard could be used for the calculation of similarity.
 #'
 #' @include all_classes.R all_generics.R
-#' @import foreach bigmemory doMC dplyr vegan
-#' @importFrom parallel mclapply
 #' @param x An matrix for `tina` dissimilarity calculation.
 #' @param cor_method The method for correlation, "pearson" and "spearman" are
 #' available.
@@ -307,21 +223,49 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #' \describe{
 #'   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
 #'
-#'   \item{\code{manhattan}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{euclidean}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{canberra}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{bray}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{kulczynski}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{jaccard}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{gower}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{altGower}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{morisita}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{horn}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{mountford}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{raup}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{binomial}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{chao}}{ from \code{\link[vegan]{vegdist}}}
-#'   \item{\code{cao}}{ from \code{\link[vegan]{vegdist}}}
+#'   \item{Dissimilarity / distance for weighted matrix from parallelDist:}
+#'   \item{\code{bhjattacharyya}}{ from \code{\link[parallelDist]{parDist}}}
+#'   \item{\code{canberra}}{ from \code{\link[parallelDist]{parDist}}}
+#'   \item{\code{bray}}{ from \code{\link[parallelDist]{parDist}}}
+#'   \item{\code{chord}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{divergence}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{euclidean}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{fJaccard}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{geodesic}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{hellinger}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{kullback}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{manhattan}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{maximum}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{minkowski}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{podani}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{soergel}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{wave}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{whittaker}}{ from \code{\link[parallelDist]{parDist}} }
+#'
+#'   \item{Distances for binary matrix from parallelDist:}
+#'   \item{\code{binary}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{braun-blanquet}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{consine}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{dice}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{fager}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{faith}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{hamman}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{hamming}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{kulczynski1}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{kulczynski2}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{michael}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{mountford}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{mozley}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{ochiai}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{phi}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{russel}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{simple matching}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{simpson}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{stiles}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{tanimoto}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{yule}}{ from \code{\link[parallelDist]{parDist}} }
+#'   \item{\code{yule2}}{ from \code{\link[parallelDist]{parDist}} }
+#'
 #' }
 #'
 #' @export
@@ -329,10 +273,17 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #' com_dis_list
 
 com_dis_list <- list(
-    # The methods supported by vegan::vegdist function.
-    vegdist    = c("manhattan", "euclidean", "canberra", "bray",
-                   "kulczynski", "jaccard", "gower", "altGower", "morisita",
-                   "horn", "mountford", "raup" , "binomial", "chao", "cao"),
-    TINA       = "tina",
-    design_dis = "ANY"
+    # Dissimilarity / distance implemented in parallelDist
+    par_dist    = c("bhjattacharyya", "bray", "canberra", "chord", "divergence",
+                   "euclidean", "fJaccard", "geodesic", "hellinger", "kullback",
+                   "manhattan", "maximum", "minkowski", "podani", "soergel",
+                   "wave", "whittaker"),
+    # Dissimilarity / distance implemented in parallelDist for binary matrix
+    par_dist_bi = c("binary", "braun-blanquet", "consine", "dice", "fager",
+                    "faith", "hamman", "hamming", "kulczynski1", "kulczynski2",
+                    "michael", "mountford", "mozley", "ochiai", "phi", "russel",
+                    "simple matching", "simpson", "stiles", "tanimoto", "yule",
+                    "yule2"),
+    TINA        = "tina",
+    design_dis  = "ANY"
 )

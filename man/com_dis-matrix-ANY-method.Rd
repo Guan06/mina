@@ -12,9 +12,11 @@
 
 \item{method}{The dissimilarity / distance method used.}
 
-\item{threads}{(optional) The number of threads used for parallel running.}
+\item{threads}{(optional, only needed when method == "tina") The number of
+threads used for parallel running.}
 
-\item{nblocks}{(optional) The number of row / column for splitted sub-matrix.}
+\item{nblocks}{(optional, only needed when method == "tina") The number of
+row / column for splitted sub-matrix.}
 }
 \value{
 y The dissimilarity / distance matrix.

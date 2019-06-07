@@ -241,6 +241,25 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
 }
 
 ###############################################################################
+#' Rcpp version sparcc
+
+sparcc_cpp <- function(x, threads = 80) {
+    # add pseudocount to avoid issues with 0 in log-space
+    pseudocount <- 10^-6
+    x <- x + pseudocount
+
+    # set number of threads
+    if (!is.null(threads)) {
+        RcppParallel :: setThreadsOptions(numThreads = threads)
+    }
+
+    N <- nrow(x)
+    attrs <- list(Size = N, Lables = dimnames(x)[[1]], Diag = FALSE,
+                  Upper = FALSE, call = match.call(), class = "matrix")
+
+}
+
+###############################################################################
 
 #' List of adjacacency matix calculation methods / correlations supported in
 #' \code{\link[mina]{adj}}

@@ -108,4 +108,6 @@ setGeneric("com_r2", function(x, group) {
 #' x <- dmr(x, k = 2)
 #' @export
 
-setGeneric("dmr", function(x, k = 2))
+setGeneric("dmr", function(x, k = 2) {
+    standardGeneric("dmr")
+})
