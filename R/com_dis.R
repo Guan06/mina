@@ -9,7 +9,7 @@
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
 #' @examples
 #' y <- com_dis(x, method = "bray")
-#' y <- com_dis(x, method = "tina", threads = 40, nblocks = 200)
+#' y <- com_dis(x, method = "tina", threads = 80, nblocks = 400)
 #' @return y The dissimilarity / distance matrix.
 #' @exportMethod com_dis
 
@@ -22,7 +22,8 @@ setMethod("com_dis", signature("matrix", "ANY", "ANY", "ANY"),
 setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {
               if (method == "tina"){
-                  y <- tina(x, threads = threads, nblocks = nblocks)
+                  y <- tina(x, cor_method = "spearman", sim_method = "w_ja",
+                            threads = threads, nblocks = nblocks)
               } else {
                   x <- t(x)
                   y <- dis_par(x, method = method, threads = threads,
@@ -199,7 +200,8 @@ tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
 #' @import plyr foreach bigmemory doMC
 #' @importFrom parallel mclapply
 #' @param x An quantitative matrix.
-#' @param y The sparcc matrix of x.
+#' @param y The Cij matrix, which is correlation matrix of adjusted sparcc
+#' matrix of x.
 #' @param sim_method The method for similarity, "w_ja" and "uw_ja" are
 #' available for weighted and unweighted Jaccard similarity respectively.
 #' @param threads (optional) The number of threads used for parallel running,
@@ -299,7 +301,8 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #'
 #' Dissimilarity / distance should be specified by exact string match.
 #'
-#' @format A list of character vectors.
+#' @format A list of character vectors indicate the dissimilarity / distance
+#' method used.
 #'
 #' \describe{
 #'   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
@@ -322,7 +325,6 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #' }
 #'
 #' @export
-#'
 #' @examples
 #' com_dis_list
 

@@ -24,5 +24,5 @@ Calculate the community dissimilarity / distance matrix of the input matrix.
 }
 \examples{
 y <- com_dis(x, method = "bray")
-y <- com_dis(x, method = "tina", threads = 40, nblocks = 200)
+y <- com_dis(x, method = "tina", threads = 80, nblocks = 400)
 }

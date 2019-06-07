@@ -4,7 +4,8 @@
 \name{com_dis_list}
 \alias{com_dis_list}
 \title{List of dissimilarity / distance supported in \code{\link[mina]{com_dis}}}
-\format{A list of character vectors.
+\format{A list of character vectors indicate the dissimilarity / distance
+method used.
 
 \describe{
   \item{\code{tina}}{TINA from Schmidt_et_al_2016}

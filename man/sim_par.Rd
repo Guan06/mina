@@ -11,7 +11,8 @@ sim_par(x, y, sim_method = "w_ja", threads = 80, nblocks = 400)
 \arguments{
 \item{x}{An quantitative matrix.}
 
-\item{y}{The sparcc matrix of x.}
+\item{y}{The Cij matrix, which is correlation matrix of adjusted sparcc
+matrix of x.}
 
 \item{sim_method}{The method for similarity, "w_ja" and "uw_ja" are
 available for weighted and unweighted Jaccard similarity respectively.}
