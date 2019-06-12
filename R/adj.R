@@ -250,13 +250,43 @@ sparcc_cpp <- function(x, threads = 80) {
 
     # set number of threads
     if (!is.null(threads)) {
-        RcppParallel :: setThreadsOptions(numThreads = threads)
+        RcppParallel :: setThreadsOptions(numThreads = cthreads)
     }
 
     N <- nrow(x)
     attrs <- list(Size = N, Lables = dimnames(x)[[1]], Diag = FALSE,
                   Upper = FALSE, call = match.call(), class = "matrix")
 
+}
+
+###############################################################################
+
+#' Rcpp version function for `pearson` and `spearman` correlation calculation,
+#' modified from https://systematicinvestor.github.io/Correlation-Rcpp
+#' RcppParallel is used for parallel running.
+#'
+#' @include all_classes.R all_generics.R
+#' @import Rcpp RcppParallel
+#' @param x An matrix for correlation calculation.
+#' @param method The correlation coeffient used for adjacacency matrix.
+#' @examples
+#' y <- cpp_cor(x, method = "pearson")
+#' @return y The adjacacency matrix.
+#' @export
+
+cor_cpp <- function(x, method = "pearson") {
+    if (method == "pearson") {
+        y <- cp_cor(x)
+        rownames(y) <- colnames(y) <- colnames(x)
+    } else if (method == "spearman") {
+        ## get the rank matrix of x
+        x_rank <- apply(x, 2, rank)
+        y <- cp_cor(x_rank)
+        rownames(y) <- colnames(y) <- colnames(x)
+    } else {
+        stop("The given `method` is not in the list, see `? adj_method_list`.")
+    }
+    return(y)
 }
 
 ###############################################################################

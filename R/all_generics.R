@@ -75,6 +75,7 @@ setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
 #'           nblocks = 400)
 #' @return t The output `tina` dissimilarity matrix.
 #' @export
+
 setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",
                             threads = 80, nblocks = 400) {
     standardGeneric("tina")

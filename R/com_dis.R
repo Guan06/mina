@@ -278,12 +278,12 @@ com_dis_list <- list(
                    "euclidean", "fJaccard", "geodesic", "hellinger", "kullback",
                    "manhattan", "maximum", "minkowski", "podani", "soergel",
                    "wave", "whittaker"),
+
     # Dissimilarity / distance implemented in parallelDist for binary matrix
     par_dist_bi = c("binary", "braun-blanquet", "consine", "dice", "fager",
                     "faith", "hamman", "hamming", "kulczynski1", "kulczynski2",
                     "michael", "mountford", "mozley", "ochiai", "phi", "russel",
                     "simple matching", "simpson", "stiles", "tanimoto", "yule",
                     "yule2"),
-    TINA        = "tina",
-    design_dis  = "ANY"
+    TINA        = "tina"
 )
