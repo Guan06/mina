@@ -4,9 +4,10 @@ Version: 0.0.0.9000
 Authors@R: person("Rui", "Guan", email = "guan@mpipz.mpg.de", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends: R (>= 3.4.1)
-LinkingTo: Rcpp, RcppParallel
+LinkingTo: Rcpp, RcppParallel, RcppArmadillo
 License: What license is it under?
 Encoding: UTF-8
+Imports: Rcpp
 LazyData: true
 Suggests: 
     knitr,
@@ -15,6 +16,7 @@ Suggests:
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 Collate: 
+    'RcppChk.R'
     'RcppExports.R'
     'add.R'
     'all_generics.R'

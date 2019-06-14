@@ -4,6 +4,7 @@
 //
 #include <Rcpp.h>
 #include <RcppParallel.h>
+
 using namespace Rcpp;
 using namespace RcppParallel;
 using namespace std;
@@ -84,7 +85,7 @@ Rcpp::NumericMatrix cp_cor_helper(const Rcpp::NumericMatrix& mat, const int rsta
     return rmat;
 }
 
-// @export
+//' @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix cp_cor(Rcpp::NumericMatrix mat) {
     return cp_cor_helper(mat, 0, mat.nrow());

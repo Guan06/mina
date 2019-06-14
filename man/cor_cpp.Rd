@@ -22,5 +22,6 @@ modified from https://systematicinvestor.github.io/Correlation-Rcpp
 RcppParallel is used for parallel running.
 }
 \examples{
-y <- cpp_cor(x, method = "pearson")
+y <- cor_cpp(x, method = "pearson")
+y <- cor_cpp(x, method = "spearman")
 }

@@ -270,7 +270,8 @@ sparcc_cpp <- function(x, threads = 80) {
 #' @param x An matrix for correlation calculation.
 #' @param method The correlation coeffient used for adjacacency matrix.
 #' @examples
-#' y <- cpp_cor(x, method = "pearson")
+#' y <- cor_cpp(x, method = "pearson")
+#' y <- cor_cpp(x, method = "spearman")
 #' @return y The adjacacency matrix.
 #' @export
 
