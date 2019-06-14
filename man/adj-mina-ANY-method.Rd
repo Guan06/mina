@@ -28,6 +28,6 @@ object as input.
 }
 \examples{
 x <- adj(x, method = "pearson")
-x <- adj(x, method = "spearman", thread = 80, nblocks = 400)
+x <- adj(x, method = "spearman")
 x <- adj(x, method = "sparcc", thread = 40, nblocks = 200)
 }

@@ -97,8 +97,8 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
                  threads = 80, nblocks = 400) {
     x_sparcc <- sparcc(x, threads = threads, nblocks = nblocks)
-    tmp.S <- cor_par(x_sparcc, method = cor_method, threads = threads,
-                     nblocks = nblocks)
+    tmp.S <- adj(x_sparcc, method = cor_method)
+
     Cij <- 0.5 * (tmp.S + 1)
     t <- sim_par(x, Cij, sim_method = sim_method, threads = threads,
                  nblocks = nblocks)
