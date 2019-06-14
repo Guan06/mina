@@ -5,6 +5,7 @@
 #'
 #' @include all_classes.R all_generics.R
 #' @import foreach bigmemory doMC
+#' @import Rcpp RcppParallel
 #' @param x An object of the class mina with @norm defined.
 #' @param method The correlation coeffient used for adjacacency matrix.
 #' @param threads (optional) The number of threads used for parallel running, 80
@@ -39,6 +40,7 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY"),
 #'
 #' @include all_classes.R all_generics.R
 #' @import foreach bigmemory doMC
+#' @import Rcpp RcppParallel
 #' @param x An matrix for correlation / adjacency matrix calculation.
 #' @param method The correlation coefficient used for adjacacency matrix.
 #' @param threads (optional) The number of threads used for parallel running, 80
@@ -46,7 +48,9 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY"),
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix,
 #' 400 by default.
 #' @examples
-#' y <- adj(x, method = "pearson", threads = 80, nblocks = 400)
+#' y <- adj(x, method = "pearson")
+#' y <- adj(x, method = "spearman")
+#' y <- adj(x, method = "sparcc", threads = 80, nblocks = 400)
 #' @return y The adjacacency matrix.
 #' @exportMethod adj
 
@@ -58,17 +62,24 @@ setMethod("adj", signature("matrix", "ANY", "ANY", "ANY"),
 
 setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {
-              if (method == "pearson" || method == "spearman") {
+              if (method == "pearson") {
                   x <- t(x)
-                  adj <- cor_par(x, method = method, threads = threads,
-                                 nblocks = nblocks)
+                  y <- cp_cor(x)
+                  rownames(y) <- colnames(y) <- colnames(x)
+              }
+
+              if (method == "spearman") {
+                  x <- t(x)
+                  x <- apply(x, 2, rank)
+                  y <- cp_cor(x)
+                  rownames(y) <- colnames(y) <- colnames(x)
               }
 
               if (method == "sparcc") {
-                  adj <- sparcc(x, threads = threads, nblocks = nblocks)
+                  y <- sparcc(x, threads = threads, nblocks = nblocks)
               }
 
-              return(adj)
+              return(y)
           }
 )
 
@@ -90,7 +101,7 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
 #' @examples
 #' y <- cor_par(x, method = "pearson", threads = 80, nblocks = 400)
 #' @return y The adjacacency matrix.
-#' @keywords internal
+#' @export
 
 cor_par <- function(x, method = "pearson", threads = 80, nblocks = 400) {
     use <- "na.or.complete"
@@ -257,37 +268,6 @@ sparcc_cpp <- function(x, threads = 80) {
     attrs <- list(Size = N, Lables = dimnames(x)[[1]], Diag = FALSE,
                   Upper = FALSE, call = match.call(), class = "matrix")
 
-}
-
-###############################################################################
-
-#' Rcpp version function for `pearson` and `spearman` correlation calculation,
-#' modified from https://systematicinvestor.github.io/Correlation-Rcpp
-#' RcppParallel is used for parallel running.
-#'
-#' @include all_classes.R all_generics.R
-#' @import Rcpp RcppParallel
-#' @param x An matrix for correlation calculation.
-#' @param method The correlation coeffient used for adjacacency matrix.
-#' @examples
-#' y <- cor_cpp(x, method = "pearson")
-#' y <- cor_cpp(x, method = "spearman")
-#' @return y The adjacacency matrix.
-#' @export
-
-cor_cpp <- function(x, method = "pearson") {
-    if (method == "pearson") {
-        y <- cp_cor(x)
-        rownames(y) <- colnames(y) <- colnames(x)
-    } else if (method == "spearman") {
-        ## get the rank matrix of x
-        x_rank <- apply(x, 2, rank)
-        y <- cp_cor(x_rank)
-        rownames(y) <- colnames(y) <- colnames(x)
-    } else {
-        stop("The given `method` is not in the list, see `? adj_method_list`.")
-    }
-    return(y)
 }
 
 ###############################################################################

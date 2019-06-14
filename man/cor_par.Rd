@@ -30,4 +30,3 @@ master/functions.community_similarity.R
 \examples{
 y <- cor_par(x, method = "pearson", threads = 80, nblocks = 400)
 }
-\keyword{internal}

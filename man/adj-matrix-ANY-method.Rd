@@ -27,5 +27,7 @@ Calculate the adjacacency matrix of @norm by correlation with matrix as
 input.
 }
 \examples{
-y <- adj(x, method = "pearson", threads = 80, nblocks = 400)
+y <- adj(x, method = "pearson")
+y <- adj(x, method = "spearman")
+y <- adj(x, method = "sparcc", threads = 80, nblocks = 400)
 }
