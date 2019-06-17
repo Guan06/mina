@@ -112,3 +112,19 @@ setGeneric("com_r2", function(x, group) {
 setGeneric("dmr", function(x, k = 2) {
     standardGeneric("dmr")
 })
+
+###############################################################################
+
+#' Visulization of components distance / dissimilarity in k dimension.
+#'
+#' @param x An object of class `mina` with @dmr and @des defined.
+#' @param match The column name of the components IDs in @des which exactly the
+#' same indicated in @dmr.
+#' @param color The column name in @des to be used for different color groups.
+#' @param (optional) shape The column name in @des to be used for different
+#' shape groups.
+#' @examples
+#' p <- com_plot(x, match = "Sample_ID", color = "Compartment", shape = "Soil")
+setGeneric("com_plot", function(x, match, color, shape) {
+    standardGeneric("com_plot")
+})
