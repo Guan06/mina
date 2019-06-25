@@ -28,7 +28,7 @@ setMethod("com_plot", signature("mina", "character", "ANY", "ANY"),
 )
 
 setMethod("com_plot", signature("mina", "character", "character", "ANY"),
-          function(x, match, color, shape) {
+          function(x, match, color, shape = NULL) {
               p <- pcoa_plot(x@dmr, x@des_tab, match = match, color = color,
                             shape = shape)
               return(p)
@@ -54,7 +54,7 @@ setMethod("com_plot", signature("mina", "character", "character", "ANY"),
 #'               shape = "Soil")
 #' @export
 
-pcoa_plot <- function(x, des, match, color, shape) {
+pcoa_plot <- function(x, des, match, color, shape = NULL) {
     points <- x$points
     if (nrow(points) != nrow(des)) {
         stop("Component number in `dmr` and `des` are different!")

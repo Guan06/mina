@@ -125,6 +125,23 @@ setGeneric("dmr", function(x, k = 2) {
 #' shape groups.
 #' @examples
 #' p <- com_plot(x, match = "Sample_ID", color = "Compartment", shape = "Soil")
-setGeneric("com_plot", function(x, match, color, shape) {
+
+setGeneric("com_plot", function(x, match, color, shape = NULL) {
     standardGeneric("com_plot")
+})
+
+################################################################################
+
+#' Network clustering of sparsed adjacacency matrix @adj.
+#'
+#' @param x An object of class `mina` with @adj defined.
+#' @param method The clustering method used.
+#' @param cutoff The cutoff for the sparsed adjacacency matrix, default 0.4.
+#' @param neg Whether to keep the negative edges, default FALSE.
+#' @examples
+#' x <- net_cls(x)
+#' x <- net_cls(x, method = "mcl", cutoff = 0.4, neg = FALSE)
+
+setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
+    standardGeneric("net_cls")
 })
