@@ -44,7 +44,7 @@ setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
               }
 
               if (method == "mcl") {
-                  mcl_cls <- mcl(x = x, addLoops = FALSE, inflation = 2.5)
+                  mcl_cls <- mcl(x = x, addLoops = TRUE, inflation = 2.5)
 
                   # reformat to data frame
                   y <- re_format_MCL(mcl_cls, names = rownames(x))

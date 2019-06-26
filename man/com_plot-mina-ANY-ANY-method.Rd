@@ -5,7 +5,7 @@
 \alias{com_plot,mina,ANY,ANY-method}
 \title{Visulization of components distance / dissimilarity in k dimension.}
 \usage{
-\S4method{com_plot}{mina,ANY,ANY}(x, match, color, shape)
+\S4method{com_plot}{mina,ANY,ANY}(x, match, color, shape = NULL)
 }
 \arguments{
 \item{x}{An object of `mina` with list @dmr defined.}

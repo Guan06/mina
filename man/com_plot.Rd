@@ -4,7 +4,7 @@
 \alias{com_plot}
 \title{Visulization of components distance / dissimilarity in k dimension.}
 \usage{
-com_plot(x, match, color, shape)
+com_plot(x, match, color, shape = NULL)
 }
 \arguments{
 \item{x}{An object of class `mina` with @dmr and @des defined.}

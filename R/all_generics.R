@@ -145,3 +145,18 @@ setGeneric("com_plot", function(x, match, color, shape = NULL) {
 setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
     standardGeneric("net_cls")
 })
+
+################################################################################
+
+#' Get the cluster table @cls_tab from @tab and @cls.
+#'
+#' @param x An object of class `mina` with @tab and @cls defined.
+#' @param uw By summing up the number of present components of each cluster
+#' instead of relative abundance, default FALSE.
+#' @examples
+#' x <- net_cls_tab(x)
+#' x <- net_cls_tab(x, uw = TRUE)
+
+setGeneric("net_cls_tab", function(x, uw = FALSE) {
+    standardGeneric("net_cls_tab")
+})

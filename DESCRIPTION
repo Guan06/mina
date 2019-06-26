@@ -29,5 +29,6 @@ Collate:
     'dmr.R'
     'fit_tabs.R'
     'net_cls.R'
+    'net_cls_tab.R'
     'norm_tab.R'
     'residual.R'
