@@ -11,6 +11,7 @@
 #' @examples
 #' x <- net_cls_tab(x)
 #' x <- net_cls_tab(x, uw = TRUE)
+#' @exportMethod net_cls_tab
 
 setMethod("net_cls_tab", signature("mina", "ANY"),
           function(x, uw = FALSE) {

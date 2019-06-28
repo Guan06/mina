@@ -160,3 +160,30 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 setGeneric("net_cls_tab", function(x, uw = FALSE) {
     standardGeneric("net_cls_tab")
 })
+
+################################################################################
+
+#' Inferring the network of different group of samples and test significance by
+#' permutation.
+#'
+#' @param x An object of class `mina` with @norm and @des_tab defined.
+#' @param group The column name of descriptive file @des_tab for comparison.
+#' @param g_size The cutoff of group size used for filtering, default 100.
+#' @param s_size The number of samples used for network inference during
+#' bootstrap and permutation (when sig == TRUE), it should be smaller than
+#' g_size to make sure the randomness; default 50.
+#' @param rm Filtering the components present in less than 20% of the samples,
+#' default TRUE.
+#' @param sig Whether to test the significance, skip the permutation when sig ==
+#' FALSE, default TRUE.
+#' @param bs The times for bootstrap network inference, default 6
+#' @param pm The times for permuatated samples network inference, default 6.
+#' @examples
+#' x <- bs_pm(x, group = "Compartment")
+#' x <- bs_pm(x, group = "Compartment", g_size = 100, s_size = 50, rm = TRUE,
+#' sig = TRUE, bs = 6, pm = 6)
+
+setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE, 
+                             sig = TRUE, bs = 6, pm = 6) {
+    standardGeneric("bs_pm")
+})

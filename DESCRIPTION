@@ -22,6 +22,7 @@ Collate:
     'all_generics.R'
     'all_classes.R'
     'adj.R'
+    'bs_pm.R'
     'check.R'
     'com_dis.R'
     'com_plot.R'
