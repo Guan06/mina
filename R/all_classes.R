@@ -30,11 +30,11 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #' @slot adj The adjacency matrix between pairwise compositions (e.g. OTUs/ASVs)
 #' @slot cls The cluster information for each composition.
 #' @slot cls_tab The cluster quantitative table.
-#' @slot dis_net The distance between networks of different environmental
-#' communities.
 #' @slot multi The list of subsampled adjacency matrices for each environment.
 #' @slot perm The list of permutated adjacency matrices for each pairwise
 #' environmental comparison.
+#' @slot net_dis The distance between networks of different environmental
+#' communities.
 #' @slot sig The average distance between subsampled environmental community
 #' networks and corresponding significance.
 #'
@@ -52,15 +52,18 @@ setClass("mina",
                    adj = "mat_or_NULL",
                    cls = "df_or_NULL",
                    cls_tab = "mat_or_NULL",
-                   dis_net = "df_or_NULL",
+
                    multi = "lst_or_NULL",
                    perm = "lst_or_NULL",
-                   sig = "df_or_NULL"
+                   dis_bs = "df_or_NULL",
+                   dis_pm = "df_or_NULL",
+                   dis_stat = "df_or_NULL"
          ),
          prototype(tab = NULL, des_tab = NULL, norm = NULL,
                    dis = NULL, dmr = NULL, adj = NULL,
-                   cls = NULL, cls_tab = NULL, dis_net = NULL,
-                   multi = NULL, perm = NULL, sig = NULL)
+                   cls = NULL, cls_tab = NULL,
+                   multi = NULL, perm = NULL, dis_bs = NULL, dis_pm = NULL,
+                   dis_stat = NULL)
 )
 
 ################################################################################

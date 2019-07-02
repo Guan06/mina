@@ -187,3 +187,21 @@ setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE,
                              sig = TRUE, bs = 6, pm = 6) {
     standardGeneric("bs_pm")
 })
+
+################################################################################
+
+#' Calculate the network distance of @multi and test the significance when @perm
+#' is defined.
+#'
+#' @param x An object of class `mina` with @multi (and @perm if sig is TRUE)
+#' defined.
+#' @param method The distance to be calculated, "spectral" and "jaccard" are
+#' available.
+#' @param sig Whether to test the significance, if TRUE (by default), @perm is
+#' needed.
+#' @examples
+#' x <- net_dis(x, method = "spectral", sig = TRUE)
+
+setGeneric("net_dis", function(x, method, sig = TRUE) {
+    standardGeneric("net_dis")
+})

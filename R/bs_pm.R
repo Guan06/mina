@@ -3,14 +3,15 @@
 #' Inferring the network of different group of samples and test significance by
 #' permutation.
 #'
+#' @include all_classes.R all_generics.R
 #' @param x An object of class `mina` with @norm and @des_tab defined.
 #' @param group The column name of descriptive file @des_tab for comparison.
 #' @param g_size The cutoff of group size used for filtering, default 88.
 #' @param s_size The number of samples used for network inference during
 #' bootstrap and permutation (when sig == TRUE), it should be smaller than
 #' g_size / 2 to make sure the randomness; default 30.
-#' @param rm Filtering the components present in less than 20% of the samples,
-#' default TRUE.
+#' @param rm Filtering the components present in less than 20% of the samples
+#' from compared groups, default TRUE.
 #' @param sig Whether to test the significance, skip the permutation when sig ==
 #' FALSE, default TRUE.
 #' @param bs The times for bootstrap network inference, default 6
@@ -22,8 +23,8 @@
 #' @return x The same object with @multi and @perm defined.
 #' @exportMethod bs_pm
 
-setMethod("bs_pm", signature("mina", "ANY", "integer", "integer", "logical",
-                             "logical", "integer", "integer"),
+setMethod("bs_pm", signature("mina", "ANY", "numeric", "numeric", "logical",
+                             "logical", "numeric", "numeric"),
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, sig = TRUE,
                    bs = 6, pm = 6) {
               stop("Please specify a column in descriptive file for grouping
@@ -31,8 +32,8 @@ setMethod("bs_pm", signature("mina", "ANY", "integer", "integer", "logical",
           }
 )
 
-setMethod("bs_pm", signature("mina", "character", "integer", "integer", "logical",
-                            "logical", "integer", "integer"),
+setMethod("bs_pm", signature("mina", "character", "numeric", "numeric", "logical",
+                            "logical", "numeric", "numeric"),
           function(x, group, g_size = 100, s_size = 50, rm = TRUE, sig = TRUE,
                    bs = 6, pm = 6) {
 
@@ -42,6 +43,12 @@ setMethod("bs_pm", signature("mina", "character", "integer", "integer", "logical
 
               mat <- x@norm
               des <- x@des_tab
+
+              # fit the quantitative table with descriptive table
+              fit <- intersect(colnames(mat), des$Sample_ID)
+              mat <- mat[, colnames(mat) %in% fit]
+              des <- des[des$Sample_ID %in% fit, ]
+              message(nrow(des), " samples are used for bs_pm before filtering.")
 
               # filter the group does not have enough samples (i.e. < g_size)
               lst <- levels(des[[group]])
@@ -58,33 +65,62 @@ setMethod("bs_pm", signature("mina", "character", "integer", "integer", "logical
 
               des <- des[des[[group]] %in% lst, ]
               mat <- mat[, colnames(mat) %in% des$Sample_ID]
-              message(ncol(mat), " samples in ", len,
-                      " groups are used for network inference.")
+              message(len, " groups with ", ncol(mat),
+                      " samples used for bootstrap.")
 
               # start bootstrap and permutation
-              index <- 0
+              index <- 1
+              y_bs <- list()
+              y_pm <- list()
+
               for (m in 1 : len) {
                   group_m <- lst[m]
                   des_m <- des[des[[group]] == group_m, ]
                   mat_m <- mat[, colnames(mat) %in% des_m$Sample_ID]
                   num_m <- nrow(des_m)
 
-                  if (rm) mat_m <- filter_mat(mat_m, p = s_size * 0.2)
-
                   for (n in m : len) {
                       if (n == m) {
+                          group_n <- group_m
                           mat_mn <- mat_n <- mat_m
                           num_mn <- num_n <- num_m
+
+                          # filter if rm is TRUE
+                          if (rm) {
+                              mat_mn <- filter_mat(mat_mn, p = s_size * 0.1)
+                              num_mn <- ncol(mat_mn)
+                              if (num_mn < s_size) {
+                                  stop("Not enough samples for", group_m,
+                                       " bootstrap after filtering!")
+                              }
+                          }
+
                       } else {
                           group_n <- lst[n]
                           des_n <- des[des[[group]] == group_n, ]
                           mat_n <- mat[, colnames(mat) %in% des_n$Sample_ID]
                           num_n <- nrow(des_n)
-
-                          if (rm) mat_n <- filter(mat_n, p = s_size * 0.2)
-
                           mat_mn <- cbind(mat_m, mat_n)
                           num_mn <- num_m + num_n
+
+                          # filter if rm is TRUE
+                          if (rm) {
+                              mat_mn <- filter_mat(mat_mn, p = size * 0.2)
+                              mat_m <- mat_mn[, colnames(mat_mn) %in%
+                                              des_m$Sample_ID]
+                              mat_n <- mat_mn[, colnames(mat_mn) %in%
+                                              des_n$Sample_ID]
+
+                              num_m <- ncol(mat_m)
+                              num_n <- ncol(mat_n)
+                              num_mn <- num_m + num_n
+
+                              if (num_m < s_size || num_n < s_size) {
+                                  stop("Not enough samples for ", group_m,
+                                       " v.s. ", group_n,
+                                       " bootstrap after filtering!")
+                              }
+                          }
                       }
 
                       # re-normalization
@@ -109,9 +145,16 @@ setMethod("bs_pm", signature("mina", "character", "integer", "integer", "logical
 
                           MLST[[b]] <- cor_m
                           NLST[[b]] <- cor_n
+                          names(MLST)[b] <- paste0(group_m, "_", b)
+                          names(NLST)[b] <- paste0(group_n, "_", b)
                       }
 
-                      y_bs[index] <- list(MLST, NLST)
+                      #y_bs[index] <- list(MLST, NLST)
+                      #names(y_bs)[index] <- paste0(group_m, "_", group_n)
+                      y_bs[index] <- list(MLST)
+                      y_bs[(index + 1)] <- list(NLST)
+                      names(y_bs)[index : (index + 1)] <- c(group_m, group_n)
+
                       rm(MLST, NLST)
                       gc(reset = T)
 
@@ -136,13 +179,22 @@ setMethod("bs_pm", signature("mina", "character", "integer", "integer", "logical
 
                               MPLST[[p]] <- cor_pm
                               NPLST[[p]] <- cor_pn
+                              names(MPLST)[p] <- paste0(group_m, "_", p)
+                              names(NPLST)[p] <- paste0(group_n, "_", p)
                           }
 
-                          y_pm[index] <- list(MPLST, NPLST)
+                          #y_pm[index] <- list(MPLST, NPLST)
+                          #names(y_pm)[index] <- paste0(group_m, "_", group_n)
+                          y_pm[index] <- list(MPLST)
+                          y_pm[(index + 1)] <- list(NPLST)
+
+                          names(y_pm)[index] <- group_m
+                          names(y_pm)[index + 1] <- group_n
+
                           rm(MPLST, NPLST)
                           gc(reset = T)
                       }
-                      index <- index + 1
+                      index <- index + 2
                   }
               }
               x@multi <- y_bs
@@ -164,7 +216,8 @@ setMethod("bs_pm", signature("mina", "character", "integer", "integer", "logical
 #' @keywords internal
 
 filter_mat <- function(x, p) {
-    x_bi <- x[x > 0] <- 1
+    x_bi <- x
+    x_bi[x_bi > 0] <- 1
     x <- x[rowSums(x_bi) > p, ]
     x <- x[, colSums(x) > 0]
     return(x)

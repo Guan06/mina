@@ -31,5 +31,6 @@ Collate:
     'fit_tabs.R'
     'net_cls.R'
     'net_cls_tab.R'
+    'net_dis.R'
     'norm_tab.R'
     'residual.R'

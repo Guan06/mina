@@ -30,13 +30,13 @@ variance.}
 
 \item{\code{cls_tab}}{The cluster quantitative table.}
 
-\item{\code{dis_net}}{The distance between networks of different environmental
-communities.}
-
 \item{\code{multi}}{The list of subsampled adjacency matrices for each environment.}
 
 \item{\code{perm}}{The list of permutated adjacency matrices for each pairwise
 environmental comparison.}
+
+\item{\code{net_dis}}{The distance between networks of different environmental
+communities.}
 
 \item{\code{sig}}{The average distance between subsampled environmental community
 networks and corresponding significance.}
