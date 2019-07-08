@@ -34,6 +34,7 @@ setMethod("com_r2", signature("mina", "character"), function(x, group) {
 #' @include all_classes.R all_generics.R
 #'
 #' @importFrom gdata drop.levels
+#' @importFrom utils combn
 #' @param x Dissimilarity / distance matrix which indicate variances.
 #' @param des The descriptive table of samples which define the groups.
 #' @param group The name(s) of column(s) used  as experimental setup group(s) in
@@ -66,7 +67,7 @@ get_r2 <- function(x, des, group = c("Host_genotype", "Compartment", "Soil",
 
     colnames(dis)[4:5] <- c("sample1_group", "sample2_group")
 
-    dis <- dis %>% mutate(distance_sq = distance ** 2)
+    dis$distance_sq <- dis$distance ** 2
     SSt <- sum(dis$distance_sq) / nrow(x)
 
     dis_intra <- dis[dis$sample1_group == dis$sample2_group, ]

@@ -3,9 +3,6 @@
 \docType{class}
 \name{mina-class}
 \alias{mina-class}
-\alias{show,}
-\alias{mina-method}
-\alias{com_dis}
 \title{Class "mina" includes the quantitative table and descriptive table.}
 \description{
 Class "mina" includes the quantitative table and descriptive table.

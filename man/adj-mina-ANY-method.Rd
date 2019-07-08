@@ -13,11 +13,11 @@ object as input.}
 
 \item{method}{The correlation coeffient used for adjacacency matrix.}
 
-\item{threads}{(optional) The number of threads used for parallel running, 80
-by default.}
+\item{threads}{The number of threads used for parallel running, 80 by
+default.}
 
-\item{nblocks}{(optional) The number of row / column for splitted sub-matrix,
-400 by default.}
+\item{nblocks}{The number of row / column for splitted sub-matrix, 400 by
+default.}
 }
 \value{
 x The same `mina` object with @adj added.

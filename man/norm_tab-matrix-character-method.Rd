@@ -13,11 +13,11 @@
 
 \item{method}{The method used for normalization.}
 
-\item{depth}{(optional) The depth for subsampling by rarefying, using the
-minimum sample depth by default.}
+\item{depth}{The depth for subsampling by rarefying, using the minimum sample
+depth by default.}
 
-\item{replace}{(optional) Whether to sample with replacement (\code{TRUE} by
-default) or without replacement (\code{FALSE}) when using method `raref`.}
+\item{replace}{Whether to sample with replacement (\code{TRUE} by default)
+or without replacement (\code{FALSE}) when using method `raref`.}
 }
 \value{
 norm_x Normalized matrix of the quantitative table.

@@ -6,10 +6,10 @@
 #' @include all_classes.R all_generics.R
 #' @param x An object of the class mina with @norm defined.
 #' @param method The correlation coeffient used for adjacacency matrix.
-#' @param threads (optional) The number of threads used for parallel running, 80
-#' by default.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix,
-#' 400 by default.
+#' @param threads The number of threads used for parallel running, 80 by
+#' default.
+#' @param nblocks The number of row / column for splitted sub-matrix, 400 by
+#' default.
 #' @examples
 #' x <- adj(x, method = "pearson")
 #' x <- adj(x, method = "spearman")
@@ -39,10 +39,10 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY"),
 #' @include all_classes.R all_generics.R
 #' @param x An matrix for correlation / adjacency matrix calculation.
 #' @param method The correlation coefficient used for adjacacency matrix.
-#' @param threads (optional) The number of threads used for parallel running, 80
-#' by default.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix,
-#' 400 by default.
+#' @param threads The number of threads used for parallel running, 80 by
+#' default.
+#' @param nblocks The number of row / column for splitted sub-matrix, 400 by
+#' default.
 #' @examples
 #' y <- adj(x, method = "pearson")
 #' y <- adj(x, method = "spearman")
@@ -86,17 +86,18 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
 #' master/functions.community_similarity.R
 #'
 #' @include all_classes.R all_generics.R
+#'
 #' @importFrom parallel mclapply
 #' @importFrom doMC registerDoMC
-#' @importFrom bigmemory big.matrix
-#' @importFrom bigmemory attach.big.matrix
-#' @importFrom foreach foreach
+#' @importFrom bigmemory big.matrix attach.big.matrix describe
+#' @importFrom foreach foreach %dopar%
+#' @importFrom biganalytics colsum
 #'
 #' @param x An matrix for correlation calculation.
-#' @param threads (optional) The number of threads used for parallel running, 80
-#' by default.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix,
-#' 400 by default.
+#' @param threads The number of threads used for parallel running, 80 by
+#' default.
+#' @param nblocksThe number of row / column for splitted sub-matrix, 400 by
+#' default.
 #' @examples
 #' y <- sparcc(x, threads = 80, nblocks = 400)
 #' @return y The adjacency matrix.

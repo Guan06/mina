@@ -12,11 +12,10 @@
 
 \item{method}{The method used for normalization.}
 
-\item{depth}{(optional) The depth for subsampling by rarefying, 1000 by
-default.}
+\item{depth}{The depth for subsampling by rarefying, 1000 by default.}
 
-\item{replace}{(optional) Whether to sample with replacement (\code{TRUE} by
-default) or without replacement (\code{FALSE}) when using method `raref`.}
+\item{replace}{Whether to sample with replacement (\code{TRUE} by default) or
+without replacement (\code{FALSE}) when using method `raref`.}
 }
 \value{
 x An object of the class mina with @norm added.

@@ -32,8 +32,7 @@ setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
 
 #' Calculate the adjacacency matrix of @norm by correlation.
 #'
-#' @param x An object of the class mina with @norm defined or any quantitative
-#' matrix.
+#' @param x An object of the class mina with @norm defined.
 #' @param method The correlation coeffient used for adjacacency matrix.
 #' @param threads (optional) The number of threads used for parallel running.
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
@@ -43,6 +42,20 @@ setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
 
 setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
     standardGeneric("adj")
+})
+
+###############################################################################
+
+#' Calculate the Person / Spearman correlation of @norm.
+#'
+#' @param x An matrix for pearson correlation calculation.
+#' @examples
+#' y <- cp_cor(x)
+#' @return y The adjacacency matrix.
+#' @keywords internal
+
+setGeneric("cp_cor", function(x) {
+    standardGeneric("cp_cor")
 })
 
 ###############################################################################

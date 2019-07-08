@@ -11,11 +11,11 @@ sparcc(x, threads = 80, nblocks = 400)
 \arguments{
 \item{x}{An matrix for correlation calculation.}
 
-\item{threads}{(optional) The number of threads used for parallel running, 80
-by default.}
+\item{threads}{The number of threads used for parallel running, 80 by
+default.}
 
-\item{nblocks}{(optional) The number of row / column for splitted sub-matrix,
-400 by default.}
+\item{nblocksThe}{number of row / column for splitted sub-matrix, 400 by
+default.}
 }
 \value{
 y The adjacency matrix.

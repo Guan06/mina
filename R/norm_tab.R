@@ -5,10 +5,10 @@
 #' @include all_classes.R all_generics.R
 #' @param x A matrix of the quantitative table.
 #' @param method The method used for normalization.
-#' @param depth (optional) The depth for subsampling by rarefying, using the
-#' minimum sample depth by default.
-#' @param replace (optional) Whether to sample with replacement (\code{TRUE} by
-#' default) or without replacement (\code{FALSE}) when using method `raref`.
+#' @param depth The depth for subsampling by rarefying, using the minimum sample
+#' depth by default.
+#' @param replace Whether to sample with replacement (\code{TRUE} by default)
+#' or without replacement (\code{FALSE}) when using method `raref`.
 #' @examples
 #' norm_tab(x, method = "raref", depth = 1000, replace = TRUE)
 #' norm_tab(x, method = "total")
@@ -27,16 +27,17 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
           }
 )
 
+################################################################################
+
 #' Normalize the quantitative table with mina input.
 #'
 #' @include all_classes.R all_generics.R
 #'
 #' @param x An object of the class mina with @tab defined.
 #' @param method The method used for normalization.
-#' @param depth (optional) The depth for subsampling by rarefying, 1000 by
-#' default.
-#' @param replace (optional) Whether to sample with replacement (\code{TRUE} by
-#' default) or without replacement (\code{FALSE}) when using method `raref`.
+#' @param depth The depth for subsampling by rarefying, 1000 by default.
+#' @param replace Whether to sample with replacement (\code{TRUE} by default) or
+#' without replacement (\code{FALSE}) when using method `raref`.
 #' @examples
 #' x <- norm_tab(x, method = "raref", depth = 1000, replace = TRUE)
 #' x <- norm_tab(x, method = "total")
@@ -123,6 +124,7 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
 #' Resample with replacement for default. As mentioned in
 #' \pkg{phyloseq}, this is set for computational efficiency.
 #'
+#' @importFrom methods as
 #' @param x A column of quantitative table.
 #' @param depth The depth for rarefying.
 #' @param replace Whether to sample with or without replacement.
@@ -157,8 +159,8 @@ rarefaction_subsample <- function(x, depth, replace = TRUE){
 #' Normalization methods should be specified by exact string match.
 #' @format A list of character vectors.
 #' \describe{
-#'    \item{raref By downsampling all samples to specific depth.}
-#'    \item{total Devided by the total read of each sample.}
+#'    \item{\code{raref}}{ By downsampling all samples to specific depth. }
+#'    \item{\code{total}}{ Devided by the total read of each sample. }
 #' }
 #' @seealso \code{\link[mina]{norm_tab}}
 #' @export

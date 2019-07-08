@@ -23,7 +23,7 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #' Class "mina" includes the quantitative table and descriptive table.
 #'
 #' @name mina-class
-#' @aliases mina-class show, mina-method com_dis
+#' @aliases mina-class
 #' @docType class
 #' @slot tab The quantitative table of the dataset.
 #' @slot des The descriptive table of the samples listed in @tab.

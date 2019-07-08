@@ -7,7 +7,7 @@
 library("mina"); library("testthat")
 
 # read in data
-maize <- new("mina", tab = maize_asv, des_tab = maize_des)
+maize <- new("mina", tab = maize_asv, des = maize_des)
 
 test_that("Test that when method is missed, error message is printed", {
               expect_error(norm_tab(maize),

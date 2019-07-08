@@ -3,6 +3,7 @@
 #' Calculate the network distance of @multi and test the significance when @perm
 #' is defined.
 #'
+#' @importFrom stats dist
 #' @param x An object of class `mina` with @multi (and @perm if sig is TRUE)
 #' defined.
 #' @param method The distance to be calculated, "spectral" and "jaccard" are
@@ -170,6 +171,7 @@ get_dis_df <- function(x) {
 
 #' Function for distance statistic and significance test.
 #'
+#' @importFrom stats sd
 #' @param x The bootstrap distance data frame.
 #' @param p The permuation distance data frame.
 #' @param sig Whether to test significance or not.

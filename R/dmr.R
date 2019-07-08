@@ -3,6 +3,7 @@
 #' Dimensionality reduction of the distance matrix.
 #' @include all_classes.R all_generics.R
 #'
+#' @importFrom stats cmdscale
 #' @param x A distance matrix.
 #' @param k The number of dimensionality after redunction, 2 by default.
 #' @examples

@@ -13,11 +13,11 @@ input.}
 
 \item{method}{The correlation coefficient used for adjacacency matrix.}
 
-\item{threads}{(optional) The number of threads used for parallel running, 80
-by default.}
+\item{threads}{The number of threads used for parallel running, 80 by
+default.}
 
-\item{nblocks}{(optional) The number of row / column for splitted sub-matrix,
-400 by default.}
+\item{nblocks}{The number of row / column for splitted sub-matrix, 400 by
+default.}
 }
 \value{
 y The adjacacency matrix.

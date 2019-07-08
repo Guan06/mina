@@ -7,8 +7,7 @@
 adj(x, method, threads = 80, nblocks = 400)
 }
 \arguments{
-\item{x}{An object of the class mina with @norm defined or any quantitative
-matrix.}
+\item{x}{An object of the class mina with @norm defined.}
 
 \item{method}{The correlation coeffient used for adjacacency matrix.}
 

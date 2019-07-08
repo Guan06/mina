@@ -1,6 +1,6 @@
 Package: mina
 Title: Microbial community dIversity and Network Analysis
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("Rui", "Guan", email = "guan@mpipz.mpg.de", role = c("aut", "cre")),
     person("Ruben", "Garrido-Oter", email = "garridoo@mpipz.mpg.de", role = "ctb")
@@ -12,6 +12,7 @@ License: GPL
 Encoding: UTF-8
 Imports:
     methods,
+    stats,
     Rcpp,
     MCL,
     RSpectra,
@@ -23,7 +24,9 @@ Imports:
     gdata,
     ggplot2,
     parallelDist,
-    reshape2
+    reshape2,
+    plyr,
+    biganalytics
 LazyData: true
 Suggests: 
     knitr,
@@ -34,7 +37,6 @@ RoxygenNote: 6.1.1
 Collate: 
     'RcppChk.R'
     'RcppExports.R'
-    'add.R'
     'all_generics.R'
     'all_classes.R'
     'adj.R'

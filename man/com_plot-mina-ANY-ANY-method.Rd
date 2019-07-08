@@ -15,7 +15,8 @@ same as rownames in x.}
 
 \item{color}{The column name in @des to be used for different color groups.}
 
-\item{(optional)}{shape The column name in @des to be used for different
+\item{shape}{The column name in @des to be used for different shape groups,
+default `NULL`.
 shape groups.}
 }
 \value{
