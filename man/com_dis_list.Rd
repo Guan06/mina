@@ -10,7 +10,7 @@ method used.
 \describe{
   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
 
-  \item{Dissimilarity / distance for weighted matrix from parallelDist:}
+  \item{Dissimilarity/distance for weighted matrix from \pkg{parallelDist}:}
   \item{\code{bhjattacharyya}}{ from \code{\link[parallelDist]{parDist}}}
   \item{\code{canberra}}{ from \code{\link[parallelDist]{parDist}}}
   \item{\code{bray}}{ from \code{\link[parallelDist]{parDist}}}
@@ -29,7 +29,7 @@ method used.
   \item{\code{wave}}{ from \code{\link[parallelDist]{parDist}} }
   \item{\code{whittaker}}{ from \code{\link[parallelDist]{parDist}} }
 
-  \item{Distances for binary matrix from parallelDist:}
+  \item{Distances for binary matrix from \pkg{parallelDist}:}
   \item{\code{binary}}{ from \code{\link[parallelDist]{parDist}} }
   \item{\code{braun-blanquet}}{ from \code{\link[parallelDist]{parDist}} }
   \item{\code{consine}}{ from \code{\link[parallelDist]{parDist}} }

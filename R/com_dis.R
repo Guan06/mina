@@ -113,8 +113,11 @@ tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
 #' master/functions.community_similarity.R
 #'
 #' @include all_classes.R all_generics.R
-#' @import plyr foreach bigmemory doMC
 #' @importFrom parallel mclapply
+#' @importFrom foreach foreach
+#' @importFrom bigmemory big.matrix
+#' @importFrom bigmemory attach.big.matrix
+#' @importFrom doMC registerDoMC
 #' @param x An quantitative matrix.
 #' @param y The Cij matrix, which is correlation matrix of adjusted sparcc
 #' matrix of x.
@@ -203,7 +206,7 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
                             }, mc.cores = threads)
     }
 
-    file.remove(list.files("/dev/shm/", full.name=T))
+    file.remove(list.files("/dev/shm/", full.names = T))
 
     s <- do.call("rbind", cs_list)
     rownames(s) <- colnames(s) <- samples
@@ -223,7 +226,7 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #' \describe{
 #'   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
 #'
-#'   \item{Dissimilarity / distance for weighted matrix from parallelDist:}
+#'   \item{Dissimilarity/distance for weighted matrix from \pkg{parallelDist}:}
 #'   \item{\code{bhjattacharyya}}{ from \code{\link[parallelDist]{parDist}}}
 #'   \item{\code{canberra}}{ from \code{\link[parallelDist]{parDist}}}
 #'   \item{\code{bray}}{ from \code{\link[parallelDist]{parDist}}}
@@ -242,7 +245,7 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #'   \item{\code{wave}}{ from \code{\link[parallelDist]{parDist}} }
 #'   \item{\code{whittaker}}{ from \code{\link[parallelDist]{parDist}} }
 #'
-#'   \item{Distances for binary matrix from parallelDist:}
+#'   \item{Distances for binary matrix from \pkg{parallelDist}:}
 #'   \item{\code{binary}}{ from \code{\link[parallelDist]{parDist}} }
 #'   \item{\code{braun-blanquet}}{ from \code{\link[parallelDist]{parDist}} }
 #'   \item{\code{consine}}{ from \code{\link[parallelDist]{parDist}} }

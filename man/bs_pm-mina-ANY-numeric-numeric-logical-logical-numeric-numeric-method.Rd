@@ -12,9 +12,9 @@ permutation.}
   pm = 6)
 }
 \arguments{
-\item{x}{An object of class `mina` with @norm and @des_tab defined.}
+\item{x}{An object of class `mina` with @norm and @des defined.}
 
-\item{group}{The column name of descriptive file @des_tab for comparison.}
+\item{group}{The column name of descriptive file @des for comparison.}
 
 \item{g_size}{The cutoff of group size used for filtering, default 88.}
 
@@ -38,4 +38,9 @@ x The same object with @multi and @perm defined.
 \description{
 Inferring the network of different group of samples and test significance by
 permutation.
+}
+\examples{
+x <- bs_pm(x, group = "Compartment")
+x <- bs_pm(x, group = "Compartment", g_size = 100, s_size = 50, rm = TRUE,
+sig = TRUE, bs = 6, pm = 6)
 }

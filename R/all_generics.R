@@ -3,7 +3,7 @@
 #' Filter the quantitative and descriptive table to make them have the same
 #' samples, the intersect samples will be remained.
 #'
-#' @param x An object of the class mina with @tab and @des_tab defined or a
+#' @param x An object of the class mina with @tab and @des defined or a
 #' quantitative matrix(need parameter des in this case).
 #' @examples
 #' fit_tabs(x)
@@ -16,6 +16,7 @@ setGeneric("fit_tabs", function(x) {
 ###############################################################################
 
 #' Normalize the @tab and obtain @norm for later analysis.
+#'
 #' @param x The input mina object with quantitative tab / a matrix needed to be
 #' normalized.
 #' @param method The method used for the normalization of quantitative table.
@@ -30,6 +31,7 @@ setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
 ###############################################################################
 
 #' Calculate the adjacacency matrix of @norm by correlation.
+#'
 #' @param x An object of the class mina with @norm defined or any quantitative
 #' matrix.
 #' @param method The correlation coeffient used for adjacacency matrix.
@@ -46,6 +48,7 @@ setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
 ###############################################################################
 
 #' Calculate the community dissimilarity / distance matrix of @norm.
+#'
 #' @param x An object of the class mina with @norm defined or any quantitative
 #' matrix.
 #' @param method The dissimilarity / distance method used.
@@ -58,6 +61,8 @@ setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
 setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
     standardGeneric("com_dis")
 })
+
+###############################################################################
 
 #' TINA calculation used in \code{\link[mina]{com_dis}}.
 #'
@@ -86,8 +91,8 @@ setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",
 #' Calculate the unexplained variance ratio using formula indicated in:
 #' Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of
 #' variance. Austral Ecology, 26: 32--46.
-
-#' @param x An object of class `mina` with @dis and @des_tab defined.
+#'
+#' @param x An object of class `mina` with @dis and @des defined.
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
 #'
 #' @examples
@@ -125,6 +130,7 @@ setGeneric("dmr", function(x, k = 2) {
 #' shape groups.
 #' @examples
 #' p <- com_plot(x, match = "Sample_ID", color = "Compartment", shape = "Soil")
+#' @export
 
 setGeneric("com_plot", function(x, match, color, shape = NULL) {
     standardGeneric("com_plot")
@@ -141,6 +147,7 @@ setGeneric("com_plot", function(x, match, color, shape = NULL) {
 #' @examples
 #' x <- net_cls(x)
 #' x <- net_cls(x, method = "mcl", cutoff = 0.4, neg = FALSE)
+#' @export
 
 setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
     standardGeneric("net_cls")
@@ -156,6 +163,7 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 #' @examples
 #' x <- net_cls_tab(x)
 #' x <- net_cls_tab(x, uw = TRUE)
+#' @export
 
 setGeneric("net_cls_tab", function(x, uw = FALSE) {
     standardGeneric("net_cls_tab")
@@ -166,8 +174,8 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' Inferring the network of different group of samples and test significance by
 #' permutation.
 #'
-#' @param x An object of class `mina` with @norm and @des_tab defined.
-#' @param group The column name of descriptive file @des_tab for comparison.
+#' @param x An object of class `mina` with @norm and @des defined.
+#' @param group The column name of descriptive file @des for comparison.
 #' @param g_size The cutoff of group size used for filtering, default 100.
 #' @param s_size The number of samples used for network inference during
 #' bootstrap and permutation (when sig == TRUE), it should be smaller than
@@ -182,6 +190,7 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' x <- bs_pm(x, group = "Compartment")
 #' x <- bs_pm(x, group = "Compartment", g_size = 100, s_size = 50, rm = TRUE,
 #' sig = TRUE, bs = 6, pm = 6)
+#' @export
 
 setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE, 
                              sig = TRUE, bs = 6, pm = 6) {
@@ -201,6 +210,7 @@ setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE,
 #' needed.
 #' @examples
 #' x <- net_dis(x, method = "spectral", sig = TRUE)
+#' @export
 
 setGeneric("net_dis", function(x, method, sig = TRUE) {
     standardGeneric("net_dis")

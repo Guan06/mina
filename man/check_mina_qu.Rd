@@ -18,3 +18,4 @@ Check the object and return TRUE if the object includes quantitative table.
 \examples{
 check_mina_qu(x)
 }
+\keyword{internal}

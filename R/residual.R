@@ -5,14 +5,13 @@
 #' variance. Austral Ecology, 26: 32--46.
 #'
 #' @include all_classes.R all_generics.R
-#' @import dplyr gdata
-#' @param x An mina object with @dis and @des_tab defined.
+#' @param x An mina object with @dis and @des defined.
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
 #'
 #' @examples
 #' x <- com_r2(x, group = "Soil")
 #'
-#' m <- new("mina", dis = distance_matrix, des_tab = design_data_frame)
+#' m <- new("mina", dis = distance_matrix, des = design_data_frame)
 #' m <- com_r2(m)
 #'
 #' @return r2 The variance ratio cannot be explained by given groups.
@@ -23,7 +22,7 @@ setMethod("com_r2", signature("mina", "ANY"), function(x, group) {
 })
 
 setMethod("com_r2", signature("mina", "character"), function(x, group) {
-    r2 <- get_r2(x@dis, x@des_tab, group = group)
+    r2 <- get_r2(x@dis, x@des, group = group)
     return(r2)
 })
 
@@ -33,7 +32,8 @@ setMethod("com_r2", signature("mina", "character"), function(x, group) {
 #' variance. Austral Ecology, 26: 32--46.
 #'
 #' @include all_classes.R all_generics.R
-#' @import dplyr gdata
+#'
+#' @importFrom gdata drop.levels
 #' @param x Dissimilarity / distance matrix which indicate variances.
 #' @param des The descriptive table of samples which define the groups.
 #' @param group The name(s) of column(s) used  as experimental setup group(s) in
@@ -69,12 +69,12 @@ get_r2 <- function(x, des, group = c("Host_genotype", "Compartment", "Soil",
     dis <- dis %>% mutate(distance_sq = distance ** 2)
     SSt <- sum(dis$distance_sq) / nrow(x)
 
-    dis_intra <- dis %>% filter(sample1_group == sample2_group)
+    dis_intra <- dis[dis$sample1_group == dis$sample2_group, ]
     lst <- levels(drop.levels(dis_intra$sample1_group))
 
     SSw <- 0
     for (l in lst) {
-        this_group <- dis_intra %>% filter(sample1_group == l)
+        this_group <- dis_intra[dis_intra$sample1_group == l, ]
         this_group <- drop.levels(this_group)
         n <- length(unique(c(levels(this_group$sample1), levels(this_group$sample2))))
         this_SSw <- sum(this_group$distance_sq) / n

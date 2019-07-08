@@ -1,13 +1,29 @@
 Package: mina
-Title: What the Package Does (one line, title case)
+Title: Microbial community dIversity and Network Analysis
 Version: 0.0.0.9000
-Authors@R: person("Rui", "Guan", email = "guan@mpipz.mpg.de", role = c("aut", "cre"))
+Authors@R: c(
+    person("Rui", "Guan", email = "guan@mpipz.mpg.de", role = c("aut", "cre")),
+    person("Ruben", "Garrido-Oter", email = "garridoo@mpipz.mpg.de", role = "ctb")
+    )
 Description: What the package does (one paragraph).
 Depends: R (>= 3.4.1)
 LinkingTo: Rcpp, RcppParallel, RcppArmadillo
-License: What license is it under?
+License: GPL
 Encoding: UTF-8
-Imports: Rcpp
+Imports:
+    methods,
+    Rcpp,
+    MCL,
+    RSpectra,
+    apcluster,
+    bigmemory,
+    doMC,
+    dplyr,
+    foreach,
+    gdata,
+    ggplot2,
+    parallelDist,
+    reshape2
 LazyData: true
 Suggests: 
     knitr,

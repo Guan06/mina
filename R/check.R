@@ -1,6 +1,6 @@
 ###############################################################################
 
-#' Check the tab and des_tab file. Return TRUE if they are NULL or both
+#' Check the tab and des file. Return TRUE if they are NULL or both
 #' quantitative and descriptive files of same samples are included (i.e. the
 #' object is valid).
 #'
@@ -8,11 +8,11 @@
 #' @return TRUE if the object is valid.
 #' @examples
 #' check_mina(x)
-#' @export
+#' @keywords internal
 
 check_mina <- function(x){
-    if (class(x@tab) == "NULL" && class(x@des_tab) == "NULL") {
-        stop("An empty (neither @tab or @des_tab) object of the class mina!")
+    if (class(x@tab) == "NULL" && class(x@des) == "NULL") {
+        stop("An empty (neither @tab or @des) object of the class mina!")
     }
 
     errors <- character()
@@ -30,7 +30,7 @@ check_mina <- function(x){
 #' @return TRUE if the object contains quantitative table and is not empty.
 #' @examples
 #' check_mina_qu(x)
-#' @export
+#' @keywords internal
 
 check_mina_qu <- function(x){
     errors <- character()
@@ -50,22 +50,22 @@ check_mina_qu <- function(x){
 #' same samples as quantitative table.
 #' @examples
 #' check_mina_de(x)
-#' @export
+#' @keywords internal
 
 check_mina_de <- function(x){
     errors <- character()
 
     if (!check_mina_qu(x)) errors <- c(errors, check_mina_qu(x))
 
-    if(class(x@des_tab) == "NULL") {
-        stop("The @des_tab of this object does not exist!")
+    if(class(x@des) == "NULL") {
+        stop("The @des of this object does not exist!")
     }
 
     samples1 <- as.character(sort(colnames(x@tab)))
-    samples2 <- as.character(sort(x@des_tab$Sample_ID))
+    samples2 <- as.character(sort(x@des$Sample_ID))
 
     if (!identical(samples1, samples2)){
-        msg <- "The samples in @tab and @des_tab are different!"
+        msg <- "The samples in @tab and @des are different!"
         errors <- c(errors, msg)
     }
     if (length(errors) == 0) TRUE else stop(errors)

@@ -60,6 +60,7 @@ setMethod("norm_tab", signature("mina", "character", "ANY", "ANY"),
 ###############################################################################
 
 #' Function for normalization, by total number of the reads in each sample.
+#'
 #' @param x A quantitative table with samples in cloumns and compostions in
 #' rows.
 #' @examples
@@ -76,6 +77,7 @@ norm_by_total <- function(x) {
 
 #' Function for normalization by rarefying the samples into the same depth,
 #' modified from \code{\link[phyloseq]{rarefy_even_depth}}.
+#'
 #' @param x A quantitative table with sample in columns and compostions in rows.
 #' @param depth (optional) The depth for rarefying, 1000 by default.
 #' @param replace (optional) Whether to sample with replacement (\code{TRUE}) or
@@ -120,6 +122,7 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
 #' \code{\link[phyloseq]{rarefaction_subsample}} which is a internal function.
 #' Resample with replacement for default. As mentioned in
 #' \pkg{phyloseq}, this is set for computational efficiency.
+#'
 #' @param x A column of quantitative table.
 #' @param depth The depth for rarefying.
 #' @param replace Whether to sample with or without replacement.
@@ -154,13 +157,8 @@ rarefaction_subsample <- function(x, depth, replace = TRUE){
 #' Normalization methods should be specified by exact string match.
 #' @format A list of character vectors.
 #' \describe{
-#'    \item{
-#'        raref By downsampling all samples to specific depth.
-#'    }
-#'    \item{
-#'        total Devided by the total read of each sample.
-#'    }
-#'
+#'    \item{raref By downsampling all samples to specific depth.}
+#'    \item{total Devided by the total read of each sample.}
 #' }
 #' @seealso \code{\link[mina]{norm_tab}}
 #' @export

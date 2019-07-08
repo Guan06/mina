@@ -10,7 +10,7 @@ variance. Austral Ecology, 26: 32--46.}
 \S4method{com_r2}{mina,ANY}(x, group)
 }
 \arguments{
-\item{x}{An mina object with @dis and @des_tab defined.}
+\item{x}{An mina object with @dis and @des defined.}
 
 \item{group}{The name(s) of column(s) defined as experimental setup group(s).}
 }
@@ -25,7 +25,7 @@ variance. Austral Ecology, 26: 32--46.
 \examples{
 x <- com_r2(x, group = "Soil")
 
-m <- new("mina", dis = distance_matrix, des_tab = design_data_frame)
+m <- new("mina", dis = distance_matrix, des = design_data_frame)
 m <- com_r2(m)
 
 }

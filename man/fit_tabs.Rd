@@ -8,7 +8,7 @@ samples, the intersect samples will be remained.}
 fit_tabs(x)
 }
 \arguments{
-\item{x}{An object of the class mina with @tab and @des_tab defined or a
+\item{x}{An object of the class mina with @tab and @des defined or a
 quantitative matrix(need parameter des in this case).}
 }
 \description{

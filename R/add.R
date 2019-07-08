@@ -1,4 +1,5 @@
 ################################################################################
+
 #' Add quantitative table to the object.
 #'
 #' This includes functions for adding quantitative table (e.g. OTU table) to
@@ -33,6 +34,7 @@ add_tab <- function(x, file) {
 }
 
 ###############################################################################
+
 #' Add descriptive table to the object.
 #'
 #' This includes functions for adding descriptive table (e.g. design file)
@@ -42,7 +44,7 @@ add_tab <- function(x, file) {
 #'
 #' @param x An object of the class mina with @tab defined.
 #' @param file The descriptive table.
-#' @return x An object of the class mina with @des_tab added.
+#' @return x An object of the class mina with @des added.
 #'
 #' @examples
 #' x <- add_des(x, "design.txt")
@@ -54,18 +56,18 @@ add_des <- function(x, file) {
     type <- unlist(strsplit(file, ".", fixed = TRUE))[2]
 
     if(type == "txt") {
-        des_tab <- read.table(file, header = T, sep = "\t")
+        des <- read.table(file, header = T, sep = "\t")
     } else if (type == "asv") {
-        des_tab <- read.table(file, header = T, sep = ",")
+        des <- read.table(file, header = T, sep = ",")
     } else {
         stop("Unknown input file format!")
     }
 
-    if (colnames(des_tab)[1] != "Sample_ID") {
+    if (colnames(des)[1] != "Sample_ID") {
         stop("The first column of descriptive file should be Sample_ID!")
     }
 
-    x@des_tab <- des_tab
+    x@des <- des
 
     #c <- check_mina_de(x)
     #if (c == TRUE) x else c

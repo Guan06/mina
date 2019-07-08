@@ -15,7 +15,7 @@ Class "mina" includes the quantitative table and descriptive table.
 \describe{
 \item{\code{tab}}{The quantitative table of the dataset.}
 
-\item{\code{des_tab}}{The descriptive table of the samples listed in @tab.}
+\item{\code{des}}{The descriptive table of the samples listed in @tab.}
 
 \item{\code{norm}}{The normalized quantitative table of @tab.}
 
@@ -35,15 +35,17 @@ variance.}
 \item{\code{perm}}{The list of permutated adjacency matrices for each pairwise
 environmental comparison.}
 
-\item{\code{net_dis}}{The distance between networks of different environmental
+\item{\code{dis_bs}}{The distance between networks of different environmental
 communities.}
 
-\item{\code{sig}}{The average distance between subsampled environmental community
-networks and corresponding significance.}
+\item{\code{dis_pm}}{The distance between networks of permutated groups.}
+
+\item{\code{dis_stat}}{The average distance between subsampled environmental community
+networks, permutated networks and corresponding significance.}
 }}
 
 \examples{
-new("mina", tab = as.matrix(maize_asv), des_tab = maize_des)
+new("mina", tab = as.matrix(maize_asv), des = maize_des)
 }
 \author{
 Rui Guan \url{https://github.com/Guan06}

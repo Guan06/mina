@@ -9,9 +9,9 @@ bs_pm(x, group, g_size = 100, s_size = 50, rm = TRUE, sig = TRUE,
   bs = 6, pm = 6)
 }
 \arguments{
-\item{x}{An object of class `mina` with @norm and @des_tab defined.}
+\item{x}{An object of class `mina` with @norm and @des defined.}
 
-\item{group}{The column name of descriptive file @des_tab for comparison.}
+\item{group}{The column name of descriptive file @des for comparison.}
 
 \item{g_size}{The cutoff of group size used for filtering, default 100.}
 

@@ -14,7 +14,7 @@ samples present in @norm.}
 \item{x}{An object of class mina.}
 }
 \value{
-x The same object as input with fitted @tab and @des_tab.
+x The same object as input with fitted @tab and @des.
 }
 \description{
 Filter the quantitative and descriptive table to make them have the same

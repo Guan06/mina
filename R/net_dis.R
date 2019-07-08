@@ -122,6 +122,7 @@ setMethod("net_dis", signature("mina", "character", "ANY"),
 ################################################################################
 
 #' Function for calculation of eigenvalue of given matrix.
+#'
 #' @importFrom RSpectra eigs_sym
 #' @param k Get the first k eigenvalues.
 #' @return y The vector of the first k eigenvalues.
@@ -139,6 +140,7 @@ get_spectra <- function(x,  k = 100){
 ################################################################################
 
 #' Function for getting distance data frame from `dist`.
+#' 
 #' @importFrom reshape2 melt
 #' @param x The object of class `dist`.
 #' @examples
@@ -167,6 +169,7 @@ get_dis_df <- function(x) {
 ###############################################################################
 
 #' Function for distance statistic and significance test.
+#'
 #' @param x The bootstrap distance data frame.
 #' @param p The permuation distance data frame.
 #' @param sig Whether to test significance or not.

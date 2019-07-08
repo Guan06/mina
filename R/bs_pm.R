@@ -4,8 +4,8 @@
 #' permutation.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An object of class `mina` with @norm and @des_tab defined.
-#' @param group The column name of descriptive file @des_tab for comparison.
+#' @param x An object of class `mina` with @norm and @des defined.
+#' @param group The column name of descriptive file @des for comparison.
 #' @param g_size The cutoff of group size used for filtering, default 88.
 #' @param s_size The number of samples used for network inference during
 #' bootstrap and permutation (when sig == TRUE), it should be smaller than
@@ -19,7 +19,7 @@
 #' @examples
 #' x <- bs_pm(x, group = "Compartment")
 #' x <- bs_pm(x, group = "Compartment", g_size = 100, s_size = 50, rm = TRUE,
-#' sig = TRUE, bs = 6, pm = 6)')
+#' sig = TRUE, bs = 6, pm = 6)
 #' @return x The same object with @multi and @perm defined.
 #' @exportMethod bs_pm
 
@@ -32,8 +32,8 @@ setMethod("bs_pm", signature("mina", "ANY", "numeric", "numeric", "logical",
           }
 )
 
-setMethod("bs_pm", signature("mina", "character", "numeric", "numeric", "logical",
-                            "logical", "numeric", "numeric"),
+setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY",
+                            "ANY", "ANY", "ANY"),
           function(x, group, g_size = 100, s_size = 50, rm = TRUE, sig = TRUE,
                    bs = 6, pm = 6) {
 
@@ -42,7 +42,11 @@ setMethod("bs_pm", signature("mina", "character", "numeric", "numeric", "logical
               }
 
               mat <- x@norm
-              des <- x@des_tab
+              des <- x@des
+
+              mat <- mat[rowSums(mat) > 0, ]
+              message(nrow(mat),
+                      " components are used for bs_pm before filtering.")
 
               # fit the quantitative table with descriptive table
               fit <- intersect(colnames(mat), des$Sample_ID)
@@ -51,6 +55,7 @@ setMethod("bs_pm", signature("mina", "character", "numeric", "numeric", "logical
               message(nrow(des), " samples are used for bs_pm before filtering.")
 
               # filter the group does not have enough samples (i.e. < g_size)
+              des[[group]] <- as.factor(des[[group]])
               lst <- levels(des[[group]])
               len <- length(lst)
 
@@ -82,6 +87,7 @@ setMethod("bs_pm", signature("mina", "character", "numeric", "numeric", "logical
                   for (n in m : len) {
                       if (n == m) {
                           group_n <- group_m
+                          this_mat_m <- this_mat_n <- mat_m
                           mat_mn <- mat_n <- mat_m
                           num_mn <- num_n <- num_m
 
@@ -106,13 +112,13 @@ setMethod("bs_pm", signature("mina", "character", "numeric", "numeric", "logical
                           # filter if rm is TRUE
                           if (rm) {
                               mat_mn <- filter_mat(mat_mn, p = size * 0.2)
-                              mat_m <- mat_mn[, colnames(mat_mn) %in%
+                              this_mat_m <- mat_mn[, colnames(mat_mn) %in%
                                               des_m$Sample_ID]
-                              mat_n <- mat_mn[, colnames(mat_mn) %in%
+                              this_mat_n <- mat_mn[, colnames(mat_mn) %in%
                                               des_n$Sample_ID]
 
-                              num_m <- ncol(mat_m)
-                              num_n <- ncol(mat_n)
+                              num_m <- ncol(this_mat_m)
+                              num_n <- ncol(this_mat_n)
                               num_mn <- num_m + num_n
 
                               if (num_m < s_size || num_n < s_size) {
@@ -134,8 +140,8 @@ setMethod("bs_pm", signature("mina", "character", "numeric", "numeric", "logical
                           bs_m <- sample.int(num_m, s_size)
                           bs_n <- sample.int(num_n, s_size)
 
-                          mat_bs_m <- mat_m[, bs_m]
-                          mat_bs_n <- mat_n[, bs_n]
+                          mat_bs_m <- this_mat_m[, bs_m]
+                          mat_bs_n <- this_mat_n[, bs_n]
 
                           cor_m <- adj(mat_bs_m, method = "spearman")
                           cor_n <- adj(mat_bs_n, method = "spearman")
@@ -149,8 +155,7 @@ setMethod("bs_pm", signature("mina", "character", "numeric", "numeric", "logical
                           names(NLST)[b] <- paste0(group_n, "_", b)
                       }
 
-                      #y_bs[index] <- list(MLST, NLST)
-                      #names(y_bs)[index] <- paste0(group_m, "_", group_n)
+
                       y_bs[index] <- list(MLST)
                       y_bs[(index + 1)] <- list(NLST)
                       names(y_bs)[index : (index + 1)] <- c(group_m, group_n)
@@ -183,8 +188,6 @@ setMethod("bs_pm", signature("mina", "character", "numeric", "numeric", "logical
                               names(NPLST)[p] <- paste0(group_n, "_", p)
                           }
 
-                          #y_pm[index] <- list(MPLST, NPLST)
-                          #names(y_pm)[index] <- paste0(group_m, "_", group_n)
                           y_pm[index] <- list(MPLST)
                           y_pm[(index + 1)] <- list(NPLST)
 

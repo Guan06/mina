@@ -2,10 +2,10 @@
 % Please edit documentation in R/adj.R
 \name{sparcc_cpp}
 \alias{sparcc_cpp}
-\title{Rcpp version sparcc}
+\title{Rcpp version sparcc (not finished)}
 \usage{
 sparcc_cpp(x, threads = 80)
 }
 \description{
-Rcpp version sparcc
+Rcpp version sparcc (not finished)
 }

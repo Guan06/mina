@@ -21,3 +21,4 @@ contains the same samples as quantitative table.
 \examples{
 check_mina_de(x)
 }
+\keyword{internal}

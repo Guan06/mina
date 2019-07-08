@@ -12,7 +12,7 @@ add_des(x, file)
 \item{file}{The descriptive table.}
 }
 \value{
-x An object of the class mina with @des_tab added.
+x An object of the class mina with @des added.
 }
 \description{
 This includes functions for adding descriptive table (e.g. design file)

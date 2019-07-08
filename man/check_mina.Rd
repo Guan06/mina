@@ -2,7 +2,7 @@
 % Please edit documentation in R/check.R
 \name{check_mina}
 \alias{check_mina}
-\title{Check the tab and des_tab file. Return TRUE if they are NULL or both
+\title{Check the tab and des file. Return TRUE if they are NULL or both
 quantitative and descriptive files of same samples are included (i.e. the
 object is valid).}
 \usage{
@@ -15,10 +15,11 @@ check_mina(x)
 TRUE if the object is valid.
 }
 \description{
-Check the tab and des_tab file. Return TRUE if they are NULL or both
+Check the tab and des file. Return TRUE if they are NULL or both
 quantitative and descriptive files of same samples are included (i.e. the
 object is valid).
 }
 \examples{
 check_mina(x)
 }
+\keyword{internal}

@@ -4,8 +4,6 @@
 #' object as input.
 #'
 #' @include all_classes.R all_generics.R
-#' @import foreach bigmemory doMC
-#' @import Rcpp RcppParallel
 #' @param x An object of the class mina with @norm defined.
 #' @param method The correlation coeffient used for adjacacency matrix.
 #' @param threads (optional) The number of threads used for parallel running, 80
@@ -39,8 +37,6 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY"),
 #' input.
 #'
 #' @include all_classes.R all_generics.R
-#' @import foreach bigmemory doMC
-#' @import Rcpp RcppParallel
 #' @param x An matrix for correlation / adjacency matrix calculation.
 #' @param method The correlation coefficient used for adjacacency matrix.
 #' @param threads (optional) The number of threads used for parallel running, 80
@@ -90,8 +86,12 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
 #' master/functions.community_similarity.R
 #'
 #' @include all_classes.R all_generics.R
-#' @import foreach bigmemory doMC plyr biganalytics
 #' @importFrom parallel mclapply
+#' @importFrom doMC registerDoMC
+#' @importFrom bigmemory big.matrix
+#' @importFrom bigmemory attach.big.matrix
+#' @importFrom foreach foreach
+#'
 #' @param x An matrix for correlation calculation.
 #' @param threads (optional) The number of threads used for parallel running, 80
 #' by default.
@@ -170,12 +170,12 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
     }
 
     rownames(spa) <- rownames(x)
-    file.remove(list.files("/dev/shm/", full.name = T))
+    file.remove(list.files("/dev/shm/", full.names = T))
     return(spa)
 }
 
 ###############################################################################
-#' Rcpp version sparcc
+#' Rcpp version sparcc (not finished)
 
 sparcc_cpp <- function(x, threads = 80) {
     # add pseudocount to avoid issues with 0 in log-space
