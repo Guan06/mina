@@ -8,7 +8,7 @@
 \S4method{dmr}{mina}(x, k = 2)
 }
 \arguments{
-\item{x}{An object of the class `mina`.}
+\item{x}{An object of the class `mina` with @dis defined.}
 
 \item{k}{The number of dimensionality after redunction, 2 by default.}
 }
@@ -19,6 +19,9 @@ x The same object with @dmr added.
 Dimensionality reduction of the @dis included in mina.
 }
 \examples{
-x <- dmr(x)
-x <- dmr(x, k = 5)
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize@nomm <- maize@norm[1:500, 1:300]
+maize <- com_dis(maize, method = "bray", threads = 8, nblocks = 40)
+maize <- dmr(maize)
 }

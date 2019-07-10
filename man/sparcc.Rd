@@ -26,6 +26,9 @@ https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
 master/functions.community_similarity.R
 }
 \examples{
-y <- sparcc(x, threads = 80, nblocks = 400)
+\dontrun{
+data(maize_asv)
+maize_asv_sparcc <- sparcc(maize_asv, threads = 80, nblocks = 400)
+}
 }
 \keyword{internal}

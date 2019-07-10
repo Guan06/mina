@@ -7,7 +7,7 @@
 Resample with replacement for default. As mentioned in
 \pkg{phyloseq}, this is set for computational efficiency.}
 \usage{
-rarefaction_subsample(x, depth, replace = TRUE)
+rarefaction_subsample(x, depth = 1000, replace = FALSE)
 }
 \arguments{
 \item{x}{A column of quantitative table.}
@@ -23,6 +23,8 @@ Resample with replacement for default. As mentioned in
 \pkg{phyloseq}, this is set for computational efficiency.
 }
 \examples{
-rarefaction_subsample(otu_table[, 1], depth = 1000, replace = FALSE)
+data(maize)
+x <- maize@tab[, 1]
+rarefaction_subsample(x)
 }
 \keyword{internal}

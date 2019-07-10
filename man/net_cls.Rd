@@ -19,6 +19,8 @@ net_cls(x, method, cutoff = 0.4, neg = FALSE)
 Network clustering of sparsed adjacacency matrix @adj.
 }
 \examples{
-x <- net_cls(x)
-x <- net_cls(x, method = "mcl", cutoff = 0.4, neg = FALSE)
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- adj(maize, method = "spearman")
+maize <- net_cls(maize, method = "mcl")
 }

@@ -16,6 +16,8 @@ y The adjacacency matrix.
 Calculate the Person / Spearman correlation of @norm.
 }
 \examples{
-y <- cp_cor(x)
+data(maize_asv)
+maize_asv <- maize_asv[1:500, 1:300]
+maize_asv_pearson <- cp_cor(maize_asv)
 }
 \keyword{internal}

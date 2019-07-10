@@ -22,5 +22,10 @@ Calculate the network distance of @multi and test the significance when @perm
 is defined.
 }
 \examples{
-x <- net_dis(x, method = "spectral", sig = TRUE)
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- bs_pm(maize, group = "Compartment")
+maize <- net_dis(maize)
+}
 }

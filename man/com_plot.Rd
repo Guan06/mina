@@ -14,12 +14,21 @@ same indicated in @dmr.}
 
 \item{color}{The column name in @des to be used for different color groups.}
 
-\item{(optional)}{shape The column name in @des to be used for different
+\item{shape}{The column name in @des to be used for different shape groups,
+default `NULL`.
 shape groups.}
 }
 \description{
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
-p <- com_plot(x, match = "Sample_ID", color = "Compartment", shape = "Soil")
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "total")
+maize <- com_dis(maize, method = "bray")
+maize <- dmr(maize)
+p <- com_plot(maize, match = "Sample_ID", color = "Compartment")
+p2 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
+"Soil")
+}
 }

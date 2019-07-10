@@ -24,6 +24,6 @@ x An object of the class mina with @norm added.
 Normalize the quantitative table with mina input.
 }
 \examples{
-x <- norm_tab(x, method = "raref", depth = 1000, replace = TRUE)
-x <- norm_tab(x, method = "total")
+data(maize)
+maize <- norm_tab(maize, method = "raref")
 }

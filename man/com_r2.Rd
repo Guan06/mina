@@ -19,5 +19,10 @@ Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of
 variance. Austral Ecology, 26: 32--46.
 }
 \examples{
-x <- com_r2(x, group = "soil")
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "total")
+maize <- com_dis(maize, method = "bray")
+com_r2(maize, group = c("Compartment", "Soil", "Genotype"))
+}
 }

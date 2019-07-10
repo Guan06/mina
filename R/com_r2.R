@@ -9,11 +9,12 @@
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
 #'
 #' @examples
-#' x <- com_r2(x, group = "Soil")
-#'
-#' m <- new("mina", dis = distance_matrix, des = design_data_frame)
-#' m <- com_r2(m)
-#'
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize@nomm <- maize@norm[1:500, 1:300]
+#' maize <- com_dis(maize, method = "bray", threads = 8, nblocks = 40)
+#' x <- maize
+#' com_r2(x)
 #' @return r2 The variance ratio cannot be explained by given groups.
 #' @exportMethod com_r2
 
@@ -41,8 +42,13 @@ setMethod("com_r2", signature("mina", "character"), function(x, group) {
 #' descriptive file.
 #'
 #' @examples
-#' r2 <- get_r2(x, des, group = c("Compartment", "Soil")
-#'
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize@nomm <- maize@norm[1:500, 1:300]
+#' maize <- com_dis(maize, method = "bray", threads = 8, nblocks = 40)
+#' x <- maize@dis
+#' des <- maize@des
+#' get_r2(x, des, group = c("Compartment", "Soil")
 #' @return r2 The variance ratio cannot be explained by given groups.
 #' @export
 

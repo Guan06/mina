@@ -8,7 +8,7 @@ contains the same samples as quantitative table.}
 check_mina_de(x)
 }
 \arguments{
-\item{x}{An object of class mina.}
+\item{x}{An object of class mina with @tab and @des defined.}
 }
 \value{
 TRUE if the object contains non-empty descriptive table and has the
@@ -19,6 +19,7 @@ Check the object and return TRUE if the object includes descriptive table
 contains the same samples as quantitative table.
 }
 \examples{
+x <- new("mina", tab = maize_asv, des = maize_des)
 check_mina_de(x)
 }
 \keyword{internal}

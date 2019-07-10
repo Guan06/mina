@@ -14,6 +14,5 @@ including quantitative table (maize_asv.rds) and descriptive table
 }
 \examples{
 data(maize)
-norm_tab(maize, method = "raref", depth = 2000, replace = FALSE)
 }
 \keyword{data}

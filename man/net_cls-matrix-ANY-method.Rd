@@ -24,6 +24,9 @@ y The cluster table.
 Network clustering based on the sparsed adjacacency matrix @adj.
 }
 \examples{
-y <- net_cls(x, method = "mcl")
-y <- net_cls(x, method = "mcl", cutoff = 0.4, neg = FALSE)
+data(maize)
+maize <- norm_tab(maize)
+maize <- adj(maize, method = "spearman")
+maize_adj <- maize@adj[1:500, 1:500]
+maize_net_cls <- net_cls(maize_adj, method = "mcl")
 }

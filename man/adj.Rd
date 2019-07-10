@@ -19,5 +19,7 @@ adj(x, method, threads = 80, nblocks = 400)
 Calculate the adjacacency matrix of @norm by correlation.
 }
 \examples{
-x <- adj(x, method = "pearson")
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- adj(maize, method = "pearson")
 }

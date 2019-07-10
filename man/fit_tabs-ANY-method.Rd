@@ -23,5 +23,6 @@ the `mina` object, descriptive table will be filtered again to only keep
 samples present in @norm.
 }
 \examples{
-x <- fit_tabs(x)
+data(maize)
+maize <- fit_tabs(maize)
 }

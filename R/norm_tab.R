@@ -10,20 +10,20 @@
 #' @param replace Whether to sample with replacement (\code{TRUE} by default)
 #' or without replacement (\code{FALSE}) when using method `raref`.
 #' @examples
-#' norm_tab(x, method = "raref", depth = 1000, replace = TRUE)
-#' norm_tab(x, method = "total")
-#' @return norm_x Normalized matrix of the quantitative table.
+#' data(maize_asv)
+#' maize_asv_norm <- norm_tab(maize_asv, method = "total")
+#' @return x_norm Normalized matrix of the quantitative table.
 #' @exportMethod norm_tab
 
 setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
           function(x, method, depth = 1000, replace = TRUE) {
               if (method == "raref") {
-                  norm_x <- norm_by_raref(x, depth = depth, replace = replace)
+                  x_norm <- norm_by_raref(x, depth = depth, replace = replace)
               }
               if (method == "total") {
-                  norm_x <- norm_by_total(x)
+                  x_norm <- norm_by_total(x)
               }
-              return(norm_x)
+              return(as.matrix(x_norm))
           }
 )
 
@@ -39,8 +39,8 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
 #' @param replace Whether to sample with replacement (\code{TRUE} by default) or
 #' without replacement (\code{FALSE}) when using method `raref`.
 #' @examples
-#' x <- norm_tab(x, method = "raref", depth = 1000, replace = TRUE)
-#' x <- norm_tab(x, method = "total")
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
 #' @return x An object of the class mina with @norm added.
 #' @exportMethod norm_tab
 
@@ -54,6 +54,7 @@ setMethod("norm_tab", signature("mina", "character", "ANY", "ANY"),
           function(x, method, depth = 1000, replace = TRUE) {
               x@norm <- norm_tab(x@tab, method,
                                  depth = depth, replace = replace)
+              x@norm <- as.matrix(x@norm)
               return(x)
           }
 )
@@ -65,7 +66,8 @@ setMethod("norm_tab", signature("mina", "character", "ANY", "ANY"),
 #' @param x A quantitative table with samples in cloumns and compostions in
 #' rows.
 #' @examples
-#' norm_tab <- norm_by_total(mina@tab)
+#' data(maize_asv)
+#' maize_asv_norm <- norm_by_total(maize_asv)
 #' @return A normalized quantitative table.
 #' @keywords internal
 
@@ -85,7 +87,8 @@ norm_by_total <- function(x) {
 #' without replacement (\code{FALSE}). Default \code{TRUE} for computational
 #' efficiency.
 #' @examples
-#' norm_tab <- norm_by_raref(x, depth = 1000, replace = FALSE)
+#' data(maize_asv)
+#' maize_asv_norm <- norm_by_raref(maize_asv)
 #' @return A normalized quantitative table.
 #' @keywords internal
 
@@ -129,10 +132,12 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
 #' @param depth The depth for rarefying.
 #' @param replace Whether to sample with or without replacement.
 #' @examples
-#' rarefaction_subsample(otu_table[, 1], depth = 1000, replace = FALSE)
+#' data(maize)
+#' x <- maize@tab[, 1]
+#' rarefaction_subsample(x)
 #' @keywords internal
 
-rarefaction_subsample <- function(x, depth, replace = TRUE){
+rarefaction_subsample <- function(x, depth = 1000, replace = FALSE){
     # initial rarefied vector
     rare <- numeric(length(x))
     if (replace) {

@@ -11,9 +11,11 @@
 #' @param nblocks The number of row / column for splitted sub-matrix, 400 by
 #' default.
 #' @examples
-#' x <- adj(x, method = "pearson")
-#' x <- adj(x, method = "spearman")
-#' x <- adj(x, method = "sparcc", thread = 40, nblocks = 200)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- adj(maize, method = "pearson")
+#' }
 #' @return x The same `mina` object with @adj added.
 #' @exportMethod adj
 
@@ -25,8 +27,12 @@ setMethod("adj", signature("mina", "ANY", "ANY", "ANY"),
 
 setMethod("adj", signature("mina", "character", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {
-              x@adj <- adj(x@norm, method = method, threads = threads,
-                           nblocks = nblocks)
+              if (method == "pearson" || method == "spearman") {
+                  x@adj <- adj(x@norm, method = method)
+              } else if (method == "sparcc") {
+                  x@adj <- adj(x@tab, method = method, threads = threads,
+                               nblocks = nblocks)
+              }
               return(x)
           }
 )
@@ -44,9 +50,11 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY"),
 #' @param nblocks The number of row / column for splitted sub-matrix, 400 by
 #' default.
 #' @examples
-#' y <- adj(x, method = "pearson")
-#' y <- adj(x, method = "spearman")
-#' y <- adj(x, method = "sparcc", threads = 80, nblocks = 400)
+#' \dontrun{
+#' data(maize_asv)
+#' maize_asv <- maize_asv[1:500, 1:300]
+#' maize_asv_adj <- adj(maize_asv, method = "sparcc", threads = 8, nblocks = 40)
+#' }
 #' @return y The adjacacency matrix.
 #' @exportMethod adj
 
@@ -99,7 +107,10 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
 #' @param nblocksThe number of row / column for splitted sub-matrix, 400 by
 #' default.
 #' @examples
-#' y <- sparcc(x, threads = 80, nblocks = 400)
+#' \dontrun{
+#' data(maize_asv)
+#' maize_asv_sparcc <- sparcc(maize_asv, threads = 80, nblocks = 400)
+#' }
 #' @return y The adjacency matrix.
 #' @keywords internal
 
@@ -173,25 +184,6 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
     rownames(spa) <- rownames(x)
     file.remove(list.files("/dev/shm/", full.names = T))
     return(spa)
-}
-
-###############################################################################
-#' Rcpp version sparcc (not finished)
-
-sparcc_cpp <- function(x, threads = 80) {
-    # add pseudocount to avoid issues with 0 in log-space
-    pseudocount <- 10^-6
-    x <- x + pseudocount
-
-    # set number of threads
-    if (!is.null(threads)) {
-        RcppParallel :: setThreadsOptions(numThreads = cthreads)
-    }
-
-    N <- nrow(x)
-    attrs <- list(Size = N, Lables = dimnames(x)[[1]], Diag = FALSE,
-                  Upper = FALSE, call = match.call(), class = "matrix")
-
 }
 
 ###############################################################################

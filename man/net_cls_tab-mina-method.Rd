@@ -22,6 +22,11 @@ Get the cluster table @cls_tab from quantitative table @tab and network
 clustering results @cls.
 }
 \examples{
-x <- net_cls_tab(x)
-x <- net_cls_tab(x, uw = TRUE)
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- adj(maize, method = "spearman")
+maize@adj <- maize@adj[1:500, 1:500]
+maize <- net_cls(maize, method = "mcl")
+maize@norm <- maize@norm[rownames(maize@norm) \%in\% maize@cls$ID, ]
+maize <- net_cls_tab(maize)
 }

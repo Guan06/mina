@@ -8,7 +8,8 @@
 #' @include all_classes.R all_generics.R
 #' @param x An object of class mina.
 #' @examples
-#' x <- fit_tabs(x)
+#' data(maize)
+#' maize <- fit_tabs(maize)
 #' @return x The same object as input with fitted @tab and @des.
 #' @exportMethod fit_tabs
 
@@ -26,9 +27,9 @@ setMethod("fit_tabs", signature("mina"),
 
               samples1 <- as.character(colnames(x@tab))
               samples2 <- as.character(x@des$Sample_ID)
-              
+
               x@des$Sample_ID <- as.factor(x@des$Sample_ID)
-              
+
               inter <- intersect(samples1, samples2)
               x@tab <- x@tab[, colnames(x@tab) %in% inter]
               x@des <- x@des[x@des$Sample_ID %in% inter, ]

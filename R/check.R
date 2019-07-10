@@ -7,6 +7,7 @@
 #' @param x An object of class mina.
 #' @return TRUE if the object is valid.
 #' @examples
+#' x <- new("mina", tab = maize_asv, des = maize_des)
 #' check_mina(x)
 #' @keywords internal
 
@@ -26,9 +27,10 @@ check_mina <- function(x){
 
 #' Check the object and return TRUE if the object includes quantitative table.
 #'
-#' @param x An object of class mina.
+#' @param x An object of class mina with @tab defined.
 #' @return TRUE if the object contains quantitative table and is not empty.
 #' @examples
+#' x <- new("mina", tab = maize_asv)
 #' check_mina_qu(x)
 #' @keywords internal
 
@@ -45,10 +47,11 @@ check_mina_qu <- function(x){
 #' Check the object and return TRUE if the object includes descriptive table
 #' contains the same samples as quantitative table.
 #'
-#' @param x An object of class mina.
+#' @param x An object of class mina with @tab and @des defined.
 #' @return TRUE if the object contains non-empty descriptive table and has the
 #' same samples as quantitative table.
 #' @examples
+#' x <- new("mina", tab = maize_asv, des = maize_des)
 #' check_mina_de(x)
 #' @keywords internal
 

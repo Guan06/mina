@@ -10,10 +10,10 @@ library("mina"); library("testthat")
 
 maize1 <- new("mina", tab = maize_asv, des = maize_des)
 
-test_that("Test that this object does not have @tab defined / added", {
-             expect_error(check_mina_qu(maize1),
-                          "The @tab of this object does not exist!")
-})
+#test_that("Test that this object does not have @tab defined / added", {
+#             expect_error(check_mina_qu(maize1),
+#                          "The @tab of this object does not exist!")
+#})
 
 
 test_that("Test that this is an object of class mina with @tab added", {

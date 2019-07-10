@@ -20,12 +20,12 @@ depth by default.}
 or without replacement (\code{FALSE}) when using method `raref`.}
 }
 \value{
-norm_x Normalized matrix of the quantitative table.
+x_norm Normalized matrix of the quantitative table.
 }
 \description{
 Normalize the quantitative table with matrix input.
 }
 \examples{
-norm_tab(x, method = "raref", depth = 1000, replace = TRUE)
-norm_tab(x, method = "total")
+data(maize_asv)
+maize_asv_norm <- norm_tab(maize_asv, method = "total")
 }

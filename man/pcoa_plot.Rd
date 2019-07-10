@@ -26,6 +26,12 @@ p The plotted figure.
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
+data(maize)
+maize <- norm_tab(maize)
+maize <- com_dis(maize, method = "bray")
+maize <- dmr(maize)
+x <- maize@dmr
+des <- maize@des
 p <- pcoa_plot(x, des, match = "Sample_ID", color = "Compartment",
               shape = "Soil")
 }

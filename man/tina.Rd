@@ -37,6 +37,11 @@ Pearson / Spearman could be used for calculating correlation and weighted /
 unweighted Jaccard could be used for the calculation of similarity.
 }
 \examples{
-t <- tina(x, cor_method = "spearman", sim_method = "w_ja", threads = 80,
-          nblocks = 400)
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+x <- maize@norm[1:500, 1:300]
+t <- tina(x, cor_method = "spearman", sim_method = "w_ja", threads = 8,
+          nblocks = 40)
+}
 }

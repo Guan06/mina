@@ -16,5 +16,6 @@ normalized.}
 Normalize the @tab and obtain @norm for later analysis.
 }
 \examples{
-x <- norm_tab(x, method = "total")
+data(maize_asv)
+maize_asv_norm <- norm_tab(maize_asv, method = "total")
 }

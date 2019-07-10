@@ -20,6 +20,7 @@ quantitative and descriptive files of same samples are included (i.e. the
 object is valid).
 }
 \examples{
+x <- new("mina", tab = maize_asv, des = maize_des)
 check_mina(x)
 }
 \keyword{internal}

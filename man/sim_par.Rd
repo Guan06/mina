@@ -32,6 +32,16 @@ https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
 master/functions.community_similarity.R
 }
 \examples{
-s <- sim_par(x, y, sim_method = "w_ja", threads = 80, nblocks = 400)
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "raref", depth = 1000)
+x <- maize@norm[1:500, 1:300]
+
+x_sparcc <- sparcc(x, threads = 8, nblocks = 40)
+tmp.S <- adj(x_sparcc, method = "spearman")
+y <- 0.5 * (tmp.S + 1)
+
+s <- sim_par(x, y, sim_method = "w_ja", threads = 8, nblocks = 40)
+}
 }
 \keyword{internal}

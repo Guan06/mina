@@ -10,9 +10,14 @@
 #' threads used for parallel running.
 #' @param nblocks (optional, only needed when method == "tina") The number of
 #' row / column for splitted sub-matrix.
+#'
 #' @examples
-#' y <- com_dis(x, method = "bray")
-#' y <- com_dis(x, method = "tina", threads = 80, nblocks = 400)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' x <- maize@norm[1:500, 1:300]
+#' maize_dis <- com_dis(x, method = "bray", threads = 8, nblocks = 40)
+#' }
 #' @return y The dissimilarity / distance matrix.
 #' @exportMethod com_dis
 
@@ -49,8 +54,12 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
 #' @param nblocks (optional, only needed when method == "tina") The number of
 #' row / column for splitted sub-matrix.'
 #' @examples
-#' x <- com_dis(x, method = "bray")
-#' x <- com_dis(x, method = "tina", threads = 40, nblocks = 200)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize@nomm <- maize@norm[1:500, 1:300]
+#' maize <- com_dis(maize, method = "tina", threads = 8, nblocks = 40)
+#' }
 #' @return x The same `mina` object with @dis added.
 #' @exportMethod com_dis
 
@@ -89,8 +98,13 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix,
 #' 400 by default.
 #' @examples
-#' t <- tina(x, cor_method = "spearman", sim_method = "w_ja", threads = 80,
-#'           nblocks = 400)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' x <- maize@norm[1:500, 1:300]
+#' t <- tina(x, cor_method = "spearman", sim_method = "w_ja", threads = 8,
+#'           nblocks = 40)
+#' }
 #' @return t The output `tina` dissimilarity matrix.
 #' @export
 
@@ -130,7 +144,17 @@ tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix,
 #' 400 by default.
 #' @examples
-#' s <- sim_par(x, y, sim_method = "w_ja", threads = 80, nblocks = 400)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref", depth = 1000)
+#' x <- maize@norm[1:500, 1:300]
+#'
+#' x_sparcc <- sparcc(x, threads = 8, nblocks = 40)
+#' tmp.S <- adj(x_sparcc, method = "spearman")
+#' y <- 0.5 * (tmp.S + 1)
+#'
+#' s <- sim_par(x, y, sim_method = "w_ja", threads = 8, nblocks = 40)
+#' }
 #' @return s The output similarity matrix.
 #' @keywords internal
 

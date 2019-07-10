@@ -26,6 +26,10 @@ p The plotted figure.
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
-p <- com_plot(x, match = "Sample_ID", color = "Compartment",
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- com_dis(maize, method = "bray")
+maize <- dmr(maize)
+p <- com_plot(maize, match = "Sample_ID", color = "Compartment",
               shape = "Soil")
 }

@@ -11,8 +11,11 @@
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
 #' `mcl` for clustering. Default FALSE.
 #' @examples
-#' y <- net_cls(x, method = "mcl")
-#' y <- net_cls(x, method = "mcl", cutoff = 0.4, neg = FALSE)
+#' data(maize)
+#' maize <- norm_tab(maize)
+#' maize <- adj(maize, method = "spearman")
+#' maize_adj <- maize@adj[1:500, 1:500]
+#' maize_net_cls <- net_cls(maize_adj, method = "mcl")
 #' @return y The cluster table.
 #' @exportMethod net_cls
 
@@ -79,8 +82,11 @@ setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
 #' `mcl` for clustering. Default FALSE.
 #' @examples
-#' x <- net_cls(x, method = "mcl")
-#' x <- net_cls(x, method = "mcl", cutoff = 0.4, neg = FALSE)
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- adj(maize, method = "spearman")
+#' maize@adj <- maize@adj[1:500, 1:500]
+#' maize <- net_cls(maize, method = "mcl")
 #' @return x The same `mina` class with @cls added.
 #' @exportMethod net_cls
 

@@ -27,6 +27,10 @@ Calculate the community dissimilarity / distance matrix of @norm with `mina`
 class object as input.
 }
 \examples{
-x <- com_dis(x, method = "bray")
-x <- com_dis(x, method = "tina", threads = 40, nblocks = 200)
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize@nomm <- maize@norm[1:500, 1:300]
+maize <- com_dis(maize, method = "tina", threads = 8, nblocks = 40)
+}
 }

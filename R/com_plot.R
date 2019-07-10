@@ -12,7 +12,11 @@
 #' shape groups.
 #' @return p The plotted figure.
 #' @examples
-#' p <- com_plot(x, match = "Sample_ID", color = "Compartment",
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- com_dis(maize, method = "bray")
+#' maize <- dmr(maize)
+#' p <- com_plot(maize, match = "Sample_ID", color = "Compartment",
 #'               shape = "Soil")
 #' @exportMethod com_plot
 
@@ -51,6 +55,12 @@ setMethod("com_plot", signature("mina", "character", "character", "ANY"),
 #' default `NULL`.
 #' @return p The plotted figure.
 #' @examples
+#' data(maize)
+#' maize <- norm_tab(maize)
+#' maize <- com_dis(maize, method = "bray")
+#' maize <- dmr(maize)
+#' x <- maize@dmr
+#' des <- maize@des
 #' p <- pcoa_plot(x, des, match = "Sample_ID", color = "Compartment",
 #'               shape = "Soil")
 #' @export

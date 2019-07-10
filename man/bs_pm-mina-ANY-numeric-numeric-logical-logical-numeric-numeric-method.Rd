@@ -40,7 +40,9 @@ Inferring the network of different group of samples and test significance by
 permutation.
 }
 \examples{
-x <- bs_pm(x, group = "Compartment")
-x <- bs_pm(x, group = "Compartment", g_size = 100, s_size = 50, rm = TRUE,
-sig = TRUE, bs = 6, pm = 6)
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- bs_pm(maize, group = "Compartment")
+}
 }

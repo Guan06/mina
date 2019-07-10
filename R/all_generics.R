@@ -6,7 +6,8 @@
 #' @param x An object of the class mina with @tab and @des defined or a
 #' quantitative matrix(need parameter des in this case).
 #' @examples
-#' fit_tabs(x)
+#' data(maize)
+#' fit_tabs(maize)
 #' @export
 
 setGeneric("fit_tabs", function(x) {
@@ -21,7 +22,8 @@ setGeneric("fit_tabs", function(x) {
 #' normalized.
 #' @param method The method used for the normalization of quantitative table.
 #' @examples
-#' x <- norm_tab(x, method = "total")
+#' data(maize_asv)
+#' maize_asv_norm <- norm_tab(maize_asv, method = "total")
 #' @export
 
 setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
@@ -37,7 +39,9 @@ setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
 #' @param threads (optional) The number of threads used for parallel running.
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
 #' @examples
-#' x <- adj(x, method = "pearson")
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- adj(maize, method = "pearson")
 #' @export
 
 setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
@@ -50,7 +54,9 @@ setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
 #'
 #' @param x An matrix for pearson correlation calculation.
 #' @examples
-#' y <- cp_cor(x)
+#' data(maize_asv)
+#' maize_asv <- maize_asv[1:500, 1:300]
+#' maize_asv_pearson <- cp_cor(maize_asv)
 #' @return y The adjacacency matrix.
 #' @keywords internal
 
@@ -68,7 +74,11 @@ setGeneric("cp_cor", function(x) {
 #' @param threads (optional) The number of threads used for parallel running.
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
 #' @examples
-#' x <- adj(x, method = "bray")
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "total")
+#' maize <- com_dis(maize, method = "bray")
+#' }
 #' @export
 
 setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
@@ -89,8 +99,12 @@ setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix,
 #' 400 by default.
 #' @examples
-#' t <- tina(x, cor_method = "spearman", sim_method = "w_ja", threads = 80,
-#'           nblocks = 400)
+#' \dontrun{
+#' data(maize_asv)
+#' maize_asv_norm <- norm_tab(maize_asv, method = "total")
+#' maize_asv_tina <- tina(maize_asv_norm, cor_method = "spearman",
+#' sim_method = "w_ja", threads = 80, nblocks = 400)
+#' }
 #' @return t The output `tina` dissimilarity matrix.
 #' @export
 
@@ -109,7 +123,12 @@ setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
 #'
 #' @examples
-#' x <- com_r2(x, group = "soil")
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "total")
+#' maize <- com_dis(maize, method = "bray")
+#' com_r2(maize, group = c("Compartment", "Soil", "Genotype"))
+#' }
 #' @export
 
 setGeneric("com_r2", function(x, group) {
@@ -124,7 +143,12 @@ setGeneric("com_r2", function(x, group) {
 #' @param x An object of class `mina` with @dis defined.
 #' @param k The dimension number after reduction.
 #' @examples
-#' x <- dmr(x, k = 2)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "total")
+#' maize <- com_dis(maize, method = "bray")
+#' maize <- dmr(maize)
+#' }
 #' @export
 
 setGeneric("dmr", function(x, k = 2) {
@@ -139,10 +163,19 @@ setGeneric("dmr", function(x, k = 2) {
 #' @param match The column name of the components IDs in @des which exactly the
 #' same indicated in @dmr.
 #' @param color The column name in @des to be used for different color groups.
-#' @param (optional) shape The column name in @des to be used for different
+#' @param shape The column name in @des to be used for different shape groups,
+#' default `NULL`.
 #' shape groups.
 #' @examples
-#' p <- com_plot(x, match = "Sample_ID", color = "Compartment", shape = "Soil")
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "total")
+#' maize <- com_dis(maize, method = "bray")
+#' maize <- dmr(maize)
+#' p <- com_plot(maize, match = "Sample_ID", color = "Compartment")
+#' p2 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
+#' "Soil")
+#' }
 #' @export
 
 setGeneric("com_plot", function(x, match, color, shape = NULL) {
@@ -158,8 +191,10 @@ setGeneric("com_plot", function(x, match, color, shape = NULL) {
 #' @param cutoff The cutoff for the sparsed adjacacency matrix, default 0.4.
 #' @param neg Whether to keep the negative edges, default FALSE.
 #' @examples
-#' x <- net_cls(x)
-#' x <- net_cls(x, method = "mcl", cutoff = 0.4, neg = FALSE)
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- adj(maize, method = "spearman")
+#' maize <- net_cls(maize, method = "mcl")
 #' @export
 
 setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
@@ -174,8 +209,13 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 #' @param uw By summing up the number of present components of each cluster
 #' instead of relative abundance, default FALSE.
 #' @examples
-#' x <- net_cls_tab(x)
-#' x <- net_cls_tab(x, uw = TRUE)
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- adj(maize, method = "spearman")
+#' maize@adj <- maize@adj[1:500, 1:500]
+#' maize <- net_cls(maize, method = "mcl")
+#' maize@norm <- maize@norm[rownames(maize@norm) %in% maize@cls$ID, ]
+#' maize <- net_cls_tab(maize)
 #' @export
 
 setGeneric("net_cls_tab", function(x, uw = FALSE) {
@@ -200,9 +240,11 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' @param bs The times for bootstrap network inference, default 6
 #' @param pm The times for permuatated samples network inference, default 6.
 #' @examples
-#' x <- bs_pm(x, group = "Compartment")
-#' x <- bs_pm(x, group = "Compartment", g_size = 100, s_size = 50, rm = TRUE,
-#' sig = TRUE, bs = 6, pm = 6)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- bs_pm(maize, group = "Compartment")
+#' }
 #' @export
 
 setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE, 
@@ -222,7 +264,12 @@ setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE,
 #' @param sig Whether to test the significance, if TRUE (by default), @perm is
 #' needed.
 #' @examples
-#' x <- net_dis(x, method = "spectral", sig = TRUE)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- bs_pm(maize, group = "Compartment")
+#' maize <- net_dis(maize)
+#' }
 #' @export
 
 setGeneric("net_dis", function(x, method, sig = TRUE) {

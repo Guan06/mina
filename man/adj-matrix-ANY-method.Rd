@@ -27,7 +27,9 @@ Calculate the adjacacency matrix of @norm by correlation with matrix as
 input.
 }
 \examples{
-y <- adj(x, method = "pearson")
-y <- adj(x, method = "spearman")
-y <- adj(x, method = "sparcc", threads = 80, nblocks = 400)
+\dontrun{
+data(maize_asv)
+maize_asv <- maize_asv[1:500, 1:300]
+maize_asv_adj <- adj(maize_asv, method = "sparcc", threads = 8, nblocks = 40)
+}
 }

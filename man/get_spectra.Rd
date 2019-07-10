@@ -16,6 +16,11 @@ y The vector of the first k eigenvalues.
 Function for calculation of eigenvalue of given matrix.
 }
 \examples{
-y <- get_spectra(x, k = 100)
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- adj(maize)
+y <- get_spectra(maize@adj)
+}
 }
 \keyword{internal}

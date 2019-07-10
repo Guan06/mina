@@ -16,5 +16,6 @@ Filter the quantitative and descriptive table to make them have the same
 samples, the intersect samples will be remained.
 }
 \examples{
-fit_tabs(x)
+data(maize)
+fit_tabs(maize)
 }

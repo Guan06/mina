@@ -12,7 +12,12 @@
 #' needed.
 #' @return x The same `mina` object with @net_dis defined.
 #' @examples
-#' x <- net_dis(x, method = "spectral", sig = TRUE)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- bs_pm(maize, group = "Compartment")
+#' maize <- net_dis(maize)
+#' }
 #' @exportMethod net_dis
 
 setMethod("net_dis", signature("mina", "ANY", "ANY"),
@@ -128,7 +133,12 @@ setMethod("net_dis", signature("mina", "character", "ANY"),
 #' @param k Get the first k eigenvalues.
 #' @return y The vector of the first k eigenvalues.
 #' @examples
-#' y <- get_spectra(x, k = 100)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- adj(maize)
+#' y <- get_spectra(maize@adj)
+#' }
 #' @keywords internal
 
 get_spectra <- function(x,  k = 100){
@@ -176,8 +186,14 @@ get_dis_df <- function(x) {
 #' @param p The permuation distance data frame.
 #' @param sig Whether to test significance or not.
 #' @examples
-#' y <- get_stat(x)
-#' y <- get_stat(x, p)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- bs_pm(maize, group = "Compartment")
+#' maize_bs <- maize@multi
+#' maize_pm <- maize@perm
+#' maize_stat <- get_stat(maize_bs, maize_pm)
+#' }
 #' @keywords internal
 
 get_stat <- function(x, p = NULL) {

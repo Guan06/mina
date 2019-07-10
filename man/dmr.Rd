@@ -17,5 +17,10 @@ Dimensionality reduction of community dissimilarity / distance for
 visulization.
 }
 \examples{
-x <- dmr(x, k = 2)
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "total")
+maize <- com_dis(maize, method = "bray")
+maize <- dmr(maize)
+}
 }

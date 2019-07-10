@@ -17,7 +17,13 @@ get_stat(x, p = NULL)
 Function for distance statistic and significance test.
 }
 \examples{
-y <- get_stat(x)
-y <- get_stat(x, p)
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- bs_pm(maize, group = "Compartment")
+maize_bs <- maize@multi
+maize_pm <- maize@perm
+maize_stat <- get_stat(maize_bs, maize_pm)
+}
 }
 \keyword{internal}

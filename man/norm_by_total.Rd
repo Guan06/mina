@@ -17,6 +17,7 @@ A normalized quantitative table.
 Function for normalization, by total number of the reads in each sample.
 }
 \examples{
-norm_tab <- norm_by_total(mina@tab)
+data(maize_asv)
+maize_asv_norm <- norm_by_total(maize_asv)
 }
 \keyword{internal}

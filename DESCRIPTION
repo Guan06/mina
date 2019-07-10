@@ -44,6 +44,7 @@ Collate:
     'check.R'
     'com_dis.R'
     'com_plot.R'
+    'com_r2.R'
     'data.R'
     'dmr.R'
     'fit_tabs.R'
@@ -51,4 +52,3 @@ Collate:
     'net_cls_tab.R'
     'net_dis.R'
     'norm_tab.R'
-    'residual.R'

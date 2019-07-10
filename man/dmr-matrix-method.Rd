@@ -20,6 +20,10 @@ dimension.
 Dimensionality reduction of the distance matrix.
 }
 \examples{
+data(maize)
+maize <- norm_tab(maize, method = "raref")
+maize@nomm <- maize@norm[1:500, 1:300]
+maize <- com_dis(maize, method = "bray", threads = 8, nblocks = 40)
+x <- maize@dis
 y <- dmr(x)
-y <- dmr(x, k = 5)
 }

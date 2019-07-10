@@ -20,5 +20,9 @@ matrix.}
 Calculate the community dissimilarity / distance matrix of @norm.
 }
 \examples{
-x <- adj(x, method = "bray")
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "total")
+maize <- com_dis(maize, method = "bray")
+}
 }

@@ -17,9 +17,11 @@
 #' @param bs The times for bootstrap network inference, default 6
 #' @param pm The times for permuatated samples network inference, default 6.
 #' @examples
-#' x <- bs_pm(x, group = "Compartment")
-#' x <- bs_pm(x, group = "Compartment", g_size = 100, s_size = 50, rm = TRUE,
-#' sig = TRUE, bs = 6, pm = 6)
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- bs_pm(maize, group = "Compartment")
+#' }
 #' @return x The same object with @multi and @perm defined.
 #' @exportMethod bs_pm
 
@@ -215,7 +217,8 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY",
 #' @param p The cutoff for non-zero column number.
 #' @return x The same matrix after filtering.
 #' @examples
-#' x <- filter_mat(x, p = 10)
+#' data(maize_asv)
+#' maize_asv_filter <- filter_mat(maize_asv, p = 10)
 #' @keywords internal
 
 filter_mat <- function(x, p) {

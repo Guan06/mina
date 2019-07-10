@@ -7,7 +7,7 @@
 check_mina_qu(x)
 }
 \arguments{
-\item{x}{An object of class mina.}
+\item{x}{An object of class mina with @tab defined.}
 }
 \value{
 TRUE if the object contains quantitative table and is not empty.
@@ -16,6 +16,7 @@ TRUE if the object contains quantitative table and is not empty.
 Check the object and return TRUE if the object includes quantitative table.
 }
 \examples{
+x <- new("mina", tab = maize_asv)
 check_mina_qu(x)
 }
 \keyword{internal}
