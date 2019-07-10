@@ -17,6 +17,7 @@
 #' maize <- adj(maize, method = "pearson")
 #' }
 #' @return x The same `mina` object with @adj added.
+#' @name adj-mina
 #' @exportMethod adj
 
 setMethod("adj", signature("mina", "ANY", "ANY", "ANY"),
@@ -24,6 +25,9 @@ setMethod("adj", signature("mina", "ANY", "ANY", "ANY"),
               stop("Must specify a `method`, see `? adj_method_list`.")
           }
 )
+
+#' @rdname adj-mina
+#' @exportMethod adj
 
 setMethod("adj", signature("mina", "character", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {
@@ -56,6 +60,8 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY"),
 #' maize_asv_adj <- adj(maize_asv, method = "sparcc", threads = 8, nblocks = 40)
 #' }
 #' @return y The adjacacency matrix.
+#' @name adj-matrix
+#' @rdname adj-matrix
 #' @exportMethod adj
 
 setMethod("adj", signature("matrix", "ANY", "ANY", "ANY"),
@@ -63,6 +69,9 @@ setMethod("adj", signature("matrix", "ANY", "ANY", "ANY"),
               stop("Must specify a `method`, see `? adj_method_list`.")
           }
 )
+
+#' @rdname adj-matrix
+#' @exportMethod adj
 
 setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {

@@ -25,8 +25,9 @@ variance. Austral Ecology, 26: 32--46.
 \examples{
 data(maize)
 maize <- norm_tab(maize, method = "raref")
-maize@nomm <- maize@norm[1:500, 1:300]
-maize <- com_dis(maize, method = "bray", threads = 8, nblocks = 40)
+maize@norm <- maize@norm[1:500, 1:300]
+maize <- com_dis(maize, method = "bray", threads = 2, nblocks = 40)
+maize@des <- maize@des[maize@des$Sample_ID \%in\% rownames(maize@dis), ]
 x <- maize
-com_r2(x)
+com_r2(x, group = "Compartment")
 }

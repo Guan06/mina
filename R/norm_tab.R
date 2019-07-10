@@ -13,6 +13,7 @@
 #' data(maize_asv)
 #' maize_asv_norm <- norm_tab(maize_asv, method = "total")
 #' @return x_norm Normalized matrix of the quantitative table.
+#' @rdname norm_tab-matrix
 #' @exportMethod norm_tab
 
 setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
@@ -32,7 +33,6 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
 #' Normalize the quantitative table with mina input.
 #'
 #' @include all_classes.R all_generics.R
-#'
 #' @param x An object of the class mina with @tab defined.
 #' @param method The method used for normalization.
 #' @param depth The depth for subsampling by rarefying, 1000 by default.
@@ -42,6 +42,7 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
 #' @return x An object of the class mina with @norm added.
+#' @rdname norm_tab-mina
 #' @exportMethod norm_tab
 
 setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY"),
@@ -49,6 +50,9 @@ setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY"),
              stop("Must specify a `method`. See `? norm_tab_method_list`")
           }
 )
+###############################################################################
+
+#' @rdname norm_tab-mina
 
 setMethod("norm_tab", signature("mina", "character", "ANY", "ANY"),
           function(x, method, depth = 1000, replace = TRUE) {
@@ -65,9 +69,6 @@ setMethod("norm_tab", signature("mina", "character", "ANY", "ANY"),
 #'
 #' @param x A quantitative table with samples in cloumns and compostions in
 #' rows.
-#' @examples
-#' data(maize_asv)
-#' maize_asv_norm <- norm_by_total(maize_asv)
 #' @return A normalized quantitative table.
 #' @keywords internal
 
@@ -87,8 +88,10 @@ norm_by_total <- function(x) {
 #' without replacement (\code{FALSE}). Default \code{TRUE} for computational
 #' efficiency.
 #' @examples
+#' \dontrun{
 #' data(maize_asv)
 #' maize_asv_norm <- norm_by_raref(maize_asv)
+#' }
 #' @return A normalized quantitative table.
 #' @keywords internal
 

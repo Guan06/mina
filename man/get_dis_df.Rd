@@ -12,7 +12,4 @@ get_dis_df(x)
 \description{
 Function for getting distance data frame from `dist`.
 }
-\examples{
-y <- get_dis_df(x)
-}
 \keyword{internal}

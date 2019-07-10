@@ -15,6 +15,7 @@
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- com_dis(maize, method = "bray")
+#' maize@des <- maize@des[maize@des$Sample_ID %in% rownames(maize@dis), ]
 #' maize <- dmr(maize)
 #' p <- com_plot(maize, match = "Sample_ID", color = "Compartment",
 #'               shape = "Soil")
@@ -34,6 +35,7 @@ setMethod("com_plot", signature("mina", "character", "ANY", "ANY"),
 
 setMethod("com_plot", signature("mina", "character", "character", "ANY"),
           function(x, match, color, shape = NULL) {
+
               p <- pcoa_plot(x@dmr, x@des, match = match, color = color,
                             shape = shape)
               return(p)
@@ -58,6 +60,7 @@ setMethod("com_plot", signature("mina", "character", "character", "ANY"),
 #' data(maize)
 #' maize <- norm_tab(maize)
 #' maize <- com_dis(maize, method = "bray")
+#' maize@des <- maize@des[maize@des$Sample_ID %in% rownames(maize@dis), ]
 #' maize <- dmr(maize)
 #' x <- maize@dmr
 #' des <- maize@des

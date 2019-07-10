@@ -30,7 +30,7 @@ class object as input.
 \dontrun{
 data(maize)
 maize <- norm_tab(maize, method = "raref")
-maize@nomm <- maize@norm[1:500, 1:300]
+maize@norm <- maize@norm[1:500, 1:300]
 maize <- com_dis(maize, method = "tina", threads = 8, nblocks = 40)
 }
 }

@@ -29,6 +29,7 @@ Visulization of components distance / dissimilarity in k dimension.
 data(maize)
 maize <- norm_tab(maize)
 maize <- com_dis(maize, method = "bray")
+maize@des <- maize@des[maize@des$Sample_ID \%in\% rownames(maize@dis), ]
 maize <- dmr(maize)
 x <- maize@dmr
 des <- maize@des

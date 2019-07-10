@@ -50,22 +50,6 @@ setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
 
 ###############################################################################
 
-#' Calculate the Person / Spearman correlation of @norm.
-#'
-#' @param x An matrix for pearson correlation calculation.
-#' @examples
-#' data(maize_asv)
-#' maize_asv <- maize_asv[1:500, 1:300]
-#' maize_asv_pearson <- cp_cor(maize_asv)
-#' @return y The adjacacency matrix.
-#' @keywords internal
-
-setGeneric("cp_cor", function(x) {
-    standardGeneric("cp_cor")
-})
-
-###############################################################################
-
 #' Calculate the community dissimilarity / distance matrix of @norm.
 #'
 #' @param x An object of the class mina with @norm defined or any quantitative

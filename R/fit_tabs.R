@@ -13,12 +13,6 @@
 #' @return x The same object as input with fitted @tab and @des.
 #' @exportMethod fit_tabs
 
-setMethod("fit_tabs", signature("ANY"),
-          function(x) {
-              stop("You must specify a `mina` class object as input.")
-          }
-)
-
 setMethod("fit_tabs", signature("mina"),
           function(x) {
               if (class(x@tab) == "NULL" || class(x@des) == "NULL") {

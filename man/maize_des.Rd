@@ -20,8 +20,6 @@ Design file of maize project, vegetative stage samples only, including 528
 samples in total.
 }
 \examples{
-\dontrun{
-maize_des
-}
+data(maize_des)
 
 }

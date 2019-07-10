@@ -3,9 +3,13 @@
 \docType{methods}
 \name{norm_tab,mina,ANY-method}
 \alias{norm_tab,mina,ANY-method}
+\alias{norm_tab,mina,character-method}
 \title{Normalize the quantitative table with mina input.}
 \usage{
 \S4method{norm_tab}{mina,ANY}(x, method, depth = 1000, replace = TRUE)
+
+\S4method{norm_tab}{mina,character}(x, method, depth = 1000,
+  replace = TRUE)
 }
 \arguments{
 \item{x}{An object of the class mina with @tab defined.}

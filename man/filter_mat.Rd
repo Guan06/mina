@@ -20,7 +20,9 @@ Function for filtering of matrix, rows present in less than `p` columns will
 be removed. After row filtering, columns with a sum of 0 wil be removed.
 }
 \examples{
+\dontrun{
 data(maize_asv)
 maize_asv_filter <- filter_mat(maize_asv, p = 10)
+}
 }
 \keyword{internal}

@@ -24,9 +24,7 @@ NA
 #' @format A matrix with samples in columns and ASVs in rows. Unormalized table
 #' including 12765 ASVs from 420 samples.
 #' @examples
-#' \dontrun{
-#' maize_asv
-#' }
+#' data(maize_asv)
 #'
 NULL
 
@@ -44,8 +42,6 @@ NULL
 #'  \item{Management}{The management of the soil where microbial sample from.}
 #' }
 #' @examples
-#' \dontrun{
-#' maize_des
-#' }
+#' data(maize_des)
 #'
 NULL

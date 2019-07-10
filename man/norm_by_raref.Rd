@@ -24,7 +24,9 @@ Function for normalization by rarefying the samples into the same depth,
 modified from \code{\link[phyloseq]{rarefy_even_depth}}.
 }
 \examples{
+\dontrun{
 data(maize_asv)
 maize_asv_norm <- norm_by_raref(maize_asv)
+}
 }
 \keyword{internal}

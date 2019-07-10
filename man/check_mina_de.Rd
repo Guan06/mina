@@ -19,7 +19,8 @@ Check the object and return TRUE if the object includes descriptive table
 contains the same samples as quantitative table.
 }
 \examples{
-x <- new("mina", tab = maize_asv, des = maize_des)
-check_mina_de(x)
+\dontrun{
+data(maize)
+check_mina_de(maize)
 }
-\keyword{internal}
+}

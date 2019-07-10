@@ -217,8 +217,10 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY",
 #' @param p The cutoff for non-zero column number.
 #' @return x The same matrix after filtering.
 #' @examples
+#' \dontrun{
 #' data(maize_asv)
 #' maize_asv_filter <- filter_mat(maize_asv, p = 10)
+#' }
 #' @keywords internal
 
 filter_mat <- function(x, p) {

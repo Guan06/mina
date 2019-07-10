@@ -45,7 +45,7 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #' networks, permutated networks and corresponding significance.
 #'
 #' @examples
-#' new("mina", tab = as.matrix(maize_asv), des = maize_des)
+#' new("mina", tab = maize_asv, des = maize_des)
 #' @author Rui Guan \url{https://github.com/Guan06}
 #' @exportClass mina
 

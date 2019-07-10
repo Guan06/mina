@@ -29,6 +29,6 @@ Calculate the community dissimilarity / distance matrix of the input matrix.
 data(maize)
 maize <- norm_tab(maize, method = "raref")
 x <- maize@norm[1:500, 1:300]
-maize_dis <- com_dis(x, method = "bray", threads = 8, nblocks = 40)
+maize_dis <- com_dis(x, method = "bray")
 }
 }

@@ -12,8 +12,6 @@ RECONSTRUCT project, maize microbiome part.
 ASV table of maize project, vegetative stage samples only.
 }
 \examples{
-\dontrun{
-maize_asv
-}
+data(maize_asv)
 
 }

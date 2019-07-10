@@ -9,8 +9,8 @@
 #' @examples
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
-#' maize@nomm <- maize@norm[1:500, 1:300]
-#' maize <- com_dis(maize, method = "bray", threads = 8, nblocks = 40)
+#' maize@norm <- maize@norm[1:500, 1:300]
+#' maize <- com_dis(maize, method = "bray")
 #' x <- maize@dis
 #' y <- dmr(x)
 #' @return y The coordinates of components indicated in distance matrix in k
@@ -32,8 +32,8 @@ setMethod("dmr", signature("matrix", "ANY"), function(x, k = 2) {
 #' @examples
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
-#' maize@nomm <- maize@norm[1:500, 1:300]
-#' maize <- com_dis(maize, method = "bray", threads = 8, nblocks = 40)
+#' maize@norm <- maize@norm[1:500, 1:300]
+#' maize <- com_dis(maize, method = "bray")
 #' maize <- dmr(maize)
 #' @return x The same object with @dmr added.
 #' @exportMethod dmr

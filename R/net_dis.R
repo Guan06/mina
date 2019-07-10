@@ -18,6 +18,7 @@
 #' maize <- bs_pm(maize, group = "Compartment")
 #' maize <- net_dis(maize)
 #' }
+#' @rdname net_dis-mina
 #' @exportMethod net_dis
 
 setMethod("net_dis", signature("mina", "ANY", "ANY"),
@@ -25,6 +26,12 @@ setMethod("net_dis", signature("mina", "ANY", "ANY"),
               stop("Must specify a `method`, see `? net_dis_method_list`.")
           }
 )
+
+###############################################################################
+
+#' @inheritParams net_dis
+#' @rdname net_dis-mina
+#' @exportMethod net_dis
 
 setMethod("net_dis", signature("mina", "character", "ANY"),
           function(x, method, sig = TRUE) {
@@ -151,11 +158,9 @@ get_spectra <- function(x,  k = 100){
 ################################################################################
 
 #' Function for getting distance data frame from `dist`.
-#' 
+#'
 #' @importFrom reshape2 melt
 #' @param x The object of class `dist`.
-#' @examples
-#' y <- get_dis_df(x)
 #' @keywords internal
 
 get_dis_df <- function(x) {

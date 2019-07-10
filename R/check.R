@@ -7,11 +7,13 @@
 #' @param x An object of class mina.
 #' @return TRUE if the object is valid.
 #' @examples
-#' x <- new("mina", tab = maize_asv, des = maize_des)
-#' check_mina(x)
+#' \dontrun{
+#' data(maize)
+#' check_mina(maize)
+#' }
 #' @keywords internal
 
-check_mina <- function(x){
+check_mina <- function(x) {
     if (class(x@tab) == "NULL" && class(x@des) == "NULL") {
         stop("An empty (neither @tab or @des) object of the class mina!")
     }
@@ -30,11 +32,13 @@ check_mina <- function(x){
 #' @param x An object of class mina with @tab defined.
 #' @return TRUE if the object contains quantitative table and is not empty.
 #' @examples
-#' x <- new("mina", tab = maize_asv)
-#' check_mina_qu(x)
+#' \dontrun{
+#' data(maize)
+#' check_mina_qu(maize)
+#' }
 #' @keywords internal
 
-check_mina_qu <- function(x){
+check_mina_qu <- function(x) {
     errors <- character()
     if (class(x@tab) == "NULL") stop("The @tab of this object does not exist!")
     #d <- dim(x@tab)
@@ -51,11 +55,13 @@ check_mina_qu <- function(x){
 #' @return TRUE if the object contains non-empty descriptive table and has the
 #' same samples as quantitative table.
 #' @examples
-#' x <- new("mina", tab = maize_asv, des = maize_des)
-#' check_mina_de(x)
-#' @keywords internal
+#' \dontrun{
+#' data(maize)
+#' check_mina_de(maize)
+#' }
+#' @export
 
-check_mina_de <- function(x){
+check_mina_de <- function(x) {
     errors <- character()
 
     if (!check_mina_qu(x)) errors <- c(errors, check_mina_qu(x))

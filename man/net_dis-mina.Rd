@@ -3,10 +3,13 @@
 \docType{methods}
 \name{net_dis,mina,ANY-method}
 \alias{net_dis,mina,ANY-method}
+\alias{net_dis,mina,character-method}
 \title{Calculate the network distance of @multi and test the significance when @perm
 is defined.}
 \usage{
 \S4method{net_dis}{mina,ANY}(x, method, sig = TRUE)
+
+\S4method{net_dis}{mina,character}(x, method, sig = TRUE)
 }
 \arguments{
 \item{x}{An object of class `mina` with @multi (and @perm if sig is TRUE)
