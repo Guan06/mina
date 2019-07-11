@@ -9,25 +9,32 @@
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
 #'
 #' @examples
+#' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
-#' maize@norm <- maize@norm[1:500, 1:300]
-#' maize <- com_dis(maize, method = "bray", threads = 2, nblocks = 40)
-#' maize@des <- maize@des[maize@des$Sample_ID %in% rownames(maize@dis), ]
-#' x <- maize
-#' com_r2(x, group = "Compartment")
+#' maize <- fit_tabs(maize)
+#' maize <- com_dis(maize, method = "bray")
+#' com_r2(maize, group = c("Compartment", "Soil", "Genotype"))'
+#' }
 #' @return r2 The variance ratio cannot be explained by given groups.
+#' @rdname com_r2-mina
 #' @exportMethod com_r2
 
 setMethod("com_r2", signature("mina", "ANY"), function(x, group) {
     stop("Must specify group(s) for unexplained variance ratio calculation!")
 })
 
+###############################################################################
+
+#' @rdname com_r2-mina
+#' @exportMethod com_r2
+
 setMethod("com_r2", signature("mina", "character"), function(x, group) {
     r2 <- get_r2(x@dis, x@des, group = group)
     return(r2)
 })
 
+###############################################################################
 
 #' Function for unexplained variance ratio calculation indicated in
 #' Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of
@@ -43,14 +50,15 @@ setMethod("com_r2", signature("mina", "character"), function(x, group) {
 #' descriptive file.
 #'
 #' @examples
+#' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
-#' maize@norm <- maize@norm[1:500, 1:300]
-#' maize <- com_dis(maize, method = "bray", threads = 2, nblocks = 40)
-#' maize@des <- maize@des[maize@des$Sample_ID %in% rownames(maize@dis), ]
+#' maize <- fit_tabs(maize)
+#' maize <- com_dis(maize, method = "bray")
 #' x <- maize@dis
 #' des <- maize@des
 #' get_r2(x, des, group = c("Compartment", "Soil"))
+#' }
 #' @return r2 The variance ratio cannot be explained by given groups.
 #' @export
 

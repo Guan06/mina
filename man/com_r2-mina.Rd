@@ -3,11 +3,14 @@
 \docType{methods}
 \name{com_r2,mina,ANY-method}
 \alias{com_r2,mina,ANY-method}
+\alias{com_r2,mina,character-method}
 \title{Function for unexplained variance ratio calculation indicated in
 Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of
 variance. Austral Ecology, 26: 32--46.}
 \usage{
 \S4method{com_r2}{mina,ANY}(x, group)
+
+\S4method{com_r2}{mina,character}(x, group)
 }
 \arguments{
 \item{x}{An mina object with @dis and @des defined.}
@@ -21,13 +24,4 @@ r2 The variance ratio cannot be explained by given groups.
 Function for unexplained variance ratio calculation indicated in
 Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of
 variance. Austral Ecology, 26: 32--46.
-}
-\examples{
-data(maize)
-maize <- norm_tab(maize, method = "raref")
-maize@norm <- maize@norm[1:500, 1:300]
-maize <- com_dis(maize, method = "bray", threads = 2, nblocks = 40)
-maize@des <- maize@des[maize@des$Sample_ID \%in\% rownames(maize@dis), ]
-x <- maize
-com_r2(x, group = "Compartment")
 }

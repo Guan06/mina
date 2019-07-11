@@ -14,7 +14,8 @@ samples present in @norm.}
 \item{x}{An object of class mina.}
 }
 \value{
-x The same object as input with fitted @tab and @des.
+x The same object as input with fitted @tab, @des and @norm (if
+defined).
 }
 \description{
 Filter the quantitative and descriptive table to make them have the same
@@ -23,6 +24,10 @@ the `mina` object, descriptive table will be filtered again to only keep
 samples present in @norm.
 }
 \examples{
+\dontrun{
 data(maize)
 maize <- fit_tabs(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
+}
 }

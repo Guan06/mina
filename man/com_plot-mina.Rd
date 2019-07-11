@@ -3,9 +3,16 @@
 \docType{methods}
 \name{com_plot,mina,ANY,ANY-method}
 \alias{com_plot,mina,ANY,ANY-method}
+\alias{com_plot,mina,character,ANY-method}
+\alias{com_plot,mina,character,character-method}
 \title{Visulization of components distance / dissimilarity in k dimension.}
 \usage{
 \S4method{com_plot}{mina,ANY,ANY}(x, match, color, shape = NULL)
+
+\S4method{com_plot}{mina,character,ANY}(x, match, color, shape = NULL)
+
+\S4method{com_plot}{mina,character,character}(x, match, color,
+  shape = NULL)
 }
 \arguments{
 \item{x}{An object of `mina` with list @dmr defined.}
@@ -26,11 +33,15 @@ p The plotted figure.
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
+\dontrun{
 data(maize)
 maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
-maize@des <- maize@des[maize@des$Sample_ID \%in\% rownames(maize@dis), ]
 maize <- dmr(maize)
-p <- com_plot(maize, match = "Sample_ID", color = "Compartment",
-              shape = "Soil")
+p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
+p2 <- com_plot(maize, match = "Sample_ID", color = "Genotype")
+p3 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
+"Soil")
+}
 }

@@ -3,7 +3,8 @@
 \docType{data}
 \name{com_dis_list}
 \alias{com_dis_list}
-\title{List of dissimilarity / distance supported in \code{\link[mina]{com_dis}}}
+\title{List of dissimilarity / distance supported in \code{\link[mina]{com_dis}}.
+Dissimilarity / distance should be specified by exact string match.}
 \format{A list of character vectors indicate the dissimilarity / distance
 method used.
 
@@ -58,9 +59,10 @@ method used.
 com_dis_list
 }
 \description{
+List of dissimilarity / distance supported in \code{\link[mina]{com_dis}}.
 Dissimilarity / distance should be specified by exact string match.
 }
 \examples{
-com_dis_list
+? com_dis_list
 }
 \keyword{datasets}

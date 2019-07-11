@@ -16,6 +16,10 @@ normalized.}
 Normalize the @tab and obtain @norm for later analysis.
 }
 \examples{
-data(maize_asv)
-maize_asv_norm <- norm_tab(maize_asv, method = "total")
+\dontrun{
+data(maize)
+maize <- norm_tab(maize, method = "total")
+maize <- norm_tab(maize, method = "raref")
+maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
+}
 }

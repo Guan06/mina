@@ -37,6 +37,7 @@ permutation.
 \dontrun{
 data(maize)
 maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
 maize <- bs_pm(maize, group = "Compartment")
 }
 }

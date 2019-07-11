@@ -25,7 +25,8 @@ is defined.
 \dontrun{
 data(maize)
 maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
 maize <- bs_pm(maize, group = "Compartment")
-maize <- net_dis(maize)
+maize <- net_dis(maize, method = "spectra")
 }
 }

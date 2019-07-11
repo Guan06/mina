@@ -3,9 +3,13 @@
 \docType{methods}
 \name{com_dis,matrix,ANY-method}
 \alias{com_dis,matrix,ANY-method}
+\alias{com_dis,matrix,character-method}
 \title{Calculate the community dissimilarity / distance matrix of the input matrix.}
 \usage{
 \S4method{com_dis}{matrix,ANY}(x, method, threads = 80, nblocks = 400)
+
+\S4method{com_dis}{matrix,character}(x, method, threads = 80,
+  nblocks = 400)
 }
 \arguments{
 \item{x}{A matrix of the quantitative table.}
@@ -27,8 +31,10 @@ Calculate the community dissimilarity / distance matrix of the input matrix.
 \examples{
 \dontrun{
 data(maize)
-maize <- norm_tab(maize, method = "raref")
-x <- maize@norm[1:500, 1:300]
-maize_dis <- com_dis(x, method = "bray")
+maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize <- norm_tab(maize, method = "raref", depth = 100)
+maize <- fit_tabs(maize)
+asv_norm <- maize@norm
+asv_dis <- com_dis(asv_norm, method = "bray")
 }
 }

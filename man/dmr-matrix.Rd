@@ -10,7 +10,7 @@
 \arguments{
 \item{x}{A distance matrix.}
 
-\item{k}{The number of dimensionality after redunction, 2 by default.}
+\item{k}{The number of dimensionality after reduction, 2 by default.}
 }
 \value{
 y The coordinates of components indicated in distance matrix in k
@@ -20,10 +20,12 @@ dimension.
 Dimensionality reduction of the distance matrix.
 }
 \examples{
+\dontrun{
 data(maize)
 maize <- norm_tab(maize, method = "raref")
-maize@norm <- maize@norm[1:500, 1:300]
+maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
-x <- maize@dis
-y <- dmr(x)
+asv_dis <- maize@dis
+asv_dis_dmr <- dmr(asv_dis)
+}
 }

@@ -16,6 +16,10 @@ Filter the quantitative and descriptive table to make them have the same
 samples, the intersect samples will be remained.
 }
 \examples{
+\dontrun{
 data(maize)
-fit_tabs(maize)
+maize <- fit_tabs(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
+}
 }

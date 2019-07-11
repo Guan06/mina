@@ -14,11 +14,14 @@
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
-#' x <- maize@norm[1:500, 1:300]
-#' maize_dis <- com_dis(x, method = "bray")
+#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
+#' asv_norm <- maize@norm
+#' asv_dis <- com_dis(asv_norm, method = "bray")
 #' }
 #' @return y The dissimilarity / distance matrix.
+#' @rdname com_dis-matrix
 #' @exportMethod com_dis
 
 setMethod("com_dis", signature("matrix", "ANY", "ANY", "ANY"),
@@ -26,6 +29,11 @@ setMethod("com_dis", signature("matrix", "ANY", "ANY", "ANY"),
               stop("Must specify a `method`, see `? com_dis_list`.")
           }
 )
+
+###############################################################################
+
+#' @rdname com_dis-matrix
+#' @exportMethod com_dis
 
 setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {
@@ -56,11 +64,13 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
-#' maize@norm <- maize@norm[1:500, 1:300]
+#' maize <- norm_tab(maize, method = "total")
+#' maize <- fit_tabs(maize)
+#' maize <- com_dis(maize, method = "bray")
 #' maize <- com_dis(maize, method = "tina", threads = 8, nblocks = 40)
 #' }
 #' @return x The same `mina` object with @dis added.
+#' @rdname com_dis-mina
 #' @exportMethod com_dis
 
 setMethod("com_dis", signature("mina", "ANY", "ANY", "ANY"),
@@ -69,6 +79,11 @@ setMethod("com_dis", signature("mina", "ANY", "ANY", "ANY"),
           }
 )
 
+###############################################################################
+
+#' @rdname com_dis-mina
+#' @exportMethod com_dis
+
 setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {
               x@dis <- com_dis(x@norm, method = method, threads = threads,
@@ -76,8 +91,6 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
               return(x)
           }
 )
-
-###############################################################################
 
 ###############################################################################
 
@@ -93,17 +106,20 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' available.
 #' @param sim_method The method for similarity, "w_ja" and "uw_ja" are
 #' available for weighted and unweighted Jaccard similarity respectively.
-#' @param threads (optional) The number of threads used for parallel running,
-#' 80 by default.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix,
-#' 400 by default.
+#' @param threads The number of threads used for parallel running, 80 by
+#' default.
+#' @param nblocks The number of row / column for splitted sub-matrix, 400 by
+#' default.
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
-#' x <- maize@norm[1:500, 1:300]
-#' t <- tina(x, cor_method = "spearman", sim_method = "w_ja", threads = 8,
-#'           nblocks = 40)
+#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
+#' asv_norm <- maize@norm
+#' asv_norm[is.na(asv_norm)] <- 0
+#' asv_tina <- tina(asv_norm, cor_method = "spearman", sim_method = "w_ja",
+#' threads = 8, nblocks = 40)
 #' }
 #' @return t The output `tina` dissimilarity matrix.
 #' @export
@@ -139,21 +155,22 @@ tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
 #' matrix of x.
 #' @param sim_method The method for similarity, "w_ja" and "uw_ja" are
 #' available for weighted and unweighted Jaccard similarity respectively.
-#' @param threads (optional) The number of threads used for parallel running,
-#' 80 by default.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix,
-#' 400 by default.
+#' @param threads The number of threads used for parallel running, 80 by
+#' default.
+#' @param nblocks The number of row / column for splitted sub-matrix, 400 by
+#' default.
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref", depth = 1000)
-#' x <- maize@norm[1:500, 1:300]
-#'
-#' x_sparcc <- sparcc(x, threads = 8, nblocks = 40)
-#' tmp.S <- adj(x_sparcc, method = "spearman")
+#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
+#' asv <- maize@norm
+#' asv[is.na(asv)] <- 0
+#' asv_sparcc <- sparcc(asv, threads = 8, nblocks = 40)
+#' tmp.S <- adj(asv_sparcc, method = "spearman")
 #' y <- 0.5 * (tmp.S + 1)
-#'
-#' s <- sim_par(x, y, sim_method = "w_ja", threads = 8, nblocks = 40)
+#' s <- sim_par(asv_sparcc, y, sim_method = "w_ja", threads = 8, nblocks = 40)
 #' }
 #' @return s The output similarity matrix.
 #' @keywords internal
@@ -239,11 +256,9 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
     return(s)
 }
 
-
 ###############################################################################
 
-#' List of dissimilarity / distance supported in \code{\link[mina]{com_dis}}
-#'
+#' List of dissimilarity / distance supported in \code{\link[mina]{com_dis}}.
 #' Dissimilarity / distance should be specified by exact string match.
 #'
 #' @format A list of character vectors indicate the dissimilarity / distance
@@ -299,7 +314,7 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #'
 #' @export
 #' @examples
-#' com_dis_list
+#' ? com_dis_list
 
 com_dis_list <- list(
     # Dissimilarity / distance implemented in parallelDist

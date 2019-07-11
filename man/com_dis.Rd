@@ -12,17 +12,20 @@ matrix.}
 
 \item{method}{The dissimilarity / distance method used.}
 
-\item{threads}{(optional) The number of threads used for parallel running.}
+\item{threads}{The number of threads used for parallel running, needed for
+method `tina`.}
 
-\item{nblocks}{(optional) The number of row / column for splitted sub-matrix.}
+\item{nblocks}{The number of row / column for splitted sub-matrix, needed for
+method `tina`.}
 }
 \description{
 Calculate the community dissimilarity / distance matrix of @norm.
 }
 \examples{
-\dontrun{
 data(maize)
-maize <- norm_tab(maize, method = "total")
+maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize <- norm_tab(maize, method = "raref", depth = 100)
+maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
-}
+maize <- com_dis(maize, method = "tina", threads = 2, nblocks = 40)
 }

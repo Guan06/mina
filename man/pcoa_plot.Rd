@@ -26,13 +26,17 @@ p The plotted figure.
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
+\dontrun{
 data(maize)
-maize <- norm_tab(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
-maize@des <- maize@des[maize@des$Sample_ID \%in\% rownames(maize@dis), ]
 maize <- dmr(maize)
-x <- maize@dmr
+asv_dmr <- maize@dmr
 des <- maize@des
-p <- pcoa_plot(x, des, match = "Sample_ID", color = "Compartment",
-              shape = "Soil")
+p1 <- com_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment")
+p2 <- com_plot(asv_dmr, des, match = "Sample_ID", color = "Host_genotype")
+p3 <- com_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment",
+shape = "Soil")
+}
 }

@@ -15,8 +15,9 @@
 #' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tab(maize)
 #' maize <- bs_pm(maize, group = "Compartment")
-#' maize <- net_dis(maize)
+#' maize <- net_dis(maize, method = "spectra")
 #' }
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
@@ -142,9 +143,11 @@ setMethod("net_dis", signature("mina", "character", "ANY"),
 #' @examples
 #' \dontrun{
 #' data(maize)
+#' maize@tab <- maize@tab[1 : 500, 1 : 300]
 #' maize <- norm_tab(maize, method = "raref")
-#' maize <- adj(maize)
-#' y <- get_spectra(maize@adj)
+#' maize <- fit_tabs(maize)
+#' maize <- adj(maize, method = "spearman")
+#' maize_spectra <- get_spectra(maize@adj)
 #' }
 #' @keywords internal
 

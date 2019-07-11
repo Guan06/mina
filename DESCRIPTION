@@ -37,8 +37,8 @@ RoxygenNote: 6.1.1
 Collate: 
     'RcppChk.R'
     'RcppExports.R'
-    'all_generics.R'
     'all_classes.R'
+    'all_generics.R'
     'adj.R'
     'bs_pm.R'
     'check.R'

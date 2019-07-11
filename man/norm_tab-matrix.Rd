@@ -28,4 +28,6 @@ Normalize the quantitative table with matrix input.
 \examples{
 data(maize_asv)
 maize_asv_norm <- norm_tab(maize_asv, method = "total")
+maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000, replace
+= TRUE)
 }

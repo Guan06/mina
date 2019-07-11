@@ -12,13 +12,18 @@
 #' shape groups.
 #' @return p The plotted figure.
 #' @examples
+#' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
-#' maize@des <- maize@des[maize@des$Sample_ID %in% rownames(maize@dis), ]
 #' maize <- dmr(maize)
-#' p <- com_plot(maize, match = "Sample_ID", color = "Compartment",
-#'               shape = "Soil")
+#' p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
+#' p2 <- com_plot(maize, match = "Sample_ID", color = "Genotype")
+#' p3 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
+#' "Soil")
+#' }
+#' @rdname com_plot-mina
 #' @exportMethod com_plot
 
 setMethod("com_plot", signature("mina", "ANY", "ANY", "ANY"),
@@ -26,12 +31,21 @@ setMethod("com_plot", signature("mina", "ANY", "ANY", "ANY"),
               stop("Mush specify a `match` column.")
           }
 )
+###############################################################################
+
+#' @rdname com_plot-mina
+#' @exportMethod com_plot
 
 setMethod("com_plot", signature("mina", "character", "ANY", "ANY"),
           function(x, match, color, shape) {
               stop("Mush specify a column for `color`.")
           }
 )
+
+###############################################################################
+
+#' @rdname com_plot-mina
+#' @exportMethod com_plot
 
 setMethod("com_plot", signature("mina", "character", "character", "ANY"),
           function(x, match, color, shape = NULL) {
@@ -41,7 +55,6 @@ setMethod("com_plot", signature("mina", "character", "character", "ANY"),
               return(p)
           }
 )
-
 
 ###############################################################################
 
@@ -57,15 +70,19 @@ setMethod("com_plot", signature("mina", "character", "character", "ANY"),
 #' default `NULL`.
 #' @return p The plotted figure.
 #' @examples
+#' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
-#' maize@des <- maize@des[maize@des$Sample_ID %in% rownames(maize@dis), ]
 #' maize <- dmr(maize)
-#' x <- maize@dmr
+#' asv_dmr <- maize@dmr
 #' des <- maize@des
-#' p <- pcoa_plot(x, des, match = "Sample_ID", color = "Compartment",
-#'               shape = "Soil")
+#' p1 <- com_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment")
+#' p2 <- com_plot(asv_dmr, des, match = "Sample_ID", color = "Host_genotype")
+#' p3 <- com_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment",
+#' shape = "Soil")
+#' }
 #' @export
 
 pcoa_plot <- function(x, des, match, color, shape = NULL) {

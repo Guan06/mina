@@ -6,8 +6,12 @@
 #' @param x An object of the class mina with @tab and @des defined or a
 #' quantitative matrix(need parameter des in this case).
 #' @examples
+#' \dontrun{
 #' data(maize)
-#' fit_tabs(maize)
+#' maize <- fit_tabs(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
+#' }
 #' @export
 
 setGeneric("fit_tabs", function(x) {
@@ -22,8 +26,12 @@ setGeneric("fit_tabs", function(x) {
 #' normalized.
 #' @param method The method used for the normalization of quantitative table.
 #' @examples
-#' data(maize_asv)
-#' maize_asv_norm <- norm_tab(maize_asv, method = "total")
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "total")
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
+#' }
 #' @export
 
 setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
@@ -40,8 +48,12 @@ setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
 #' @examples
 #' data(maize)
+#' maize@tab <- maize@tab[1 : 500, 1 : 300]
 #' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "pearson")
+#' maize <- adj(maize, method = "spearman")
+#' maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
 #' @export
 
 setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
@@ -55,14 +67,17 @@ setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
 #' @param x An object of the class mina with @norm defined or any quantitative
 #' matrix.
 #' @param method The dissimilarity / distance method used.
-#' @param threads (optional) The number of threads used for parallel running.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix.
+#' @param threads The number of threads used for parallel running, needed for
+#' method `tina`.
+#' @param nblocks The number of row / column for splitted sub-matrix, needed for
+#' method `tina`.
 #' @examples
-#' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "total")
+#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
-#' }
+#' maize <- com_dis(maize, method = "tina", threads = 2, nblocks = 40)
 #' @export
 
 setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
@@ -72,22 +87,31 @@ setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
 ###############################################################################
 
 #' TINA calculation used in \code{\link[mina]{com_dis}}.
+#' Function for `tina` dissimilarity / distance calculation. Modified from
+#' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
+#' master/functions.community_similarity.R
+#' Pearson / Spearman could be used for calculating correlation and weighted /
+#' unweighted Jaccard could be used for the calculation of similarity.
 #'
+#' @include all_classes.R all_generics.R
 #' @param x An matrix for `tina` dissimilarity calculation.
 #' @param cor_method The method for correlation, "pearson" and "spearman" are
 #' available.
 #' @param sim_method The method for similarity, "w_ja" and "uw_ja" are
 #' available for weighted and unweighted Jaccard similarity respectively.
-#' @param threads (optional) The number of threads used for parallel running,
-#' 80 by default.
-#' @param nblocks (optional) The number of row / column for splitted sub-matrix,
-#' 400 by default.
+#' @param threads The number of threads used for parallel running, 80 by
+#' default.
+#' @param nblocks The number of row / column for splitted sub-matrix, 400 by
+#' default.
 #' @examples
 #' \dontrun{
-#' data(maize_asv)
-#' maize_asv_norm <- norm_tab(maize_asv, method = "total")
-#' maize_asv_tina <- tina(maize_asv_norm, cor_method = "spearman",
-#' sim_method = "w_ja", threads = 80, nblocks = 400)
+#' data(maize)
+#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
+#' asv_norm <- maize@norm
+#' asv_tina <- tina(asv_norm, cor_method = "spearman", sim_method = "w_ja",
+#' threads = 2, nblocks = 40)
 #' }
 #' @return t The output `tina` dissimilarity matrix.
 #' @export
@@ -107,12 +131,11 @@ setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
 #'
 #' @examples
-#' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "total")
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' com_r2(maize, group = c("Compartment", "Soil", "Genotype"))
-#' }
 #' @export
 
 setGeneric("com_r2", function(x, group) {
@@ -129,7 +152,8 @@ setGeneric("com_r2", function(x, group) {
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "total")
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' maize <- dmr(maize)
 #' }
@@ -151,15 +175,15 @@ setGeneric("dmr", function(x, k = 2) {
 #' default `NULL`.
 #' shape groups.
 #' @examples
-#' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "total")
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' maize <- dmr(maize)
-#' p <- com_plot(maize, match = "Sample_ID", color = "Compartment")
-#' p2 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
+#' p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
+#' p2 <- com_plot(maize, match = "Sample_ID", color = "Host_genotype")
+#' p3 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
 #' "Soil")
-#' }
 #' @export
 
 setGeneric("com_plot", function(x, match, color, shape = NULL) {
@@ -175,10 +199,17 @@ setGeneric("com_plot", function(x, match, color, shape = NULL) {
 #' @param cutoff The cutoff for the sparsed adjacacency matrix, default 0.4.
 #' @param neg Whether to keep the negative edges, default FALSE.
 #' @examples
+#' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
+#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
 #' maize <- net_cls(maize, method = "mcl")
+#' maize <- net_cls(maize, method = "mcl", cutoff = 0.4, neg = FALSE)
+#' maize <- net_cls(maize, method = "ap")
+#' maize <- net_cls(maize, method = "ap", cutoff = 0.4, neg = FALSE)
+#' }
 #' @export
 
 setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
@@ -194,11 +225,13 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 #' instead of relative abundance, default FALSE.
 #' @examples
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
+#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
-#' maize@adj <- maize@adj[1:500, 1:500]
-#' maize <- net_cls(maize, method = "mcl")
-#' maize@norm <- maize@norm[rownames(maize@norm) %in% maize@cls$ID, ]
+#' maize <- net_cls(maize, method = "mcl", cutoff = 0.5)
+#' maize <- net_cls_tab(maize)
+#' maize <- net_cls(maize, method = "ap", cutoff = 0.5)
 #' maize <- net_cls_tab(maize)
 #' @export
 
@@ -227,6 +260,7 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- bs_pm(maize, group = "Compartment")
 #' }
 #' @export
@@ -251,8 +285,9 @@ setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE,
 #' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- bs_pm(maize, group = "Compartment")
-#' maize <- net_dis(maize)
+#' maize <- net_dis(maize, method = "spectra")
 #' }
 #' @export
 

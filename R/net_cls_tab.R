@@ -10,11 +10,13 @@
 #' @return x The same `mina` object with @cls_tab added.
 #' @examples
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
+#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
-#' maize@adj <- maize@adj[1:500, 1:500]
-#' maize <- net_cls(maize, method = "mcl")
-#' maize@norm <- maize@norm[rownames(maize@norm) %in% maize@cls$ID, ]
+#' maize <- net_cls(maize, method = "mcl", cutoff = 0.5)
+#' maize <- net_cls_tab(maize)
+#' maize <- net_cls(maize, method = "ap", cutoff = 0.5)
 #' maize <- net_cls_tab(maize)
 #' @exportMethod net_cls_tab
 
@@ -24,8 +26,9 @@ setMethod("net_cls_tab", signature("mina", "ANY"),
               cls <- x@cls
 
               if (nrow(tab) != nrow(cls)) {
-                  stop("Different number of components in quantitative table
-                       and cluster table!")
+                  message("Different number of components!")
+                  message("Filtering...")
+                  tab <- tab[rownames(tab) %in% cls$ID, ]
               }
 
               if (uw) {

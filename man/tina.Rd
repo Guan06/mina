@@ -20,11 +20,11 @@ available.}
 \item{sim_method}{The method for similarity, "w_ja" and "uw_ja" are
 available for weighted and unweighted Jaccard similarity respectively.}
 
-\item{threads}{(optional) The number of threads used for parallel running,
-80 by default.}
+\item{threads}{The number of threads used for parallel running, 80 by
+default.}
 
-\item{nblocks}{(optional) The number of row / column for splitted sub-matrix,
-400 by default.}
+\item{nblocks}{The number of row / column for splitted sub-matrix, 400 by
+default.}
 }
 \value{
 t The output `tina` dissimilarity matrix.
@@ -39,9 +39,12 @@ unweighted Jaccard could be used for the calculation of similarity.
 \examples{
 \dontrun{
 data(maize)
-maize <- norm_tab(maize, method = "raref")
-x <- maize@norm[1:500, 1:300]
-t <- tina(x, cor_method = "spearman", sim_method = "w_ja", threads = 8,
-          nblocks = 40)
+maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize <- norm_tab(maize, method = "raref", depth = 100)
+maize <- fit_tabs(maize)
+asv_norm <- maize@norm
+asv_norm[is.na(asv_norm)] <- 0
+asv_tina <- tina(asv_norm, cor_method = "spearman", sim_method = "w_ja",
+threads = 8, nblocks = 40)
 }
 }

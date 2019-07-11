@@ -13,11 +13,15 @@
 #' @examples
 #' \dontrun{
 #' data(maize)
+#' maize@tab <- maize@tab[1 : 500, 1 : 300]
 #' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "pearson")
+#' maize <- adj(maize, method = "spearman")
+#' maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
 #' }
 #' @return x The same `mina` object with @adj added.
-#' @name adj-mina
+#' @rdname adj-mina
 #' @exportMethod adj
 
 setMethod("adj", signature("mina", "ANY", "ANY", "ANY"),
@@ -25,6 +29,8 @@ setMethod("adj", signature("mina", "ANY", "ANY", "ANY"),
               stop("Must specify a `method`, see `? adj_method_list`.")
           }
 )
+
+###############################################################################
 
 #' @rdname adj-mina
 #' @exportMethod adj
@@ -54,13 +60,13 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY"),
 #' @param nblocks The number of row / column for splitted sub-matrix, 400 by
 #' default.
 #' @examples
-#' \dontrun{
 #' data(maize_asv)
-#' maize_asv <- maize_asv[1:500, 1:300]
-#' maize_asv_adj <- adj(maize_asv, method = "sparcc", threads = 8, nblocks = 40)
-#' }
+#' asv <- maize_asv[1 : 500, 1 : 300]
+#' asv_adj <- adj(asv, method = "sparcc", threads = 2, nblocks = 40)
+#' asv_norm <- norm(asv, method = "raref")
+#' asv_adj <- adj(asv_norm, method = "pearson")
+#' asv_adj <- adj(asv_norm, method = "spearman")
 #' @return y The adjacacency matrix.
-#' @name adj-matrix
 #' @rdname adj-matrix
 #' @exportMethod adj
 
@@ -69,6 +75,8 @@ setMethod("adj", signature("matrix", "ANY", "ANY", "ANY"),
               stop("Must specify a `method`, see `? adj_method_list`.")
           }
 )
+
+###############################################################################
 
 #' @rdname adj-matrix
 #' @exportMethod adj
@@ -90,6 +98,7 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
 
               if (method == "sparcc") {
                   y <- sparcc(x, threads = threads, nblocks = nblocks)
+                  diag(y) <- 0
               }
 
               return(y)
@@ -118,7 +127,8 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
 #' @examples
 #' \dontrun{
 #' data(maize_asv)
-#' maize_asv_sparcc <- sparcc(maize_asv, threads = 80, nblocks = 400)
+#' asv <- maize_asv[1 : 500, 1 : 300]
+#' asv_sparcc <- sparcc(asv, threads = 2, nblocks = 40)
 #' }
 #' @return y The adjacency matrix.
 #' @keywords internal

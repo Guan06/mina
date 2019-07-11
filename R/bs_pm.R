@@ -20,9 +20,11 @@
 #' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
 #' maize <- bs_pm(maize, group = "Compartment")
 #' }
 #' @return x The same object with @multi and @perm defined.
+#' @rdname bs_pm-mina
 #' @exportMethod bs_pm
 
 setMethod("bs_pm", signature("mina", "ANY", "numeric", "numeric", "logical",
@@ -33,6 +35,11 @@ setMethod("bs_pm", signature("mina", "ANY", "numeric", "numeric", "logical",
                    samples!")
           }
 )
+
+################################################################################
+
+#' @rdname bs_pm-mina
+#' @exportMethod bs_pm
 
 setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY",
                             "ANY", "ANY", "ANY"),

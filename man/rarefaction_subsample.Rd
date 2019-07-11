@@ -12,7 +12,7 @@ rarefaction_subsample(x, depth = 1000, replace = FALSE)
 \arguments{
 \item{x}{A column of quantitative table.}
 
-\item{depth}{The depth for rarefying.}
+\item{depth}{The depth for rarefying, 1000 by default.}
 
 \item{replace}{Whether to sample with or without replacement.}
 }
@@ -21,10 +21,5 @@ Rarefaction subsample function, one sample, modified from
 \code{\link[phyloseq]{rarefaction_subsample}} which is a internal function.
 Resample with replacement for default. As mentioned in
 \pkg{phyloseq}, this is set for computational efficiency.
-}
-\examples{
-data(maize)
-x <- maize@tab[, 1]
-rarefaction_subsample(x)
 }
 \keyword{internal}

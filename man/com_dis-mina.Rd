@@ -3,10 +3,14 @@
 \docType{methods}
 \name{com_dis,mina,ANY-method}
 \alias{com_dis,mina,ANY-method}
+\alias{com_dis,mina,character-method}
 \title{Calculate the community dissimilarity / distance matrix of @norm with `mina`
 class object as input.}
 \usage{
 \S4method{com_dis}{mina,ANY}(x, method, threads = 80, nblocks = 400)
+
+\S4method{com_dis}{mina,character}(x, method, threads = 80,
+  nblocks = 400)
 }
 \arguments{
 \item{x}{An object of the class `mina` with @norm defined.}
@@ -29,8 +33,9 @@ class object as input.
 \examples{
 \dontrun{
 data(maize)
-maize <- norm_tab(maize, method = "raref")
-maize@norm <- maize@norm[1:500, 1:300]
+maize <- norm_tab(maize, method = "total")
+maize <- fit_tabs(maize)
+maize <- com_dis(maize, method = "bray")
 maize <- com_dis(maize, method = "tina", threads = 8, nblocks = 40)
 }
 }

@@ -3,12 +3,17 @@
 \docType{methods}
 \name{bs_pm,mina,ANY,numeric,numeric,logical,logical,numeric,numeric-method}
 \alias{bs_pm,mina,ANY,numeric,numeric,logical,logical,numeric,numeric-method}
+\alias{bs_pm,mina,character,ANY,ANY,ANY,ANY,ANY,ANY-method}
 \title{Inferring the network of different group of samples and test significance by
 permutation.}
 \usage{
 
   \S4method{bs_pm}{mina,ANY,numeric,numeric,logical,logical,numeric,numeric}(x,
   group, g_size = 88, s_size = 30, rm = TRUE, sig = TRUE, bs = 6,
+  pm = 6)
+
+\S4method{bs_pm}{mina,character,ANY,ANY,ANY,ANY,ANY,ANY}(x, group,
+  g_size = 100, s_size = 50, rm = TRUE, sig = TRUE, bs = 6,
   pm = 6)
 }
 \arguments{
@@ -43,6 +48,7 @@ permutation.
 \dontrun{
 data(maize)
 maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
 maize <- bs_pm(maize, group = "Compartment")
 }
 }

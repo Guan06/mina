@@ -3,9 +3,13 @@
 \docType{methods}
 \name{net_cls,mina,ANY-method}
 \alias{net_cls,mina,ANY-method}
+\alias{net_cls,mina,character-method}
 \title{Network clustering based on the sparsed adjacacency matrix @adj.}
 \usage{
 \S4method{net_cls}{mina,ANY}(x, method, cutoff = 0.4, neg = FALSE)
+
+\S4method{net_cls}{mina,character}(x, method, cutoff = 0.4,
+  neg = FALSE)
 }
 \arguments{
 \item{x}{An object of class `mina` with @adj defined.}
@@ -24,9 +28,15 @@ x The same `mina` class with @cls added.
 Network clustering based on the sparsed adjacacency matrix @adj.
 }
 \examples{
+\dontrun{
 data(maize)
-maize <- norm_tab(maize, method = "raref")
+maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize <- norm_tab(maize, method = "raref", depth = 100)
+maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")
-maize@adj <- maize@adj[1:500, 1:500]
 maize <- net_cls(maize, method = "mcl")
+maize <- net_cls(maize, method = "mcl", cutoff = 0.4, neg = FALSE)
+maize <- net_cls(maize, method = "ap")
+maize <- net_cls(maize, method = "ap", cutoff = 0.4, neg = FALSE)
+}
 }

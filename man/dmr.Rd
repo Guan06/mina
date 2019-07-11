@@ -19,7 +19,8 @@ visulization.
 \examples{
 \dontrun{
 data(maize)
-maize <- norm_tab(maize, method = "total")
+maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 maize <- dmr(maize)
 }

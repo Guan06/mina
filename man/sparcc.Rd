@@ -28,7 +28,8 @@ master/functions.community_similarity.R
 \examples{
 \dontrun{
 data(maize_asv)
-maize_asv_sparcc <- sparcc(maize_asv, threads = 80, nblocks = 400)
+asv <- maize_asv[1 : 500, 1 : 300]
+asv_sparcc <- sparcc(asv, threads = 2, nblocks = 40)
 }
 }
 \keyword{internal}

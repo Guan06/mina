@@ -3,9 +3,13 @@
 \docType{methods}
 \name{net_cls,matrix,ANY-method}
 \alias{net_cls,matrix,ANY-method}
+\alias{net_cls,matrix,character-method}
 \title{Network clustering based on the sparsed adjacacency matrix @adj.}
 \usage{
 \S4method{net_cls}{matrix,ANY}(x, method, cutoff = 0.4, neg = FALSE)
+
+\S4method{net_cls}{matrix,character}(x, method, cutoff = 0.4,
+  neg = FALSE)
 }
 \arguments{
 \item{x}{Adjacency matrix used for clustering.}
@@ -24,9 +28,10 @@ y The cluster table.
 Network clustering based on the sparsed adjacacency matrix @adj.
 }
 \examples{
-data(maize)
-maize <- norm_tab(maize)
-maize <- adj(maize, method = "spearman")
-maize_adj <- maize@adj[1:500, 1:500]
-maize_net_cls <- net_cls(maize_adj, method = "mcl")
+data(maize_asv)
+asv <- maize_asv[1 : 1000, 1 : 500]
+asv_norm <- norm_tab(asv, method = "raref", depth = 100)
+asv_adj <- adj(asv_norm, method = "spearman")
+asv_cls <- net_cls(asv_adj, method = "mcl")
+asv_cls <- net_cls(asv_adj, method = "ap")
 }

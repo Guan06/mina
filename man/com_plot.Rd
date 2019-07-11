@@ -22,13 +22,13 @@ shape groups.}
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
-\dontrun{
 data(maize)
-maize <- norm_tab(maize, method = "total")
+maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 maize <- dmr(maize)
-p <- com_plot(maize, match = "Sample_ID", color = "Compartment")
-p2 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
+p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
+p2 <- com_plot(maize, match = "Sample_ID", color = "Host_genotype")
+p3 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
 "Soil")
-}
 }

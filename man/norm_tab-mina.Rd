@@ -27,7 +27,3 @@ x An object of the class mina with @norm added.
 \description{
 Normalize the quantitative table with mina input.
 }
-\examples{
-data(maize)
-maize <- norm_tab(maize, method = "raref")
-}

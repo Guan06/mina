@@ -10,11 +10,10 @@ norm_by_raref(x, depth = 1000, replace = TRUE)
 \arguments{
 \item{x}{A quantitative table with sample in columns and compostions in rows.}
 
-\item{depth}{(optional) The depth for rarefying, 1000 by default.}
+\item{depth}{The depth for rarefying, 1000 by default.}
 
-\item{replace}{(optional) Whether to sample with replacement (\code{TRUE}) or
-without replacement (\code{FALSE}). Default \code{TRUE} for computational
-efficiency.}
+\item{replace}{Whether to sample with replacement (\code{TRUE}) or without
+replacement (\code{FALSE}). Default \code{TRUE} for computational efficiency.}
 }
 \value{
 A normalized quantitative table.
@@ -22,11 +21,5 @@ A normalized quantitative table.
 \description{
 Function for normalization by rarefying the samples into the same depth,
 modified from \code{\link[phyloseq]{rarefy_even_depth}}.
-}
-\examples{
-\dontrun{
-data(maize_asv)
-maize_asv_norm <- norm_by_raref(maize_asv)
-}
 }
 \keyword{internal}

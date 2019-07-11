@@ -12,6 +12,8 @@
 #' @examples
 #' data(maize_asv)
 #' maize_asv_norm <- norm_tab(maize_asv, method = "total")
+#' maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000, replace
+#' = TRUE)
 #' @return x_norm Normalized matrix of the quantitative table.
 #' @rdname norm_tab-matrix
 #' @exportMethod norm_tab
@@ -39,8 +41,12 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
 #' @param replace Whether to sample with replacement (\code{TRUE} by default) or
 #' without replacement (\code{FALSE}) when using method `raref`.
 #' @examples
+#' \dontrun{
 #' data(maize)
+#' maize <- norm_tab(maize, method = "total")
 #' maize <- norm_tab(maize, method = "raref")
+#' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)'
+#' }
 #' @return x An object of the class mina with @norm added.
 #' @rdname norm_tab-mina
 #' @exportMethod norm_tab
@@ -50,9 +56,11 @@ setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY"),
              stop("Must specify a `method`. See `? norm_tab_method_list`")
           }
 )
+
 ###############################################################################
 
 #' @rdname norm_tab-mina
+#' @exportMethod norm_tab
 
 setMethod("norm_tab", signature("mina", "character", "ANY", "ANY"),
           function(x, method, depth = 1000, replace = TRUE) {
@@ -83,15 +91,9 @@ norm_by_total <- function(x) {
 #' modified from \code{\link[phyloseq]{rarefy_even_depth}}.
 #'
 #' @param x A quantitative table with sample in columns and compostions in rows.
-#' @param depth (optional) The depth for rarefying, 1000 by default.
-#' @param replace (optional) Whether to sample with replacement (\code{TRUE}) or
-#' without replacement (\code{FALSE}). Default \code{TRUE} for computational
-#' efficiency.
-#' @examples
-#' \dontrun{
-#' data(maize_asv)
-#' maize_asv_norm <- norm_by_raref(maize_asv)
-#' }
+#' @param depth The depth for rarefying, 1000 by default.
+#' @param replace Whether to sample with replacement (\code{TRUE}) or without
+#' replacement (\code{FALSE}). Default \code{TRUE} for computational efficiency.
 #' @return A normalized quantitative table.
 #' @keywords internal
 
@@ -132,12 +134,8 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
 #'
 #' @importFrom methods as
 #' @param x A column of quantitative table.
-#' @param depth The depth for rarefying.
+#' @param depth The depth for rarefying, 1000 by default.
 #' @param replace Whether to sample with or without replacement.
-#' @examples
-#' data(maize)
-#' x <- maize@tab[, 1]
-#' rarefaction_subsample(x)
 #' @keywords internal
 
 rarefaction_subsample <- function(x, depth = 1000, replace = FALSE){

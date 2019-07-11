@@ -11,11 +11,13 @@
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
 #' `mcl` for clustering. Default FALSE.
 #' @examples
-#' data(maize)
-#' maize <- norm_tab(maize)
-#' maize <- adj(maize, method = "spearman")
-#' maize_adj <- maize@adj[1:500, 1:500]
-#' maize_net_cls <- net_cls(maize_adj, method = "mcl")
+#' data(maize_asv)
+#' asv <- maize_asv[1 : 1000, 1 : 500]
+#' asv_norm <- norm_tab(asv, method = "raref", depth = 100)
+#' asv_adj <- adj(asv_norm, method = "spearman")
+#' asv_cls <- net_cls(asv_adj, method = "mcl")
+#' asv_cls <- net_cls(asv_adj, method = "ap")
+#' @rdname net_cls-matrix
 #' @return y The cluster table.
 #' @exportMethod net_cls
 
@@ -24,6 +26,11 @@ setMethod("net_cls", signature("matrix", "ANY", "ANY", "ANY"),
               stop("Must specify a `method`, see `? net_cls_list`.")
           }
 )
+
+###############################################################################
+
+#' @rdname net_cls-matrix
+#' @exportMethod net_cls
 
 setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
           function(x, method, cutoff = 0.4, neg = FALSE) {
@@ -82,12 +89,19 @@ setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
 #' `mcl` for clustering. Default FALSE.
 #' @examples
+#' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
+#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
-#' maize@adj <- maize@adj[1:500, 1:500]
 #' maize <- net_cls(maize, method = "mcl")
+#' maize <- net_cls(maize, method = "mcl", cutoff = 0.4, neg = FALSE)
+#' maize <- net_cls(maize, method = "ap")
+#' maize <- net_cls(maize, method = "ap", cutoff = 0.4, neg = FALSE)
+#' }
 #' @return x The same `mina` class with @cls added.
+#' @rdname net_cls-mina
 #' @exportMethod net_cls
 
 setMethod("net_cls", signature("mina", "ANY", "ANY", "ANY"),
@@ -95,11 +109,16 @@ setMethod("net_cls", signature("mina", "ANY", "ANY", "ANY"),
               stop("Must specify a `method`, see `? net_cls_list`.")
           }
 )
+###############################################################################
+
+#' @rdname net_cls-mina
+#' @exportMethod net_cls
 
 setMethod("net_cls", signature("mina", "character", "ANY", "ANY"),
           function(x, method, cutoff = 0.4, neg = FALSE) {
               x@cls <- net_cls(x@adj, method = method, cutoff = cutoff,
                                neg = FALSE)
+              return(x)
           }
 )
 

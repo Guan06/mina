@@ -17,11 +17,11 @@ matrix of x.}
 \item{sim_method}{The method for similarity, "w_ja" and "uw_ja" are
 available for weighted and unweighted Jaccard similarity respectively.}
 
-\item{threads}{(optional) The number of threads used for parallel running,
-80 by default.}
+\item{threads}{The number of threads used for parallel running, 80 by
+default.}
 
-\item{nblocks}{(optional) The number of row / column for splitted sub-matrix,
-400 by default.}
+\item{nblocks}{The number of row / column for splitted sub-matrix, 400 by
+default.}
 }
 \value{
 s The output similarity matrix.
@@ -34,14 +34,15 @@ master/functions.community_similarity.R
 \examples{
 \dontrun{
 data(maize)
-maize <- norm_tab(maize, method = "raref", depth = 1000)
-x <- maize@norm[1:500, 1:300]
-
-x_sparcc <- sparcc(x, threads = 8, nblocks = 40)
-tmp.S <- adj(x_sparcc, method = "spearman")
+maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize <- norm_tab(maize, method = "raref", depth = 100)
+maize <- fit_tabs(maize)
+asv <- maize@norm
+asv[is.na(asv)] <- 0
+asv_sparcc <- sparcc(asv, threads = 8, nblocks = 40)
+tmp.S <- adj(asv_sparcc, method = "spearman")
 y <- 0.5 * (tmp.S + 1)
-
-s <- sim_par(x, y, sim_method = "w_ja", threads = 8, nblocks = 40)
+s <- sim_par(asv_sparcc, y, sim_method = "w_ja", threads = 8, nblocks = 40)
 }
 }
 \keyword{internal}
