@@ -45,7 +45,7 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
 #' data(maize)
 #' maize <- norm_tab(maize, method = "total")
 #' maize <- norm_tab(maize, method = "raref")
-#' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)'
+#' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
 #' }
 #' @return x An object of the class mina with @norm added.
 #' @rdname norm_tab-mina

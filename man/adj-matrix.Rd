@@ -34,7 +34,7 @@ input.
 data(maize_asv)
 asv <- maize_asv[1 : 500, 1 : 300]
 asv_adj <- adj(asv, method = "sparcc", threads = 2, nblocks = 40)
-asv_norm <- norm(asv, method = "raref")
+asv_norm <- norm_tab(asv, method = "raref")
 asv_adj <- adj(asv_norm, method = "pearson")
 asv_adj <- adj(asv_norm, method = "spearman")
 }
