@@ -1,12 +1,12 @@
 ###############################################################################
 
-#' Normalize the quantitative table with matrix input.
+#' Normalize the quantitative matrix.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x A matrix of the quantitative table.
+#' @param x A quantitative matrix with samples in columns and compostions in
+#' rows.
 #' @param method The method used for normalization.
-#' @param depth The depth for subsampling by rarefying, using the minimum sample
-#' depth by default.
+#' @param depth The depth for rarefying, 1000 by default.
 #' @param replace Whether to sample with replacement (\code{TRUE} by default)
 #' or without replacement (\code{FALSE}) when using method `raref`.
 #' @examples

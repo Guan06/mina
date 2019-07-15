@@ -1,6 +1,6 @@
 Package: mina
 Title: Microbial community dIversity and Network Analysis
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: c(
     person("Rui", "Guan", email = "guan@mpipz.mpg.de", role = c("aut", "cre")),
     person("Ruben", "Garrido-Oter", email = "garridoo@mpipz.mpg.de", role = "ctb")
@@ -28,13 +28,13 @@ Imports:
     plyr,
     biganalytics
 LazyData: true
-Suggests: 
+Suggests:
     knitr,
     rmarkdown,
     testthat
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
-Collate: 
+Collate:
     'RcppChk.R'
     'RcppExports.R'
     'all_classes.R'
