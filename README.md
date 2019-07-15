@@ -1,6 +1,12 @@
 # MINA
 
-The goal of MINA(MIcrobial Network Analysis) is to compare the microbial profiling data at the community and network levels.
+An increasing number of microbiome datasets are generating with the help of
+rapidly developing sequencing technologies. Currently, analysis of taxonomic
+profiling data is mainly conducted using composition-based methods, which
+ignores the interactions between community members and limits the study of
+community dynamics. The goal of MINA (Microbial dIversity and Network Analysis)
+is to provide a framework for microbial community analysis based on network
+structures with statistical tests.
 
 ## Installation
 
@@ -9,12 +15,3 @@ You can install the released version of mina from [CRAN](https://CRAN.R-project.
 ``` r
 install.packages("mina")
 ```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-## basic example code
-```
-
