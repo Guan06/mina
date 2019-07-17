@@ -28,10 +28,12 @@ y The cluster table.
 Network clustering based on the sparsed adjacacency matrix @adj.
 }
 \examples{
+\dontrun{
 data(maize_asv)
 asv <- maize_asv[1 : 1000, 1 : 500]
 asv_norm <- norm_tab(asv, method = "raref", depth = 100)
 asv_adj <- adj(asv_norm, method = "spearman")
 asv_cls <- net_cls(asv_adj, method = "mcl")
 asv_cls <- net_cls(asv_adj, method = "ap")
+}
 }

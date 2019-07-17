@@ -11,6 +11,11 @@ norm_tab(x, method, depth = 1000, replace = TRUE)
 normalized.}
 
 \item{method}{The method used for the normalization of quantitative table.}
+
+\item{depth}{The depth for subsampling by rarefying, 1000 by default.}
+
+\item{replace}{Whether to sample with replacement (\code{TRUE} by default) or
+without replacement (\code{FALSE}) when using method `raref`.}
 }
 \description{
 Normalize the @tab and obtain @norm for later analysis.

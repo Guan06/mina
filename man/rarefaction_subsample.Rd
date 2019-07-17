@@ -7,14 +7,15 @@
 Resample with replacement for default. As mentioned in
 \pkg{phyloseq}, this is set for computational efficiency.}
 \usage{
-rarefaction_subsample(x, depth = 1000, replace = FALSE)
+rarefaction_subsample(x, depth = 1000, replace = TRUE)
 }
 \arguments{
 \item{x}{A column of quantitative table.}
 
 \item{depth}{The depth for rarefying, 1000 by default.}
 
-\item{replace}{Whether to sample with or without replacement.}
+\item{replace}{Whether to sample with or without replacement, \code{TRUE} by
+default.}
 }
 \description{
 Rarefaction subsample function, one sample, modified from

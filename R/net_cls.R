@@ -11,12 +11,14 @@
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
 #' `mcl` for clustering. Default FALSE.
 #' @examples
+#' \dontrun{
 #' data(maize_asv)
 #' asv <- maize_asv[1 : 1000, 1 : 500]
 #' asv_norm <- norm_tab(asv, method = "raref", depth = 100)
 #' asv_adj <- adj(asv_norm, method = "spearman")
 #' asv_cls <- net_cls(asv_adj, method = "mcl")
 #' asv_cls <- net_cls(asv_adj, method = "ap")
+#' }
 #' @rdname net_cls-matrix
 #' @return y The cluster table.
 #' @exportMethod net_cls

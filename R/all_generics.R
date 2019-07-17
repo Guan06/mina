@@ -25,6 +25,9 @@ setGeneric("fit_tabs", function(x) {
 #' @param x The input mina object with quantitative tab / a matrix needed to be
 #' normalized.
 #' @param method The method used for the normalization of quantitative table.
+#' @param depth The depth for subsampling by rarefying, 1000 by default.
+#' @param replace Whether to sample with replacement (\code{TRUE} by default) or
+#' without replacement (\code{FALSE}) when using method `raref`.
 #' @examples
 #' \dontrun{
 #' data(maize)

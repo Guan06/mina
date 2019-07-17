@@ -59,6 +59,7 @@ setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY"),
 
 ###############################################################################
 
+
 #' @rdname norm_tab-mina
 #' @exportMethod norm_tab
 
@@ -88,7 +89,9 @@ norm_by_total <- function(x) {
 ###############################################################################
 
 #' Function for normalization by rarefying the samples into the same depth,
-#' modified from \code{\link[phyloseq]{rarefy_even_depth}}.
+#' modified from
+#' \code{\link[=https://rdrr.io/bioc/phyloseq/man/rarefy_even_depth.html]
+#' {rarefy_even_depth}}.
 #'
 #' @param x A quantitative table with sample in columns and compostions in rows.
 #' @param depth The depth for rarefying, 1000 by default.
@@ -127,6 +130,8 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
     return(x_norm)
 }
 
+###############################################################################
+
 #' Rarefaction subsample function, one sample, modified from
 #' \code{\link[phyloseq]{rarefaction_subsample}} which is a internal function.
 #' Resample with replacement for default. As mentioned in
@@ -135,10 +140,11 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
 #' @importFrom methods as
 #' @param x A column of quantitative table.
 #' @param depth The depth for rarefying, 1000 by default.
-#' @param replace Whether to sample with or without replacement.
+#' @param replace Whether to sample with or without replacement, \code{TRUE} by
+#' default.
 #' @keywords internal
 
-rarefaction_subsample <- function(x, depth = 1000, replace = FALSE){
+rarefaction_subsample <- function(x, depth = 1000, replace = TRUE){
     # initial rarefied vector
     rare <- numeric(length(x))
     if (replace) {

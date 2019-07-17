@@ -3,7 +3,9 @@
 \name{norm_by_raref}
 \alias{norm_by_raref}
 \title{Function for normalization by rarefying the samples into the same depth,
-modified from \code{\link[phyloseq]{rarefy_even_depth}}.}
+modified from
+\code{\link[=https://rdrr.io/bioc/phyloseq/man/rarefy_even_depth.html]
+{rarefy_even_depth}}.}
 \usage{
 norm_by_raref(x, depth = 1000, replace = TRUE)
 }
@@ -20,6 +22,8 @@ A normalized quantitative table.
 }
 \description{
 Function for normalization by rarefying the samples into the same depth,
-modified from \code{\link[phyloseq]{rarefy_even_depth}}.
+modified from
+\code{\link[=https://rdrr.io/bioc/phyloseq/man/rarefy_even_depth.html]
+{rarefy_even_depth}}.
 }
 \keyword{internal}
