@@ -15,7 +15,7 @@ is defined.}
 \item{x}{An object of class `mina` with @multi (and @perm if sig is TRUE)
 defined.}
 
-\item{method}{The distance to be calculated, "spectral" and "jaccard" are
+\item{method}{The distance to be calculated, "spectral" and "Jaccard" are
 available.}
 
 \item{sig}{Whether to test the significance, if TRUE (by default), @perm is
@@ -32,8 +32,9 @@ is defined.
 \dontrun{
 data(maize)
 maize <- norm_tab(maize, method = "raref")
-maize <- fit_tab(maize)
+maize <- fit_tabs(maize)
 maize <- bs_pm(maize, group = "Compartment")
 maize <- net_dis(maize, method = "spectra")
+maize <- net_dis(maize, method = "Jaccard")
 }
 }

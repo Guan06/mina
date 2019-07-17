@@ -3,18 +3,18 @@
 \docType{methods}
 \name{norm_tab,matrix,character-method}
 \alias{norm_tab,matrix,character-method}
-\title{Normalize the quantitative table with matrix input.}
+\title{Normalize the quantitative matrix.}
 \usage{
 \S4method{norm_tab}{matrix,character}(x, method, depth = 1000,
   replace = TRUE)
 }
 \arguments{
-\item{x}{A matrix of the quantitative table.}
+\item{x}{A quantitative matrix with samples in columns and compostions in
+rows.}
 
 \item{method}{The method used for normalization.}
 
-\item{depth}{The depth for subsampling by rarefying, using the minimum sample
-depth by default.}
+\item{depth}{The depth for rarefying, 1000 by default.}
 
 \item{replace}{Whether to sample with replacement (\code{TRUE} by default)
 or without replacement (\code{FALSE}) when using method `raref`.}
@@ -23,7 +23,7 @@ or without replacement (\code{FALSE}) when using method `raref`.}
 x_norm Normalized matrix of the quantitative table.
 }
 \description{
-Normalize the quantitative table with matrix input.
+Normalize the quantitative matrix.
 }
 \examples{
 data(maize_asv)

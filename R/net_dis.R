@@ -6,7 +6,7 @@
 #' @importFrom stats dist
 #' @param x An object of class `mina` with @multi (and @perm if sig is TRUE)
 #' defined.
-#' @param method The distance to be calculated, "spectral" and "jaccard" are
+#' @param method The distance to be calculated, "spectral" and "Jaccard" are
 #' available.
 #' @param sig Whether to test the significance, if TRUE (by default), @perm is
 #' needed.
@@ -15,9 +15,10 @@
 #' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
-#' maize <- fit_tab(maize)
+#' maize <- fit_tabs(maize)
 #' maize <- bs_pm(maize, group = "Compartment")
 #' maize <- net_dis(maize, method = "spectra")
+#' maize <- net_dis(maize, method = "Jaccard")
 #' }
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
@@ -66,54 +67,106 @@ setMethod("net_dis", signature("mina", "character", "ANY"),
                   if (method == "spectra") {
                       spectra_m <- spectra_n <- matrix(nrow = bs_len,
                                                        ncol = 100)
-                  }
-
-                  for (j in 1 : bs_len) {
-                      adj_m <- unlist(this_m[[j]])
-                      adj_n <- unlist(this_n[[j]])
-
-                      ## when method == "spectra"
-                      if (method == "spectra") {
+                      for (j in 1 : bs_len) {
+                          adj_m <- unlist(this_m[[j]])
+                          adj_n <- unlist(this_n[[j]])
                           adj_m[is.na(adj_m)] <- 0
                           adj_n[is.na(adj_n)] <- 0
 
                           spectra_m[j, ] <- get_spectra(adj_m, k = 100)
                           spectra_n[j, ] <- get_spectra(adj_n, k = 100)
-                      }
-                  }
+                       }
 
-                  rownames(spectra_m) <- paste0(group_m, "_b", seq(1 : bs_len))
-                  rownames(spectra_n) <- paste0(group_n, "_b", seq(1 : bs_len))
-                  spectra_mn <- rbind(spectra_m, spectra_n)
-                  dis_bs <- rbind(dis_bs, get_dis_df(dist(spectra_mn)))
+                      seqs <- seq(1 : bs_len)
+                      rownames(spectra_m) <- paste0(group_m, "_b", seqs)
+                      rownames(spectra_n) <- paste0(group_n, "_b", seqs)
+                      spectra_mn <- rbind(spectra_m, spectra_n)
+
+                      dis_bs <- rbind(dis_bs, get_dis_df(dist(spectra_mn)))
+                  } else if (method == "Jaccard") {
+                      jaccard_mn <- c()
+                      for (j1 in 1 : bs_len) {
+                          adj_m <- unlist(this_m[[j1]])
+                          adj_m[is.na(adj_m)] <- 0
+
+                          m_j1 <- paste0(group_m, "_b", j1)
+
+                          for (j2 in 1 : bs_len) {
+                              adj_n <- unlist(this_n[[j2]])
+                              adj_n[is.na(adj_n)] <- 0
+
+                              n_j2 <- paste0(group_n, "_b", j2)
+
+                              contrast <- sum(abs(adj_m - adj_n))
+                              max <- sum(pmax(abs(adj_m), abs(adj_n)))
+
+                              dis <- contrast / max
+                              this <- data.frame(C1 = m_j1,
+                                                 C2 = n_j2,
+                                                 Distance = dis,
+                                                 Group1 = group_m,
+                                                 Group2 = group_n)
+                              jaccard_mn <- rbind(jaccard_mn, this)
+                          }
+                      }
+                      dis_bs <- rbind(dis_bs, jaccard_mn)
+                  }
 
                   ## calculate permutation distance if sig == TRUE
                   if (sig) {
                       this_mp <- y_pm[[i]]
                       this_np <- y_pm[[i + 1]]
+
                       pm_len <- length(this_mp)
+
                       if (method == "spectra") {
                           spectra_mp <- spectra_np <- matrix(nrow = pm_len,
                                                              ncol = 100)
-                      }
 
-                      for (k in 1 : pm_len) {
-                          adj_mp <- unlist(this_mp[[k]])
-                          adj_np <- unlist(this_np[[k]])
+                          for (k in 1 : pm_len) {
+                              adj_mp <- unlist(this_mp[[k]])
+                              adj_np <- unlist(this_np[[k]])
+                              adj_m[is.na(adj_m)] <- 0
+                              adj_n[is.na(adj_n)] <- 0
 
-                          if (method == "spectra") {
-                              adj_mp[is.na(adj_mp)] <- 0
-                              adj_np[is.na(adj_np)] <- 0
                               spectra_mp[k, ] <- get_spectra(adj_mp, k = 100)
                               spectra_np[k, ] <- get_spectra(adj_np, k = 100)
                           }
+
+                          seqs <- seq(1 : pm_len)
+                          rownames(spectra_mp) <- paste0(group_m, "_p", seqs)
+                          rownames(spectra_np) <- paste0(group_n, "_p", seqs)
+                          spectra_mnp <- rbind(spectra_mp, spectra_np)
+                          dis_pm <- rbind(dis_pm, get_dis_df(dist(spectra_mnp)))
+                      } else if (method == "Jaccard") {
+                          jaccard_mnp <- c()
+                          for (k1 in 1 : pm_len) {
+                              adj_mp <- unlist(this_mp[[k1]])
+                              adj_mp[is.na(adj_mp)] <- 0
+
+                              mp_k1 <- paste0(group_m, "_p", k1)
+
+                              for (k2 in 1 : pm_len) {
+                                  adj_np <- unlist(this_np[[k2]])
+                                  adj_np[is.na(adj_np)] <- 0
+
+                                  np_k2 <- paste0(group_n, "_p", k2)
+
+                                  contrast <- sum(abs(adj_mp - adj_np))
+                                  max <- sum(pmax(abs(adj_mp), abs(adj_np)))
+
+                                  dis <- contrast / max
+                                  this <- data.frame(C1 = mp_k1,
+                                                     C2 = np_k2,
+                                                     Distance = dis,
+                                                     Group1 = group_m,
+                                                     Group2 = group_n)
+
+                                  jaccard_mnp <- rbind(jaccard_mnp, this)
+                              }
+                          }
+                          dis_pm <- rbind(dis_pm, jaccard_mnp)
                       }
-                      rownames(spectra_mp) <- paste0(group_m, "_p",
-                                                     seq(1 : pm_len))
-                      rownames(spectra_np) <- paste0(group_n, "_p",
-                                                     seq(1 : pm_len))
-                      spectra_mnp <- rbind(spectra_mp, spectra_np)
-                      dis_pm <- rbind(dis_pm, get_dis_df(dist(spectra_mnp)))
                   }
               }
 
