@@ -28,16 +28,21 @@ setGeneric("fit_tabs", function(x) {
 #' @param depth The depth for subsampling by rarefying, 1000 by default.
 #' @param replace Whether to sample with replacement (\code{TRUE} by default) or
 #' without replacement (\code{FALSE}) when using method `raref`.
+#' @param multi Rarefy the table for multiple times, FALSE by default, indicate
+#' the times of rarefaction want to be repeated, only validate for rarefaction.
 #' @examples
 #' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "total")
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
+#' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE,
+#' multi = 99)
 #' }
 #' @export
 
-setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
+setGeneric("norm_tab", function(x, method, depth = 1000,
+                                replace = TRUE, multi = FALSE) {
     standardGeneric("norm_tab")
 })
 
@@ -113,7 +118,6 @@ setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
 #' asv_tina <- tina(asv_norm, cor_method = "spearman", sim_method = "w_ja",
 #' threads = 2, nblocks = 40)
 #' }
-#' @return t The output `tina` dissimilarity matrix.
 #' @export
 
 setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",

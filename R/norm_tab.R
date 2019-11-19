@@ -9,23 +9,40 @@
 #' @param depth The depth for rarefying, 1000 by default.
 #' @param replace Whether to sample with replacement (\code{TRUE} by default)
 #' or without replacement (\code{FALSE}) when using method `raref`.
+#' @param multi Rarefy the table for multiple times, FALSE by default, indicate
+#' the times of rarefaction want to be repeated, only validate for rarefaction.
 #' @examples
 #' data(maize_asv)
 #' maize_asv_norm <- norm_tab(maize_asv, method = "total")
 #' maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000, replace
 #' = TRUE)
+#' maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000,
+#' replace = TRUE, multi = 99)
 #' @return x_norm Normalized matrix of the quantitative table.
 #' @rdname norm_tab-matrix
 #' @exportMethod norm_tab
 
-setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
-          function(x, method, depth = 1000, replace = TRUE) {
+setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY", "ANY"),
+          function(x, method, depth = 1000, replace = TRUE, multi = FALSE) {
               if (method == "raref") {
-                  x_norm <- norm_by_raref(x, depth = depth, replace = replace)
+                  if (multi == FALSE) {
+                    x_norm <- norm_by_raref(x, depth = depth, replace = replace)
+                  } else {
+                      multi_norm <- norm_by_raref(x, depth = depth,
+                                                  replace = replace)
+                      for ( i in 2 : multi ){
+                          multi_norm <- multi_norm + norm_by_raref(x,
+                                                        depth = depth,
+                                                        replace = replace)
+                      }
+                      multi_norm <- multi_norm[rowSums(multi_norm) > 0, ]
+                      x_norm <- multi_norm / multi
+                  }
               }
               if (method == "total") {
                   x_norm <- norm_by_total(x)
               }
+              x_norm <- x_norm[rowSums(x_norm) > 0, ]
               return(as.matrix(x_norm))
           }
 )
@@ -40,19 +57,23 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY"),
 #' @param depth The depth for subsampling by rarefying, 1000 by default.
 #' @param replace Whether to sample with replacement (\code{TRUE} by default) or
 #' without replacement (\code{FALSE}) when using method `raref`.
+#' @param multi Rarefy the table for multiple times, FALSE by default, indicate
+#' the times of rarefaction want to be repeated, only validate for rarefaction.
 #' @examples
 #' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "total")
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
+#' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE,
+#' multi = 99)
 #' }
 #' @return x An object of the class mina with @norm added.
 #' @rdname norm_tab-mina
 #' @exportMethod norm_tab
 
-setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY"),
-          function(x, method, depth = 1000, replace = TRUE) {
+setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY", "ANY"),
+          function(x, method, depth = 1000, replace = TRUE, multi = FALSE) {
              stop("Must specify a `method`. See `? norm_tab_method_list`")
           }
 )
@@ -63,10 +84,10 @@ setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY"),
 #' @rdname norm_tab-mina
 #' @exportMethod norm_tab
 
-setMethod("norm_tab", signature("mina", "character", "ANY", "ANY"),
-          function(x, method, depth = 1000, replace = TRUE) {
+setMethod("norm_tab", signature("mina", "character", "ANY", "ANY", "ANY"),
+          function(x, method, depth = 1000, replace = TRUE, multi = FALSE) {
               x@norm <- norm_tab(x@tab, method,
-                                 depth = depth, replace = replace)
+                                 depth = depth, replace = replace, multi = multi)
               x@norm <- as.matrix(x@norm)
               return(x)
           }
@@ -125,7 +146,7 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
                     depth = depth, replace = replace)
 
     rownames(x_norm) <- rownames(x)
-    x_norm <- x_norm[rowSums(x_norm) > 0, ]
+    #x_norm <- x_norm[rowSums(x_norm) > 0, ]
     return(x_norm)
 }
 

@@ -1,12 +1,25 @@
 ---
-title: "MINA Manual"
+title: "Microbial dIversity and Network Analysis with MINA"
 author: "Rui Guan"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+abstract: >
+    An increasing number of microbiome datasets are generating with the help of
+    rapidly developing sequencing technologies. Currently, analysis of taxonomic
+    profiling data is mainly conducted using composition-based methods, which
+    ignores the interactions between community members and limits the study of
+    community dynamics. The goal of MINA is to provide a framework for microbial
+    community analysis based on network structures with statistical tests.
+    MINA package version: `r packageVersion("mina")`
+output:
+    rmarkdown::html_vignette:
+        highlight: pygments
+        toc: true
+        fig_width: 5
 vignette: >
-  %\VignetteIndexEntry{MINA Manual}
+  %\VignetteIndexEntry{Microbial dIversity and Network Analysis with MINA}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include = FALSE}
@@ -19,6 +32,15 @@ knitr::opts_chunk$set(
 
 The package is used for microbial profiling data analysis, including community
 similarity / dissimilarity / distance calculation and network comparison.
+
+# Input data
+MINA package expects count data (e.g. OTU table or ASV table) to represent
+community profiling results and a descriptive table which indicates the
+information of each sample. In the quantitative table, each row contains one
+composition in the community and each column represent one profiled sample. In
+the descriptive table, same samples as rows in quantitative table should be
+included in the column "SampleID".
+
 
 # About this vignette
 

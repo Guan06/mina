@@ -6,7 +6,7 @@
 \title{Normalize the quantitative matrix.}
 \usage{
 \S4method{norm_tab}{matrix,character}(x, method, depth = 1000,
-  replace = TRUE)
+  replace = TRUE, multi = FALSE)
 }
 \arguments{
 \item{x}{A quantitative matrix with samples in columns and compositions in
@@ -18,6 +18,9 @@ rows.}
 
 \item{replace}{Whether to sample with replacement (\code{TRUE} by default)
 or without replacement (\code{FALSE}) when using method `raref`.}
+
+\item{multi}{Rarefy the table for multiple times, FALSE by default, indicate
+the times of rarefaction want to be repeated, only validate for rarefaction.}
 }
 \value{
 x_norm Normalized matrix of the quantitative table.
@@ -30,4 +33,6 @@ data(maize_asv)
 maize_asv_norm <- norm_tab(maize_asv, method = "total")
 maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000, replace
 = TRUE)
+maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000,
+replace = TRUE, multi = 99)
 }

@@ -4,7 +4,7 @@
 \alias{norm_tab}
 \title{Normalize the @tab and obtain @norm for later analysis.}
 \usage{
-norm_tab(x, method, depth = 1000, replace = TRUE)
+norm_tab(x, method, depth = 1000, replace = TRUE, multi = FALSE)
 }
 \arguments{
 \item{x}{The input mina object with quantitative tab / a matrix needed to be
@@ -16,6 +16,9 @@ normalized.}
 
 \item{replace}{Whether to sample with replacement (\code{TRUE} by default) or
 without replacement (\code{FALSE}) when using method `raref`.}
+
+\item{multi}{Rarefy the table for multiple times, FALSE by default, indicate
+the times of rarefaction want to be repeated, only validate for rarefaction.}
 }
 \description{
 Normalize the @tab and obtain @norm for later analysis.
@@ -26,5 +29,7 @@ data(maize)
 maize <- norm_tab(maize, method = "total")
 maize <- norm_tab(maize, method = "raref")
 maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
+maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE,
+multi = 99)
 }
 }
