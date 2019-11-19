@@ -11,9 +11,9 @@ net_cls(x, method, cutoff = 0.4, neg = FALSE)
 
 \item{method}{The clustering method used.}
 
-\item{cutoff}{The cutoff for the sparsed adjacacency matrix, default 0.4.}
+\item{cutoff}{The cutoff for the sparse adjacency matrix, default is 0.4.}
 
-\item{neg}{Whether to keep the negative edges, default FALSE.}
+\item{neg}{Whether to keep the negative edges, default is `FALSE`.}
 }
 \description{
 Network clustering of sparsed adjacacency matrix @adj.
@@ -21,7 +21,7 @@ Network clustering of sparsed adjacacency matrix @adj.
 \examples{
 \dontrun{
 data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize@tab <- maize@tab[1 : 1000, 1 : 200]
 maize <- norm_tab(maize, method = "raref", depth = 100)
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")

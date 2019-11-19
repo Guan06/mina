@@ -10,14 +10,14 @@ net_cls_tab(x, uw = FALSE)
 \item{x}{An object of class `mina` with @tab and @cls defined.}
 
 \item{uw}{By summing up the number of present components of each cluster
-instead of relative abundance, default FALSE.}
+instead of relative abundances, default is FALSE.}
 }
 \description{
 Get the cluster table @cls_tab from @tab and @cls.
 }
 \examples{
 data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize@tab <- maize@tab[1 : 500, 1 : 200]
 maize <- norm_tab(maize, method = "raref", depth = 100)
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")

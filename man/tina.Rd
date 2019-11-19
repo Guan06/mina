@@ -4,9 +4,9 @@
 \alias{tina}
 \title{Function for `tina` dissimilarity / distance calculation. Modified from
 https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-master/functions.community_similarity.R
-Pearson / Spearman could be used for calculating correlation and weighted /
-unweighted Jaccard could be used for the calculation of similarity.}
+master/functions.community_similarity.R Pearson/Spearman could be used
+for calculating correlation and weighted/unweighted Jaccard could be used
+for the calculation of similarity.}
 \usage{
 tina(x, cor_method = "spearman", sim_method = "w_ja", threads = 80,
   nblocks = 400)
@@ -32,14 +32,14 @@ t The output `tina` dissimilarity matrix.
 \description{
 Function for `tina` dissimilarity / distance calculation. Modified from
 https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-master/functions.community_similarity.R
-Pearson / Spearman could be used for calculating correlation and weighted /
-unweighted Jaccard could be used for the calculation of similarity.
+master/functions.community_similarity.R Pearson/Spearman could be used
+for calculating correlation and weighted/unweighted Jaccard could be used
+for the calculation of similarity.
 }
 \examples{
 \dontrun{
 data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize@tab <- maize@tab[1 : 1000, 1 : 200]
 maize <- norm_tab(maize, method = "raref", depth = 100)
 maize <- fit_tabs(maize)
 asv_norm <- maize@norm

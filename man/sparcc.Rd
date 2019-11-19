@@ -3,8 +3,9 @@
 \name{sparcc}
 \alias{sparcc}
 \title{Function for `sparcc` correlation calculation. Modified from
-https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-master/functions.community_similarity.R}
+Schmidt et al. 2016, find the scripts
+\href{https://github.com/defleury/Schmidt_et_al_2016_community_similarity}{here}
+and the SparCC paper \href{https://doi.org/10.1371/journal.pcbi.1002687}{here}.}
 \usage{
 sparcc(x, threads = 80, nblocks = 400)
 }
@@ -14,7 +15,7 @@ sparcc(x, threads = 80, nblocks = 400)
 \item{threads}{The number of threads used for parallel running, 80 by
 default.}
 
-\item{nblocksThe}{number of row / column for splitted sub-matrix, 400 by
+\item{nblocks}{The number of row /column for splitting sub-matrix, 400 by
 default.}
 }
 \value{
@@ -22,8 +23,9 @@ y The adjacency matrix.
 }
 \description{
 Function for `sparcc` correlation calculation. Modified from
-https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-master/functions.community_similarity.R
+Schmidt et al. 2016, find the scripts
+\href{https://github.com/defleury/Schmidt_et_al_2016_community_similarity}{here}
+and the SparCC paper \href{https://doi.org/10.1371/journal.pcbi.1002687}{here}.
 }
 \examples{
 \dontrun{

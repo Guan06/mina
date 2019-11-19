@@ -7,7 +7,7 @@
 norm_by_total(x)
 }
 \arguments{
-\item{x}{A quantitative table with samples in cloumns and compostions in
+\item{x}{A quantitative table with samples in columns and compositions in
 rows.}
 }
 \value{

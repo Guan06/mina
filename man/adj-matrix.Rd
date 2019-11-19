@@ -4,8 +4,7 @@
 \name{adj,matrix,ANY-method}
 \alias{adj,matrix,ANY-method}
 \alias{adj,matrix,character-method}
-\title{Calculate the adjacacency matrix of @norm by correlation with matrix as
-input.}
+\title{Calculate the adjacency matrix of @norm by correlation with matrix as input.}
 \usage{
 \S4method{adj}{matrix,ANY}(x, method, threads = 80, nblocks = 400)
 
@@ -13,28 +12,29 @@ input.}
   nblocks = 400)
 }
 \arguments{
-\item{x}{An matrix for correlation / adjacency matrix calculation.}
+\item{x}{An matrix for correlation/adjacency matrix calculation.}
 
-\item{method}{The correlation coefficient used for adjacacency matrix.}
+\item{method}{The correlation coefficient used for adjacency matrix.}
 
 \item{threads}{The number of threads used for parallel running, 80 by
 default.}
 
-\item{nblocks}{The number of row / column for splitted sub-matrix, 400 by
+\item{nblocks}{The number of row/column for splitting sub-matrix, 400 by
 default.}
 }
 \value{
-y The adjacacency matrix.
+y The adjacency matrix.
 }
 \description{
-Calculate the adjacacency matrix of @norm by correlation with matrix as
-input.
+Calculate the adjacency matrix of @norm by correlation with matrix as input.
 }
 \examples{
+\dontrun{
 data(maize_asv)
 asv <- maize_asv[1 : 500, 1 : 300]
 asv_adj <- adj(asv, method = "sparcc", threads = 2, nblocks = 40)
-asv_norm <- norm_tab(asv, method = "raref")
+asv_norm <- norm_tab(asv, method = "raref", depth = 100)
 asv_adj <- adj(asv_norm, method = "pearson")
 asv_adj <- adj(asv_norm, method = "spearman")
+}
 }

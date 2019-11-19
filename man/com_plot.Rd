@@ -15,20 +15,18 @@ same indicated in @dmr.}
 \item{color}{The column name in @des to be used for different color groups.}
 
 \item{shape}{The column name in @des to be used for different shape groups,
-default `NULL`.
-shape groups.}
+default is `NULL`.}
 }
 \description{
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
 data(maize)
-maize <- norm_tab(maize, method = "raref")
+maize <- norm_tab(maize, method = "raref", depth = 5000)
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 maize <- dmr(maize)
 p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
-p2 <- com_plot(maize, match = "Sample_ID", color = "Host_genotype")
-p3 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
+p2 <- com_plot(maize, match = "Sample_ID", color = "Host_genotype", shape =
 "Soil")
 }

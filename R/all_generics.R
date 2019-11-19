@@ -51,10 +51,9 @@ setGeneric("norm_tab", function(x, method, depth = 1000, replace = TRUE) {
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
 #' @examples
 #' data(maize)
-#' maize@tab <- maize@tab[1 : 500, 1 : 300]
-#' maize <- norm_tab(maize, method = "raref")
+#' maize@tab <- maize@tab[1 : 500, 1 : 200]
+#' maize <- norm_tab(maize, method = "raref", depth = 200)
 #' maize <- fit_tabs(maize)
-#' maize <- adj(maize, method = "pearson")
 #' maize <- adj(maize, method = "spearman")
 #' maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
 #' @export
@@ -76,8 +75,8 @@ setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
 #' method `tina`.
 #' @examples
 #' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
-#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize@tab <- maize@tab[1 : 500, 1 : 200]
+#' maize <- norm_tab(maize, method = "raref", depth = 200)
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' maize <- com_dis(maize, method = "tina", threads = 2, nblocks = 40)
@@ -89,12 +88,10 @@ setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
 
 ###############################################################################
 
-#' TINA calculation used in \code{\link[mina]{com_dis}}.
-#' Function for `tina` dissimilarity / distance calculation. Modified from
+#' TINA community dissimilarity used in \code{\link[mina]{com_dis}}.
+#' Function for `tina` dissimilarity/distance calculation. Modified from \href{
 #' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-#' master/functions.community_similarity.R
-#' Pearson / Spearman could be used for calculating correlation and weighted /
-#' unweighted Jaccard could be used for the calculation of similarity.
+#' master/functions.community_similarity.R}{Schmidt_et_al_2016}.
 #'
 #' @include all_classes.R all_generics.R
 #' @param x An matrix for `tina` dissimilarity calculation.
@@ -109,7 +106,7 @@ setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 100)
 #' maize <- fit_tabs(maize)
 #' asv_norm <- maize@norm
@@ -132,10 +129,9 @@ setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",
 #'
 #' @param x An object of class `mina` with @dis and @des defined.
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
-#'
 #' @examples
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
+#' maize <- norm_tab(maize, method = "raref", depth = 5000)
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' com_r2(maize, group = c("Compartment", "Soil", "Genotype"))
@@ -175,17 +171,15 @@ setGeneric("dmr", function(x, k = 2) {
 #' same indicated in @dmr.
 #' @param color The column name in @des to be used for different color groups.
 #' @param shape The column name in @des to be used for different shape groups,
-#' default `NULL`.
-#' shape groups.
+#' default is `NULL`.
 #' @examples
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
+#' maize <- norm_tab(maize, method = "raref", depth = 5000)
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' maize <- dmr(maize)
 #' p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
-#' p2 <- com_plot(maize, match = "Sample_ID", color = "Host_genotype")
-#' p3 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
+#' p2 <- com_plot(maize, match = "Sample_ID", color = "Host_genotype", shape =
 #' "Soil")
 #' @export
 
@@ -199,12 +193,12 @@ setGeneric("com_plot", function(x, match, color, shape = NULL) {
 #'
 #' @param x An object of class `mina` with @adj defined.
 #' @param method The clustering method used.
-#' @param cutoff The cutoff for the sparsed adjacacency matrix, default 0.4.
-#' @param neg Whether to keep the negative edges, default FALSE.
+#' @param cutoff The cutoff for the sparse adjacency matrix, default is 0.4.
+#' @param neg Whether to keep the negative edges, default is `FALSE`.
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 100)
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
@@ -225,10 +219,10 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 #'
 #' @param x An object of class `mina` with @tab and @cls defined.
 #' @param uw By summing up the number of present components of each cluster
-#' instead of relative abundance, default FALSE.
+#' instead of relative abundances, default is FALSE.
 #' @examples
 #' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize@tab <- maize@tab[1 : 500, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 100)
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
@@ -249,16 +243,17 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #'
 #' @param x An object of class `mina` with @norm and @des defined.
 #' @param group The column name of descriptive file @des for comparison.
-#' @param g_size The cutoff of group size used for filtering, default 100.
+#' @param g_size The cutoff of group size used for filtering, default is 88.
 #' @param s_size The number of samples used for network inference during
-#' bootstrap and permutation (when sig == TRUE), it should be smaller than
-#' g_size to make sure the randomness; default 50.
-#' @param rm Filtering the components present in less than 20% of the samples,
-#' default TRUE.
-#' @param sig Whether to test the significance, skip the permutation when sig ==
-#' FALSE, default TRUE.
-#' @param bs The times for bootstrap network inference, default 6
-#' @param pm The times for permuatated samples network inference, default 6.
+#' bootstrap and permutation (when `sig` is TRUE), it should be smaller than
+#' g_size to make sure the randomness; default is 30.
+#' @param rm Filtering the components present in less than `per` of the samples,
+#' default is TRUE.
+#' @param per The percentage of present samples for filtering, default is 0.1.
+#' @param sig Whether to test the significance, skip the permutation when set as
+#' FALSE, default is TRUE.
+#' @param bs The times for bootstrap network inference, default is 6.
+#' @param pm The times for permutation network inference, default is 6.
 #' @examples
 #' \dontrun{
 #' data(maize)
@@ -268,8 +263,8 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' }
 #' @export
 
-setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE, 
-                             sig = TRUE, bs = 6, pm = 6) {
+setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
+                             per = 0.1, sig = TRUE, bs = 6, pm = 6) {
     standardGeneric("bs_pm")
 })
 
@@ -278,10 +273,12 @@ setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE,
 #' Calculate the network distance of @multi and test the significance when @perm
 #' is defined.
 #'
-#' @param x An object of class `mina` with @multi (and @perm if sig is TRUE)
+#' @param x An object of class `mina` with @multi (and @perm if `sig` is TRUE)
 #' defined.
-#' @param method The distance to be calculated, "spectral" and "jaccard" are
+#' @param method The distance to be calculated, "spectra" and "Jaccard" are
 #' available.
+#' @param evk The first `evk` eigenvalues will be used for `spectra` distance,
+#' the default is 100.
 #' @param sig Whether to test the significance, if TRUE (by default), @perm is
 #' needed.
 #' @examples
@@ -294,6 +291,6 @@ setGeneric("bs_pm", function(x, group, g_size = 100, s_size = 50, rm = TRUE,
 #' }
 #' @export
 
-setGeneric("net_dis", function(x, method, sig = TRUE) {
+setGeneric("net_dis", function(x, method, evk = 100, sig = TRUE) {
     standardGeneric("net_dis")
 })

@@ -78,9 +78,9 @@ setMethod("com_plot", signature("mina", "character", "character", "ANY"),
 #' maize <- dmr(maize)
 #' asv_dmr <- maize@dmr
 #' des <- maize@des
-#' p1 <- com_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment")
-#' p2 <- com_plot(asv_dmr, des, match = "Sample_ID", color = "Host_genotype")
-#' p3 <- com_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment",
+#' p1 <- pcoa_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment")
+#' p2 <- pcoa_plot(asv_dmr, des, match = "Sample_ID", color = "Host_genotype")
+#' p3 <- pcoa_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment",
 #' shape = "Soil")
 #' }
 #' @export

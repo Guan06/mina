@@ -23,8 +23,8 @@ Calculate the community dissimilarity / distance matrix of @norm.
 }
 \examples{
 data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 500]
-maize <- norm_tab(maize, method = "raref", depth = 100)
+maize@tab <- maize@tab[1 : 500, 1 : 200]
+maize <- norm_tab(maize, method = "raref", depth = 200)
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 maize <- com_dis(maize, method = "tina", threads = 2, nblocks = 40)

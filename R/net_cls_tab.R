@@ -4,13 +4,14 @@
 #' clustering results @cls.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An object of class `mina` with @norm_tab and @cls defined.
+#' @param x An object of class `mina` with @norm and @cls defined.
 #' @param uw By summing up the number of present components of each cluster
-#' instead of relative abundance, default FALSE.
+#' instead of relative abundance, default is FALSE.
 #' @return x The same `mina` object with @cls_tab added.
 #' @examples
+#' \dontrun{
 #' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 100)
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
@@ -18,6 +19,7 @@
 #' maize <- net_cls_tab(maize)
 #' maize <- net_cls(maize, method = "ap", cutoff = 0.5)
 #' maize <- net_cls_tab(maize)
+#' }
 #' @exportMethod net_cls_tab
 
 setMethod("net_cls_tab", signature("mina", "ANY"),

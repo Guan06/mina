@@ -6,8 +6,10 @@
 #' @importFrom stats dist
 #' @param x An object of class `mina` with @multi (and @perm if sig is TRUE)
 #' defined.
-#' @param method The distance to be calculated, "spectral" and "Jaccard" are
+#' @param method The distance to be calculated, "spectra" and "Jaccard" are
 #' available.
+#' @param evk The first `evk` eigenvalues will be used for `spectra` distance,
+#' the default is 100.
 #' @param sig Whether to test the significance, if TRUE (by default), @perm is
 #' needed.
 #' @return x The same `mina` object with @net_dis defined.
@@ -23,8 +25,8 @@
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 
-setMethod("net_dis", signature("mina", "ANY", "ANY"),
-          function(x, method, sig = TRUE) {
+setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY"),
+          function(x, method, evk = 100, sig = TRUE) {
               stop("Must specify a `method`, see `? net_dis_method_list`.")
           }
 )
@@ -35,8 +37,8 @@ setMethod("net_dis", signature("mina", "ANY", "ANY"),
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 
-setMethod("net_dis", signature("mina", "character", "ANY"),
-          function(x, method, sig = TRUE) {
+setMethod("net_dis", signature("mina", "character", "ANY", "ANY"),
+          function(x, method, evk = 100, sig = TRUE) {
               y_bs <- x@multi
               y_pm <- x@perm
               len <- length(y_bs)
@@ -66,15 +68,15 @@ setMethod("net_dis", signature("mina", "character", "ANY"),
 
                   if (method == "spectra") {
                       spectra_m <- spectra_n <- matrix(nrow = bs_len,
-                                                       ncol = 100)
+                                                       ncol = evk)
                       for (j in 1 : bs_len) {
                           adj_m <- unlist(this_m[[j]])
                           adj_n <- unlist(this_n[[j]])
                           adj_m[is.na(adj_m)] <- 0
                           adj_n[is.na(adj_n)] <- 0
 
-                          spectra_m[j, ] <- get_spectra(adj_m, k = 100)
-                          spectra_n[j, ] <- get_spectra(adj_n, k = 100)
+                          spectra_m[j, ] <- get_spectra(adj_m, k = evk)
+                          spectra_n[j, ] <- get_spectra(adj_n, k = evk)
                        }
 
                       seqs <- seq(1 : bs_len)
@@ -121,7 +123,7 @@ setMethod("net_dis", signature("mina", "character", "ANY"),
 
                       if (method == "spectra") {
                           spectra_mp <- spectra_np <- matrix(nrow = pm_len,
-                                                             ncol = 100)
+                                                             ncol = evk)
 
                           for (k in 1 : pm_len) {
                               adj_mp <- unlist(this_mp[[k]])
@@ -129,8 +131,8 @@ setMethod("net_dis", signature("mina", "character", "ANY"),
                               adj_m[is.na(adj_m)] <- 0
                               adj_n[is.na(adj_n)] <- 0
 
-                              spectra_mp[k, ] <- get_spectra(adj_mp, k = 100)
-                              spectra_np[k, ] <- get_spectra(adj_np, k = 100)
+                              spectra_mp[k, ] <- get_spectra(adj_mp, k = evk)
+                              spectra_np[k, ] <- get_spectra(adj_np, k = evk)
                           }
 
                           seqs <- seq(1 : pm_len)
@@ -207,7 +209,7 @@ setMethod("net_dis", signature("mina", "character", "ANY"),
 get_spectra <- function(x,  k = 100){
     x <- as.matrix(x)
     x[is.na(x)] <- 0
-    spectra <- eigs_sym(x, k, opts=list(retvec=FALSE))
+    spectra <- eigs_sym(x, k, opts = list(retvec = FALSE))
     y <- spectra$values
 }
 

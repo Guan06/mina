@@ -6,16 +6,17 @@
 #' @include all_classes.R all_generics.R
 #' @param x An object of class `mina` with @norm and @des defined.
 #' @param group The column name of descriptive file @des for comparison.
-#' @param g_size The cutoff of group size used for filtering, default 88.
+#' @param g_size The cutoff of group size used for filtering, default is 88.
 #' @param s_size The number of samples used for network inference during
-#' bootstrap and permutation (when sig == TRUE), it should be smaller than
-#' g_size / 2 to make sure the randomness; default 30.
-#' @param rm Filtering the components present in less than 20% of the samples
+#' bootstrap and permutation (when `sig` is TRUE), it should be smaller than
+#' g_size / 2 to make sure the randomness; default is 30.
+#' @param rm Filtering the components present in less than `per` of the samples
 #' from compared groups, default TRUE.
-#' @param sig Whether to test the significance, skip the permutation when sig ==
-#' FALSE, default TRUE.
-#' @param bs The times for bootstrap network inference, default 6
-#' @param pm The times for permuatated samples network inference, default 6.
+#' @param per The percentage of present samples for filtering, default is 0.1.
+#' @param sig Whether to test the significance, skip the permutation when set as
+#' FALSE, default is TRUE.
+#' @param bs The times for bootstrap network inference, default is 6.
+#' @param pm The times for permuatated samples network inference, default is 6.
 #' @examples
 #' \dontrun{
 #' data(maize)
@@ -28,9 +29,9 @@
 #' @exportMethod bs_pm
 
 setMethod("bs_pm", signature("mina", "ANY", "numeric", "numeric", "logical",
-                             "logical", "numeric", "numeric"),
-          function(x, group, g_size = 88, s_size = 30, rm = TRUE, sig = TRUE,
-                   bs = 6, pm = 6) {
+                             "numeric", "logical", "numeric", "numeric"),
+          function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
+                   sig = TRUE, bs = 6, pm = 6) {
               stop("Please specify a column in descriptive file for grouping
                    samples!")
           }
@@ -41,10 +42,10 @@ setMethod("bs_pm", signature("mina", "ANY", "numeric", "numeric", "logical",
 #' @rdname bs_pm-mina
 #' @exportMethod bs_pm
 
-setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY",
+setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
                             "ANY", "ANY", "ANY"),
-          function(x, group, g_size = 100, s_size = 50, rm = TRUE, sig = TRUE,
-                   bs = 6, pm = 6) {
+          function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
+                   sig = TRUE, bs = 6, pm = 6) {
 
               if (s_size >= g_size) {
                   stop("`s_size` can not be larger than `g_size`!")
@@ -102,10 +103,10 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY",
 
                           # filter if rm is TRUE
                           if (rm) {
-                              mat_mn <- filter_mat(mat_mn, p = s_size * 0.1)
+                              mat_mn <- filter_mat(mat_mn, p = s_size * per)
                               num_mn <- ncol(mat_mn)
                               if (num_mn < s_size) {
-                                  stop("Not enough samples for", group_m,
+                                  stop("Not enough samples for ", group_m,
                                        " bootstrap after filtering!")
                               }
                           }
@@ -120,7 +121,7 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY",
 
                           # filter if rm is TRUE
                           if (rm) {
-                              mat_mn <- filter_mat(mat_mn, p = size * 0.2)
+                              mat_mn <- filter_mat(mat_mn, p = size * per * 2)
                               this_mat_m <- mat_mn[, colnames(mat_mn) %in%
                                               des_m$Sample_ID]
                               this_mat_n <- mat_mn[, colnames(mat_mn) %in%
@@ -172,15 +173,15 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY",
                       rm(MLST, NLST)
                       gc(reset = T)
 
-                      # start permuationg
+                      # start permutation
                       if (sig) {
                           MPLST <- list()
                           NPLST <- list()
 
                           for (p in 1 : pm) {
                               pm_mn <- sample.int(num_mn, s_size * 2)
-                              pm_m <- pm_mn[1 : 50]
-                              pm_n <- pm_mn[51 : 100]
+                              pm_m <- pm_mn[1 : s_size]
+                              pm_n <- pm_mn[(s_size + 1) : (s_size * 2)]
 
                               mat_pm_m <- mat_mn[, pm_m]
                               mat_pm_n <- mat_mn[, pm_n]

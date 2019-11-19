@@ -14,7 +14,7 @@
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 100)
 #' maize <- fit_tabs(maize)
 #' asv_norm <- maize@norm
@@ -96,9 +96,9 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 
 #' Function for `tina` dissimilarity / distance calculation. Modified from
 #' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-#' master/functions.community_similarity.R
-#' Pearson / Spearman could be used for calculating correlation and weighted /
-#' unweighted Jaccard could be used for the calculation of similarity.
+#' master/functions.community_similarity.R Pearson/Spearman could be used
+#' for calculating correlation and weighted/unweighted Jaccard could be used
+#' for the calculation of similarity.
 #'
 #' @include all_classes.R all_generics.R
 #' @param x An matrix for `tina` dissimilarity calculation.
@@ -113,7 +113,7 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 100)
 #' maize <- fit_tabs(maize)
 #' asv_norm <- maize@norm
@@ -162,7 +162,7 @@ tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
+#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 100)
 #' maize <- fit_tabs(maize)
 #' asv <- maize@norm

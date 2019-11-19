@@ -2,10 +2,9 @@
 % Please edit documentation in R/norm_tab.R
 \name{rarefaction_subsample}
 \alias{rarefaction_subsample}
-\title{Rarefaction subsample function, one sample, modified from
-\code{\link[phyloseq]{rarefaction_subsample}} which is a internal function.
-Resample with replacement for default. As mentioned in
-\pkg{phyloseq}, this is set for computational efficiency.}
+\title{Rarefaction subsample function, one sample, modified from a internal function
+in \pkg{phyloseq}, find it
+\href{https://rdrr.io/bioc/phyloseq/man/rarefy_even_depth.html}{here}.}
 \usage{
 rarefaction_subsample(x, depth = 1000, replace = TRUE)
 }
@@ -15,12 +14,11 @@ rarefaction_subsample(x, depth = 1000, replace = TRUE)
 \item{depth}{The depth for rarefying, 1000 by default.}
 
 \item{replace}{Whether to sample with or without replacement, \code{TRUE} by
-default.}
+default for computational efficiency.}
 }
 \description{
-Rarefaction subsample function, one sample, modified from
-\code{\link[phyloseq]{rarefaction_subsample}} which is a internal function.
-Resample with replacement for default. As mentioned in
-\pkg{phyloseq}, this is set for computational efficiency.
+Rarefaction subsample function, one sample, modified from a internal function
+in \pkg{phyloseq}, find it
+\href{https://rdrr.io/bioc/phyloseq/man/rarefy_even_depth.html}{here}.
 }
 \keyword{internal}

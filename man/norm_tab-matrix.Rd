@@ -9,7 +9,7 @@
   replace = TRUE)
 }
 \arguments{
-\item{x}{A quantitative matrix with samples in columns and compostions in
+\item{x}{A quantitative matrix with samples in columns and compositions in
 rows.}
 
 \item{method}{The method used for normalization.}

@@ -3,7 +3,7 @@
 #' Normalize the quantitative matrix.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x A quantitative matrix with samples in columns and compostions in
+#' @param x A quantitative matrix with samples in columns and compositions in
 #' rows.
 #' @param method The method used for normalization.
 #' @param depth The depth for rarefying, 1000 by default.
@@ -76,7 +76,7 @@ setMethod("norm_tab", signature("mina", "character", "ANY", "ANY"),
 
 #' Function for normalization, by total number of the reads in each sample.
 #'
-#' @param x A quantitative table with samples in cloumns and compostions in
+#' @param x A quantitative table with samples in columns and compositions in
 #' rows.
 #' @return A normalized quantitative table.
 #' @keywords internal
@@ -89,11 +89,10 @@ norm_by_total <- function(x) {
 ###############################################################################
 
 #' Function for normalization by rarefying the samples into the same depth,
-#' modified from
-#' \code{\link[=https://rdrr.io/bioc/phyloseq/man/rarefy_even_depth.html]
-#' {rarefy_even_depth}}.
+#' modified from \pkg{phyloseq}, find it
+#' \href{https://rdrr.io/bioc/phyloseq/man/rarefy_even_depth.html}{here}.
 #'
-#' @param x A quantitative table with sample in columns and compostions in rows.
+#' @param x A quantitative table with sample in columns and compositions in rows.
 #' @param depth The depth for rarefying, 1000 by default.
 #' @param replace Whether to sample with replacement (\code{TRUE}) or without
 #' replacement (\code{FALSE}). Default \code{TRUE} for computational efficiency.
@@ -132,16 +131,15 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
 
 ###############################################################################
 
-#' Rarefaction subsample function, one sample, modified from
-#' \code{\link[phyloseq]{rarefaction_subsample}} which is a internal function.
-#' Resample with replacement for default. As mentioned in
-#' \pkg{phyloseq}, this is set for computational efficiency.
+#' Rarefaction subsample function, one sample, modified from a internal function
+#' in \pkg{phyloseq}, find it
+#' \href{https://rdrr.io/bioc/phyloseq/man/rarefy_even_depth.html}{here}.
 #'
 #' @importFrom methods as
 #' @param x A column of quantitative table.
 #' @param depth The depth for rarefying, 1000 by default.
 #' @param replace Whether to sample with or without replacement, \code{TRUE} by
-#' default.
+#' default for computational efficiency.
 #' @keywords internal
 
 rarefaction_subsample <- function(x, depth = 1000, replace = TRUE){

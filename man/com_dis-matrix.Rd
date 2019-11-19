@@ -31,7 +31,7 @@ Calculate the community dissimilarity / distance matrix of the input matrix.
 \examples{
 \dontrun{
 data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize@tab <- maize@tab[1 : 1000, 1 : 200]
 maize <- norm_tab(maize, method = "raref", depth = 100)
 maize <- fit_tabs(maize)
 asv_norm <- maize@norm

@@ -7,16 +7,19 @@
 \title{Calculate the network distance of @multi and test the significance when @perm
 is defined.}
 \usage{
-\S4method{net_dis}{mina,ANY}(x, method, sig = TRUE)
+\S4method{net_dis}{mina,ANY}(x, method, evk = 100, sig = TRUE)
 
-\S4method{net_dis}{mina,character}(x, method, sig = TRUE)
+\S4method{net_dis}{mina,character}(x, method, evk = 100, sig = TRUE)
 }
 \arguments{
 \item{x}{An object of class `mina` with @multi (and @perm if sig is TRUE)
 defined.}
 
-\item{method}{The distance to be calculated, "spectral" and "Jaccard" are
+\item{method}{The distance to be calculated, "spectra" and "Jaccard" are
 available.}
+
+\item{evk}{The first `evk` eigenvalues will be used for `spectra` distance,
+the default is 100.}
 
 \item{sig}{Whether to test the significance, if TRUE (by default), @perm is
 needed.}

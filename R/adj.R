@@ -1,14 +1,14 @@
 ###############################################################################
 
-#' Calculate the adjacacency matrix of @norm by correlation with `mina` class
+#' Calculate the adjacency matrix of @norm by correlation with `mina` class
 #' object as input.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An object of the class mina with @norm defined.
-#' @param method The correlation coeffient used for adjacacency matrix.
+#' @param x An object of the class `mina` with @norm defined.
+#' @param method The correlation coefficient used for adjacency matrix.
 #' @param threads The number of threads used for parallel running, 80 by
 #' default.
-#' @param nblocks The number of row / column for splitted sub-matrix, 400 by
+#' @param nblocks The number of row/column for splitting sub-matrix, 400 by
 #' default.
 #' @examples
 #' \dontrun{
@@ -49,24 +49,25 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY"),
 
 ###############################################################################
 
-#' Calculate the adjacacency matrix of @norm by correlation with matrix as
-#' input.
+#' Calculate the adjacency matrix of @norm by correlation with matrix as input.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An matrix for correlation / adjacency matrix calculation.
-#' @param method The correlation coefficient used for adjacacency matrix.
+#' @param x An matrix for correlation/adjacency matrix calculation.
+#' @param method The correlation coefficient used for adjacency matrix.
 #' @param threads The number of threads used for parallel running, 80 by
 #' default.
-#' @param nblocks The number of row / column for splitted sub-matrix, 400 by
+#' @param nblocks The number of row/column for splitting sub-matrix, 400 by
 #' default.
 #' @examples
+#' \dontrun{
 #' data(maize_asv)
 #' asv <- maize_asv[1 : 500, 1 : 300]
 #' asv_adj <- adj(asv, method = "sparcc", threads = 2, nblocks = 40)
-#' asv_norm <- norm_tab(asv, method = "raref")
+#' asv_norm <- norm_tab(asv, method = "raref", depth = 100)
 #' asv_adj <- adj(asv_norm, method = "pearson")
 #' asv_adj <- adj(asv_norm, method = "spearman")
-#' @return y The adjacacency matrix.
+#' }
+#' @return y The adjacency matrix.
 #' @rdname adj-matrix
 #' @exportMethod adj
 
@@ -108,8 +109,9 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
 ###############################################################################
 
 #' Function for `sparcc` correlation calculation. Modified from
-#' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-#' master/functions.community_similarity.R
+#' Schmidt et al. 2016, find the scripts
+#' \href{https://github.com/defleury/Schmidt_et_al_2016_community_similarity}{here}
+#' and the SparCC paper \href{https://doi.org/10.1371/journal.pcbi.1002687}{here}.
 #'
 #' @include all_classes.R all_generics.R
 #'
@@ -122,7 +124,7 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
 #' @param x An matrix for correlation calculation.
 #' @param threads The number of threads used for parallel running, 80 by
 #' default.
-#' @param nblocksThe number of row / column for splitted sub-matrix, 400 by
+#' @param nblocks The number of row /column for splitting sub-matrix, 400 by
 #' default.
 #' @examples
 #' \dontrun{
@@ -207,7 +209,7 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
 
 ###############################################################################
 
-#' List of adjacacency matix calculation methods / correlations supported in
+#' List of adjacency matix calculation methods/ orrelations supported in
 #' \code{\link[mina]{adj}}
 #'
 #' Correlation methods should be specified by exact string match.

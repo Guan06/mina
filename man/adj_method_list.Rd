@@ -3,7 +3,7 @@
 \docType{data}
 \name{adj_method_list}
 \alias{adj_method_list}
-\title{List of adjacacency matix calculation methods / correlations supported in
+\title{List of adjacency matix calculation methods/ orrelations supported in
 \code{\link[mina]{adj}}}
 \format{A list of character vectors.
 \describe{

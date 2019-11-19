@@ -9,10 +9,10 @@ clustering results @cls.}
 \S4method{net_cls_tab}{mina}(x, uw = FALSE)
 }
 \arguments{
-\item{x}{An object of class `mina` with @norm_tab and @cls defined.}
+\item{x}{An object of class `mina` with @norm and @cls defined.}
 
 \item{uw}{By summing up the number of present components of each cluster
-instead of relative abundance, default FALSE.}
+instead of relative abundance, default is FALSE.}
 }
 \value{
 x The same `mina` object with @cls_tab added.
@@ -22,8 +22,9 @@ Get the cluster table @cls_tab from quantitative table @tab and network
 clustering results @cls.
 }
 \examples{
+\dontrun{
 data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 500]
+maize@tab <- maize@tab[1 : 1000, 1 : 200]
 maize <- norm_tab(maize, method = "raref", depth = 100)
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")
@@ -31,4 +32,5 @@ maize <- net_cls(maize, method = "mcl", cutoff = 0.5)
 maize <- net_cls_tab(maize)
 maize <- net_cls(maize, method = "ap", cutoff = 0.5)
 maize <- net_cls_tab(maize)
+}
 }

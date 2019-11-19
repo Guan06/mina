@@ -4,7 +4,7 @@
 \name{adj,mina,ANY-method}
 \alias{adj,mina,ANY-method}
 \alias{adj,mina,character-method}
-\title{Calculate the adjacacency matrix of @norm by correlation with `mina` class
+\title{Calculate the adjacency matrix of @norm by correlation with `mina` class
 object as input.}
 \usage{
 \S4method{adj}{mina,ANY}(x, method, threads = 80, nblocks = 400)
@@ -12,21 +12,21 @@ object as input.}
 \S4method{adj}{mina,character}(x, method, threads = 80, nblocks = 400)
 }
 \arguments{
-\item{x}{An object of the class mina with @norm defined.}
+\item{x}{An object of the class `mina` with @norm defined.}
 
-\item{method}{The correlation coeffient used for adjacacency matrix.}
+\item{method}{The correlation coefficient used for adjacency matrix.}
 
 \item{threads}{The number of threads used for parallel running, 80 by
 default.}
 
-\item{nblocks}{The number of row / column for splitted sub-matrix, 400 by
+\item{nblocks}{The number of row/column for splitting sub-matrix, 400 by
 default.}
 }
 \value{
 x The same `mina` object with @adj added.
 }
 \description{
-Calculate the adjacacency matrix of @norm by correlation with `mina` class
+Calculate the adjacency matrix of @norm by correlation with `mina` class
 object as input.
 }
 \examples{

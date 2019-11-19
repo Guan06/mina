@@ -20,10 +20,9 @@ Calculate the adjacacency matrix of @norm by correlation.
 }
 \examples{
 data(maize)
-maize@tab <- maize@tab[1 : 500, 1 : 300]
-maize <- norm_tab(maize, method = "raref")
+maize@tab <- maize@tab[1 : 500, 1 : 200]
+maize <- norm_tab(maize, method = "raref", depth = 200)
 maize <- fit_tabs(maize)
-maize <- adj(maize, method = "pearson")
 maize <- adj(maize, method = "spearman")
 maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
 }
