@@ -1,5 +1,5 @@
 ---
-title: "Microbial dIversity and Network Analysis with MINA"
+title: "Microbial dIversity and Network Analysis with *MINA*"
 author: "Rui Guan"
 date: "`r Sys.Date()`"
 abstract: >
@@ -34,12 +34,46 @@ The package is used for microbial profiling data analysis, including community
 similarity / dissimilarity / distance calculation and network comparison.
 
 # Input data
-MINA package expects count data (e.g. OTU table or ASV table) to represent
+*MINA* package expects count data (e.g. OTU table or ASV table) to represent
 community profiling results and a descriptive table which indicates the
 information of each sample. In the quantitative table, each row contains one
-composition in the community and each column represent one profiled sample. In
+composition in the community and each column represents one profiled sample. In
 the descriptive table, same samples as rows in quantitative table should be
-included in the column "SampleID".
+included in the column "**Sample_\_ID**".
+
+## Import data
+Using `new()` to create a new object and then import data into the object. The
+package was written followed S4 rules thus @ will be used for indicating slots.
+The slots could be imported separately after creating a new object:
+```{r importData, eval = FALSE}
+    maize <- new(mina)
+    maize@tab <- maize_asv
+    maize@des <- maize_des
+```
+Or together at the same time when starting a new object:
+```{r importData, eval = FLASE}
+    maize2 <- new(mina, tab = maize_asv, des = maize_des)
+```
+For the format of data, one could take a look at the data included in the
+package as indicated as before. Also functions are developed to double check the
+format of imported data, both quantitative and descriptive table.
+```{r checkData, eval = FALSE}
+    # return TRUE if both quantitative and descriptive files are imported with
+    # right format
+    check_mina(maize)
+    # return error message if @tab of the object doesn't exist
+    check_mina_qu(maize)
+    # return TRUE if @tab or @des both exist and contain the same samples
+    check_mina_de(maize)
+```
+After checking, if there is mismatch between quantitative and descriptive
+tables, `fit_tabs()` could be used to trim two tables.
+```{r fitTabs}
+    maize <- fit_tabs(maize)
+```
+
+# Diversity analysis of the community
+
 
 
 # About this vignette
@@ -55,33 +89,8 @@ included in the column "SampleID".
 - [Hyperlink](#sec:typeset-legend) - Hyperlinks are
 clickable text that will jump to sections and external pages.
 
-## Import data
-
-The first step is to import quantitative table of microbial community profiling
-data (e.g. OTU table) and corresponding descriptive file (e.g. design file) into
-the object.
-To load data, use the `new()` for all avaliable file or `add_tab()` and
-`add_des()` to import them seperately.
-
-For the quantitative file (e.g. OTU table), rows are compositions of the
-community and columns are samples. The corresponding descriptive file(e.g.
-design file) should
-have the same samples as quantitative table. The first column of descriptive
-file is "**Sample_\_ID**" which contains IDs of samples.
-
 #### Example
 
-Import files together:
-
-```{r, eval=FALSE}
-m <- new(mina, tab = "otu_table.txt", des_tab = "design.txt")
-```
-Import files seperately:
-```{r, eval=FALSE}
-m1 <- new(mina)
-m1 <- addTab(m1, "otu_table.txt")
-m1 <- addDes(m1, "design.txt")
-```
 ### Normalize quantitative table
 
 
