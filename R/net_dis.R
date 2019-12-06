@@ -84,7 +84,16 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY"),
                       rownames(spectra_n) <- paste0(group_n, "_b", seqs)
                       spectra_mn <- rbind(spectra_m, spectra_n)
 
-                      dis_bs <- rbind(dis_bs, get_dis_df(dist(spectra_mn)))
+                      this_dis_bs <- get_dis_df(dist(spectra_mn))
+
+                      # filter intra group network comparison when comparing
+                      # networks from different environments
+                      if (group_m != group_n) {
+                          r <- this_dis_bs$Group1 != this_dis_bs$Group2
+                          this_dis_bs <- this_dis_bs[r, ]
+                      }
+                      dis_bs <- rbind(dis_bs, this_dis_bs)
+
                   } else if (method == "Jaccard") {
                       jaccard_mn <- c()
                       for (j1 in 1 : bs_len) {
@@ -139,7 +148,16 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY"),
                           rownames(spectra_mp) <- paste0(group_m, "_p", seqs)
                           rownames(spectra_np) <- paste0(group_n, "_p", seqs)
                           spectra_mnp <- rbind(spectra_mp, spectra_np)
-                          dis_pm <- rbind(dis_pm, get_dis_df(dist(spectra_mnp)))
+                          this_dis_pm <- get_dis_df(dist(spectra_mnp))
+
+                          # filter intra group network comparison when
+                          # comparing networks from different environments
+                          if (group_m != group_n) {
+                              r <- this_dis_pm$Group1 != this_dis_pm$Group2
+                              this_dis_pm <- this_dis_pm[r, ]
+                          }
+                          dis_pm <- rbind(dis_pm, this_dis_pm)
+
                       } else if (method == "Jaccard") {
                           jaccard_mnp <- c()
                           for (k1 in 1 : pm_len) {
@@ -218,6 +236,7 @@ get_spectra <- function(x,  k = 100){
 #' Function for getting distance data frame from `dist`.
 #'
 #' @importFrom reshape2 melt
+#' @importFrom stringr str_detect
 #' @param x The object of class `dist`.
 #' @keywords internal
 
@@ -230,11 +249,23 @@ get_dis_df <- function(x) {
     colnames(x) <- c("C1", "C2", "Distance")
     x <- x[!is.na(x$Distance), ]
 
-    x <- cbind(x, do.call("rbind", strsplit(as.character(x$C1), "_")))
-    x <- x[, 1 : 4]
+    if (str_detect(x$C1, "_b")) {
+        x <- cbind(x, do.call("rbind",
+                              strsplit(as.character(x$C1), "_b")))
+        x <- x[, 1 : 4]
 
-    x <- cbind(x, do.call("rbind", strsplit(as.character(x$C2), "_")))
-    x <- x[, 1 : 5]
+        x <- cbind(x, do.call("rbind",
+                              strsplit(as.character(x$C2), "_b")))
+        x <- x[, 1 : 5]
+    } else if (str_detect(x$C1, "_p")) {
+        x <- cbind(x, do.call("rbind",
+                              strsplit(as.character(x$C1), "_p")))
+        x <- x[, 1 : 4]
+
+        x <- cbind(x, do.call("rbind",
+                              strsplit(as.character(x$C2), "_p")))
+        x <- x[, 1 : 5]
+    }
     colnames(x)[4:5] <- c("Group1", "Group2")
     return(x)
 }

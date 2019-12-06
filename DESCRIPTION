@@ -26,7 +26,8 @@ Imports:
     parallelDist,
     reshape2,
     plyr,
-    biganalytics
+    biganalytics,
+    stringr
 LazyData: true
 Suggests:
     knitr,

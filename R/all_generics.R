@@ -182,12 +182,19 @@ setGeneric("dmr", function(x, k = 2) {
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' maize <- dmr(maize)
-#' p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
-#' p2 <- com_plot(maize, match = "Sample_ID", color = "Host_genotype", shape =
+#' p1a <- com_plot(maize, match = "Sample_ID", color = "Compartment")
+#' p1b <- com_plot(maize, match = "Sample_ID", d1 = 3, d2 = 4,
+#' color = "Compartment")
+#' p2a <- com_plot(maize, match = "Sample_ID", color = "Genotype")
+#' p2b <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 3, color =
+#' "Host_genotype")
+#' p3a <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
 #' "Soil")
+#' p3b <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 4, color =
+#' "Compartment", shape = "Soil")
 #' @export
 
-setGeneric("com_plot", function(x, match, color, shape = NULL) {
+setGeneric("com_plot", function(x, match, d1 = 1, d2 = 2, color, shape = NULL) {
     standardGeneric("com_plot")
 })
 

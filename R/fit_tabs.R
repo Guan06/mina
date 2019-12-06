@@ -37,7 +37,8 @@ setMethod("fit_tabs", signature("mina"),
               x@des <- x@des[x@des$Sample_ID %in% inter, ]
 
               # make the quantitative and descriptive files in the same order
-              x@tab <- x@tab[, match(x@des$Sample_ID, colnames(x@tab))]
+              x@tab <- x@tab[rowSums(x@tab) > 0,
+                             match(x@des$Sample_ID, colnames(x@tab))]
 
               ## filter the descriptive and quantitative again if @norm exists
               if (class(x@norm) != "NULL") {
@@ -49,8 +50,10 @@ setMethod("fit_tabs", signature("mina"),
                   x@des <- x@des[x@des$Sample_ID %in% inter2, ]
 
                   # re-ordering
-                  x@norm <- x@norm[, match(x@des$Sample_ID, colnames(x@norm))]
-                  x@tab <- x@tab[, match(x@des$Sample_ID, colnames(x@tab))]
+                  x@norm <- x@norm[rowSums(x@norm) > 0,
+                                   match(x@des$Sample_ID, colnames(x@norm))]
+                  x@tab <- x@tab[rowSums(x@tab) > 0,
+                                 match(x@des$Sample_ID, colnames(x@tab))]
               }
               return(x)
           }

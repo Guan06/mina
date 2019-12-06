@@ -19,6 +19,7 @@
 #' maize <- fit_tabs(maize)
 #' asv_norm <- maize@norm
 #' asv_dis <- com_dis(asv_norm, method = "bray")
+#' asv_dis <- com_dis(asv_norm, method = "tina", threads = 8, nblocks = 40)
 #' }
 #' @return y The dissimilarity / distance matrix.
 #' @rdname com_dis-matrix
