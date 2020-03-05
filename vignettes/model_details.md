@@ -1,7 +1,7 @@
 ---
 title: "Microbial dIversity and Network Analysis with *MINA*"
 author: "Rui Guan"
-date: "`r Sys.Date()`"
+date: "2020-03-05"
 abstract: >
     With the help of rapidly developing sequencing technologies, an increasing
     number of microbiome datasets are generated and analysed. At present,
@@ -13,7 +13,7 @@ abstract: >
     establishment of those communities. In addition, a bootstrap-permutation
     based network comparison method was developed to compare global and local
     ecological networks and to statistically assess their dissimilarity.
-    MINA package version: `r packageVersion("mina")`
+    MINA package version: 1.0.0
 output:
     rmarkdown::html_vignette:
         highlight: pygments
@@ -26,12 +26,7 @@ vignette: >
   %\usepackage[utf8]{inputenc}
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+
 
 # Overview
 
@@ -50,13 +45,15 @@ included in the column "**Sample_\_ID**".
 Using `new()` to create a new object and then import data into the object. The
 package was written followed S4 rules thus @ will be used for indicating slots.
 The slots could be imported separately after creating a new object:
-```{r importData, eval = FALSE}
+
+```r
     maize <- new(mina)
     maize@tab <- maize_asv
     maize@des <- maize_des
 ```
 Or together at the same time when starting a new object:
-```{r importData_2, eval = FALSE}
+
+```r
     maize2 <- new(mina, tab = maize_asv, des = maize_des)
 ```
 
@@ -64,7 +61,8 @@ Or together at the same time when starting a new object:
 For the format of data, one could take a look at the data included in the
 package as indicated as before. Also functions are developed to double check the
 format of imported data, both quantitative and descriptive table.
-```{r checkData, eval = FALSE}
+
+```r
     # return TRUE if both quantitative and descriptive files are imported with
     # right format
     check_mina(maize)
@@ -75,7 +73,8 @@ format of imported data, both quantitative and descriptive table.
 ```
 After checking, if there is mismatch between quantitative and descriptive
 tables, `fit_tabs()` could be used to trim two tables.
-```{r fitTabs}
+
+```r
     maize <- fit_tabs(maize)
 ```
 
@@ -95,7 +94,8 @@ Rarefaction and normalization by total sum are available here. For rarefaction,
 to reduce the random effect, multiple times bootstrap is recommended. The
 normalized table will be stored in the same *mina* object automatically when
 it were given as input.
-```{r rarefData, eval = FALSE}
+
+```r
     # check available normalization methods
     ? norm_tab_method_list
     # normalized by total sum
@@ -107,7 +107,8 @@ it were given as input.
     maize <- norm_tab(maize, method = "raref", multi = 99)
 ```
 When given a matrix for normalization, the normalized matrix will be returned.
-```{r rarefData_2, eval = FALSE}
+
+```r
     # normalized by total sum
     maize_asv_norm <- norm_tab(maize_asv, method = "total")
     # normalized by rarefaction
@@ -121,7 +122,8 @@ When given a matrix for normalization, the normalized matrix will be returned.
 ## Community diversity
 Based on the normalized quantitative table, distance / dissimilarity could be
 calculated between pairwise samples and used for beta-diversity analysis.
-```{r comDis, eval = FALSE}
+
+```r
     # check available dissimilarity parameters
     ? com_dis_list
     # community dissimilarity calculation, Bray-Curtis used in example
@@ -132,7 +134,8 @@ calculated between pairwise samples and used for beta-diversity analysis.
 For *TINA* dissimilarity in `com_dis()` function, *Spearman* correlation and
 weighted Jaccard was used by default, to calculate *TINA* with other options,
 use function `tina()`.
-```{r tina, eval = FALSE}
+
+```r
     # get the TINA dissimilarity of normalized quantitative table
     maize_tina <- tina(maize_asv_norm, cor_method = "spearman", sim_method =
                        "w_ja", threads = 80, nblocks = 400)
@@ -141,7 +144,8 @@ use function `tina()`.
 ## Unexplained variance of community diversity
 To evaluate the biological meaningful variance and noise ratio, the ratio of
 variance that could not be explained by any factors was calculated.
-```{r getR2, eval = FALSE}
+
+```r
     # get the unexplained variance ratio of quantitative table according to the
     # group information indicated in descriptive table.
     com_r2(maize, group = c("Compartment", "Soil", "Host_genotype"))
@@ -154,7 +158,8 @@ variance that could not be explained by any factors was calculated.
 PCoA (Principle Coordinate Analysis) is usually used for the visualization of
 beta-diversity of microbial community data. By using different color and shape,
 samples from different conditions are compared.
-```{r pcoa, eval = FALSE}
+
+```r
     # plot the community beta-diversity
     # separate samples from different conditions by color, plot PCo1 and PCo2
     p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
@@ -170,7 +175,8 @@ samples from different conditions are compared.
 ```
 When using dissimilarity matrix as input, the `dmr()` function is used to reduce
 the dimension of data and `pcoa_plot()` is used for plotting.
-```{r pcoa_2, eval = FALSE}
+
+```r
     maize_dmr <- dmr(maize_dis, k = 4)
     p <- pcoa_plot(maize_dmr, maize_des, match = "Sample_ID", d1 = 3, d2 = 4,
                    color = "Host_genotype")
@@ -184,7 +190,8 @@ of the system.
 ## Correlation coefficient adjacency matrix
 Correlation will be calculated according to the covariance of compositions
 across samples.
-```{r adj, eval = FALSE}
+
+```r
     # check available adjacency matrix
     ? adj_method_list
     # Pearson and Spearman correlation
@@ -195,7 +202,8 @@ across samples.
 ```
 Also the function could be applied to matrix directly, the correlation between
 pairwise rows will be calculated.
-```{r adj_2, eval = FALSE}
+
+```r
     # Pearson and Spearman correlation
     asv_adj <- adj(maize_asv_norm, method = "pearson")
     asv_adj <- adj(maize_asv_norm, method = "spearman")
@@ -208,7 +216,8 @@ network of each adjacency matrix is generated and closely related nodes will be
 inferred by clustering methods. In the package, Markov Cluster Algorithm (MCL,
 Dongen, 2000) and Affinity Propagation (AP, Frey _et al_, 2007) are integrated
 for network clustering.
-```{r cls, eval = FALSE}
+
+```r
     # check available network clustering methods
     ? net_cls_list
     # network clustering by MCL
@@ -220,7 +229,8 @@ for network clustering.
 ```
 Also it is possible to give a adjacency matrix directly and got the generated
 cluster data frame.
-```{r cls_2, eval = FALSE}
+
+```r
     # filter the weak correlation by cutoff and cluster by MCL
     asv_cls <- net_cls(asv_adj, method = "mcl", cutoff = 0.4)
     # filter and cluster by AP
@@ -238,7 +248,8 @@ table.
 According to the network cluster assignments, compositions belong to the same
 higher order level group are accumulated by summing up their relative
 abundances.
-```{r cls_tab, eval = FALSE}
+
+```r
     # get the cluster table by summing up compositions of the same cluster
     maize <- net_cls_tab(maize)
 ```
@@ -246,7 +257,8 @@ abundances.
 ## Community diversity analysis and comparison
 Same diversity analysis could be applied to cluster table and compared with
 composition based table.
-```{r cls_diversity, eval = FALSE}
+
+```r
     # dissimilarity between samples based on cluster table
     maize_cls_tab <- maize@cls_tab
     maize_cls_dis <- com_dis(maize_cls_tab, method = "bray")
@@ -283,9 +295,12 @@ The `html_vignette` template includes a basic CSS theme. To override this theme 
 
 The figure sizes have been customised so that you can easily put two images side-by-side. 
 
-```{r, fig.show='hold'}
+
+```r
 plot(1:10)
 ```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.svg)
 
 You can enable figure captions by `fig_caption: yes` in YAML:
 
@@ -299,9 +314,19 @@ Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr*
 
 You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
+
+|                  |  mpg| cyl|  disp|  hp| drat|    wt|  qsec| vs| am| gear| carb|
+|:-----------------|----:|---:|-----:|---:|----:|-----:|-----:|--:|--:|----:|----:|
+|Mazda RX4         | 21.0|   6| 160.0| 110| 3.90| 2.620| 16.46|  0|  1|    4|    4|
+|Mazda RX4 Wag     | 21.0|   6| 160.0| 110| 3.90| 2.875| 17.02|  0|  1|    4|    4|
+|Datsun 710        | 22.8|   4| 108.0|  93| 3.85| 2.320| 18.61|  1|  1|    4|    1|
+|Hornet 4 Drive    | 21.4|   6| 258.0| 110| 3.08| 3.215| 19.44|  1|  0|    3|    1|
+|Hornet Sportabout | 18.7|   8| 360.0| 175| 3.15| 3.440| 17.02|  0|  0|    3|    2|
+|Valiant           | 18.1|   6| 225.0| 105| 2.76| 3.460| 20.22|  1|  0|    3|    1|
+|Duster 360        | 14.3|   8| 360.0| 245| 3.21| 3.570| 15.84|  0|  0|    3|    4|
+|Merc 240D         | 24.4|   4| 146.7|  62| 3.69| 3.190| 20.00|  1|  0|    4|    2|
+|Merc 230          | 22.8|   4| 140.8|  95| 3.92| 3.150| 22.90|  1|  0|    4|    2|
+|Merc 280          | 19.2|   6| 167.6| 123| 3.92| 3.440| 18.30|  1|  0|    4|    4|
 
 Also a quote using `>`:
 

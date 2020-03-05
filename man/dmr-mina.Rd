@@ -5,7 +5,7 @@
 \alias{dmr,mina-method}
 \title{Dimensionality reduction of the @dis included in mina.}
 \usage{
-\S4method{dmr}{mina}(x, k = 2)
+\S4method{dmr}{mina}(x, k = 4)
 }
 \arguments{
 \item{x}{An object of the class `mina` with @dis defined.}
@@ -25,5 +25,6 @@ maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 maize <- dmr(maize)
+maize <- dmr(maize, k = 4)
 }
 }

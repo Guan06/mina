@@ -14,7 +14,7 @@
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
-#' com_r2(maize, group = c("Compartment", "Soil", "Genotype"))
+#' com_r2(maize, group = c("Compartment", "Soil", "Host_genotype"))
 #' }
 #' @return r2 The variance ratio cannot be explained by given groups.
 #' @rdname com_r2-mina

@@ -36,5 +36,6 @@ maize <- norm_tab(maize, method = "raref", depth = 100)
 maize <- fit_tabs(maize)
 asv_norm <- maize@norm
 asv_dis <- com_dis(asv_norm, method = "bray")
+asv_dis <- com_dis(asv_norm, method = "tina", threads = 8, nblocks = 40)
 }
 }

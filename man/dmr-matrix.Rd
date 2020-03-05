@@ -5,7 +5,7 @@
 \alias{dmr,matrix-method}
 \title{Dimensionality reduction of the distance matrix.}
 \usage{
-\S4method{dmr}{matrix}(x, k = 2)
+\S4method{dmr}{matrix}(x, k = 4)
 }
 \arguments{
 \item{x}{A distance matrix.}
@@ -27,5 +27,6 @@ maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 asv_dis <- maize@dis
 asv_dis_dmr <- dmr(asv_dis)
+asv_dis_dmr <- dmr(asv_dis, k = 4)
 }
 }
