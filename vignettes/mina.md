@@ -1,7 +1,7 @@
 ---
 title: "Microbial dIversity and Network Analysis with *MINA*"
 author: "Rui Guan"
-date: "2020-03-05"
+date: "2020-03-06"
 abstract: >
     With the help of rapidly developing sequencing technologies, an increasing
     number of microbiome datasets are generated and analysed. At present,
@@ -39,7 +39,7 @@ community profiling results and a descriptive table which indicates the
 information of each sample. In the quantitative table, each row contains one
 composition in the community and each column represents one profiled sample. In
 the descriptive table, same samples as rows in quantitative table should be
-included in the column "**Sample_\_ID**".
+included in the column "**Sample\_ID**".
 
 ## Import data
 Using `new()` to create a new object and then import data into the object. The
@@ -55,6 +55,33 @@ Or together at the same time when starting a new object:
 
 ```r
     maize2 <- new(mina, tab = maize_asv, des = maize_des)
+```
+Please be aware that the descriptive table have to contain a column called
+"**Sample_ID**" which includes the same samples indicated in the quantitative
+tables. See an example here:
+
+```r
+    head(maize_des)
+#>   Sample_ID Host_genotype Compartment Soil Management
+#> 1     RT_1H         1_B73        root DEMO         NK
+#> 2     RT_2H         1_B73        root DEMO         NK
+#> 3     RT_3H         1_B73        root DEMO         NK
+#> 4     RT_7H       2_DK105        root DEMO         NK
+#> 5     RT_8H       2_DK105        root DEMO         NK
+#> 6     RT_9H       2_DK105        root DEMO         NK
+```
+For the quantitative table, each column correspond to one sample indicated in
+the descriptive table and each row represent one composition in the community.
+
+```r
+    maize_asv[1:6, 1:6]
+#>           BK_481H BK_481H2 BK_482H BK_482H2 BK_483H BK_483H2
+#> ASV_1          12        2       3        4       6        9
+#> ASV_10          0        0       0        0       0        0
+#> ASV_100         1        0       0        0       1        3
+#> ASV_1000        1        1       3        1       0        0
+#> ASV_10000       1        0       0        0       0        0
+#> ASV_10001       0        0       0        0       0        0
 ```
 
 ## Check data format and tidy up
@@ -267,15 +294,59 @@ composition based table.
 ```
 
 # Network comparison and statistical test
+To compare the network of communities, pairwise distance between adjacency
+matrix, which present all connection information, are calculated. By substrate
+adjacency matrix (**A**) by the degree matrix (**D**), Laplacian matrix is obtained and
+the corresponding eigenvector and eigenvalues are calculated. Spectral distance
+then defined as the Euclidean distance between first *k* eigenvalues.
+Alternatively, Jaccard distance between matrix is implemented as dividing the
+sum of matrix contrast by the sum of larger absolute value between two adjacency
+matrices.
 
 ## Bootstrap-permutation based network construction
+To be able to test the significance of distances between matrices, a
+bootstrap-permutation based method is developed. By subsampling and bootstrap,
+true correlation adjacency matrices were constructed from subset of original
+data. Then the metadata of samples is randomly swapped as permutated datasets,
+from which the pseudo correlation coefficient is calculated. By comparing the
+true adjacency matrices with the pseudo ones, the significance of distance is
+obtained.
 
+```r
+    # compare the networks from different compartments
+    maize <- fit_tabs(maize)
+    maize <- bs_pm(maize, group = "Compartment")
+    # only get the distance, no significance test
+    maize <- bs_pm(maize, group = "Compartment", sig = FALSE)
+```
 ## Network distance calculation and significance test
+After getting the true and pseudo adjacency matrices, Spectral and Jaccard
+distance defined before is then calculated and p value is obtained by comparing
+the F (the real distance) and Fp (the pseudo distance) following the formula:
+p = $\frac { C_{F_p > F} + 1  }{ N_{dis} + 1 }$
+
+```r
+    # check the available methods
+    ? net_dis_method_list
+    # calculate the distances between matrices
+    maize <- net_dis(maize, method = "spectra")
+    maize <- net_dis(maize, method = "Jaccard")
+    # check the ditance results and significance (if applicable)
+    print(maize@dis_stat)
+```
+
+
+
+
+
+
+
+
+
+
 
 
 # About this vignette
-- **bold** - Bold is used for emphasis.
-- *italics* - Italics are used for package names, and special words, phrases.
 - `code font` - The font for code, usually courrier-like, but depends on the
   theme.
 - `myFun()` - Code font word with `()` attached at the right-end, is a function
@@ -283,17 +354,11 @@ composition based table.
 - [Hyperlink](#sec:typeset-legend) - Hyperlinks are
 clickable text that will jump to sections and external pages.
 
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
 
 ## Figures
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
+The figure sizes have been customised so that you can easily put two images
+side-by-side.
 
 
 ```r
@@ -312,21 +377,9 @@ Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr*
 
 ## More Examples
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+You can write math expressions, e.g. $Y = X\beta + \epsilon$,
+footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
 
-
-|                  |  mpg| cyl|  disp|  hp| drat|    wt|  qsec| vs| am| gear| carb|
-|:-----------------|----:|---:|-----:|---:|----:|-----:|-----:|--:|--:|----:|----:|
-|Mazda RX4         | 21.0|   6| 160.0| 110| 3.90| 2.620| 16.46|  0|  1|    4|    4|
-|Mazda RX4 Wag     | 21.0|   6| 160.0| 110| 3.90| 2.875| 17.02|  0|  1|    4|    4|
-|Datsun 710        | 22.8|   4| 108.0|  93| 3.85| 2.320| 18.61|  1|  1|    4|    1|
-|Hornet 4 Drive    | 21.4|   6| 258.0| 110| 3.08| 3.215| 19.44|  1|  0|    3|    1|
-|Hornet Sportabout | 18.7|   8| 360.0| 175| 3.15| 3.440| 17.02|  0|  0|    3|    2|
-|Valiant           | 18.1|   6| 225.0| 105| 2.76| 3.460| 20.22|  1|  0|    3|    1|
-|Duster 360        | 14.3|   8| 360.0| 245| 3.21| 3.570| 15.84|  0|  0|    3|    4|
-|Merc 240D         | 24.4|   4| 146.7|  62| 3.69| 3.190| 20.00|  1|  0|    4|    2|
-|Merc 230          | 22.8|   4| 140.8|  95| 3.92| 3.150| 22.90|  1|  0|    4|    2|
-|Merc 280          | 19.2|   6| 167.6| 123| 3.92| 3.440| 18.30|  1|  0|    4|    4|
 
 Also a quote using `>`:
 

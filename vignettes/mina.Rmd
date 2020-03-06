@@ -44,7 +44,7 @@ community profiling results and a descriptive table which indicates the
 information of each sample. In the quantitative table, each row contains one
 composition in the community and each column represents one profiled sample. In
 the descriptive table, same samples as rows in quantitative table should be
-included in the column "**Sample_\_ID**".
+included in the column "**Sample\_ID**".
 
 ## Import data
 Using `new()` to create a new object and then import data into the object. The
@@ -58,6 +58,17 @@ The slots could be imported separately after creating a new object:
 Or together at the same time when starting a new object:
 ```{r importData_2, eval = FALSE}
     maize2 <- new(mina, tab = maize_asv, des = maize_des)
+```
+Please be aware that the descriptive table have to contain a column called
+"**Sample_ID**" which includes the same samples indicated in the quantitative
+tables. See an example here:
+```{r showData, eval = TRUE}
+    head(maize_des)
+```
+For the quantitative table, each column correspond to one sample indicated in
+the descriptive table and each row represent one composition in the community.
+```{r showData_2, eval = TRUE}
+    maize_asv[1:6, 1:6]
 ```
 
 ## Check data format and tidy up
@@ -255,15 +266,57 @@ composition based table.
 ```
 
 # Network comparison and statistical test
+To compare the network of communities, pairwise distance between adjacency
+matrix, which present all connection information, are calculated. By substrate
+adjacency matrix (**A**) by the degree matrix (**D**), Laplacian matrix is obtained and
+the corresponding eigenvector and eigenvalues are calculated. Spectral distance
+then defined as the Euclidean distance between first *k* eigenvalues.
+Alternatively, Jaccard distance between matrix is implemented as dividing the
+sum of matrix contrast by the sum of larger absolute value between two adjacency
+matrices.
 
 ## Bootstrap-permutation based network construction
-
+To be able to test the significance of distances between matrices, a
+bootstrap-permutation based method is developed. By subsampling and bootstrap,
+true correlation adjacency matrices were constructed from subset of original
+data. Then the metadata of samples is randomly swapped as permutated datasets,
+from which the pseudo correlation coefficient is calculated. By comparing the
+true adjacency matrices with the pseudo ones, the significance of distance is
+obtained.
+```{r bs_pm, eval = FALSE}
+    # compare the networks from different compartments
+    maize <- fit_tabs(maize)
+    maize <- bs_pm(maize, group = "Compartment")
+    # only get the distance, no significance test
+    maize <- bs_pm(maize, group = "Compartment", sig = FALSE)
+```
 ## Network distance calculation and significance test
+After getting the true and pseudo adjacency matrices, Spectral and Jaccard
+distance defined before is then calculated and p value is obtained by comparing
+the F (the real distance) and Fp (the pseudo distance) following the formula:
+p = $\frac { C_{F_p > F} + 1  }{ N_{dis} + 1 }$
+```{r sig, eval = FALSE}
+    # check the available methods
+    ? net_dis_method_list
+    # calculate the distances between matrices
+    maize <- net_dis(maize, method = "spectra")
+    maize <- net_dis(maize, method = "Jaccard")
+    # check the ditance results and significance (if applicable)
+    print(maize@dis_stat)
+```
+
+
+
+
+
+
+
+
+
+
 
 
 # About this vignette
-- **bold** - Bold is used for emphasis.
-- *italics* - Italics are used for package names, and special words, phrases.
 - `code font` - The font for code, usually courrier-like, but depends on the
   theme.
 - `myFun()` - Code font word with `()` attached at the right-end, is a function
@@ -271,17 +324,11 @@ composition based table.
 - [Hyperlink](#sec:typeset-legend) - Hyperlinks are
 clickable text that will jump to sections and external pages.
 
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
 
 ## Figures
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
+The figure sizes have been customised so that you can easily put two images
+side-by-side.
 
 ```{r, fig.show='hold'}
 plot(1:10)
@@ -297,11 +344,9 @@ Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr*
 
 ## More Examples
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+You can write math expressions, e.g. $Y = X\beta + \epsilon$,
+footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
 
 Also a quote using `>`:
 
