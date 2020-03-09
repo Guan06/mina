@@ -4,8 +4,11 @@
 #' object as input.
 #'
 #' @include all_classes.R all_generics.R
+#' @importFrom Hmisc rcorr
 #' @param x An object of the class `mina` with @norm defined.
 #' @param method The correlation coefficient used for adjacency matrix.
+#' @param sig The asymtotic P-values, only applicable for Pearson and Spearman
+#' methods, FALSE by default.
 #' @param threads The number of threads used for parallel running, 80 by
 #' default.
 #' @param nblocks The number of row/column for splitting sub-matrix, 400 by
@@ -18,14 +21,15 @@
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "pearson")
 #' maize <- adj(maize, method = "spearman")
+#' maize <- adj(maize, method = "spearman", sig = FALSE)
 #' maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
 #' }
 #' @return x The same `mina` object with @adj added.
 #' @rdname adj-mina
 #' @exportMethod adj
 
-setMethod("adj", signature("mina", "ANY", "ANY", "ANY"),
-          function(x, method, threads = 80, nblocks = 400) {
+setMethod("adj", signature("mina", "ANY", "ANY", "ANY", "ANY"),
+          function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
               stop("Must specify a `method`, see `? adj_method_list`.")
           }
 )
@@ -35,9 +39,13 @@ setMethod("adj", signature("mina", "ANY", "ANY", "ANY"),
 #' @rdname adj-mina
 #' @exportMethod adj
 
-setMethod("adj", signature("mina", "character", "ANY", "ANY"),
-          function(x, method, threads = 80, nblocks = 400) {
-              if (method == "pearson" || method == "spearman") {
+setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
+          function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
+              if (sig == TRUE) {
+                  out <- rcorr(t(x@norm), type = method)
+                  x@adj <- out$r
+                  x@adj_sig <- out$P
+              } else if (method == "pearson" || method == "spearman") {
                   x@adj <- adj(x@norm, method = method)
               } else if (method == "sparcc") {
                   x@adj <- adj(x@tab, method = method, threads = threads,
@@ -71,7 +79,7 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY"),
 #' @rdname adj-matrix
 #' @exportMethod adj
 
-setMethod("adj", signature("matrix", "ANY", "ANY", "ANY"),
+setMethod("adj", signature("matrix","ANY", "ANY", "ANY"),
           function(x, method, threads = 80, nblocks = 400) {
               stop("Must specify a `method`, see `? adj_method_list`.")
           }

@@ -1,7 +1,7 @@
 ---
 title: "Microbial dIversity and Network Analysis with *MINA*"
 author: "Rui Guan"
-date: "2020-03-06"
+date: "2020-03-09"
 abstract: >
     With the help of rapidly developing sequencing technologies, an increasing
     number of microbiome datasets are generated and analysed. At present,
@@ -47,14 +47,14 @@ package was written followed S4 rules thus @ will be used for indicating slots.
 The slots could be imported separately after creating a new object:
 
 ```r
-    maize <- new(mina)
+    maize <- new("mina")
     maize@tab <- maize_asv
     maize@des <- maize_des
 ```
 Or together at the same time when starting a new object:
 
 ```r
-    maize2 <- new(mina, tab = maize_asv, des = maize_des)
+    maize2 <- new("mina", tab = maize_asv, des = maize_des)
 ```
 Please be aware that the descriptive table have to contain a column called
 "**Sample_ID**" which includes the same samples indicated in the quantitative
@@ -216,7 +216,7 @@ of the system.
 
 ## Correlation coefficient adjacency matrix
 Correlation will be calculated according to the covariance of compositions
-across samples.
+across samples. When significance test is applied, `rcorr()` from `Hmisc`.
 
 ```r
     # check available adjacency matrix
@@ -224,6 +224,8 @@ across samples.
     # Pearson and Spearman correlation
     maize <- adj(maize, method = "pearson")
     maize <- adj(maize, method = "spearman")
+    # Pearson and Spearman correlation with significance test
+    maize <- adj(maize, method = "spearman", sig = TRUE)
     # Sparcc correlation
     maize <- adj(maize, method = "sparcc", threads = 20, nblocks = 400)
 ```

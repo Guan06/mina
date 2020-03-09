@@ -27,7 +27,8 @@ Imports:
     reshape2,
     plyr,
     biganalytics,
-    stringr
+    stringr,
+    Hmisc
 LazyData: true
 Suggests:
     knitr,

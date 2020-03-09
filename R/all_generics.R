@@ -52,6 +52,8 @@ setGeneric("norm_tab", function(x, method, depth = 1000,
 #'
 #' @param x An object of the class mina with @norm defined.
 #' @param method The correlation coeffient used for adjacacency matrix.
+#' @param sig (optional) The asymtotic P-values, only applicable for Pearson and Spearman
+#' methods.
 #' @param threads (optional) The number of threads used for parallel running.
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
 #' @examples
@@ -60,10 +62,11 @@ setGeneric("norm_tab", function(x, method, depth = 1000,
 #' maize <- norm_tab(maize, method = "raref", depth = 200)
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
+#' maize <- adj(maize, method = "spearman", sig = FALSE)
 #' maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
 #' @export
 
-setGeneric("adj", function(x, method, threads = 80, nblocks = 400) {
+setGeneric("adj", function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
     standardGeneric("adj")
 })
 

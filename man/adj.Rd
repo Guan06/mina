@@ -4,12 +4,15 @@
 \alias{adj}
 \title{Calculate the adjacacency matrix of @norm by correlation.}
 \usage{
-adj(x, method, threads = 80, nblocks = 400)
+adj(x, method, sig, threads = 80, nblocks = 400)
 }
 \arguments{
 \item{x}{An object of the class mina with @norm defined.}
 
 \item{method}{The correlation coeffient used for adjacacency matrix.}
+
+\item{sig}{The asymtotic P-values, only applicable for Pearson and Spearman
+methods.}
 
 \item{threads}{(optional) The number of threads used for parallel running.}
 
@@ -24,5 +27,6 @@ maize@tab <- maize@tab[1 : 500, 1 : 200]
 maize <- norm_tab(maize, method = "raref", depth = 200)
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")
+maize <- adj(maize, method = "spearman", sig = FALSE)
 maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
 }

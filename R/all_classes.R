@@ -32,6 +32,8 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #' @slot dmr The list of dimensionality reduction result, includes points and
 #' variance.
 #' @slot adj The adjacency matrix between pairwise compositions (e.g. OTUs/ASVs)
+#' @slot adj_sig The P-value matrix of adjacency matrix, only applicable for
+#' Pearson and Spearman correlation adjacency matrices.
 #' @slot cls The cluster information for each composition.
 #' @slot cls_tab The cluster quantitative table.
 #'
@@ -56,6 +58,7 @@ setClass("mina",
                    dis = "mat_or_NULL",
                    dmr = "lst_or_NULL",
                    adj = "mat_or_NULL",
+                   adj_sig = "mat_or_NULL",
                    cls = "df_or_NULL",
                    cls_tab = "mat_or_NULL",
 
@@ -66,7 +69,7 @@ setClass("mina",
                    dis_stat = "df_or_NULL"
          ),
          prototype(tab = NULL, des = NULL, norm = NULL,
-                   dis = NULL, dmr = NULL, adj = NULL,
+                   dis = NULL, dmr = NULL, adj = NULL, adj_sig = NULL,
                    cls = NULL, cls_tab = NULL,
                    multi = NULL, perm = NULL, dis_bs = NULL, dis_pm = NULL,
                    dis_stat = NULL)
