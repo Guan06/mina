@@ -44,7 +44,9 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
               if (sig == TRUE) {
                   out <- rcorr(t(x@norm), type = method)
                   x@adj <- out$r
+                  diag(x@adj) <- 0
                   x@adj_sig <- out$P
+                  diag(x@adj_sig) <- 1
               } else if (method == "pearson" || method == "spearman") {
                   x@adj <- adj(x@norm, method = method)
               } else if (method == "sparcc") {

@@ -1,7 +1,7 @@
 ---
 title: "Microbial dIversity and Network Analysis with *MINA*"
 author: "Rui Guan"
-date: "2020-03-09"
+date: "2020-04-30"
 abstract: >
     With the help of rapidly developing sequencing technologies, an increasing
     number of microbiome datasets are generated and analysed. At present,
@@ -320,6 +320,28 @@ obtained.
     maize <- bs_pm(maize, group = "Compartment")
     # only get the distance, no significance test
     maize <- bs_pm(maize, group = "Compartment", sig = FALSE)
+```
+When the compsition number is big, the bootstrap-permutation could take very
+long time, thus pre-filtering is needed. `g_size` is the minimum number of
+samples for groups defined by `group`. Conditions with less than `g_size` would
+be removed for later analysis and this is set as 88 by default. `s_size` is the
+subsampling size for bootstrap and permutation, 30 by default. `s_size` should
+definitely smaller than `g_size` and recommendly smaller than half of it. Also
+compositions appear in less than specific percentage of samples could be
+filtered by setting the occupancy threshold `per` and `rm`. By default, the
+compositions which present in less than 10% samples would be filtered.
+
+```r
+    # set the size of group to remove consitions with less sample
+    # also larger s_size will lead to more stable results but will consume more
+    # computation and time resource
+    maize <- bs_pm(maize, group = "Compartment", g_size = 200, s_size = 80)
+    # remove the compositions appear in less than 20% of samples
+    maize <- bs_pm(maize, group = "Compartment", per = 0.2)
+    # set the bootstrap and permutation times. Again the more times bootstrap
+    # and permutation, the more reliable the significance, with increased
+    # computation and time resource.
+    maize <- bs_pm(maize, group = "Compartment", bs = 11, pm = 11)
 ```
 ## Network distance calculation and significance test
 After getting the true and pseudo adjacency matrices, Spectral and Jaccard

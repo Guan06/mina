@@ -46,14 +46,14 @@ setMethod("fit_tabs", signature("mina"),
                   samples4 <- as.character(x@des$Sample_ID)
                   inter2 <- intersect(samples3, samples4)
                   x@norm <- x@norm[, colnames(x@norm) %in% inter2]
-                  x@tab <- x@tab[, colnames(x@tab) %in% inter2]
+                  #x@tab <- x@tab[, colnames(x@tab) %in% inter2]
                   x@des <- x@des[x@des$Sample_ID %in% inter2, ]
 
                   # re-ordering
                   x@norm <- x@norm[rowSums(x@norm) > 0,
                                    match(x@des$Sample_ID, colnames(x@norm))]
-                  x@tab <- x@tab[rowSums(x@tab) > 0,
-                                 match(x@des$Sample_ID, colnames(x@tab))]
+                  #x@tab <- x@tab[rowSums(x@tab) > 0,
+                  #               match(x@des$Sample_ID, colnames(x@tab))]
               }
               return(x)
           }
