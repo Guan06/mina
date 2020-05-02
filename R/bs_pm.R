@@ -28,8 +28,8 @@
 #' @rdname bs_pm-mina
 #' @exportMethod bs_pm
 
-setMethod("bs_pm", signature("mina", "ANY", "numeric", "numeric", "logical",
-                             "numeric", "logical", "numeric", "numeric"),
+setMethod("bs_pm", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY",
+                             "ANY", "ANY", "ANY"),
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
                    sig = TRUE, bs = 6, pm = 6) {
               stop("Please specify a column in descriptive file for grouping
