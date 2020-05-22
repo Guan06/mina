@@ -268,6 +268,10 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' FALSE, default is TRUE.
 #' @param bs The times for bootstrap network inference, default is 6.
 #' @param pm The times for permutation network inference, default is 6.
+#' @param individual Whether to output the bootstrap and permutation results of
+#' each comparison individually, default is FALSE.
+#' @param out_dir The output directory if `individual` is TRUE, default is the
+#' current working directory.
 #' @examples
 #' \dontrun{
 #' data(maize)
@@ -278,7 +282,8 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' @export
 
 setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
-                             per = 0.1, sig = TRUE, bs = 6, pm = 6) {
+                             per = 0.1, sig = TRUE, bs = 6, pm = 6,
+                             individual = FALSE, out_dir = "./") {
     standardGeneric("bs_pm")
 })
 
@@ -295,6 +300,8 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 #' the default is 100.
 #' @param sig Whether to test the significance, if TRUE (by default), @perm is
 #' needed.
+#' @param skip Whether to skip the comparison when the dimenstion of adjacency
+#' matrix is smaller than setted `evk`.
 #' @examples
 #' \dontrun{
 #' data(maize)
@@ -305,6 +312,40 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 #' }
 #' @export
 
-setGeneric("net_dis", function(x, method, evk = 100, sig = TRUE) {
+setGeneric("net_dis", function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
     standardGeneric("net_dis")
+})
+
+################################################################################
+
+#' Calculate the network distance of bootstrap and permutation when appliable.
+#'
+#' @param x The folder store the network inference results.
+#' defined.
+#' @param method The distance to be calculated, "spectra" and "Jaccard" are
+#' available.
+#' @param evk The first `evk` eigenvalues will be used for `spectra` distance,
+#' the default is 100.
+#' @param sig Whether to test the significance, if TRUE (by default),
+#' permutation results should be included in the folder `x`.
+#' @param skip Whether to skip the comparison when the dimenstion of adjacency
+#' matrix is smaller than setted `evk`.
+#' @return x The `mina` object with @dis_bs, @dis_pm and @dis_stat.
+#' @examples
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
+#' maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
+#' "./individual_bs_pm/")
+#' maize_stat1 <- net_dis_indi("./individual_bs_pm/", method = "spectra")
+#' maize_stat2 <- net_dis_indi("./individual_bs_pm/", method = "Jaccard")
+#' maize_stat3 <- net_dis_indi("./individual_bs_pm/", method = "spectra",
+#' evk = 100, skip = TRUE)
+#' }
+#' @export
+
+setGeneric("net_dis_indi", function(x, method, evk = 100,
+                                    sig = TRUE, skip = TRUE) {
+    standardGeneric("net_dis_indi")
 })

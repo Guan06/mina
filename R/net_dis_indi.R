@@ -1,34 +1,35 @@
 ################################################################################
 
-#' Calculate the network distance of @multi and test the significance when @perm
-#' is defined.
+#' Calculate the network distance of bootstrap and permutation when appliable.
 #'
 #' @importFrom stats dist
-#' @param x An object of class `mina` with @multi (and @perm if sig is TRUE)
+#' @param x The folder store the network inference results.
 #' defined.
 #' @param method The distance to be calculated, "spectra" and "Jaccard" are
 #' available.
 #' @param evk The first `evk` eigenvalues will be used for `spectra` distance,
 #' the default is 100.
-#' @param sig Whether to test the significance, if TRUE (by default), @perm is
-#' needed.
+#' @param sig Whether to test the significance, if TRUE (by default),
+#' permutation results should be included in the folder `x`.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
 #' matrix is smaller than setted `evk`.
-#' @return x The same `mina` object with @net_dis defined.
+#' @return x The `mina` object with @dis_bs, @dis_pm and @dis_stat.
 #' @examples
 #' \dontrun{
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
-#' maize <- bs_pm(maize, group = "Compartment")
-#' maize <- net_dis(maize, method = "spectra")
-#' maize <- net_dis(maize, method = "Jaccard")
-#' maize <- net_dis(maize, method = "spectra", evk = 100, skip = TRUE)
+#' maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
+#' "./individual_bs_pm/")
+#' maize_stat1 <- net_dis_indi("./individual_bs_pm/", method = "spectra")
+#' maize_stat2 <- net_dis_indi("./individual_bs_pm/", method = "Jaccard")
+#' maize_stat3 <- net_dis_indi("./individual_bs_pm/", method = "spectra",
+#' evk = 100, skip = TRUE)
 #' }
-#' @rdname net_dis-mina
-#' @exportMethod net_dis
+#' @rdname net_dis_indi
+#' @exportMethod net_dis_indi
 
-setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY", "ANY"),
+setMethod("net_dis_indi", signature("character", "ANY", "ANY", "ANY", "ANY"),
           function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
               stop("Must specify a `method`, see `? net_dis_method_list`.")
           }
@@ -36,35 +37,44 @@ setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY", "ANY"),
 
 ###############################################################################
 
-#' @inheritParams net_dis
-#' @rdname net_dis-mina
-#' @exportMethod net_dis
+#' @inheritParams net_dis_indi
+#' @rdname net_dis_indi
+#' @exportMethod net_dis_indi
 
-setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
+setMethod("net_dis_indi", signature("character", "character",
+                                    "ANY", "ANY", "ANY"),
           function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
-              y_bs <- x@multi
-              y_pm <- x@perm
-              len <- length(y_bs)
-              plen <- length(y_pm)
+              bs1_files <- sort(list.files(x, pattern = "_bs1.rds",
+                                           full.names = TRUE))
+              bs2_files <- sort(list.files(x, pattern = "_bs2.rds",
+                                           full.names = TRUE))
+              dis_bs <- c()
 
-              if (sig) {
-                  if (plen == 0) {
-                      stop("Must have @perm for significance test!")
-                  }else if (plen != len) {
-                      stop("Must have same comparison numbers!")
-                  }
-
+              if (sig){
+                  pm1_files <- sort(list.files(x, pattern = "_pm1.rds",
+                                               full.names = TRUE))
+                  pm2_files <- sort(list.files(x, pattern = "_pm2.rds",
+                                               full.names = TRUE))
                   dis_pm <- c()
               }
 
-              dis_bs <- c()
+              log <- c()
 
-              for (i in seq(1, len, 2)) {
-                  this_m <- y_bs[[i]]
-                  this_n <- y_bs[[i + 1]]
+              len <- length(bs1_files)
 
-                  group_m <- names(y_bs)[i]
-                  group_n <- names(y_bs)[i + 1]
+              for (i in 1 : len) {
+                  bs1 <- readRDS(bs1_files[i])
+                  bs2 <- readRDS(bs2_files[i])
+                  group_mn <- strsplit(basename(bs1_files[i]), "_bs1.rds")[[1]][1]
+                  group_m <- strsplit(group_mn, "_vs_")[[1]][1]
+                  group_n <- strsplit(group_mn, "_vs_")[[1]][2]
+
+                  y_bs <- list()
+                  y_bs[1] <- bs1
+                  y_bs[2] <- bs2
+
+                  this_m <- y_bs[[1]]
+                  this_n <- y_bs[[2]]
 
                   ## calculate bootstrap distance
                   bs_len <- length(this_m)
@@ -79,6 +89,8 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
                           adj_m[is.na(adj_m)] <- 0
                           adj_n[is.na(adj_n)] <- 0
 
+                          log <- rbind(log,
+                                paste0(group_mn, " bs_", j, ": ", nrow(adj_m)))
                           #skip this comparison if the adj_m and adj_n is
                           #smaller than evk
                           if (nrow(adj_m) < evk ||nrow(adj_n) < evk) {
@@ -110,6 +122,9 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
                           adj_m <- unlist(this_m[[j1]])
                           adj_m[is.na(adj_m)] <- 0
 
+                          log <- rbind(log,
+                                paste0(group_mn, " bs_", j1, ": ", nrow(adj_m)))
+
                           m_j1 <- paste0(group_m, "_b", j1)
 
                           for (j2 in 1 : bs_len) {
@@ -135,8 +150,15 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
 
                   ## calculate permutation distance if sig == TRUE
                   if (sig) {
-                      this_mp <- y_pm[[i]]
-                      this_np <- y_pm[[i + 1]]
+                      pm1 <- readRDS(pm1_files[i])
+                      pm2 <- readRDS(pm2_files[i])
+
+                      y_pm <- list()
+                      y_pm[1] <- pm1
+                      y_pm[2] <- pm2
+
+                      this_mp <- y_pm[[1]]
+                      this_np <- y_pm[[2]]
 
                       pm_len <- length(this_mp)
 
@@ -150,6 +172,9 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
                               adj_np <- unlist(this_np[[k]])
                               adj_mp[is.na(adj_mp)] <- 0
                               adj_np[is.na(adj_np)] <- 0
+
+                              log <- rbind(log, paste0(group_mn, " pm_", k,
+                                                ": ", nrow(adj_mp)))
 
                               if (nrow(adj_mp) < evk ||nrow(adj_np) < evk) {
                                   flag <- 1
@@ -181,6 +206,9 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
                               adj_mp <- unlist(this_mp[[k1]])
                               adj_mp[is.na(adj_mp)] <- 0
 
+                              log <- rbind(log, paste0(group_mn, " pm_", k1,
+                                                ": ", nrow(adj_mp)))
+
                               mp_k1 <- paste0(group_m, "_p", k1)
 
                               for (k2 in 1 : pm_len) {
@@ -205,158 +233,22 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
                           dis_pm <- rbind(dis_pm, jaccard_mnp)
                       }
                   }
+                gc(reset = T)
               }
+          write.table(log, paste0(out_dir, "log.txt"))
 
-              x@dis_bs <- dis_bs
-              x@dis_pm <- dis_pm
+          y <- new("mina")
+          y@dis_bs <- dis_bs
+          y@dis_pm <- dis_pm
 
-              ## get the stat table
-              if (sig) {
-                  dis_stat <- get_stat(dis_bs, dis_pm)
-              } else {
-                  dis_stat <- get_stat(dis_bs)
-              }
-
-              x@dis_stat <- dis_stat
-              return(x)
+          ## get the stat table
+          if (sig) {
+              dis_stat <- get_stat(dis_bs, dis_pm)
+          } else {
+              dis_stat <- get_stat(dis_bs)
           }
-)
 
-
-################################################################################
-
-#' Function for calculation of eigenvalue of given matrix.
-#'
-#' @importFrom RSpectra eigs_sym
-#' @param k Get the first k eigenvalues.
-#' @return y The vector of the first k eigenvalues.
-#' @examples
-#' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 500, 1 : 300]
-#' maize <- norm_tab(maize, method = "raref")
-#' maize <- fit_tabs(maize)
-#' maize <- adj(maize, method = "spearman")
-#' maize_spectra <- get_spectra(maize@adj)
-#' }
-#' @keywords internal
-
-get_spectra <- function(x,  k = 100){
-    x <- as.matrix(x)
-    x[is.na(x)] <- 0
-    spectra <- eigs_sym(x, k, opts = list(retvec = FALSE))
-    y <- spectra$values
-}
-
-################################################################################
-
-#' Function for getting distance data frame from `dist`.
-#'
-#' @importFrom reshape2 melt
-#' @importFrom stringr str_detect
-#' @param x The object of class `dist`.
-#' @keywords internal
-
-get_dis_df <- function(x) {
-    x <- as.matrix(x)
-    x[upper.tri(x)] <- NA
-    diag(x) <- NA
-    x <- melt(x)
-
-    colnames(x) <- c("C1", "C2", "Distance")
-    x <- x[!is.na(x$Distance), ]
-
-    if (str_detect(x$C1, "_b")) {
-        x <- cbind(x, do.call("rbind",
-                              strsplit(as.character(x$C1), "_b")))
-        x <- x[, 1 : 4]
-
-        x <- cbind(x, do.call("rbind",
-                              strsplit(as.character(x$C2), "_b")))
-        x <- x[, 1 : 5]
-    } else if (str_detect(x$C1, "_p")) {
-        x <- cbind(x, do.call("rbind",
-                              strsplit(as.character(x$C1), "_p")))
-        x <- x[, 1 : 4]
-
-        x <- cbind(x, do.call("rbind",
-                              strsplit(as.character(x$C2), "_p")))
-        x <- x[, 1 : 5]
-    }
-    colnames(x)[4:5] <- c("Group1", "Group2")
-    return(x)
-}
-
-
-###############################################################################
-
-#' Function for distance statistic and significance test.
-#'
-#' @importFrom stats sd
-#' @param x The bootstrap distance data frame.
-#' @param p The permuation distance data frame.
-#' @param sig Whether to test significance or not.
-#' @examples
-#' \dontrun{
-#' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
-#' maize <- bs_pm(maize, group = "Compartment")
-#' maize_bs <- maize@multi
-#' maize_pm <- maize@perm
-#' maize_stat <- get_stat(maize_bs, maize_pm)
-#' }
-#' @keywords internal
-
-get_stat <- function(x, p = NULL) {
-    lst <- unique(x$Group1)
-    len <- length(lst)
-
-    y <- c()
-    for ( i in 1 : len) {
-        c1 <- lst[i]
-        for (j in i : len) {
-            c2 <- lst[j]
-            d1 <- x[(x$Group1 == c1 & x$Group2 == c2), ]
-            d2 <- x[(x$Group2 == c1 & x$Group1 == c2), ]
-            ## skip the comparison skipped by spectra
-            if (nrow(d1) == 0 & nrow(d2) == 0) next
-            d <- rbind(d1, d2)
-            d <- unique(d)
-
-            if (i != j) d <- d[(d$Group1 != d$Group2), ]
-
-            d$Compare <- paste0(c1, "_", c2)
-            d <- d[, c("Compare", "Distance")]
-
-            this_y <- data.frame(Compare = unique(d$Compare),
-                                 Distance_Mean = mean(d$Distance),
-                                 Distance_SD = sd(d$Distance))
-
-            if (!is.null(p)) {
-                dp1 <- p[(p$Group1 == c1 & p$Group2 == c2), ]
-                dp2 <- p[(p$Group2 == c1 & p$Group1 == c2), ]
-                #skip the comparisons skipped by spectra
-                if (nrow(dp1) == 0 & nrow(dp2) == 0) next
-                dp <- rbind(dp1, dp2)
-                dp <- unique(dp)
-
-                if (i != j) dp <- dp[(dp$Group1 != dp$Group2), ]
-                dp$Compare <- paste0(c1, "_", c2)
-                dp <- dp[, c("Compare", "Distance")]
-                colnames(dp)[2] <- "Distance_PM"
-
-                this_y$Distance_PM_Mean <- mean(dp$Distance_PM)
-                this_y$Distance_PM_SD <- sd(dp$Distance_PM)
-
-                d <- merge(d, dp)
-                N <- nrow(d)
-                this_y$N <- N
-                this_y$p <- (sum(d$Distance_PM > d$Distance) + 1) / (N + 1)
-            }
-
-            y <- rbind(y, this_y)
+          y@dis_stat <- dis_stat
+          return(y)
         }
-    }
-
-    return(y)
-}
+)

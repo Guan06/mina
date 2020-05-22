@@ -17,6 +17,10 @@
 #' FALSE, default is TRUE.
 #' @param bs The times for bootstrap network inference, default is 6.
 #' @param pm The times for permuatated samples network inference, default is 6.
+#' @param individual Whether to output the bootstrap and permutation results of
+#' each comparison individually, default is FALSE.
+#' @param out_dir The output directory if `individual` is TRUE, default is the
+#' current working directory
 #' @examples
 #' \dontrun{
 #' data(maize)
@@ -29,9 +33,10 @@
 #' @exportMethod bs_pm
 
 setMethod("bs_pm", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY",
-                             "ANY", "ANY", "ANY"),
+                             "ANY", "ANY", "ANY", "ANY", "ANY"),
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
-                   sig = TRUE, bs = 6, pm = 6) {
+                   sig = TRUE, bs = 6, pm = 6,
+                   individual = FALSE, out_dir = "./") {
               stop("Please specify a column in descriptive file for grouping
                    samples!")
           }
@@ -43,9 +48,10 @@ setMethod("bs_pm", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY",
 #' @exportMethod bs_pm
 
 setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
-                            "ANY", "ANY", "ANY"),
+                            "ANY", "ANY", "ANY", "ANY"),
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
-                   sig = TRUE, bs = 6, pm = 6) {
+                   sig = TRUE, bs = 6, pm = 6,
+                   individual = FALSE, out_dir = "./") {
 
               if (s_size >= g_size) {
                   stop("`s_size` can not be larger than `g_size`!")
@@ -84,9 +90,11 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
                       " samples used for bootstrap.")
 
               # start bootstrap and permutation
-              index <- 1
-              y_bs <- list()
-              y_pm <- list()
+              if (!individual){
+                  index <- 1
+                  y_bs <- list()
+                  y_pm <- list()
+              }
 
               for (m in 1 : len) {
                   group_m <- lst[m]
@@ -136,6 +144,9 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
                                        " v.s. ", group_n,
                                        " bootstrap after filtering!")
                               }
+                          } else {
+                              this_mat_m <- mat_m
+                              this_mat_n <- mat_n
                           }
                       }
 
@@ -165,10 +176,15 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
                           names(NLST)[b] <- paste0(group_n, "_", b)
                       }
 
-
-                      y_bs[index] <- list(MLST)
-                      y_bs[(index + 1)] <- list(NLST)
-                      names(y_bs)[index : (index + 1)] <- c(group_m, group_n)
+                      if (individual) {
+                          prefix <- paste0(out_dir, group_m, "_vs_", group_n)
+                          saveRDS(list(MLST), paste0(prefix, "_bs1.rds"))
+                          saveRDS(list(NLST), paste0(prefix, "_bs2.rds"))
+                      } else{
+                          y_bs[index] <- list(MLST)
+                          y_bs[(index + 1)] <- list(NLST)
+                          names(y_bs)[index : (index + 1)] <- c(group_m, group_n)
+                      }
 
                       rm(MLST, NLST)
                       gc(reset = T)
@@ -198,20 +214,28 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
                               names(NPLST)[p] <- paste0(group_n, "_", p)
                           }
 
-                          y_pm[index] <- list(MPLST)
-                          y_pm[(index + 1)] <- list(NPLST)
+                          if (individual) {
+                              prefix <- paste0(out_dir, group_m, "_vs_",
+                                               group_n)
+                              saveRDS(list(MPLST), paste0(prefix, "_pm1.rds"))
+                              saveRDS(list(NPLST), paste0(prefix, "_pm2.rds"))
+                          } else {
+                              y_pm[index] <- list(MPLST)
+                              y_pm[(index + 1)] <- list(NPLST)
 
-                          names(y_pm)[index] <- group_m
-                          names(y_pm)[index + 1] <- group_n
-
+                              names(y_pm)[index] <- group_m
+                              names(y_pm)[index + 1] <- group_n
+                          }
                           rm(MPLST, NPLST)
                           gc(reset = T)
                       }
-                      index <- index + 2
+                      if (!individual) index <- index + 2
                   }
               }
-              x@multi <- y_bs
-              if (sig) x@perm <- y_pm
+              if(!individual) {
+                  x@multi <- y_bs
+                  if (sig) x@perm <- y_pm
+              }
               return(x)
           }
 )

@@ -35,7 +35,7 @@ Suggests:
     rmarkdown,
     testthat
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Collate:
     'RcppChk.R'
     'RcppExports.R'
@@ -53,4 +53,5 @@ Collate:
     'net_cls.R'
     'net_cls_tab.R'
     'net_dis.R'
+    'net_dis_indi.R'
     'norm_tab.R'
