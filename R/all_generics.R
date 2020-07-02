@@ -227,11 +227,39 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
     standardGeneric("net_cls")
 })
 
+
 ################################################################################
 
-#' Get the cluster table @cls_tab from @tab and @cls.
+#' Get the cluster table @cls_tab from quantitative table @norm and network
+#' clustering results @cls.
 #'
-#' @param x An object of class `mina` with @tab and @cls defined.
+#' @param x_norm The normalized quantitative table used for netowrk inference
+#' and clustering.
+#' @param x_cls The network clustering table.
+#' @param uw By summing up the number of present components of each cluster
+#' instead of relative abundance, default is FALSE.
+#' @return x_cls The quantitative table with clusters in rows.
+#' @examples
+#' data(maize)
+#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
+#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- fit_tabs(maize)
+#' maize_norm <- maize@norm
+#' maize_adj <- adj(maize_norm, method = "spearman")
+#' maize_cls <- net_cls(maize_adj, method = "mcl", cutoff = 0.5)
+#' maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
+#' maize_cls <- net_cls(maize_adj, method = "ap", cutoff = 0.5)
+#' maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
+#' @exportMethod get_net_cls_tab
+
+setGeneric("get_net_cls_tab", function(x_norm, x_cls, uw = FALSE) {
+    standardGeneric("get_net_cls_tab")
+})
+################################################################################
+
+#' Get the cluster table @cls_tab from @norm and @cls.
+#'
+#' @param x An object of class `mina` with @norm and @cls defined.
 #' @param uw By summing up the number of present components of each cluster
 #' instead of relative abundances, default is FALSE.
 #' @examples

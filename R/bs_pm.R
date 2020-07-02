@@ -112,6 +112,7 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
                           # filter if rm is TRUE
                           if (rm) {
                               mat_mn <- filter_mat(mat_mn, p = s_size * per)
+                              this_mat_m <- this_mat_n <- mat_mn
                               num_mn <- ncol(mat_mn)
                               if (num_mn < s_size) {
                                   stop("Not enough samples for ", group_m,
