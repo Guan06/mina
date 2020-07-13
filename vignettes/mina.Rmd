@@ -313,6 +313,13 @@ compositions which present in less than 10% samples would be filtered.
     # computation and time resource.
     maize <- bs_pm(maize, group = "Compartment", bs = 11, pm = 11)
 ```
+When the quantitative matrices are too big, one could choose to output the
+bootstrap and permutation results separately for each comparison. To do this,
+the output directory needed to be defined.
+```{r bs_pm3, eval = FALSE}
+    bs_pm(maize, group = "Compartment", bs = 11, pm = 11,
+          individual = TRUE, out_dir = out_dir)
+```
 ## Network distance calculation and significance test
 After getting the true and pseudo adjacency matrices, Spectral and Jaccard
 distance defined before is then calculated and p value is obtained by comparing
@@ -326,4 +333,13 @@ p = $\frac { C_{F_p > F} + 1  }{ N_{dis} + 1 }$
     maize <- net_dis(maize, method = "Jaccard")
     # check the ditance results and significance (if applicable)
     print(maize@dis_stat)
+```
+For the individual generated network comparison results, the distance
+calculation is implemented by the function `net_dis_indi()`. Same methods are
+available.
+```{r sig2, eval = FALSE}
+    ja <- net_dis_indi(out_dir, method = "Jaccard")
+    print(ja@dis_stat)
+    spectra <- net_dis_indi(out_dir, method = "spectra")
+    print(spectra@dis_stat)
 ```
