@@ -75,18 +75,21 @@ data format, parameters and usage could be found in vignette.
 We included OTU table of Human Microbiome Project downloaded from
 https://www.hmpdacc.org/hmp/HMQCP/ and maize root-associated microbial
 community profiling ASV table from Bourceret and Guan *et al*., 2020.
+In the HMP dataset, **2711 samples with **27,627 OTUs and for maize dataset, 437
+samples with 11,098** ASVs were presented.
 To import the data and create new 'mina' object:
 ```r
 hmp <- new("mina", tab = hmp_otu, des = hmp_des)
 maize <- new("mina", tab = maize_asv, des = maize_des)
 ```
+This step could also be skipped since the two dataset are included as 'mina'
+object in the package.
 ### Community diversity analysis
 For the community diversity analysis, here we use hmp data as example. The data
 needed to be normalized / rarefied before distance / dissimilarity matrix
 calculation.
 ```r
 hmp <- norm_tab(hmp, method = "total")
-
 ```
 #### Composition-based diversity analysis
 Dissimilarity / distance between pairwise samples were usually calculated by
@@ -98,12 +101,16 @@ between pairwise HMP damples and Principal Coordinates Analysis (PCoA, also
 referred as Classical multidimensional scaling MDS) was then used for
 dimensionality reduction and visualization.
 ```r
+# Distance matrix calculation, took around 10 min for a computer cluster with 48
+# threads and 756 Gb memory.
 hmp <- com_dis(hmp, method = "fJaccard")
 # Unexplained variance ratio of the distance matrix, factors ordered according
 # to the meta data shown in HMP website.
-com_r2(hmp, group = c("sex", "RUNCENTER", "HMPBodysubsite", "area"))
+# R2 = 0.738
+com_r2(hmp, group = c("Sex", "Run_center", "Subsite", "Site"))
+
 hmp <- dmr(hmp)
-p1 <- com_plot(hmp, match = "Sample_ID", color = "area")
+p1 <- com_plot(hmp, match = "Sample_ID", color = "Site")
 p1
 ```
 See full list of available distance by:
@@ -117,19 +124,22 @@ Afterwards, Spearman correlation between OTUs were calculated and coefficients
 not less than 0.3 were retained in the sparse matrix for clustering by Markov
 Cluster Algorithm (MCL, Enright, Dongen and Ouzounis, 2002) with parameter
 '-I 2.5'. Later on, by summing up the abundance of OTUs belong to the same
-cluster, network cluster quantitative table was obatained.
+cluster, network cluster quantitative table was obatained. Since there are much
+less clusters than compositions, the computing time would be decreased
+dramatically as well.
 ```r
 hmp <- adj(hmp, method = "spearman")
 hmp <- net_cls(hmp, method = "mcl", cutoff = 0.3)
 hmp <- net_cls_tab(hmp)
 # calculate community distance matrix based on network cluster table
+As 
 hmp_nc <- hmp@hmp@cls_tab
 hmp_nc_dis <- com_dis(hmp_nc, method = "fJaccard")
 get_r2(hmp_nc_dis, hmp_des,
-       group = c("sex", "RUNCENTER", "HMPBodysubsite", "area"))
+       group = c("Sex", "Run_center", "Subsite", "Site"))
 
 hmp_dmr <- dmr(hmp_nc_dis)
-p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "area")
+p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 p2
 ```
 
