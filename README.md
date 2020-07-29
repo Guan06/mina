@@ -18,10 +18,16 @@ discriminative features.
 
 ## Installation
 
-You can install the released version of mina from [CRAN](https://CRAN.R-project.org) with:
+Install the released version of mina from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("mina")
+```
+Or from github by:
+```r
+devtools::install_github("Guan06/MINA", dependencies = TRUE,
+                          repos = c("https://cloud.r-project.org/",
+                                    BiocManager::repositories()))
 ```
 ## Introduction
 Microbes play an important role in most of ecosystems and by interacting with
@@ -78,5 +84,79 @@ maize <- new("mina", tab = maize_asv, des = maize_des)
 For the community diversity analysis, here we use hmp data as example. The data
 needed to be normalized / rarefied before distance / dissimilarity matrix
 calculation.
+```r
+hmp <- norm_tab(hmp, method = "total")
+
+```
+#### Composition-based diversity analysis
+Dissimilarity / distance between pairwise samples were usually calculated by
+comparing the differences indicated by the quantitative table and were used to
+represent the beta-diversity of the community. Here we calculated weighted
+Jaccard index
+(https://en.wikipedia.org/wiki/Jaccard_index#Weighted_Jaccard_similarity_and_distance)
+between pairwise HMP damples and Principal Coordinates Analysis (PCoA, also
+referred as Classical multidimensional scaling MDS) was then used for
+dimensionality reduction and visualization.
+```r
+hmp <- com_dis(hmp, method = "fJaccard")
+# Unexplained variance ratio of the distance matrix, factors ordered according
+# to the meta data shown in HMP website.
+com_r2(hmp, group = c("sex", "RUNCENTER", "HMPBodysubsite", "area"))
+hmp <- dmr(hmp)
+p1 <- com_plot(hmp, match = "Sample_ID", color = "area")
+p1
+```
+See full list of available distance by:
+```r
+?com_dis_list
+```
+Notably, we included TINA (Schmidt *et al.*, 2016) dissimilarity in the package.
+
+#### Network-derived feature based diversit analysis
+Afterwards, Spearman correlation between OTUs were calculated and coefficients
+not less than 0.3 were retained in the sparse matrix for clustering by Markov
+Cluster Algorithm (MCL, Enright, Dongen and Ouzounis, 2002) with parameter
+'-I 2.5'. Later on, by summing up the abundance of OTUs belong to the same
+cluster, network cluster quantitative table was obatained.
+```r
+hmp <- adj(hmp, method = "spearman")
+hmp <- net_cls(hmp, method = "mcl", cutoff = 0.3)
+hmp <- net_cls_tab(hmp)
+# calculate community distance matrix based on network cluster table
+hmp_nc <- hmp@hmp@cls_tab
+hmp_nc_dis <- com_dis(hmp_nc, method = "fJaccard")
+get_r2(hmp_nc_dis, hmp_des,
+       group = c("sex", "RUNCENTER", "HMPBodysubsite", "area"))
+
+hmp_dmr <- dmr(hmp_nc_dis)
+p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "area")
+p2
+```
 
 ### Community network comparison
+We developed a bootstrap-permutation based method to test the significance of
+network differences. By subsampling and bootstrap, true networks were
+constructed from original dataset of each environment as shown below. By
+randomly swapping the metadata of samples, permutated datasets were generated.
+Networks of pseudo conditions were then inferred from permutated dataset.
+Afterwards, true network distances (F) between each pairwise true networks and
+pseudo distances (Fp) between each pairwise pseudo networks were calculated and
+compared. An empirical P-value is then then calculated as
+(Count Fp > F + 1) / (N + 1), where N is the total time of comparison between Fp
+and F. Clearly, in order to observe a significant result, N need to be large
+enough. By introducing both bootstrap and permutation process, the network
+inference time is reduced to the sum of bootstrap and permutation time
+(b1 + b2 + p1 + p2), resulting in retrench of computing time and space usage.
+
+Here we use the maize data as example, networks of samples from different
+compartments and host developmental stages were compared.
+```r
+maize <- norm_tab(maize, method = "raref", depth = 2000)
+maize <- fit_tabs(maize)
+maize <- bs_pm(maize, group = "Compartment", g_size = 200, s_size = 80)
+maize <- net_dis(maize, method = "spectra")
+maize@dis_stat
+
+```
+## References
+
