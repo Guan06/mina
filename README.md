@@ -186,6 +186,13 @@ And the distance statistic results:
 | rhizosphere_root | 0.926163415963644 | 0.00171848170637579 | 0.783356695203603 | 0.0457939855051064 | 1296 | 0.000771010023130301 |
 | root_root | 0.711618793308017 | 0.0315038069518843 | 0.730591104480118 | 0.0709991532798481 | 1296 | 0.534309946029298 |
 
+
+| Compare                 | Distance_Mean | Distance_SD | Distance_PM_Mean | Distance_PM_SD | N    | p           |
+|-------------------------|---------------|-------------|------------------|----------------|------|-------------|
+| rhizosphere_rhizosphere | 0.645453096   | 0.028483817 | 0.665874922      | 0.096751983    | 1296 | 0.427139553 |
+| rhizosphere_root        | 0.926163416   | 0.001718482 | 0.783356695      | 0.045793986    | 1296 | 0.00077101  |
+| root_root               | 0.711618793   | 0.031503807 | 0.730591104      | 0.070999153    | 1296 | 0.534309946 |
+
 Since the bootstrap and permutation, the distances here are non deterministic,
 however the result and conclusion should not change a lot.
 ## References
