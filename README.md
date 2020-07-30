@@ -110,6 +110,12 @@ com_r2(hmp, group = c("Sex", "Run_center", "Subsite", "Site"))
 hmp <- dmr(hmp)
 p1 <- com_plot(hmp, match = "Sample_ID", color = "Site")
 ```
+The OTUs-based community diversities:
+```r
+p1
+```
+![OTUs-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p1_hmp.png)
+
 See full list of available distance by:
 ```r
 ?com_dis_list
@@ -150,8 +156,7 @@ p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 So by integrating the abundances of closely related OTUs to the abundances of
 clusters, the unexplained variance ratio decrease from 0.738 to 0.000. Compare
 the PCoA of OTUs and network clusters based diversities:
-![OTUs-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p1_hmp.png
-"OTUs-based PCoA of HMP dataset")
+![Network clusters-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p2_hmp.png)
 
 ### Community network comparison
 We developed a bootstrap-permutation based method to test the significance of
