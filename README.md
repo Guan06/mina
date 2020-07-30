@@ -114,7 +114,7 @@ The OTUs-based community diversities:
 p1
 ```
 
-<img src="https://github.com/Guan06/MINA/blob/master/data-raw/p1.png" alt="OTUs-based diversity" width="250" height="250">
+<img src="https://github.com/Guan06/MINA/blob/master/data-raw/p1.png" alt="OTUs-based diversity" width="350" height="350">
 
 See full list of available distance by:
 ```r
@@ -158,10 +158,10 @@ hmp_dmr <- dmr(hmp_nc_dis)
 p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 ```
 So by integrating the abundances of closely related OTUs to the abundances of
-clusters, the unexplained variance ratio decrease from 0.738 to 0.493. Compare
+clusters, the unexplained variance ratio decrease from 0.644 to 0.399. Compare
 the PCoA of OTUs and network clusters based diversities:
 
-<img src = "https://github.com/Guan06/MINA/blob/master/data-raw/p2.png" alt = "Network Clusters-based diversity" width = 250 height = 250>
+<img src = "https://github.com/Guan06/MINA/blob/master/data-raw/p2.png" alt = "Network Clusters-based diversity" width = 350 height = 350>
 
 ### Community network comparison
 We developed a bootstrap-permutation based method to test the significance of
