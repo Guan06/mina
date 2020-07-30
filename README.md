@@ -94,8 +94,7 @@ hmp <- norm_tab(hmp, method = "total")
 Dissimilarity / distance between pairwise samples were usually calculated by
 comparing the differences indicated by the quantitative table and were used to
 represent the beta-diversity of the community. Here we calculated weighted
-Jaccard index
-(https://en.wikipedia.org/wiki/Jaccard_index#Weighted_Jaccard_similarity_and_distance)
+[Jaccard index](https://en.wikipedia.org/wiki/Jaccard_index#Weighted_Jaccard_similarity_and_distance)
 between pairwise HMP damples and Principal Coordinates Analysis (PCoA, also
 referred as Classical multidimensional scaling MDS) was then used for
 dimensionality reduction and visualization.
@@ -151,7 +150,8 @@ p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 So by integrating the abundances of closely related OTUs to the abundances of
 clusters, the unexplained variance ratio decrease from 0.738 to 0.000. Compare
 the PCoA of OTUs and network clusters based diversities:
-[OTUs-based diversity](./data-raw/h1_hmp.pdf)
+![OTUs-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p1_hmp.pdf
+"OTUs-based PCoA of HMP dataset")
 
 ### Community network comparison
 We developed a bootstrap-permutation based method to test the significance of
