@@ -151,7 +151,7 @@ p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 So by integrating the abundances of closely related OTUs to the abundances of
 clusters, the unexplained variance ratio decrease from 0.738 to 0.000. Compare
 the PCoA of OTUs and network clusters based diversities:
-[OTUs-based diversity](./p1_hmp.html)
+[OTUs-based diversity](./data-raw/h1_hmp.pdf)
 
 ### Community network comparison
 We developed a bootstrap-permutation based method to test the significance of
