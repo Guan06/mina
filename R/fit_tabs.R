@@ -41,7 +41,7 @@ setMethod("fit_tabs", signature("mina"),
                              match(x@des$Sample_ID, colnames(x@tab))]
 
               ## filter the descriptive and quantitative again if @norm exists
-              if (class(x@norm) != "NULL") {
+              if (class(x@norm)[1] != "NULL") {
                   samples3 <- as.character(colnames(x@norm))
                   samples4 <- as.character(x@des$Sample_ID)
                   inter2 <- intersect(samples3, samples4)

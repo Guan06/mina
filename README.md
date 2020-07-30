@@ -72,11 +72,10 @@ datasets were included in the package as demonstration and the details about
 data format, parameters and usage could be found in vignette.
 
 ### Input data
-We included OTU table of Human Microbiome Project downloaded from
-https://www.hmpdacc.org/hmp/HMQCP/ and maize root-associated microbial
-community profiling ASV table from Bourceret and Guan *et al*., 2020.
-In the HMP dataset, **2711 samples with **27,627 OTUs and for maize dataset, 437
-samples with 11,098** ASVs were presented.
+We included OTU table of downloaded from [Human Microbiome Project](https://www.hmpdacc.org/hmp/HMQCP/)
+and maize root-associated microbial community profiling ASV table (unpublished)
+In the HMP dataset, 2711 samples with 27,627 OTUs and for maize dataset, 437
+samples with 11,098 ASVs were presented.
 To import the data and create new 'mina' object:
 ```r
 hmp <- new("mina", tab = hmp_otu, des = hmp_des)
@@ -111,36 +110,43 @@ com_r2(hmp, group = c("Sex", "Run_center", "Subsite", "Site"))
 
 hmp <- dmr(hmp)
 p1 <- com_plot(hmp, match = "Sample_ID", color = "Site")
-p1
 ```
 See full list of available distance by:
 ```r
 ?com_dis_list
 ```
-Notably, we included TINA (Schmidt *et al.*, 2016) dissimilarity in the package.
+Notably, we included TINA ([Schmidt *et al.*, 2016](https://doi.org/10.1038/ismej.2016.139)) dissimilarity in the package.
 
 #### Network-derived feature based diversit analysis
 Afterwards, Spearman correlation between OTUs were calculated and coefficients
-not less than 0.3 were retained in the sparse matrix for clustering by Markov
-Cluster Algorithm (MCL, Enright, Dongen and Ouzounis, 2002) with parameter
+not less than 0.4 were retained in the sparse matrix for clustering by Markov
+Cluster Algorithm ([MCL](https://micans.org/mcl/)) with parameter
 '-I 2.5'. Later on, by summing up the abundance of OTUs belong to the same
 cluster, network cluster quantitative table was obatained. Since there are much
 less clusters than compositions, the computing time would be decreased
 dramatically as well.
 ```r
+# Adjacency matrix calculation, 12632 seconds used.
 hmp <- adj(hmp, method = "spearman")
-hmp <- net_cls(hmp, method = "mcl", cutoff = 0.3)
+
+# Remove OTUs appeared in not more than 50 samples, 10577 OTUs were remained
+lst <- rownames(hmp@norm)[rowSums(hmp@norm > 0) > 50]
+hmp@adj <- hmp@adj[lst, lst]
+dim(hmp@adj)
+
+# 2166 components are removed for clustering because no strong edge was found
+# between those OTUs.
+hmp <- net_cls(hmp, method = "mcl", cutoff = 0.4)
 hmp <- net_cls_tab(hmp)
+
 # calculate community distance matrix based on network cluster table
-As 
-hmp_nc <- hmp@hmp@cls_tab
+hmp_nc <- hmp@cls_tab
 hmp_nc_dis <- com_dis(hmp_nc, method = "fJaccard")
 get_r2(hmp_nc_dis, hmp_des,
        group = c("Sex", "Run_center", "Subsite", "Site"))
 
 hmp_dmr <- dmr(hmp_nc_dis)
 p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
-p2
 ```
 
 ### Community network comparison
@@ -161,12 +167,24 @@ inference time is reduced to the sum of bootstrap and permutation time
 Here we use the maize data as example, networks of samples from different
 compartments and host developmental stages were compared.
 ```r
-maize <- norm_tab(maize, method = "raref", depth = 2000)
+maize <- norm_tab(maize, method = "raref", depth = 1000)
 maize <- fit_tabs(maize)
-maize <- bs_pm(maize, group = "Compartment", g_size = 200, s_size = 80)
-maize <- net_dis(maize, method = "spectra")
-maize@dis_stat
 
+# 10851 components are used for bs_pm before filtering.
+# 277 samples are used for bs_pm before filtering.
+# 2 groups with 237 samples used for bootstrap.
+# 192 seconds were used for this step
+maize <- bs_pm(maize, group = "Compartment", g_size = 100, s_size = 50)
+maize <- net_dis(maize, method = "Jaccard")
+maize@dis_stat
 ```
+And the distance statistic results:
+| Compare | Distance_Mean | Distance_SD | Distance_PM_Mean | Distance_PM_SD | N | P |
+| rhizosphere_rhizosphere | 0.645453096499071 | 0.0284838167866131 | 0.665874921891308 | 0.096751983227811 | 1296 | 0.427139552814187
+| rhizosphere_root | 0.926163415963644 | 0.00171848170637579 | 0.783356695203603 | 0.0457939855051064 | 1296 | 0.000771010023130301
+| root_root | 0.711618793308017 | 0.0315038069518843 | 0.730591104480118 | 0.0709991532798481 | 1296 | 0.534309946029298
+
+Since the bootstrap and permutation, the distances here are non deterministic,
+however the result and conclusion should not change a lot.
 ## References
 
