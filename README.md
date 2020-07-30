@@ -58,7 +58,7 @@ and defined as differences between networks, whereas the corresponding
 statistical test methods are missing due to the computational limitation.
 
 To better understand the assembly and maintenance of the community structure,
-we developed a framework (Microbial community dIversity and Network Analysis,
+we developed a framework (**M**icrobial community d**I**versity and **N**etwork **A**nalysis,
 MINA) for microbial community data processing. We implemented both
 composition and netowrk derived feature based diversity analysis and in
 addition, a bootstrap-permutation method is introduced to thoroughly compare
@@ -76,7 +76,7 @@ We included OTU table of downloaded from [Human Microbiome Project](https://www.
 and maize root-associated microbial community profiling ASV table (unpublished)
 In the HMP dataset, 2711 samples with 27,627 OTUs and for maize dataset, 437
 samples with 11,098 ASVs were presented.
-To import the data and create new 'mina' object:
+To import the data and create new `mina` object:
 ```r
 hmp <- new("mina", tab = hmp_otu, des = hmp_des)
 maize <- new("mina", tab = maize_asv, des = maize_des)
@@ -179,6 +179,7 @@ maize <- net_dis(maize, method = "Jaccard")
 maize@dis_stat
 ```
 And the distance statistic results:
+
 | Compare | Distance_Mean | Distance_SD | Distance_PM_Mean | Distance_PM_SD | N | P |
 | ---__---- | ------------- | ----------- | ---------------- | -------------- | --- | --- |
 | rhizosphere_rhizosphere | 0.645453096499071 | 0.0284838167866131 | 0.665874921891308 | 0.096751983227811 | 1296 | 0.427139552814187
