@@ -1,4 +1,4 @@
-# Microbial community dIversity and Network Analysis with MINA
+# **M**icrobial community d**I**versity and **N**etwork **A**nalysis with **MINA**
 
 An increasing number of microbiome datasets have been generated and analysed
 with the rapidly developing sequencing technologies. At present, analysis of
@@ -158,8 +158,9 @@ hmp_dmr <- dmr(hmp_nc_dis)
 p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 ```
 So by integrating the abundances of closely related OTUs to the abundances of
-clusters, the unexplained variance ratio decrease from 0.644 to 0.399. Compare
-the PCoA of OTUs and network clusters based diversities:
+clusters, the unexplained variance ratio decrease from 0.644 to 0.399.
+
+The network clusters-based community diversities:
 
 <img src = "https://github.com/Guan06/MINA/blob/master/data-raw/p2.png" alt = "Network Clusters-based diversity" width = 350 height = 350>
 
