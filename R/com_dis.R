@@ -41,7 +41,11 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
               if (method == "tina"){
                   y <- tina(x, cor_method = "spearman", sim_method = "w_ja",
                             threads = threads, nblocks = nblocks)
-              } else {
+              } else if (method == "Jaccard") {
+                  x <- t(x)
+                  y <- as.matrix(parDist(x, method = "bray"))
+                  y <- 2 * y / (1 + y)
+              }else {
                   x <- t(x)
                   y <- as.matrix(parDist(x, method = method))
               }
@@ -268,6 +272,8 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #' \describe{
 #'   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
 #'
+#'   \item{\code{Jaccard}} {Jaccard defined by \code{\link{vegan}}}
+#'
 #'   \item{weighted}{ Dissimilarity / distance method for weighted matrix: }
 #'   \item{\code{bhjattacharyya}}{ from \code{\link[parallelDist]{parDist}} }
 #'   \item{\code{canberra}}{ from \code{\link[parallelDist]{parDist}} }
@@ -330,5 +336,6 @@ com_dis_list <- list(
                     "michael", "mountford", "mozley", "ochiai", "phi", "russel",
                     "simple matching", "simpson", "stiles", "tanimoto", "yule",
                     "yule2"),
-    TINA        = "tina"
+    TINA        = "tina",
+    Jaccard     = "Jaccard"
 )

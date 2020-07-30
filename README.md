@@ -93,18 +93,17 @@ hmp <- norm_tab(hmp, method = "total")
 #### Composition-based diversity analysis
 Dissimilarity / distance between pairwise samples were usually calculated by
 comparing the differences indicated by the quantitative table and were used to
-represent the beta-diversity of the community. Here we calculated weighted
-[Jaccard index](https://en.wikipedia.org/wiki/Jaccard_index#Weighted_Jaccard_similarity_and_distance)
+represent the beta-diversity of the community. Here we calculated `bhjattacharyya`
 between pairwise HMP damples and Principal Coordinates Analysis (PCoA, also
 referred as Classical multidimensional scaling MDS) was then used for
 dimensionality reduction and visualization.
 ```r
 # Distance matrix calculation, took around 10 min for a computer cluster with 48
 # threads and 756 Gb memory.
-hmp <- com_dis(hmp, method = "fJaccard")
+hmp <- com_dis(hmp, method = "bhjattacharyya")
 # Unexplained variance ratio of the distance matrix, factors ordered according
 # to the meta data shown in HMP website.
-# R2 = 0.738
+# R2 = 0.644
 com_r2(hmp, group = c("Sex", "Run_center", "Subsite", "Site"))
 
 hmp <- dmr(hmp)
@@ -114,7 +113,7 @@ The OTUs-based community diversities:
 ```r
 p1
 ```
-![OTUs-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p1_hmp.png)
+![OTUs-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p1.png)
 
 See full list of available distance by:
 ```r
@@ -142,21 +141,25 @@ dim(hmp@adj)
 # 2166 components are removed for clustering because no strong edge was found
 # between those OTUs.
 hmp <- net_cls(hmp, method = "mcl", cutoff = 0.4)
+# 13069 seconds used for this step, ~3.63 hours
+
+# 800 clusters containing 8411 OUTs
 hmp <- net_cls_tab(hmp)
 
 # calculate community distance matrix based on network cluster table
 hmp_nc <- hmp@cls_tab
-hmp_nc_dis <- com_dis(hmp_nc, method = "fJaccard")
+hmp_nc_dis <- com_dis(hmp_nc, method = "bhjattacharyya")
 get_r2(hmp_nc_dis, hmp_des,
        group = c("Sex", "Run_center", "Subsite", "Site"))
+# 0.399
 
 hmp_dmr <- dmr(hmp_nc_dis)
 p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 ```
 So by integrating the abundances of closely related OTUs to the abundances of
-clusters, the unexplained variance ratio decrease from 0.738 to 0.000. Compare
+clusters, the unexplained variance ratio decrease from 0.738 to 0.493. Compare
 the PCoA of OTUs and network clusters based diversities:
-![Network clusters-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p2_hmp.png)
+![Network clusters-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p2.png)
 
 ### Community network comparison
 We developed a bootstrap-permutation based method to test the significance of
@@ -174,7 +177,10 @@ inference time is reduced to the sum of bootstrap and permutation time
 (b1 + b2 + p1 + p2), resulting in retrench of computing time and space usage.
 
 Here we use the maize data as example, networks of samples from different
-compartments and host developmental stages were compared.
+compartments and host developmental stages were compared. After filtering,
+rhizosphere and root networks were infered and compared.
+![workflow](https://github.com/Guan06/MINA/blob/master/data-raw/bs_pm.png)
+
 ```r
 maize <- norm_tab(maize, method = "raref", depth = 1000)
 maize <- fit_tabs(maize)
@@ -197,5 +203,10 @@ maize@dis_stat
 | rhizosphere_root        | 0.926163416   | 0.001718482 | 0.783356695      | 0.045793986    | 1296 | 0.00077101  |
 | root_root               | 0.711618793   | 0.031503807 | 0.730591104      | 0.070999153    | 1296 | 0.534309946 |
 
-Since the bootstrap and permutation, the distances here are non deterministic,
-however the result and conclusion should not change a lot.
+Since the bootstrap and permutation, the distance calculation process is
+nondeterministic, however the result and conclusion should not change a lot.
+
+## Conclusion
+The package provides thorough microbial diversity and network analysis tools.
+By introducing the bs-pm process, we decreased the demonding time, space and computing
+capacity dramatically.
