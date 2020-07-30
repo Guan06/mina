@@ -148,6 +148,10 @@ get_r2(hmp_nc_dis, hmp_des,
 hmp_dmr <- dmr(hmp_nc_dis)
 p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 ```
+So by integrating the abundances of closely related OTUs to the abundances of
+clusters, the unexplained variance ratio decrease from 0.738 to 0.000. Compare
+the PCoA of OTUs and network clusters based diversities:
+[OTUs-based diversity](./p1_hmp.html)
 
 ### Community network comparison
 We developed a bootstrap-permutation based method to test the significance of
@@ -176,16 +180,11 @@ maize <- fit_tabs(maize)
 # 192 seconds were used for this step
 maize <- bs_pm(maize, group = "Compartment", g_size = 100, s_size = 50)
 maize <- net_dis(maize, method = "Jaccard")
-maize@dis_stat
 ```
 And the distance statistic results:
-
-| Compare | Distance_Mean | Distance_SD | Distance_PM_Mean | Distance_PM_SD | N | P |
-| ---__---- | ------------- | ----------- | ---------------- | -------------- | --- | --- |
-| rhizosphere_rhizosphere | 0.645453096499071 | 0.0284838167866131 | 0.665874921891308 | 0.096751983227811 | 1296 | 0.427139552814187 |
-| rhizosphere_root | 0.926163415963644 | 0.00171848170637579 | 0.783356695203603 | 0.0457939855051064 | 1296 | 0.000771010023130301 |
-| root_root | 0.711618793308017 | 0.0315038069518843 | 0.730591104480118 | 0.0709991532798481 | 1296 | 0.534309946029298 |
-
+```r
+maize@dis_stat
+```
 
 | Compare                 | Distance_Mean | Distance_SD | Distance_PM_Mean | Distance_PM_SD | N    | p           |
 |-------------------------|---------------|-------------|------------------|----------------|------|-------------|
@@ -195,5 +194,3 @@ And the distance statistic results:
 
 Since the bootstrap and permutation, the distances here are non deterministic,
 however the result and conclusion should not change a lot.
-## References
-
