@@ -113,7 +113,8 @@ The OTUs-based community diversities:
 ```r
 p1
 ```
-![OTUs-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p1.png){width = 50% height = 50%}
+
+<img src="https://github.com/Guan06/MINA/blob/master/data-raw/p1.png" alt="OTUs-based diversity" width="100" height="100">
 
 See full list of available distance by:
 ```r
