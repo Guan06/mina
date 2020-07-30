@@ -113,7 +113,7 @@ The OTUs-based community diversities:
 ```r
 p1
 ```
-![OTUs-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p1.png)
+![OTUs-based diversity](https://github.com/Guan06/MINA/blob/master/data-raw/p1.png = 50 * 50)
 
 See full list of available distance by:
 ```r
@@ -176,10 +176,11 @@ enough. By introducing both bootstrap and permutation process, the network
 inference time is reduced to the sum of bootstrap and permutation time
 (b1 + b2 + p1 + p2), resulting in retrench of computing time and space usage.
 
+![workflow](https://github.com/Guan06/MINA/blob/master/data-raw/bs_pm.png)
+
 Here we use the maize data as example, networks of samples from different
 compartments and host developmental stages were compared. After filtering,
 rhizosphere and root networks were infered and compared.
-![workflow](https://github.com/Guan06/MINA/blob/master/data-raw/bs_pm.png)
 
 ```r
 maize <- norm_tab(maize, method = "raref", depth = 1000)
