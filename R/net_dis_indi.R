@@ -13,7 +13,7 @@
 #' permutation results should be included in the folder `x`.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
 #' matrix is smaller than setted `evk`.
-#' @return x The `mina` object with @dis_bs, @dis_pm and @dis_stat.
+#' @return y The `mina` object with @dis_bs, @dis_pm and @dis_stat.
 #' @examples
 #' \dontrun{
 #' data(maize)

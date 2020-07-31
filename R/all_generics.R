@@ -326,6 +326,8 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 #' available.
 #' @param evk The first `evk` eigenvalues will be used for `spectra` distance,
 #' the default is 100.
+#' @param egv Wheather to output the eigenvectors for Spectral distance, the
+#' defult is TRUE, only validate when `method == "spectra"`.
 #' @param sig Whether to test the significance, if TRUE (by default), @perm is
 #' needed.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
@@ -340,7 +342,8 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 #' }
 #' @export
 
-setGeneric("net_dis", function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
+setGeneric("net_dis", function(x, method, evk = 100, egv = TRUE,
+                               sig = TRUE, skip = TRUE) {
     standardGeneric("net_dis")
 })
 
@@ -358,7 +361,7 @@ setGeneric("net_dis", function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
 #' permutation results should be included in the folder `x`.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
 #' matrix is smaller than setted `evk`.
-#' @return x The `mina` object with @dis_bs, @dis_pm and @dis_stat.
+#' @return y The `mina` object with @dis_bs, @dis_pm and @dis_stat.
 #' @examples
 #' \dontrun{
 #' data(maize)

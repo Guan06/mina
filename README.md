@@ -18,6 +18,9 @@ discriminative features.
 
 The whole workflow could be divided into two main part: community diversity
 analysis (green functions shown below) and network analysis (blue functions).
+The `mina` object is shown here but one could also input pre-defined matrix
+at each step (details in manual).
+
 ![whole_workflow](https://github.com/Guan06/MINA/blob/master/data-raw/workflow.png)
 
 ## Installation

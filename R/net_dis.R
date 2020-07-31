@@ -10,6 +10,8 @@
 #' available.
 #' @param evk The first `evk` eigenvalues will be used for `spectra` distance,
 #' the default is 100.
+#' @param egv Wheather to output the eigenvectors for Spectral distance, the
+#' defult is TRUE, only validate when `method == "spectra"`.
 #' @param sig Whether to test the significance, if TRUE (by default), @perm is
 #' needed.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
@@ -28,8 +30,8 @@
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 
-setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY", "ANY"),
-          function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
+setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY"),
+          function(x, method, evk = 100, egv = TRUE, sig = TRUE, skip = TRUE) {
               stop("Must specify a `method`, see `? net_dis_method_list`.")
           }
 )
@@ -40,8 +42,8 @@ setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY", "ANY"),
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 
-setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
-          function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
+setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY", "ANY"),
+          function(x, method, evk = 100, egv = TRUE, sig = TRUE, skip = TRUE) {
               y_bs <- x@multi
               y_pm <- x@perm
               len <- length(y_bs)
@@ -94,6 +96,12 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
                       rownames(spectra_n) <- paste0(group_n, "_b", seqs)
                       spectra_mn <- rbind(spectra_m, spectra_n)
 
+                      if (egv) {
+                          saveRDS(spectra_mn,
+                                  file = paste0("spectra_bs_", group_m,
+                                                "_vs_", group_n, ".rds"))
+                      }
+
                       this_dis_bs <- get_dis_df(dist(spectra_mn))
 
                       # filter intra group network comparison when comparing
@@ -122,6 +130,7 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
                               max <- sum(pmax(abs(adj_m), abs(adj_n)))
 
                               dis <- contrast / max
+
                               this <- data.frame(C1 = m_j1,
                                                  C2 = n_j2,
                                                  Distance = dis,
@@ -165,6 +174,11 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY"),
                           rownames(spectra_mp) <- paste0(group_m, "_p", seqs)
                           rownames(spectra_np) <- paste0(group_n, "_p", seqs)
                           spectra_mnp <- rbind(spectra_mp, spectra_np)
+                          if (egv) {
+                              saveRDS(spectra_mnp,
+                                      file = paste0("spectra_pm_", group_m, "_vs_",
+                                              group_n, ".rds"))
+                          }
                           this_dis_pm <- get_dis_df(dist(spectra_mnp))
 
                           # filter intra group network comparison when
