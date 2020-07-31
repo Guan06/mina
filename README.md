@@ -16,6 +16,10 @@ discriminative features.
 
 ## Overview of the workflow
 
+The whole workflow could be divided into two main part: community diversity
+analysis (green functions shown below) and network analysis (blue functions).
+![whole_workflow](https://github.com/Guan06/MINA/blob/master/data-raw/workflow.png)
+
 ## Installation
 
 Install the released version of mina from [CRAN](https://CRAN.R-project.org) with:
