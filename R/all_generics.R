@@ -328,6 +328,8 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 #' the default is 100.
 #' @param egv Wheather to output the eigenvectors for Spectral distance, the
 #' defult is TRUE, only validate when `method == "spectra"`.
+#' @param dir The folder to output the eigenvectors, only validate when `egv ==
+#' TRUE`.
 #' @param sig Whether to test the significance, if TRUE (by default), @perm is
 #' needed.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
@@ -342,7 +344,7 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 #' }
 #' @export
 
-setGeneric("net_dis", function(x, method, evk = 100, egv = TRUE,
+setGeneric("net_dis", function(x, method, evk = 100, egv = TRUE, dir = "./",
                                sig = TRUE, skip = TRUE) {
     standardGeneric("net_dis")
 })
