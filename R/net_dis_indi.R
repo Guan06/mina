@@ -12,7 +12,7 @@
 #' @param sig Whether to test the significance, if TRUE (by default),
 #' permutation results should be included in the folder `x`.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
-#' matrix is smaller than setted `evk`.
+#' matrix is smaller than setted `evk`, default TRUE.
 #' @return y The `mina` object with @dis_bs, @dis_pm and @dis_stat.
 #' @examples
 #' \dontrun{

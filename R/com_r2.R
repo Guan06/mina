@@ -59,7 +59,7 @@ setMethod("com_r2", signature("mina", "character"), function(x, group) {
 #' get_r2(x, des, group = c("Compartment", "Soil"))
 #' }
 #' @return r2 The variance ratio cannot be explained by given groups.
-#' @export
+#' @exportMethod get_r2
 
 get_r2 <- function(x, des, group = c("Host_genotype", "Compartment", "Soil",
                                      "Management")) {

@@ -21,7 +21,7 @@
 #' @rdname dmr-matrix
 #' @exportMethod dmr
 
-setMethod("dmr", signature("matrix", "ANY"), function(x, k = 4) {
+setMethod("dmr", signature("matrix", "ANY"), function(x, k = 2) {
               x[is.na(x)] <- 0
               y <- cmdscale(x, k = k, eig = T)
               return(y)
@@ -47,7 +47,7 @@ setMethod("dmr", signature("matrix", "ANY"), function(x, k = 4) {
 #' @rdname dmr-mina
 #' @exportMethod dmr
 
-setMethod("dmr", signature("mina", "ANY"), function(x, k = 4) {
+setMethod("dmr", signature("mina", "ANY"), function(x, k = 2) {
     x@dmr <- dmr(x@dis, k = k)
     return(x)
 })

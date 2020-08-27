@@ -36,7 +36,7 @@ setMethod("net_cls", signature("matrix", "ANY", "ANY", "ANY"),
 
 setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
           function(x, method, cutoff = 0.4, neg = FALSE) {
-              if (method == "mcl" && neg == "TRUE") {
+              if (method == "mcl" && neg == TRUE) {
                   stop("Only positive edges when using Markov Clustering.")
               }
               nr_before <- nrow(x)

@@ -127,7 +127,7 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' threads = 8, nblocks = 40)
 #' }
 #' @return t The output `tina` dissimilarity matrix.
-#' @export
+#' @exportMethod tina
 
 tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
                  threads = 80, nblocks = 400) {

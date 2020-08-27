@@ -45,7 +45,8 @@ setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY", "ANY")
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 
-setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY", "ANY"),
+setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY",
+                               "ANY", "ANY"),
           function(x, method, evk = 100, egv = TRUE, dir = "./",
                    sig = TRUE, skip = TRUE) {
               y_bs <- x@multi
@@ -246,6 +247,7 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY", "ANY"),
 #' Function for calculation of eigenvalue of given matrix.
 #'
 #' @importFrom RSpectra eigs_sym
+#' @param x The input matrix.
 #' @param k Get the first k eigenvalues.
 #' @return y The vector of the first k eigenvalues.
 #' @examples
@@ -313,7 +315,6 @@ get_dis_df <- function(x) {
 #' @importFrom stats sd
 #' @param x The bootstrap distance data frame.
 #' @param p The permuation distance data frame.
-#' @param sig Whether to test significance or not.
 #' @examples
 #' \dontrun{
 #' data(maize)

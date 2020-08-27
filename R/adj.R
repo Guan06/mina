@@ -43,10 +43,11 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
           function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
               if (sig == TRUE) {
                   out <- rcorr(t(x@norm), type = method)
+                  diag(out$r) <- 0
                   x@adj <- out$r
-                  diag(x@adj) <- 0
+
+                  diag(out$P) <- 1
                   x@adj_sig <- out$P
-                  diag(x@adj_sig) <- 1
               } else if (method == "pearson" || method == "spearman") {
                   x@adj <- adj(x@norm, method = method)
               } else if (method == "sparcc") {
@@ -61,9 +62,12 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
 
 #' Calculate the adjacency matrix of @norm by correlation with matrix as input.
 #'
+#' @importFrom Hmisc rcorr
 #' @include all_classes.R all_generics.R
 #' @param x An matrix for correlation/adjacency matrix calculation.
 #' @param method The correlation coefficient used for adjacency matrix.
+#' @param sig (optional) The asymtotic P-values, only applicable for Pearson
+#' and Spearman methods with `mina` object as input, alwasy FALSE here.
 #' @param threads The number of threads used for parallel running, 80 by
 #' default.
 #' @param nblocks The number of row/column for splitting sub-matrix, 400 by
@@ -81,8 +85,8 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
 #' @rdname adj-matrix
 #' @exportMethod adj
 
-setMethod("adj", signature("matrix","ANY", "ANY", "ANY"),
-          function(x, method, threads = 80, nblocks = 400) {
+setMethod("adj", signature("matrix","ANY", "ANY", "ANY", "ANY"),
+          function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
               stop("Must specify a `method`, see `? adj_method_list`.")
           }
 )
@@ -92,8 +96,8 @@ setMethod("adj", signature("matrix","ANY", "ANY", "ANY"),
 #' @rdname adj-matrix
 #' @exportMethod adj
 
-setMethod("adj", signature("matrix", "character", "ANY", "ANY"),
-          function(x, method, threads = 80, nblocks = 400) {
+setMethod("adj", signature("matrix", "character", "ANY", "ANY", "ANY"),
+          function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
               if (method == "pearson") {
                   x <- t(x)
                   y <- cp_cor(x)

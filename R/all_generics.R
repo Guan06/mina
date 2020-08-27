@@ -1,8 +1,10 @@
+#' @importFrom methods setClass setGeneric setMethod setRefClass as
+NULL
+
 ###############################################################################
 
 #' Filter the quantitative and descriptive table to make them have the same
 #' samples, the intersect samples will be remained.
-#'
 #' @param x An object of the class mina with @tab and @des defined or a
 #' quantitative matrix(need parameter des in this case).
 #' @examples
@@ -52,8 +54,8 @@ setGeneric("norm_tab", function(x, method, depth = 1000,
 #'
 #' @param x An object of the class mina with @norm defined.
 #' @param method The correlation coeffient used for adjacacency matrix.
-#' @param sig (optional) The asymtotic P-values, only applicable for Pearson and Spearman
-#' methods.
+#' @param sig (optional) The asymtotic P-values, only applicable for Pearson and
+#' Spearman methods.
 #' @param threads (optional) The number of threads used for parallel running.
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
 #' @examples
@@ -148,12 +150,38 @@ setGeneric("com_r2", function(x, group) {
     standardGeneric("com_r2")
 })
 
+###############################################################################
+
+#' Same function as `com_r2` with matrix and corresponding descriptive table as
+#' input.
+#' @param x Dissimilarity / distance matrix which indicate variances.
+#' @param des The descriptive table of samples which define the groups.
+#' @param group The name(s) of column(s) used  as experimental setup group(s) in
+#' descriptive file.
+#'
+#' @examples
+#' \dontrun{
+#' data(maize)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
+#' maize <- com_dis(maize, method = "bray")
+#' x <- maize@dis
+#' des <- maize@des
+#' get_r2(x, des, group = c("Compartment", "Soil"))
+#' }
+#' @return r2 The variance ratio cannot be explained by given groups.
+#' @export
+
+setGeneric("get_r2", function(x, des, group) {
+    standardGeneric("get_r2")
+})
+
 ################################################################################
 
 #' Dimensionality reduction of community dissimilarity / distance for
 #' visulization.
 #'
-#' @param x An object of class `mina` with @dis defined.
+#' @param x An object of class `mina` with @dis defined or a distance matrix.
 #' @param k The dimension number after reduction.
 #' @examples
 #' \dontrun{
@@ -176,6 +204,8 @@ setGeneric("dmr", function(x, k = 2) {
 #' @param x An object of class `mina` with @dmr and @des defined.
 #' @param match The column name of the components IDs in @des which exactly the
 #' same indicated in @dmr.
+#' @param d1 The dimension be visualized in x-axis, default `1`.
+#' @param d2 The dimension be visualized in y-axis, default `2`.
 #' @param color The column name in @des to be used for different color groups.
 #' @param shape The column name in @des to be used for different shape groups,
 #' default is `NULL`.
@@ -329,7 +359,7 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 #' @param egv Wheather to output the eigenvectors for Spectral distance, the
 #' defult is TRUE, only validate when `method == "spectra"`.
 #' @param dir The folder to output the eigenvectors, only validate when `egv ==
-#' TRUE`.
+#' TRUE`, default is current path.
 #' @param sig Whether to test the significance, if TRUE (by default), @perm is
 #' needed.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
@@ -354,7 +384,6 @@ setGeneric("net_dis", function(x, method, evk = 100, egv = TRUE, dir = "./",
 #' Calculate the network distance of bootstrap and permutation when appliable.
 #'
 #' @param x The folder store the network inference results.
-#' defined.
 #' @param method The distance to be calculated, "spectra" and "Jaccard" are
 #' available.
 #' @param evk The first `evk` eigenvalues will be used for `spectra` distance,
@@ -371,9 +400,9 @@ setGeneric("net_dis", function(x, method, evk = 100, egv = TRUE, dir = "./",
 #' maize <- fit_tabs(maize)
 #' maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
 #' "./individual_bs_pm/")
-#' maize_stat1 <- net_dis_indi("./individual_bs_pm/", method = "spectra")
-#' maize_stat2 <- net_dis_indi("./individual_bs_pm/", method = "Jaccard")
-#' maize_stat3 <- net_dis_indi("./individual_bs_pm/", method = "spectra",
+#' maize_stat1 <- net_dis_indi(x = "./individual_bs_pm/", method = "spectra")
+#' maize_stat2 <- net_dis_indi(x = "./individual_bs_pm/", method = "Jaccard")
+#' maize_stat3 <- net_dis_indi(x = "./individual_bs_pm/", method = "spectra",
 #' evk = 100, skip = TRUE)
 #' }
 #' @export

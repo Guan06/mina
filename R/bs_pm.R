@@ -48,7 +48,7 @@ setMethod("bs_pm", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY",
 #' @exportMethod bs_pm
 
 setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
-                            "ANY", "ANY", "ANY", "ANY"),
+                            "ANY", "ANY", "ANY", "ANY", "ANY"),
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
                    sig = TRUE, bs = 6, pm = 6,
                    individual = FALSE, out_dir = "./") {

@@ -24,6 +24,7 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #'
 #' @name mina-class
 #' @aliases mina-class
+#' @importFrom methods setClass
 #' @docType class
 #' @slot tab The quantitative table of the dataset.
 #' @slot des The descriptive table of the samples listed in @tab.
@@ -49,6 +50,7 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #' @examples
 #' maize <- new("mina", tab = maize_asv, des = maize_des)
 #' @author Rui Guan \url{https://github.com/Guan06}
+#' @export mina
 #' @exportClass mina
 
 setClass("mina",
