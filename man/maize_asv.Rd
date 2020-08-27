@@ -3,8 +3,10 @@
 \name{maize_asv}
 \alias{maize_asv}
 \title{ASV table of maize project, vegetative stage samples only.}
-\format{A matrix with samples in columns and ASVs in rows. Unormalized table
-including 12765 ASVs from 420 samples.}
+\format{
+A matrix with samples in columns and ASVs in rows. Unormalized table
+including 12765 ASVs from 420 samples.
+}
 \source{
 RECONSTRUCT project, maize microbiome part.
 }

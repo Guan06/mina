@@ -23,6 +23,9 @@ variance.}
 
 \item{\code{adj}}{The adjacency matrix between pairwise compositions (e.g. OTUs/ASVs)}
 
+\item{\code{adj_sig}}{The P-value matrix of adjacency matrix, only applicable for
+Pearson and Spearman correlation adjacency matrices.}
+
 \item{\code{cls}}{The cluster information for each composition.}
 
 \item{\code{cls_tab}}{The cluster quantitative table.}

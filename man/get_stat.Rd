@@ -10,8 +10,6 @@ get_stat(x, p = NULL)
 \item{x}{The bootstrap distance data frame.}
 
 \item{p}{The permuation distance data frame.}
-
-\item{sig}{Whether to test significance or not.}
 }
 \description{
 Function for distance statistic and significance test.

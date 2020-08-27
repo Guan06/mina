@@ -5,11 +5,14 @@
 \alias{com_dis_list}
 \title{List of dissimilarity / distance supported in \code{\link[mina]{com_dis}}.
 Dissimilarity / distance should be specified by exact string match.}
-\format{A list of character vectors indicate the dissimilarity / distance
+\format{
+A list of character vectors indicate the dissimilarity / distance
 method used.
 
 \describe{
   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
+
+  \item{\code{Jaccard}} {Jaccard defined by \code{\link{vegan}}}
 
   \item{weighted}{ Dissimilarity / distance method for weighted matrix: }
   \item{\code{bhjattacharyya}}{ from \code{\link[parallelDist]{parDist}} }
@@ -54,7 +57,8 @@ method used.
   \item{\code{yule}}{ from \code{\link[parallelDist]{parDist}} }
   \item{\code{yule2}}{ from \code{\link[parallelDist]{parDist}} }
 
-}}
+}
+}
 \usage{
 com_dis_list
 }

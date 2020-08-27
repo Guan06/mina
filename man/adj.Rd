@@ -4,15 +4,15 @@
 \alias{adj}
 \title{Calculate the adjacacency matrix of @norm by correlation.}
 \usage{
-adj(x, method, sig, threads = 80, nblocks = 400)
+adj(x, method, sig = FALSE, threads = 80, nblocks = 400)
 }
 \arguments{
 \item{x}{An object of the class mina with @norm defined.}
 
 \item{method}{The correlation coeffient used for adjacacency matrix.}
 
-\item{sig}{The asymtotic P-values, only applicable for Pearson and Spearman
-methods.}
+\item{sig}{(optional) The asymtotic P-values, only applicable for Pearson and
+Spearman methods.}
 
 \item{threads}{(optional) The number of threads used for parallel running.}
 

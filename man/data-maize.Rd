@@ -6,11 +6,11 @@
 \alias{maize}
 \title{Internal testing data of maize project, vegetative stage samples only,
 including quantitative table (maize_asv.rds) and descriptive table
-(maize_des.csv) for testing.}
+(maize_des.txt) for testing.}
 \description{
 Internal testing data of maize project, vegetative stage samples only,
 including quantitative table (maize_asv.rds) and descriptive table
-(maize_des.csv) for testing.
+(maize_des.txt) for testing.
 }
 \examples{
 data(maize)

@@ -102,7 +102,9 @@ setMethod("com_plot",
 #' }
 #' @exportMethod pcoa_plot
 
-pcoa_plot <- function(x, des, match, d1 = 1, d2 = 2, color, shape = NULL) {
+setMethod("pcoa_plot", signature("list", "data.frame", "character",
+                                 "ANY", "ANY", "character", "ANY"),
+            function(x, des, match, d1 = 1, d2 = 2, color, shape = NULL) {
     points <- x$points
     if (nrow(points) != nrow(des)) {
         stop("Component number in `dmr` and `des` are different!")
@@ -147,4 +149,4 @@ pcoa_plot <- function(x, des, match, d1 = 1, d2 = 2, color, shape = NULL) {
                       text = element_text(family="sans")
                 )
     return(p)
-}
+})

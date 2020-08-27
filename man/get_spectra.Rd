@@ -7,6 +7,8 @@
 get_spectra(x, k = 100)
 }
 \arguments{
+\item{x}{The input matrix.}
+
 \item{k}{Get the first k eigenvalues.}
 }
 \value{

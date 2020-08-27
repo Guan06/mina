@@ -5,7 +5,7 @@
 \title{Calculate the network distance of @multi and test the significance when @perm
 is defined.}
 \usage{
-net_dis(x, method, evk = 100, sig = TRUE)
+net_dis(x, method, evk = 100, egv = TRUE, dir = "./", sig = TRUE, skip = TRUE)
 }
 \arguments{
 \item{x}{An object of class `mina` with @multi (and @perm if `sig` is TRUE)
@@ -17,8 +17,17 @@ available.}
 \item{evk}{The first `evk` eigenvalues will be used for `spectra` distance,
 the default is 100.}
 
+\item{egv}{Wheather to output the eigenvectors for Spectral distance, the
+defult is TRUE, only validate when `method == "spectra"`.}
+
+\item{dir}{The folder to output the eigenvectors, only validate when `egv ==
+TRUE`, default is current path.}
+
 \item{sig}{Whether to test the significance, if TRUE (by default), @perm is
 needed.}
+
+\item{skip}{Whether to skip the comparison when the dimenstion of adjacency
+matrix is smaller than setted `evk`.}
 }
 \description{
 Calculate the network distance of @multi and test the significance when @perm

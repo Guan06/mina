@@ -4,14 +4,16 @@
 \alias{maize_des}
 \title{Design file of maize project, vegetative stage samples only, including 528
 samples in total.}
-\format{A data frame with columns:
+\format{
+A data frame with columns:
 \describe{
  \item{Sample_ID}{The unique ID of the microbial profiling sample.}
  \item{Host_genotype}{The genotype of the plant host maize.}
  \item{Compartment}{The compartment of the microbial sample comes from.}
  \item{Soil}{The soil of the sampled microbiome.}
  \item{Management}{The management of the soil where microbial sample from.}
-}}
+}
+}
 \source{
 RECONSTRUCT project, maize microbiome part.
 }

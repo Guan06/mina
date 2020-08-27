@@ -50,7 +50,6 @@ setClassUnion("lst_or_NULL", c("list", "NULL"))
 #' @examples
 #' maize <- new("mina", tab = maize_asv, des = maize_des)
 #' @author Rui Guan \url{https://github.com/Guan06}
-#' @export mina
 #' @exportClass mina
 
 setClass("mina",

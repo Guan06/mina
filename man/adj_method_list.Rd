@@ -5,7 +5,8 @@
 \alias{adj_method_list}
 \title{List of adjacency matix calculation methods/ orrelations supported in
 \code{\link[mina]{adj}}}
-\format{A list of character vectors.
+\format{
+A list of character vectors.
 \describe{
    \item{pearson}{
        Pearson correlation.
@@ -17,7 +18,8 @@
        SparCC correlation by spearman.
    }
 
-}}
+}
+}
 \usage{
 adj_method_list
 }

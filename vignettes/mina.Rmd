@@ -52,6 +52,8 @@ package was written followed S4 rules thus @ will be used for indicating slots.
 The slots could be imported separately after creating a new object:
 ```{r importData, eval = FALSE}
     maize <- new("mina")
+    data(maize_asv)
+    data(maize_des)
     maize@tab <- maize_asv
     maize@des <- maize_des
 ```

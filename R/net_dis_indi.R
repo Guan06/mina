@@ -37,7 +37,6 @@ setMethod("net_dis_indi", signature("character", "ANY", "ANY", "ANY", "ANY"),
 
 ###############################################################################
 
-#' @inheritParams net_dis_indi
 #' @rdname net_dis_indi
 #' @exportMethod net_dis_indi
 

@@ -129,7 +129,8 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' @return t The output `tina` dissimilarity matrix.
 #' @exportMethod tina
 
-tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
+setMethod("tina", signature("matrix", "character", "character", "ANY", "ANY"),
+    function(x, cor_method = "spearman", sim_method = "w_ja",
                  threads = 80, nblocks = 400) {
     x_sparcc <- sparcc(x, threads = threads, nblocks = nblocks)
     tmp.S <- adj(x_sparcc, method = cor_method)
@@ -139,7 +140,7 @@ tina <- function(x, cor_method = "spearman", sim_method = "w_ja",
                  nblocks = nblocks)
     t[t < 0] <- 0
     return(t)
-}
+})
 
 ###############################################################################
 

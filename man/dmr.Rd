@@ -8,7 +8,7 @@ visulization.}
 dmr(x, k = 2)
 }
 \arguments{
-\item{x}{An object of class `mina` with @dis defined.}
+\item{x}{An object of class `mina` with @dis defined or a distance matrix.}
 
 \item{k}{The dimension number after reduction.}
 }

@@ -41,7 +41,6 @@ setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY", "ANY")
 
 ###############################################################################
 
-#' @inheritParams net_dis
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 

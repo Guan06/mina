@@ -59,10 +59,30 @@ setMethod("com_r2", signature("mina", "character"), function(x, group) {
 #' get_r2(x, des, group = c("Compartment", "Soil"))
 #' }
 #' @return r2 The variance ratio cannot be explained by given groups.
+#' @rdname get_r2-mat
 #' @exportMethod get_r2
 
-get_r2 <- function(x, des, group = c("Host_genotype", "Compartment", "Soil",
-                                     "Management")) {
+setMethod("get_r2", signature("matrix", "ANY", "ANY"), function(x, des, group){
+    stop("Must specify descriptive file for dunexplained variance ratio calculation!")
+})
+
+###############################################################################
+
+#' @rdname get_r2-mat
+#' @exportMethod get_r2
+
+setMethod("get_r2", signature("matrix", "character", "ANY"), function(x, des, group){
+    stop("Must specify group(s) for dunexplained variance ratio calculation!")
+})
+
+###############################################################################
+
+#' @rdname get_r2-mat
+#' @exportMethod get_r2
+
+setMethod("get_r2", signature("matrix", "character", "character"),
+        function(x, des, group = c("Host_genotype",
+                                   "Compartment", "Soil", "Management")) {
     ## reformat the distance matrix x
     dis <- data.frame(t(combn(rownames(x), 2)), x[lower.tri(x)])
     colnames(dis) <- c("sample1", "sample2", "distance")
@@ -98,4 +118,4 @@ get_r2 <- function(x, des, group = c("Host_genotype", "Compartment", "Soil",
 
     r <- round(SSw / SSt, 3)
     return(r)
-}
+})
