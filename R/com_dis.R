@@ -106,7 +106,7 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' for the calculation of similarity.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An matrix for `tina` dissimilarity calculation.
+#' @param x A matrix for `tina` dissimilarity calculation.
 #' @param cor_method The method for correlation, "pearson" and "spearman" are
 #' available.
 #' @param sim_method The method for similarity, "w_ja" and "uw_ja" are
@@ -271,9 +271,9 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #' method used.
 #'
 #' \describe{
-#'   \item{\code{tina}}{TINA from Schmidt_et_al_2016}
+#'   \item{\code{tina}}{ TINA from Schmidt_et_al_2016 }
 #'
-#'   \item{\code{Jaccard}} {Jaccard defined by \code{\link{vegan}}}
+#'   \item{\code{Jaccard}} { Jaccard defined by \code{\link[vegan]{}} }
 #'
 #'   \item{weighted}{ Dissimilarity / distance method for weighted matrix: }
 #'   \item{\code{bhjattacharyya}}{ from \code{\link[parallelDist]{parDist}} }

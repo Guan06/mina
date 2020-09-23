@@ -44,7 +44,7 @@ maize <- dmr(maize)
 p1a <- com_plot(maize, match = "Sample_ID", color = "Compartment")
 p1b <- com_plot(maize, match = "Sample_ID", d1 = 3, d2 = 4,
 color = "Compartment")
-p2a <- com_plot(maize, match = "Sample_ID", color = "Genotype")
+p2a <- com_plot(maize, match = "Sample_ID", color = "Host_genotype")
 p2b <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 3, color =
 "Host_genotype")
 p3a <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =

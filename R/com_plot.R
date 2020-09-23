@@ -23,7 +23,7 @@
 #' p1a <- com_plot(maize, match = "Sample_ID", color = "Compartment")
 #' p1b <- com_plot(maize, match = "Sample_ID", d1 = 3, d2 = 4,
 #' color = "Compartment")
-#' p2a <- com_plot(maize, match = "Sample_ID", color = "Genotype")
+#' p2a <- com_plot(maize, match = "Sample_ID", color = "Host_genotype")
 #' p2b <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 3, color =
 #' "Host_genotype")
 #' p3a <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
@@ -133,6 +133,7 @@ setMethod("pcoa_plot", signature("list", "data.frame", "character",
     p <- ggplot(points, aes_string(x = "x", y = "y", color = color,
                                    shape = shape)) +
                 geom_point(size = 1.2, alpha = 0.8) +
+                coord_fixed(ratio = 1) +
                 labs (x = paste0("PCo", d1, " (",
                                  format(eig1, digits = 4), "%)"),
                       y = paste0("PCo", d2, " (",

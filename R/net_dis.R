@@ -102,7 +102,7 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY",
 
                       if (egv) {
                           saveRDS(spectra_mn,
-                                  file = paste0(dir, "spectra_bs_", group_m,
+                                  file = paste0(dir, "/spectra_bs_", group_m,
                                                 "_vs_", group_n, ".rds"))
                       }
 
@@ -180,7 +180,7 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY",
                           spectra_mnp <- rbind(spectra_mp, spectra_np)
                           if (egv) {
                               saveRDS(spectra_mnp,
-                                      file = paste0(dir, "spectra_pm_", group_m, "_vs_",
+                                      file = paste0(dir, "/spectra_pm_", group_m, "_vs_",
                                               group_n, ".rds"))
                           }
                           this_dis_pm <- get_dis_df(dist(spectra_mnp))

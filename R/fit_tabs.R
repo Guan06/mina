@@ -21,7 +21,7 @@
 
 setMethod("fit_tabs", signature("mina"),
           function(x) {
-              if (class(x@tab) == "NULL" || class(x@des) == "NULL") {
+              if (class(x@tab)[1] == "NULL" || class(x@des)[1] == "NULL") {
                   stop("Either @tab or @des of this object is missing!")
               }
 

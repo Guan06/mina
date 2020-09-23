@@ -30,7 +30,7 @@ setMethod("com_r2", signature("mina", "ANY"), function(x, group) {
 #' @exportMethod com_r2
 
 setMethod("com_r2", signature("mina", "character"), function(x, group) {
-    r2 <- get_r2(x@dis, x@des, group = group)
+    r2 <- get_r2(x@dis, des = x@des, group = group)
     return(r2)
 })
 
@@ -71,7 +71,7 @@ setMethod("get_r2", signature("matrix", "ANY", "ANY"), function(x, des, group){
 #' @rdname get_r2-mat
 #' @exportMethod get_r2
 
-setMethod("get_r2", signature("matrix", "character", "ANY"), function(x, des, group){
+setMethod("get_r2", signature("matrix", "data.frame", "ANY"), function(x, des, group){
     stop("Must specify group(s) for dunexplained variance ratio calculation!")
 })
 
@@ -80,7 +80,7 @@ setMethod("get_r2", signature("matrix", "character", "ANY"), function(x, des, gr
 #' @rdname get_r2-mat
 #' @exportMethod get_r2
 
-setMethod("get_r2", signature("matrix", "character", "character"),
+setMethod("get_r2", signature("matrix", "data.frame", "character"),
         function(x, des, group = c("Host_genotype",
                                    "Compartment", "Soil", "Management")) {
     ## reformat the distance matrix x

@@ -4,12 +4,12 @@
 \alias{dmr,mina-method}
 \title{Dimensionality reduction of the @dis included in mina.}
 \usage{
-\S4method{dmr}{mina}(x, k = 2)
+\S4method{dmr}{mina}(x, k = 4)
 }
 \arguments{
 \item{x}{An object of the class `mina` with @dis defined.}
 
-\item{k}{The number of dimensionality after reduction, 2 by default.}
+\item{k}{The number of dimensionality after reduction, 4 by default.}
 }
 \value{
 x The same object with @dmr added.

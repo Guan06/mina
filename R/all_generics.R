@@ -143,7 +143,7 @@ setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",
 #' maize <- norm_tab(maize, method = "raref", depth = 5000)
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
-#' com_r2(maize, group = c("Compartment", "Soil", "Genotype"))
+#' com_r2(maize, group = c("Compartment", "Soil", "Host_genotype"))
 #' @export
 
 setGeneric("com_r2", function(x, group) {
@@ -218,7 +218,7 @@ setGeneric("dmr", function(x, k = 2) {
 #' p1a <- com_plot(maize, match = "Sample_ID", color = "Compartment")
 #' p1b <- com_plot(maize, match = "Sample_ID", d1 = 3, d2 = 4,
 #' color = "Compartment")
-#' p2a <- com_plot(maize, match = "Sample_ID", color = "Genotype")
+#' p2a <- com_plot(maize, match = "Sample_ID", color = "Host_genotype")
 #' p2b <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 3, color =
 #' "Host_genotype")
 #' p3a <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =

@@ -5,7 +5,7 @@
 #' @include all_classes.R all_generics.R
 #' @importFrom stats cmdscale
 #' @param x A distance matrix.
-#' @param k The number of dimensionality after reduction, 2 by default.
+#' @param k The number of dimensionality after reduction, 4 by default.
 #' @examples
 #' \dontrun{
 #' data(maize)
@@ -21,7 +21,7 @@
 #' @rdname dmr-matrix
 #' @exportMethod dmr
 
-setMethod("dmr", signature("matrix", "ANY"), function(x, k = 2) {
+setMethod("dmr", signature("matrix", "ANY"), function(x, k = 4) {
               x[is.na(x)] <- 0
               y <- cmdscale(x, k = k, eig = T)
               return(y)
@@ -33,7 +33,7 @@ setMethod("dmr", signature("matrix", "ANY"), function(x, k = 2) {
 #' @include all_classes.R all_generics.R
 #'
 #' @param x An object of the class `mina` with @dis defined.
-#' @param k The number of dimensionality after reduction, 2 by default.
+#' @param k The number of dimensionality after reduction, 4 by default.
 #' @examples
 #' \dontrun{
 #' data(maize)
@@ -47,7 +47,7 @@ setMethod("dmr", signature("matrix", "ANY"), function(x, k = 2) {
 #' @rdname dmr-mina
 #' @exportMethod dmr
 
-setMethod("dmr", signature("mina", "ANY"), function(x, k = 2) {
+setMethod("dmr", signature("mina", "ANY"), function(x, k = 4) {
     x@dmr <- dmr(x@dis, k = k)
     return(x)
 })

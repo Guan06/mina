@@ -23,5 +23,5 @@ data(maize)
 maize <- norm_tab(maize, method = "raref", depth = 5000)
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
-com_r2(maize, group = c("Compartment", "Soil", "Genotype"))
+com_r2(maize, group = c("Compartment", "Soil", "Host_genotype"))
 }

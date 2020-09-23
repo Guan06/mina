@@ -3,6 +3,8 @@
 #' Calculate the network distance of bootstrap and permutation when appliable.
 #'
 #' @importFrom stats dist
+#' @importFrom methods new
+#' @importFrom utils write.table
 #' @param x The folder store the network inference results.
 #' defined.
 #' @param method The distance to be calculated, "spectra" and "Jaccard" are

@@ -17,7 +17,7 @@ for the calculation of similarity.}
 )
 }
 \arguments{
-\item{x}{An matrix for `tina` dissimilarity calculation.}
+\item{x}{A matrix for `tina` dissimilarity calculation.}
 
 \item{cor_method}{The method for correlation, "pearson" and "spearman" are
 available.}

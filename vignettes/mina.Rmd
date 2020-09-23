@@ -52,10 +52,8 @@ package was written followed S4 rules thus @ will be used for indicating slots.
 The slots could be imported separately after creating a new object:
 ```{r importData, eval = FALSE}
     maize <- new("mina")
-    data(maize_asv)
-    data(maize_des)
-    maize@tab <- maize_asv
-    maize@des <- maize_des
+    maize@tab <- as.matrix(maize_asv)
+    maize@des <- as.data.frame(maize_des)
 ```
 Or together at the same time when starting a new object:
 ```{r importData_2, eval = FALSE}
@@ -64,12 +62,12 @@ Or together at the same time when starting a new object:
 Please be aware that the descriptive table have to contain a column called
 "**Sample_ID**" which includes the same samples indicated in the quantitative
 tables. See an example here:
-```{r showData, eval = TRUE}
+```{r showData, eval = FALSE}
     head(maize_des)
 ```
 For the quantitative table, each column correspond to one sample indicated in
 the descriptive table and each row represent one composition in the community.
-```{r showData_2, eval = TRUE}
+```{r showData_2, eval = FALSE}
     maize_asv[1:6, 1:6]
 ```
 
@@ -88,8 +86,8 @@ format of imported data, both quantitative and descriptive table.
 ```
 After checking, if there is mismatch between quantitative and descriptive
 tables, `fit_tabs()` could be used to trim two tables.
-```{r fitTabs}
-    maize <- fit_tabs(maize)
+```{r fitTabs, eval = FALSE}
+    maize <- fit_tabs(maize2)
 ```
 
 # Diversity analysis of the community

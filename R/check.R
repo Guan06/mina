@@ -14,7 +14,7 @@
 #' @keywords internal
 
 check_mina <- function(x) {
-    if (class(x@tab) == "NULL" && class(x@des) == "NULL") {
+    if (class(x@tab)[1] == "NULL" && class(x@des)[1] == "NULL") {
         stop("An empty (neither @tab or @des) object of the class mina!")
     }
 
@@ -40,7 +40,7 @@ check_mina <- function(x) {
 
 check_mina_qu <- function(x) {
     errors <- character()
-    if (class(x@tab) == "NULL") stop("The @tab of this object does not exist!")
+    if (class(x@tab)[1] == "NULL") stop("The @tab of this object does not exist!")
     #d <- dim(x@tab)
     #message (paste0("The @tab is ", d[1], " * ", d[2], "."))
     TRUE
@@ -66,7 +66,7 @@ check_mina_de <- function(x) {
 
     if (!check_mina_qu(x)) errors <- c(errors, check_mina_qu(x))
 
-    if(class(x@des) == "NULL") {
+    if(class(x@des)[1] == "NULL") {
         stop("The @des of this object does not exist!")
     }
 

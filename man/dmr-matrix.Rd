@@ -4,12 +4,12 @@
 \alias{dmr,matrix-method}
 \title{Dimensionality reduction of the distance matrix.}
 \usage{
-\S4method{dmr}{matrix}(x, k = 2)
+\S4method{dmr}{matrix}(x, k = 4)
 }
 \arguments{
 \item{x}{A distance matrix.}
 
-\item{k}{The number of dimensionality after reduction, 2 by default.}
+\item{k}{The number of dimensionality after reduction, 4 by default.}
 }
 \value{
 y The coordinates of components indicated in distance matrix in k

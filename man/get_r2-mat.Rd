@@ -2,17 +2,17 @@
 % Please edit documentation in R/com_r2.R
 \name{get_r2,matrix,ANY,ANY-method}
 \alias{get_r2,matrix,ANY,ANY-method}
-\alias{get_r2,matrix,character,ANY-method}
-\alias{get_r2,matrix,character,character-method}
+\alias{get_r2,matrix,data.frame,ANY-method}
+\alias{get_r2,matrix,data.frame,character-method}
 \title{Function for unexplained variance ratio calculation indicated in
 Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of
 variance. Austral Ecology, 26: 32--46.}
 \usage{
 \S4method{get_r2}{matrix,ANY,ANY}(x, des, group)
 
-\S4method{get_r2}{matrix,character,ANY}(x, des, group)
+\S4method{get_r2}{matrix,data.frame,ANY}(x, des, group)
 
-\S4method{get_r2}{matrix,character,character}(x, des, group = c("Host_genotype", "Compartment", "Soil", "Management"))
+\S4method{get_r2}{matrix,data.frame,character}(x, des, group = c("Host_genotype", "Compartment", "Soil", "Management"))
 }
 \arguments{
 \item{x}{Dissimilarity / distance matrix which indicate variances.}
