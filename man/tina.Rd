@@ -3,9 +3,8 @@
 \name{tina}
 \alias{tina}
 \title{TINA community dissimilarity used in \code{\link[mina]{com_dis}}.
-Function for `tina` dissimilarity/distance calculation. Modified from \href{
-https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-master/functions.community_similarity.R}{Schmidt_et_al_2016}.}
+Function for `tina` dissimilarity/distance calculation. Modified from Schmidt
+et al., 2016.}
 \usage{
 tina(
   x,
@@ -16,7 +15,7 @@ tina(
 )
 }
 \arguments{
-\item{x}{An matrix for `tina` dissimilarity calculation.}
+\item{x}{An matrix for dissimilarity calculation.}
 
 \item{cor_method}{The method for correlation, "pearson" and "spearman" are
 available.}
@@ -32,9 +31,8 @@ default.}
 }
 \description{
 TINA community dissimilarity used in \code{\link[mina]{com_dis}}.
-Function for `tina` dissimilarity/distance calculation. Modified from \href{
-https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-master/functions.community_similarity.R}{Schmidt_et_al_2016}.
+Function for `tina` dissimilarity/distance calculation. Modified from Schmidt
+et al., 2016.
 }
 \examples{
 \dontrun{

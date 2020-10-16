@@ -16,6 +16,7 @@ instead of relative abundances, default is FALSE.}
 Get the cluster table @cls_tab from @norm and @cls.
 }
 \examples{
+\dontrun{
 data(maize)
 maize@tab <- maize@tab[1 : 500, 1 : 200]
 maize <- norm_tab(maize, method = "raref", depth = 100)
@@ -25,4 +26,5 @@ maize <- net_cls(maize, method = "mcl", cutoff = 0.5)
 maize <- net_cls_tab(maize)
 maize <- net_cls(maize, method = "ap", cutoff = 0.5)
 maize <- net_cls_tab(maize)
+}
 }

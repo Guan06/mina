@@ -24,6 +24,7 @@ Get the cluster table @cls_tab from quantitative table @norm and network
 clustering results @cls.
 }
 \examples{
+\dontrun{
 data(maize)
 maize@tab <- maize@tab[1 : 1000, 1 : 200]
 maize <- norm_tab(maize, method = "raref", depth = 100)
@@ -34,4 +35,5 @@ maize_cls <- net_cls(maize_adj, method = "mcl", cutoff = 0.5)
 maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
 maize_cls <- net_cls(maize_adj, method = "ap", cutoff = 0.5)
 maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
+}
 }

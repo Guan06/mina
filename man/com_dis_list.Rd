@@ -12,7 +12,7 @@ method used.
 \describe{
   \item{\code{tina}}{ TINA from Schmidt_et_al_2016 }
 
-  \item{\code{Jaccard}} { Jaccard defined by \code{\link[vegan]{}} }
+  \item{\code{Jaccard}}{ Jaccard defined by \code{\link[vegan]{vegdist}} }
 
   \item{weighted}{ Dissimilarity / distance method for weighted matrix: }
   \item{\code{bhjattacharyya}}{ from \code{\link[parallelDist]{parDist}} }

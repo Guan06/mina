@@ -14,10 +14,8 @@
 #' @examples
 #' data(maize_asv)
 #' maize_asv_norm <- norm_tab(maize_asv, method = "total")
-#' maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000, replace
-#' = TRUE)
 #' maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000,
-#' replace = TRUE, multi = 99)
+#' replace = TRUE, multi = 3)
 #' @return x_norm Normalized matrix of the quantitative table.
 #' @rdname norm_tab-matrix
 #' @exportMethod norm_tab

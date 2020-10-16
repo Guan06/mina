@@ -59,6 +59,7 @@ setGeneric("norm_tab", function(x, method, depth = 1000,
 #' @param threads (optional) The number of threads used for parallel running.
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
 #' @examples
+#' \dontrun{
 #' data(maize)
 #' maize@tab <- maize@tab[1 : 500, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 200)
@@ -66,6 +67,7 @@ setGeneric("norm_tab", function(x, method, depth = 1000,
 #' maize <- adj(maize, method = "spearman")
 #' maize <- adj(maize, method = "spearman", sig = FALSE)
 #' maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
+#' }
 #' @export
 
 setGeneric("adj", function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
@@ -99,12 +101,11 @@ setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
 ###############################################################################
 
 #' TINA community dissimilarity used in \code{\link[mina]{com_dis}}.
-#' Function for `tina` dissimilarity/distance calculation. Modified from \href{
-#' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-#' master/functions.community_similarity.R}{Schmidt_et_al_2016}.
+#' Function for `tina` dissimilarity/distance calculation. Modified from Schmidt
+#' et al., 2016.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An matrix for `tina` dissimilarity calculation.
+#' @param x An matrix for dissimilarity calculation.
 #' @param cor_method The method for correlation, "pearson" and "spearman" are
 #' available.
 #' @param sim_method The method for similarity, "w_ja" and "uw_ja" are
@@ -311,6 +312,7 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 #' instead of relative abundance, default is FALSE.
 #' @return x_cls The quantitative table with clusters in rows.
 #' @examples
+#' \dontrun{
 #' data(maize)
 #' maize@tab <- maize@tab[1 : 1000, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 100)
@@ -321,6 +323,7 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 #' maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
 #' maize_cls <- net_cls(maize_adj, method = "ap", cutoff = 0.5)
 #' maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
+#' }
 #' @exportMethod get_net_cls_tab
 
 setGeneric("get_net_cls_tab", function(x_norm, x_cls, uw = FALSE) {
@@ -334,6 +337,7 @@ setGeneric("get_net_cls_tab", function(x_norm, x_cls, uw = FALSE) {
 #' @param uw By summing up the number of present components of each cluster
 #' instead of relative abundances, default is FALSE.
 #' @examples
+#' \dontrun{
 #' data(maize)
 #' maize@tab <- maize@tab[1 : 500, 1 : 200]
 #' maize <- norm_tab(maize, method = "raref", depth = 100)
@@ -343,6 +347,7 @@ setGeneric("get_net_cls_tab", function(x_norm, x_cls, uw = FALSE) {
 #' maize <- net_cls_tab(maize)
 #' maize <- net_cls(maize, method = "ap", cutoff = 0.5)
 #' maize <- net_cls_tab(maize)
+#' }
 #' @export
 
 setGeneric("net_cls_tab", function(x, uw = FALSE) {

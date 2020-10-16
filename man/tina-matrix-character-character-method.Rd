@@ -2,11 +2,9 @@
 % Please edit documentation in R/com_dis.R
 \name{tina,matrix,character,character-method}
 \alias{tina,matrix,character,character-method}
-\title{Function for `tina` dissimilarity / distance calculation. Modified from
-https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-master/functions.community_similarity.R Pearson/Spearman could be used
-for calculating correlation and weighted/unweighted Jaccard could be used
-for the calculation of similarity.}
+\title{Function for `tina` dissimilarity calculation. Modified from Schmidt et al.,
+2016. Person and Spearman could be used for correlation and weighted and
+unweighted Jaccard could be used for similarity calculation.}
 \usage{
 \S4method{tina}{matrix,character,character}(
   x,
@@ -17,7 +15,7 @@ for the calculation of similarity.}
 )
 }
 \arguments{
-\item{x}{A matrix for `tina` dissimilarity calculation.}
+\item{x}{A matrix for dissimilarity calculation.}
 
 \item{cor_method}{The method for correlation, "pearson" and "spearman" are
 available.}
@@ -28,18 +26,16 @@ available for weighted and unweighted Jaccard similarity respectively.}
 \item{threads}{The number of threads used for parallel running, 80 by
 default.}
 
-\item{nblocks}{The number of row / column for splitted sub-matrix, 400 by
+\item{nblocks}{The number of row and column for splitted sub-matrix, 400 by
 default.}
 }
 \value{
 t The output `tina` dissimilarity matrix.
 }
 \description{
-Function for `tina` dissimilarity / distance calculation. Modified from
-https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-master/functions.community_similarity.R Pearson/Spearman could be used
-for calculating correlation and weighted/unweighted Jaccard could be used
-for the calculation of similarity.
+Function for `tina` dissimilarity calculation. Modified from Schmidt et al.,
+2016. Person and Spearman could be used for correlation and weighted and
+unweighted Jaccard could be used for similarity calculation.
 }
 \examples{
 \dontrun{

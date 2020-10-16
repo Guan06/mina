@@ -99,21 +99,19 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 
 ###############################################################################
 
-#' Function for `tina` dissimilarity / distance calculation. Modified from
-#' https://github.com/defleury/Schmidt_et_al_2016_community_similarity/blob/
-#' master/functions.community_similarity.R Pearson/Spearman could be used
-#' for calculating correlation and weighted/unweighted Jaccard could be used
-#' for the calculation of similarity.
+#' Function for `tina` dissimilarity calculation. Modified from Schmidt et al.,
+#' 2016. Person and Spearman could be used for correlation and weighted and
+#' unweighted Jaccard could be used for similarity calculation.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x A matrix for `tina` dissimilarity calculation.
+#' @param x A matrix for dissimilarity calculation.
 #' @param cor_method The method for correlation, "pearson" and "spearman" are
 #' available.
 #' @param sim_method The method for similarity, "w_ja" and "uw_ja" are
 #' available for weighted and unweighted Jaccard similarity respectively.
 #' @param threads The number of threads used for parallel running, 80 by
 #' default.
-#' @param nblocks The number of row / column for splitted sub-matrix, 400 by
+#' @param nblocks The number of row and column for splitted sub-matrix, 400 by
 #' default.
 #' @examples
 #' \dontrun{
@@ -273,7 +271,7 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
 #' \describe{
 #'   \item{\code{tina}}{ TINA from Schmidt_et_al_2016 }
 #'
-#'   \item{\code{Jaccard}} { Jaccard defined by \code{\link[vegan]{}} }
+#'   \item{\code{Jaccard}}{ Jaccard defined by \code{\link[vegan]{vegdist}} }
 #'
 #'   \item{weighted}{ Dissimilarity / distance method for weighted matrix: }
 #'   \item{\code{bhjattacharyya}}{ from \code{\link[parallelDist]{parDist}} }
