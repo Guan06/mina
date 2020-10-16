@@ -210,9 +210,9 @@ maize@dis_stat
 
 | Compare                 | Distance_Mean | Distance_SD | Distance_PM_Mean | Distance_PM_SD | N    | p           |
 |-------------------------|---------------|-------------|------------------|----------------|------|-------------|
-| rhizosphere_rhizosphere | 0.645453096   | 0.028483817 | 0.665874922      | 0.096751983    | 1296 | 0.427139553 |
-| rhizosphere_root        | 0.926163416   | 0.001718482 | 0.783356695      | 0.045793986    | 1296 | 0.00077101  |
-| root_root               | 0.711618793   | 0.031503807 | 0.730591104      | 0.070999153    | 1296 | 0.534309946 |
+| rhizosphere_rhizosphere | 0.6455   | 0.0285 | 0.6659      | 0.0968    | 1296 | 0.4271 |
+| rhizosphere_root        | 0.9262   | 0.0017 | 0.7834      | 0.0458    | 1296 | 0.0008  |
+| root_root               | 0.7112   | 0.0315 | 0.7306      | 0.0710    | 1296 | 0.5343 |
 
 Since the bootstrap and permutation, the distance calculation process is
 nondeterministic, however the result and conclusion should not change a lot.
