@@ -219,5 +219,6 @@ nondeterministic, however the result and conclusion should not change a lot.
 
 ## Conclusion
 The package provides thorough microbial diversity and network analysis tools.
+Network cluster based diversity analysis reduced the noise.
 By introducing the bs-pm process, we decreased the demonding time, space and computing
 capacity dramatically.
