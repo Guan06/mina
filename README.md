@@ -1,18 +1,6 @@
 # **M**icrobial community d**I**versity and **N**etwork **A**nalysis with **MINA**
 
-An increasing number of microbiome datasets have been generated and analysed
-with the rapidly developing sequencing technologies. At present, analysis of
-taxonomic profiling data is mainly conducted using composition-based methods,
-which ignores interactions between community members. Besides, the
-comprehensive comparative network analysis is unexplored, limiting the study
-of community dynamics. The goal of *MINA* is to provide a thorough framework for
-microbial community analysis based on higher order community features to
-better understand the principles that govern the establishment of those
-communities. We reduced the noise / signal ratio for diversity analysis by
-integrating the network-derived features and introduced a
-bootstrap-permutation based network comparison method to statistically assess
-community networks dissimilarities under specific condition and to extract
-discriminative features.
+An increasing number of microbiome datasets have been generated and analyzed with the help of rapidly developing sequencing technologies. At present, analysis of taxonomic profiling data is mainly conducted using composition-based methods, which ignores interactions between community members. Besides this, a lack of efficient ways to compare microbial interaction networks limited the study of community dynamics. To better understand how community diversity is affected by complex interactions between its members, we developed a framework (Microbial community dIversity and Network Analysis, MINA), a comprehensive framework for microbial community diversity analysis and network comparison.  By defining and integrating network-derived community features, we greatly reduce noise-to-signal ratio for diversity analyses.  A bootstrap and permutation-based method was implemented to assess community network dissimilarities and extract discriminative features in a statistically principled way.
 
 ## Overview of the workflow
 
@@ -25,8 +13,7 @@ at each step (details in manual).
 
 ## Installation
 
-Install the released version of mina from [CRAN](https://CRAN.R-project.org) with:
-
+The official version of mina can be installed from github by:
 ``` r
 install.packages("mina")
 ```
@@ -36,174 +23,95 @@ devtools::install_github("Guan06/MINA", dependencies = TRUE,
                           repos = c("https://cloud.r-project.org/",
                                     BiocManager::repositories()))
 ```
-## Introduction
-Microbes play an important role in most of ecosystems and by interacting with
-each other, they assemble into complex systems. The formation and stability of
-microbial community is affected by both biotic and abiotic environmental factors.
-The microbial components could be determined by marker gene and the development
-of sequencing technology makes the high-throughput profiling of microbial
-communities possible. Typically, analysis of this data includes estimating
-within and between sample diversities (alpha- and beta-diversity, respectively)
-based on compositions extracted from sequences, such as OTUs or ASVs, which are
-operational taxonomic units clustered using arbitrary threshold or exact
-sequence variants could be identified by single nucleotide difference.
-By counting the number of observed compositions, distance or dissimilarity
-between samples calculated from counts differentiation of compositions is used
-to indicate the beta diversity of community.
 
-Although compositional approaches provide a way to characterise community
-structure and to measure the differences between samples, they capture only
-static fetures and ignore the dynamics of the system, such as interactions
-between compositions of the community. To overcome these limitations,
-co-occurrence networks are typically inferred. In these microbial community
-networks, nodes represent the community members and relationships between
-microbes are indicated by undirected edges, which are inferred by comparing
-the covariance of microbes across samples. The number of samples, therefore,
-has an impact on the robustness of the constructed network. Typically, for
-network comparison, the distance between correlation matrices are calculated
-and defined as differences between networks, whereas the corresponding
-statistical test methods are missing due to the computational limitation.
+## Overview of teh workflow
+The MINA workflow could be divided into two main parts: a) community diversity analysis (green functions shown below) and b) network analysis (blue functions). We define a data structure called mina object, which contains all relevant community features and can be used for every step in the analysis pipeline. Alternatively, the user can perform individual steps on pre-defined feature matrices (e.g. ASV / OTU tables) separately (see further details in the user manual).
 
-To better understand the assembly and maintenance of the community structure,
-we developed a framework (**M**icrobial community d**I**versity and **N**etwork **A**nalysis,
-MINA) for microbial community data processing. We implemented both
-composition and netowrk derived feature based diversity analysis and in
-addition, a bootstrap-permutation method is introduced to thoroughly compare
-ecological networks and to assess their dissimilarity.
+MINA expects count data such as the commonly used OTU or ASV table to indicate the abundance of each community member in each sample. In addition, a descriptive metadata table is required for downstream analysis (e.g. comparison between treatments). Two example datasets were included in the package.  A detailed demonstration of the workflow, description of the data format, parameters and usage could be found in the accompanying vignette.
 
-## Application and results
-*MINA* expects count data such as common used OTU or ASV table to indicate the
-abundance of each composition in each sample. Besides, a descriptive table
-which indicates the meta data is required for later comparison analysis. Two
-datasets were included in the package as demonstration and the details about
-data format, parameters and usage could be found in vignette.
+## Example of a diversity and network analysis with MINA
 
-### Input data
-We included OTU table of downloaded from [Human Microbiome Project](https://www.hmpdacc.org/hmp/HMQCP/)
-and maize root-associated microbial community profiling ASV table (unpublished)
-In the HMP dataset, 2711 samples with 27,627 OTUs and for maize dataset, 437
-samples with 11,098 ASVs were presented.
+### Loading Input data
+We included an OTU table of downloaded from [Human Microbiome Project](https://www.hmpdacc.org/hmp/HMQCP/) and an ASV table from the maize root microbiome (Bourceret and Guan *et al.*, *in prep*). These two datasets can be used to follow the entire MINA workflow with examples.
 To import the data and create new `mina` object:
 ```r
 hmp <- new("mina", tab = hmp_otu, des = hmp_des)
 maize <- new("mina", tab = maize_asv, des = maize_des)
 ```
-This step could also be skipped since the two dataset are included as 'mina'
-object in the package.
-### Community diversity analysis
-For the community diversity analysis, here we use hmp data as example. The data
-needed to be normalized / rarefied before distance / dissimilarity matrix
-calculation.
+Altenatively, the two datasets are also included as `mina` objects in the package.
+
+#### Data normalization
+For community analyses, the data first needs to be normalized or rarefied before distance/dissimilarity matrix calculation.
 ```r
 hmp <- norm_tab(hmp, method = "total")
 ```
-#### Composition-based diversity analysis
-Dissimilarity / distance between pairwise samples were usually calculated by
-comparing the differences indicated by the quantitative table and were used to
-represent the beta-diversity of the community. Here we calculated `bhjattacharyya`
-between pairwise HMP damples and Principal Coordinates Analysis (PCoA, also
-referred as Classical multidimensional scaling MDS) was then used for
-dimensionality reduction and visualization.
+
+### Composition-based diversity analysis
+Pairwise dissimilarities / distance are usually calculated by comparing entries in a table of community features (e.g. species relative abundances). For instance, we can obtain a distance matrix for the HMP samples with the `com_dis` function:
 ```r
-# Distance matrix calculation, took around 10 min for a computer cluster with 48
-# threads and 756 Gb memory.
 hmp <- com_dis(hmp, method = "bhjattacharyya")
-# Unexplained variance ratio of the distance matrix, factors ordered according
-# to the meta data shown in HMP website.
-# R2 = 0.644
-com_r2(hmp, group = c("Sex", "Run_center", "Subsite", "Site"))
-
-hmp <- dmr(hmp)
-p1 <- com_plot(hmp, match = "Sample_ID", color = "Site")
 ```
-The OTUs-based community diversities:
+The default method is for this calculation is Bray-Curtis, but the user can specify different distance/dissimilarity measures (see `?com_dis_list` for the full list). Once we have obtained pairwise distances, we can assess the amount of variance explained by our biological factors by running:
 ```r
-p1
+com_r2(hmp, group = c("Sex", "Run_center", "Subsite", "Site"))
 ```
-
+Next, we can perform a Principal Coordinates Analysis (PCoA, also referred as Classical multidimensional scaling MDS) for dimensionality reduction and visualization.
+```r
+hmp <- dmr(hmp)
+com_plot(hmp, match = "Sample_ID", color = "Site")
+```
 <img src="https://github.com/Guan06/MINA/blob/master/data-raw/p1.png" alt="OTUs-based diversity" width="350" height="350">
 
-See full list of available distance by:
+### Diversity analysis based on network-derived features
+To obtained network-derived features we first need to calculate an adjacency matrix based using the `adj` function after removing low prevalence community members to speed up the calculations.
 ```r
-?com_dis_list
-```
-Notably, we included TINA ([Schmidt *et al.*, 2016](https://doi.org/10.1038/ismej.2016.139)) dissimilarity in the package.
-
-#### Network-derived feature based diversit analysis
-Afterwards, Spearman correlation between OTUs were calculated and coefficients
-not less than 0.4 were retained in the sparse matrix for clustering by Markov
-Cluster Algorithm ([MCL](https://micans.org/mcl/)) with parameter
-'-I 2.5'. Later on, by summing up the abundance of OTUs belong to the same
-cluster, network cluster quantitative table was obatained. Since there are much
-less clusters than compositions, the computing time would be decreased
-dramatically as well.
-```r
-# Adjacency matrix calculation, 12632 seconds used.
-hmp <- adj(hmp, method = "spearman")
-
-# Remove OTUs appeared in not more than 50 samples, 10577 OTUs were remained
 lst <- rownames(hmp@norm)[rowSums(hmp@norm > 0) > 50]
-hmp@adj <- hmp@adj[lst, lst]
-dim(hmp@adj)
-
-# 2166 components are removed for clustering because no strong edge was found
-# between those OTUs.
+hmp@adj <- hmp@adj[lst, lst]dim(hmp@adj)
+hmp <- adj(hmp, method = "spearman")
+```
+Next, we perform clustering on the community network using the Markov Cluster Algorithm ([MCL](https://micans.org/mcl/)) after removing weak edges in the adjacency matrix (<= 0.4 correlation coefficient) and obtain a sparse matrix representation of the community network. Both steps are performed simultaneously using the function `net_cls`.
+```r
 hmp <- net_cls(hmp, method = "mcl", cutoff = 0.4)
-# 13069 seconds used for this step, ~3.63 hours
-
-# 800 clusters containing 8411 OUTs
+```
+Once we have classified community members in terms of their interactions using the correlation network, we can obtain a network feature table by adding up the relative abundances of all members in each cluster:
+```r
 hmp <- net_cls_tab(hmp)
-
-# calculate community distance matrix based on network cluster table
+```
+This new table represents the abundance of each network cluster in each sample. We can obtain network-based distance or dissimilarity matrices for diversity analyses as performed before:
+```r
 hmp_nc <- hmp@cls_tab
 hmp_nc_dis <- com_dis(hmp_nc, method = "bhjattacharyya")
-get_r2(hmp_nc_dis, hmp_des,
-       group = c("Sex", "Run_center", "Subsite", "Site"))
-# 0.399
-
-hmp_dmr <- dmr(hmp_nc_dis)
-p2 <- pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 ```
-So by integrating the abundances of closely related OTUs to the abundances of
-clusters, the unexplained variance ratio decrease from 0.644 to 0.399.
-
-The network clusters-based community diversities:
-
+By calculating performing dimensionality reduction and calculating the percentage of unexplained variance using this feature table instead of the initial ASV / OTU table, we can see a marked increase in the signal-to-noise ratio:
+```r
+get_r2(hmp_nc_dis, hmp_des, group = c("Sex", "Run_center", "Subsite", "Site"))
+hmp_dmr <- dmr(hmp_nc_dis)
+pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
+```
 <img src = "https://github.com/Guan06/MINA/blob/master/data-raw/p2.png" alt = "Network Clusters-based diversity" width = 350 height = 350>
 
 ### Community network comparison
-We developed a bootstrap-permutation based method to test the significance of
-network differences. By subsampling and bootstrap, true networks were
-constructed from original dataset of each environment as shown below. By
-randomly swapping the metadata of samples, permutated datasets were generated.
-Networks of pseudo conditions were then inferred from permutated dataset.
-Afterwards, true network distances (F) between each pairwise true networks and
-pseudo distances (Fp) between each pairwise pseudo networks were calculated and
-compared. An empirical P-value is then then calculated as
-(Count Fp > F + 1) / (N + 1), where N is the total time of comparison between Fp
-and F. Clearly, in order to observe a significant result, N need to be large
-enough. By introducing both bootstrap and permutation process, the network
-inference time is reduced to the sum of bootstrap and permutation time
-(b1 + b2 + p1 + p2), resulting in retrench of computing time and space usage.
-
+To test whether differences between community co-occurrence networks are statistically significant, we developed a bootstrap and permutation-based method.
+By subsampling and bootstrap, true networks were constructed from original dataset of each environment as shown below. By randomly swapping the metadata of samples, permutated datasets were generated.
+First, we use a subsampling approach to generate multiple bootstrap instances of each network, among which distances can be calculated. Next, we compare these distances with those inferred from bootstrap networks obtained after random permutation of sample labels.
+An empirical P-value is then calculated by estimating how frequently the distance observed between true networks (F) is larger than the distance observed between permutated networks (Fp):
+P = (Count Fp > F + 1) / (N + 1)
+where N is the total time of comparison between Fp and F.
 ![workflow](https://github.com/Guan06/MINA/blob/master/data-raw/bs_pm.png)
-
-Here we use the maize data as example, networks of samples from different
-compartments and host developmental stages were compared. After filtering,
-rhizosphere and root networks were infered and compared.
-
+Here we can use the dataset from the maize root microbiome as an example where we compare networks from samples obtained from different compartments and host developmental stages. As before, we first normalize the ASV table:
 ```r
 maize <- norm_tab(maize, method = "raref", depth = 1000)
 maize <- fit_tabs(maize)
-
-# 10851 components are used for bs_pm before filtering.
-# 277 samples are used for bs_pm before filtering.
-# 2 groups with 237 samples used for bootstrap.
-# 192 seconds were used for this step
+```
+Next, we can calculate the bootstrap networks by using `bs_pm` as follows:
+```
 maize <- bs_pm(maize, group = "Compartment", g_size = 100, s_size = 50)
+```
+Finally, we perform the statistical analysis with the function `net_dis`.
+```r
 maize <- net_dis(maize, method = "Jaccard")
 ```
-And the distance statistic results:
+We can then explore the results by accessing the `dis_stat` slot in the mina object:
 ```r
 maize@dis_stat
 ```
@@ -213,12 +121,3 @@ maize@dis_stat
 | rhizosphere_rhizosphere | 0.6455   | 0.0285 | 0.6659      | 0.0968    | 1296 | 0.4271 |
 | rhizosphere_root        | 0.9262   | 0.0017 | 0.7834      | 0.0458    | 1296 | 0.0008  |
 | root_root               | 0.7112   | 0.0315 | 0.7306      | 0.0710    | 1296 | 0.5343 |
-
-Since the bootstrap and permutation, the distance calculation process is
-nondeterministic, however the result and conclusion should not change a lot.
-
-## Conclusion
-The package provides thorough microbial diversity and network analysis tools.
-Network cluster based diversity analysis reduced the noise.
-By introducing the bs-pm process, we decreased the demonding time, space and computing
-capacity dramatically.
