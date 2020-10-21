@@ -13,7 +13,7 @@ at each step (details in manual).
 
 ## Installation
 
-The official version of mina can be installed from github by:
+The official version of `mina` can be installed from github by:
 ```r
 devtools::install_github("Guan06/MINA", dependencies = TRUE,
                           repos = c("https://cloud.r-project.org/",
@@ -21,7 +21,7 @@ devtools::install_github("Guan06/MINA", dependencies = TRUE,
 ```
 
 ## Overview of the workflow
-The **MINA** workflow could be divided into two main parts: *a)* community diversity analysis (green functions shown below) and *b)* network analysis (blue functions). We define a data structure called mina object, which contains all relevant community features and can be used for every step in the analysis pipeline. Alternatively, the user can perform individual steps on pre-defined feature matrices (e.g. ASV / OTU tables) separately (see further details in the user manual).
+The **MINA** workflow could be divided into two main parts: a) community diversity analysis (green functions shown below) and b) network analysis (blue functions). We define a data structure called mina object, which contains all relevant community features and can be used for every step in the analysis pipeline. Alternatively, the user can perform individual steps on pre-defined feature matrices (e.g. ASV / OTU tables) separately (see further details in the user manual).
 
 **MINA** expects count data such as the commonly used OTU or ASV table to indicate the abundance of each community member in each sample. In addition, a descriptive metadata table is required for downstream analysis (e.g. comparison between treatments). Two example datasets were included in the package.  A detailed demonstration of the workflow, description of the data format, parameters and usage could be found in the accompanying vignette.
 

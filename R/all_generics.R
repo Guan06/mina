@@ -80,7 +80,7 @@ setGeneric("adj", function(x, method, sig = FALSE, threads = 80, nblocks = 400) 
 #'
 #' @param x An object of the class mina with @norm defined or any quantitative
 #' matrix.
-#' @param method The dissimilarity / distance method used.
+#' @param method The dissimilarity / distance method used, default `bray`.
 #' @param threads The number of threads used for parallel running, needed for
 #' method `tina`.
 #' @param nblocks The number of row / column for splitted sub-matrix, needed for
@@ -94,7 +94,7 @@ setGeneric("adj", function(x, method, sig = FALSE, threads = 80, nblocks = 400) 
 #' maize <- com_dis(maize, method = "tina", threads = 2, nblocks = 40)
 #' @export
 
-setGeneric("com_dis", function(x, method, threads = 80, nblocks = 400) {
+setGeneric("com_dis", function(x, method = "bray", threads = 80, nblocks = 400) {
     standardGeneric("com_dis")
 })
 

@@ -5,7 +5,7 @@
 #' @include all_classes.R all_generics.R
 #' @importFrom parallelDist parDist
 #' @param x A matrix of the quantitative table.
-#' @param method The dissimilarity / distance method used.
+#' @param method The dissimilarity / distance method used, default `bray`.
 #' @param threads (optional, only needed when method == "tina") The number of
 #' threads used for parallel running.
 #' @param nblocks (optional, only needed when method == "tina") The number of
@@ -26,7 +26,7 @@
 #' @exportMethod com_dis
 
 setMethod("com_dis", signature("matrix", "ANY", "ANY", "ANY"),
-          function(x, method, threads = 80, nblocks = 400) {
+          function(x, method = "bray", threads = 80, nblocks = 400) {
               stop("Must specify a `method`, see `? com_dis_list`.")
           }
 )
@@ -37,7 +37,7 @@ setMethod("com_dis", signature("matrix", "ANY", "ANY", "ANY"),
 #' @exportMethod com_dis
 
 setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
-          function(x, method, threads = 80, nblocks = 400) {
+          function(x, method = "bray", threads = 80, nblocks = 400) {
               if (method == "tina"){
                   y <- tina(x, cor_method = "spearman", sim_method = "w_ja",
                             threads = threads, nblocks = nblocks)
@@ -61,11 +61,11 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
 #' @include all_classes.R all_generics.R
 #' @importFrom parallelDist parDist
 #' @param x An object of the class `mina` with @norm defined.
-#' @param method The dissimilarity / distance method used.
+#' @param method The dissimilarity / distance method used, default `bray`.
 #' @param threads (optional, only needed when method == "tina") The number of
 #' threads used for parallel running.
 #' @param nblocks (optional, only needed when method == "tina") The number of
-#' row / column for splitted sub-matrix.'
+#' row / column for splitted sub-matrix.
 #' @examples
 #' \dontrun{
 #' data(maize)
@@ -79,7 +79,7 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
 #' @exportMethod com_dis
 
 setMethod("com_dis", signature("mina", "ANY", "ANY", "ANY"),
-          function(x, method, threads = 80, nblocks = 400) {
+          function(x, method = "bray", threads = 80, nblocks = 400) {
               stop("Must specify a `method`, see `? com_dis_list`.")
           }
 )
@@ -90,7 +90,7 @@ setMethod("com_dis", signature("mina", "ANY", "ANY", "ANY"),
 #' @exportMethod com_dis
 
 setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
-          function(x, method, threads = 80, nblocks = 400) {
+          function(x, method = "bray", threads = 80, nblocks = 400) {
               x@dis <- com_dis(x@norm, method = method, threads = threads,
                                nblocks = nblocks)
               return(x)
