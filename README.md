@@ -1,6 +1,6 @@
 # **M**icrobial community d**I**versity and **N**etwork **A**nalysis with **MINA**
 
-An increasing number of microbiome datasets have been generated and analyzed with the help of rapidly developing sequencing technologies. At present, analysis of taxonomic profiling data is mainly conducted using composition-based methods, which ignores interactions between community members. Besides this, a lack of efficient ways to compare microbial interaction networks limited the study of community dynamics. To better understand how community diversity is affected by complex interactions between its members, we developed a framework (Microbial community dIversity and Network Analysis, MINA), a comprehensive framework for microbial community diversity analysis and network comparison.  By defining and integrating network-derived community features, we greatly reduce noise-to-signal ratio for diversity analyses.  A bootstrap and permutation-based method was implemented to assess community network dissimilarities and extract discriminative features in a statistically principled way.
+An increasing number of microbiome datasets have been generated and analyzed with the help of rapidly developing sequencing technologies. At present, analysis of taxonomic profiling data is mainly conducted using composition-based methods, which ignores interactions between community members. Besides this, a lack of efficient ways to compare microbial interaction networks limited the study of community dynamics. To better understand how community diversity is affected by complex interactions between its members, we developed a framework (**M**icrobial community d**I**versity and **N**etwork **A**nalysis, **MINA**), a comprehensive framework for microbial community diversity analysis and network comparison.  By defining and integrating network-derived community features, we greatly reduce noise-to-signal ratio for diversity analyses.  A bootstrap and permutation-based method was implemented to assess community network dissimilarities and extract discriminative features in a statistically principled way.
 
 ## Overview of the workflow
 
@@ -14,25 +14,21 @@ at each step (details in manual).
 ## Installation
 
 The official version of mina can be installed from github by:
-``` r
-install.packages("mina")
-```
-Or from github by:
 ```r
 devtools::install_github("Guan06/MINA", dependencies = TRUE,
                           repos = c("https://cloud.r-project.org/",
                                     BiocManager::repositories()))
 ```
 
-## Overview of teh workflow
-The MINA workflow could be divided into two main parts: a) community diversity analysis (green functions shown below) and b) network analysis (blue functions). We define a data structure called mina object, which contains all relevant community features and can be used for every step in the analysis pipeline. Alternatively, the user can perform individual steps on pre-defined feature matrices (e.g. ASV / OTU tables) separately (see further details in the user manual).
+## Overview of the workflow
+The **MINA** workflow could be divided into two main parts: *a)* community diversity analysis (green functions shown below) and *b)* network analysis (blue functions). We define a data structure called mina object, which contains all relevant community features and can be used for every step in the analysis pipeline. Alternatively, the user can perform individual steps on pre-defined feature matrices (e.g. ASV / OTU tables) separately (see further details in the user manual).
 
-MINA expects count data such as the commonly used OTU or ASV table to indicate the abundance of each community member in each sample. In addition, a descriptive metadata table is required for downstream analysis (e.g. comparison between treatments). Two example datasets were included in the package.  A detailed demonstration of the workflow, description of the data format, parameters and usage could be found in the accompanying vignette.
+**MINA** expects count data such as the commonly used OTU or ASV table to indicate the abundance of each community member in each sample. In addition, a descriptive metadata table is required for downstream analysis (e.g. comparison between treatments). Two example datasets were included in the package.  A detailed demonstration of the workflow, description of the data format, parameters and usage could be found in the accompanying vignette.
 
 ## Example of a diversity and network analysis with MINA
 
 ### Loading Input data
-We included an OTU table of downloaded from [Human Microbiome Project](https://www.hmpdacc.org/hmp/HMQCP/) and an ASV table from the maize root microbiome (Bourceret and Guan *et al.*, *in prep*). These two datasets can be used to follow the entire MINA workflow with examples.
+We included an OTU table of downloaded from [Human Microbiome Project](https://www.hmpdacc.org/hmp/HMQCP/) and an ASV table from the maize root microbiome (Bourceret and Guan *et al.*, *in prep*). These two datasets can be used to follow the entire **MINA** workflow with examples.
 To import the data and create new `mina` object:
 ```r
 hmp <- new("mina", tab = hmp_otu, des = hmp_des)
@@ -47,7 +43,7 @@ hmp <- norm_tab(hmp, method = "total")
 ```
 
 ### Composition-based diversity analysis
-Pairwise dissimilarities / distance are usually calculated by comparing entries in a table of community features (e.g. species relative abundances). For instance, we can obtain a distance matrix for the HMP samples with the `com_dis` function:
+Pairwise dissimilarity/distance are usually calculated by comparing entries in a table of community features (e.g. species relative abundances). For instance, we can obtain a distance matrix for the HMP samples with the `com_dis` function:
 ```r
 hmp <- com_dis(hmp, method = "bhjattacharyya")
 ```
@@ -82,7 +78,7 @@ This new table represents the abundance of each network cluster in each sample. 
 hmp_nc <- hmp@cls_tab
 hmp_nc_dis <- com_dis(hmp_nc, method = "bhjattacharyya")
 ```
-By calculating performing dimensionality reduction and calculating the percentage of unexplained variance using this feature table instead of the initial ASV / OTU table, we can see a marked increase in the signal-to-noise ratio:
+By calculating performing dimensionality reduction and calculating the percentage of unexplained variance using this feature table instead of the initial ASV/OTU table, we can see a marked increase in the signal-to-noise ratio:
 ```r
 get_r2(hmp_nc_dis, hmp_des, group = c("Sex", "Run_center", "Subsite", "Site"))
 hmp_dmr <- dmr(hmp_nc_dis)
@@ -94,9 +90,9 @@ pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 To test whether differences between community co-occurrence networks are statistically significant, we developed a bootstrap and permutation-based method.
 By subsampling and bootstrap, true networks were constructed from original dataset of each environment as shown below. By randomly swapping the metadata of samples, permutated datasets were generated.
 First, we use a subsampling approach to generate multiple bootstrap instances of each network, among which distances can be calculated. Next, we compare these distances with those inferred from bootstrap networks obtained after random permutation of sample labels.
-An empirical P-value is then calculated by estimating how frequently the distance observed between true networks (F) is larger than the distance observed between permutated networks (Fp):
-P = (Count Fp > F + 1) / (N + 1)
-where N is the total time of comparison between Fp and F.
+An empirical P-value is then calculated by estimating how frequently the distance observed between true networks (*F*) is larger than the distance observed between permutated networks (*Fp*):
+*P = (Count Fp > F + 1) / (N + 1)*
+where *N* is the total time of comparison between *Fp* and *F*.
 ![workflow](https://github.com/Guan06/MINA/blob/master/data-raw/bs_pm.png)
 Here we can use the dataset from the maize root microbiome as an example where we compare networks from samples obtained from different compartments and host developmental stages. As before, we first normalize the ASV table:
 ```r
