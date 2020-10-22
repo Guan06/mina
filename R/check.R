@@ -41,8 +41,6 @@ check_mina <- function(x) {
 check_mina_qu <- function(x) {
     errors <- character()
     if (class(x@tab)[1] == "NULL") stop("The @tab of this object does not exist!")
-    #d <- dim(x@tab)
-    #message (paste0("The @tab is ", d[1], " * ", d[2], "."))
     TRUE
 }
 

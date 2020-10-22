@@ -5,14 +5,14 @@
 \alias{com_dis,matrix,character-method}
 \title{Calculate the community dissimilarity / distance matrix of the input matrix.}
 \usage{
-\S4method{com_dis}{matrix,ANY}(x, method, threads = 80, nblocks = 400)
+\S4method{com_dis}{matrix,ANY}(x, method = "bray", threads = 80, nblocks = 400)
 
-\S4method{com_dis}{matrix,character}(x, method, threads = 80, nblocks = 400)
+\S4method{com_dis}{matrix,character}(x, method = "bray", threads = 80, nblocks = 400)
 }
 \arguments{
 \item{x}{A matrix of the quantitative table.}
 
-\item{method}{The dissimilarity / distance method used.}
+\item{method}{The dissimilarity / distance method used, default `bray`.}
 
 \item{threads}{(optional, only needed when method == "tina") The number of
 threads used for parallel running.}

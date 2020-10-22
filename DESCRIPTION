@@ -6,7 +6,7 @@ Authors@R: c(
     person("Ruben", "Garrido-Oter", email = "garridoo@mpipz.mpg.de", role = "ctb")
     )
 Description: What the package does (one paragraph).
-Depends: R (>= 3.4.1)
+Depends: R (>= 4.0.0)
 LinkingTo: Rcpp, RcppParallel, RcppArmadillo
 License: GPL
 Encoding: UTF-8
