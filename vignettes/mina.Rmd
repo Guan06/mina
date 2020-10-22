@@ -16,7 +16,6 @@ abstract: >
     MINA package version: `r packageVersion("mina")`
 output:
     rmarkdown::html_vignette:
-        highlight: pygments
         toc: true
         fig_width: 5
 vignette: >
