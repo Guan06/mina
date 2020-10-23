@@ -225,7 +225,7 @@ for network clustering.
 ```
 Also it is possible to give a adjacency matrix directly and got the generated
 cluster data frame.
-```{r cls_2, eval = FALSE}
+```{r cls_2, eval = TRUE}
     # filter the weak correlation by cutoff and cluster by MCL
     asv_cls <- net_cls(asv_adj, method = "mcl", cutoff = 0.4)
     # filter and cluster by AP
@@ -243,7 +243,7 @@ table.
 According to the network cluster assignments, compositions belong to the same
 higher order level group are accumulated by summing up their relative
 abundances.
-```{r cls_tab, eval = FALSE}
+```{r cls_tab, eval = TRUE}
     # get the cluster table by summing up compositions of the same cluster
     maize <- net_cls_tab(maize)
 ```
@@ -251,7 +251,7 @@ abundances.
 ## Community diversity analysis and comparison
 Same diversity analysis could be applied to cluster table and compared with
 composition based table.
-```{r cls_diversity, eval = FALSE}
+```{r cls_diversity, eval = TRUE}
     # dissimilarity between samples based on cluster table
     maize_cls_tab <- maize@cls_tab
     maize_cls_dis <- com_dis(maize_cls_tab, method = "bray")
@@ -308,8 +308,8 @@ compositions which present in less than 10% samples would be filtered.
 When the quantitative matrices are too big, one could choose to output the
 bootstrap and permutation results separately for each comparison. To do this,
 the output directory needed to be defined.
-```{r bs_pm3, eval = FALSE}
-    bs_pm(maize, group = "Compartment", bs = 11, pm = 11,
+```{r bs_pm3, eval = TRUE}
+    bs_pm(maize, group = "Compartment", bs = 6, pm = 6,
           individual = TRUE, out_dir = out_dir)
 ```
 ## Network distance calculation and significance test

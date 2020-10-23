@@ -186,7 +186,7 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
                       }
 
                       rm(MLST, NLST)
-                      gc(reset = T)
+                      gc(reset = TRUE)
 
                       # start permutation
                       if (sig) {
@@ -226,7 +226,7 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
                               names(y_pm)[index + 1] <- group_n
                           }
                           rm(MPLST, NPLST)
-                          gc(reset = T)
+                          gc(reset = TRUE)
                       }
                       if (!individual) index <- index + 2
                   }
