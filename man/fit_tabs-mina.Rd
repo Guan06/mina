@@ -23,7 +23,7 @@ the `mina` object, descriptive table will be filtered again to only keep
 samples present in @norm.
 }
 \examples{
-\dontrun{
+{
 data(maize)
 maize <- fit_tabs(maize)
 maize <- norm_tab(maize, method = "raref")

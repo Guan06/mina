@@ -27,8 +27,8 @@ x_norm Normalized matrix of the quantitative table.
 Normalize the quantitative matrix.
 }
 \examples{
-data(maize_asv)
-maize_asv_norm <- norm_tab(maize_asv, method = "total")
-maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000,
+data(maize_asv2)
+maize_asv_norm <- norm_tab(maize_asv2, method = "total")
+maize_asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000,
 replace = TRUE, multi = 3)
 }

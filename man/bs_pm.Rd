@@ -48,15 +48,16 @@ each comparison individually, default is FALSE.}
 \item{out_dir}{The output directory if `individual` is TRUE, default is the
 current working directory.}
 }
+\value{
+The network bootstrap and permutation result.
+}
 \description{
 Inferring the network of different group of samples and test significance by
 permutation.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
-maize <- bs_pm(maize, group = "Compartment")
-}
+maize <- bs_pm(maize, group = "Compartment", per = 0.5)
 }

@@ -30,13 +30,14 @@ shape groups.}
 }
 \value{
 p The plotted figure.
+
+The PCoA plot.
 }
 \description{
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv, des = maize_des)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
@@ -51,5 +52,4 @@ p3a <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
 "Soil")
 p3b <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 4, color =
 "Compartment", shape = "Soil")
-}
 }

@@ -18,13 +18,10 @@ y The vector of the first k eigenvalues.
 Function for calculation of eigenvalue of given matrix.
 }
 \examples{
-\dontrun{
-data(maize)
-maize@tab <- maize@tab[1 : 500, 1 : 300]
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")
 maize_spectra <- get_spectra(maize@adj)
-}
 }
 \keyword{internal}

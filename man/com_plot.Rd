@@ -21,11 +21,14 @@ same indicated in @dmr.}
 \item{shape}{The column name in @des to be used for different shape groups,
 default is `NULL`.}
 }
+\value{
+The PCoA plot.
+}
 \description{
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref", depth = 5000)
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")

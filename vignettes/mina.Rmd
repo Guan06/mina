@@ -46,27 +46,20 @@ the descriptive table, same samples as rows in quantitative table should be
 included in the column "**Sample\_ID**".
 
 ## Import data
-Using `new()` to create a new object and then import data into the object. The
-package was written followed S4 rules thus @ will be used for indicating slots.
-The slots could be imported separately after creating a new object:
-```{r importData, eval = FALSE}
-    maize <- new("mina")
-    maize@tab <- as.matrix(maize_asv)
-    maize@des <- as.data.frame(maize_des)
-```
-Or together at the same time when starting a new object:
-```{r importData_2, eval = FALSE}
-    maize2 <- new("mina", tab = maize_asv, des = maize_des)
+Using `new()` to create a new object and then import data into the object.
+The new object could be generated and slots could be imported simultaneously:
+```{r importData, eval = TRUE}
+    maize <- new("mina", tab = maize_asv, des = maize_des)
 ```
 Please be aware that the descriptive table have to contain a column called
 "**Sample_ID**" which includes the same samples indicated in the quantitative
 tables. See an example here:
-```{r showData, eval = FALSE}
+```{r showData, eval = TRUE}
     head(maize_des)
 ```
 For the quantitative table, each column correspond to one sample indicated in
 the descriptive table and each row represent one composition in the community.
-```{r showData_2, eval = FALSE}
+```{r showData_2, eval = TRUE}
     maize_asv[1:6, 1:6]
 ```
 
@@ -74,7 +67,7 @@ the descriptive table and each row represent one composition in the community.
 For the format of data, one could take a look at the data included in the
 package as indicated as before. Also functions are developed to double check the
 format of imported data, both quantitative and descriptive table.
-```{r checkData, eval = FALSE}
+```{r checkData, eval = TRUE}
     # return TRUE if both quantitative and descriptive files are imported with
     # right format
     check_mina(maize)
@@ -85,7 +78,7 @@ format of imported data, both quantitative and descriptive table.
 ```
 After checking, if there is mismatch between quantitative and descriptive
 tables, `fit_tabs()` could be used to trim two tables.
-```{r fitTabs, eval = FALSE}
+```{r fitTabs, eval = TRUE}
     maize <- fit_tabs(maize2)
 ```
 
@@ -105,7 +98,7 @@ Rarefaction and normalization by total sum are available here. For rarefaction,
 to reduce the random effect, multiple times bootstrap is recommended. The
 normalized table will be stored in the same *mina* object automatically when
 it were given as input.
-```{r rarefData, eval = FALSE}
+```{r rarefData, eval = TRUE}
     # check available normalization methods
     ? norm_tab_method_list
     # normalized by total sum
@@ -117,7 +110,7 @@ it were given as input.
     maize <- norm_tab(maize, method = "raref", multi = 99)
 ```
 When given a matrix for normalization, the normalized matrix will be returned.
-```{r rarefData_2, eval = FALSE}
+```{r rarefData_2, eval = TRUE}
     # normalized by total sum
     maize_asv_norm <- norm_tab(maize_asv, method = "total")
     # normalized by rarefaction
@@ -131,7 +124,7 @@ When given a matrix for normalization, the normalized matrix will be returned.
 ## Community diversity
 Based on the normalized quantitative table, distance / dissimilarity could be
 calculated between pairwise samples and used for beta-diversity analysis.
-```{r comDis, eval = FALSE}
+```{r comDis, eval = TRUE}
     # check available dissimilarity parameters
     ? com_dis_list
     # community dissimilarity calculation, Bray-Curtis used in example
@@ -142,7 +135,7 @@ calculated between pairwise samples and used for beta-diversity analysis.
 For *TINA* dissimilarity in `com_dis()` function, *Spearman* correlation and
 weighted Jaccard was used by default, to calculate *TINA* with other options,
 use function `tina()`.
-```{r tina, eval = FALSE}
+```{r tina, eval = TRUE}
     # get the TINA dissimilarity of normalized quantitative table
     maize_tina <- tina(maize_asv_norm, cor_method = "spearman", sim_method =
                        "w_ja", threads = 80, nblocks = 400)
@@ -151,7 +144,7 @@ use function `tina()`.
 ## Unexplained variance of community diversity
 To evaluate the biological meaningful variance and noise ratio, the ratio of
 variance that could not be explained by any factors was calculated.
-```{r getR2, eval = FALSE}
+```{r getR2, eval = TRUE}
     # get the unexplained variance ratio of quantitative table according to the
     # group information indicated in descriptive table.
     com_r2(maize, group = c("Compartment", "Soil", "Host_genotype"))
@@ -164,7 +157,7 @@ variance that could not be explained by any factors was calculated.
 PCoA (Principle Coordinate Analysis) is usually used for the visualization of
 beta-diversity of microbial community data. By using different color and shape,
 samples from different conditions are compared.
-```{r pcoa, eval = FALSE}
+```{r pcoa, eval = TRUE}
     # plot the community beta-diversity
     # separate samples from different conditions by color, plot PCo1 and PCo2
     p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
@@ -175,12 +168,12 @@ samples from different conditions are compared.
     p3 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
                     "Soil")
     # plot PCo1 and PCo4
-    p4 <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 4, color =
+    p4 <- com_plot(maize, match = "Sample_qID", d1 = 1, d2 = 4, color =
                     "Compartment", shape = "Soil")
 ```
 When using dissimilarity matrix as input, the `dmr()` function is used to reduce
 the dimension of data and `pcoa_plot()` is used for plotting.
-```{r pcoa_2, eval = FALSE}
+```{r pcoa_2, eval = TRUE}
     maize_dmr <- dmr(maize_dis, k = 4)
     p <- pcoa_plot(maize_dmr, maize_des, match = "Sample_ID", d1 = 3, d2 = 4,
                    color = "Host_genotype")
@@ -194,7 +187,7 @@ of the system.
 ## Correlation coefficient adjacency matrix
 Correlation will be calculated according to the covariance of compositions
 across samples. When significance test is applied, `rcorr()` from `Hmisc`.
-```{r adj, eval = FALSE}
+```{r adj, eval = TRUE}
     # check available adjacency matrix
     ? adj_method_list
     # Pearson and Spearman correlation
@@ -207,7 +200,7 @@ across samples. When significance test is applied, `rcorr()` from `Hmisc`.
 ```
 Also the function could be applied to matrix directly, the correlation between
 pairwise rows will be calculated.
-```{r adj_2, eval = FALSE}
+```{r adj_2, eval = TRUE}
     # Pearson and Spearman correlation
     asv_adj <- adj(maize_asv_norm, method = "pearson")
     asv_adj <- adj(maize_asv_norm, method = "spearman")
@@ -220,7 +213,7 @@ network of each adjacency matrix is generated and closely related nodes will be
 inferred by clustering methods. In the package, Markov Cluster Algorithm (MCL,
 Dongen, 2000) and Affinity Propagation (AP, Frey _et al_, 2007) are integrated
 for network clustering.
-```{r cls, eval = FALSE}
+```{r cls, eval = TRUE}
     # check available network clustering methods
     ? net_cls_list
     # network clustering by MCL
@@ -284,7 +277,7 @@ data. Then the metadata of samples is randomly swapped as permutated datasets,
 from which the pseudo correlation coefficient is calculated. By comparing the
 true adjacency matrices with the pseudo ones, the significance of distance is
 obtained.
-```{r bs_pm, eval = FALSE}
+```{r bs_pm, eval = TRUE}
     # compare the networks from different compartments
     maize <- fit_tabs(maize)
     maize <- bs_pm(maize, group = "Compartment")
@@ -300,7 +293,7 @@ definitely smaller than `g_size` and recommendly smaller than half of it. Also
 compositions appear in less than specific percentage of samples could be
 filtered by setting the occupancy threshold `per` and `rm`. By default, the
 compositions which present in less than 10% samples would be filtered.
-```{r bs_pm2, eval = FALSE}
+```{r bs_pm2, eval = TRUE}
     # set the size of group to remove consitions with less sample
     # also larger s_size will lead to more stable results but will consume more
     # computation and time resource
@@ -324,7 +317,7 @@ After getting the true and pseudo adjacency matrices, Spectral and Jaccard
 distance defined before is then calculated and p value is obtained by comparing
 the F (the real distance) and Fp (the pseudo distance) following the formula:
 p = $\frac { C_{F_p > F} + 1  }{ N_{dis} + 1 }$
-```{r sig, eval = FALSE}
+```{r sig, eval = TRUE}
     # check the available methods
     ? net_dis_method_list
     # calculate the distances between matrices
@@ -336,7 +329,7 @@ p = $\frac { C_{F_p > F} + 1  }{ N_{dis} + 1 }$
 For the individual generated network comparison results, the distance
 calculation is implemented by the function `net_dis_indi()`. Same methods are
 available.
-```{r sig2, eval = FALSE}
+```{r sig2, eval = TRUE}
     ja <- net_dis_indi(out_dir, method = "Jaccard")
     print(ja@dis_stat)
     spectra <- net_dis_indi(out_dir, method = "spectra")

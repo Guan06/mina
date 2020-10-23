@@ -12,15 +12,8 @@
 #' row / column for splitted sub-matrix.
 #'
 #' @examples
-#' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
-#' maize <- norm_tab(maize, method = "raref", depth = 100)
-#' maize <- fit_tabs(maize)
-#' asv_norm <- maize@norm
+#' asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
 #' asv_dis <- com_dis(asv_norm, method = "bray")
-#' asv_dis <- com_dis(asv_norm, method = "tina", threads = 8, nblocks = 40)
-#' }
 #' @return y The dissimilarity / distance matrix.
 #' @rdname com_dis-matrix
 #' @exportMethod com_dis
@@ -67,13 +60,10 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
 #' @param nblocks (optional, only needed when method == "tina") The number of
 #' row / column for splitted sub-matrix.
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "total")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
-#' maize <- com_dis(maize, method = "tina", threads = 8, nblocks = 40)
-#' }
 #' @return x The same `mina` object with @dis added.
 #' @rdname com_dis-mina
 #' @exportMethod com_dis
@@ -115,12 +105,9 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' default.
 #' @examples
 #' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
-#' maize <- norm_tab(maize, method = "raref", depth = 100)
-#' maize <- fit_tabs(maize)
-#' asv_norm <- maize@norm
-#' asv_norm[is.na(asv_norm)] <- 0
+#' asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
+#' asv_dis <- com_dis(asv_norm, method = "bray")
+#' asv_dis <- com_dis(asv_norm, method = "tina", threads = 8, nblocks = 40)
 #' asv_tina <- tina(asv_norm, cor_method = "spearman", sim_method = "w_ja",
 #' threads = 8, nblocks = 40)
 #' }
@@ -165,11 +152,9 @@ setMethod("tina", signature("matrix", "character", "character", "ANY", "ANY"),
 #' default.
 #' @examples
 #' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
-#' maize <- norm_tab(maize, method = "raref", depth = 100)
-#' maize <- fit_tabs(maize)
-#' asv <- maize@norm
+#' data(maize_asv)
+#' maize_tab <- maize_asv[1 : 1000, 1 : 200]
+#' asv <- norm_tab(maize_tab, method = "raref", depth = 100)
 #' asv[is.na(asv)] <- 0
 #' asv_sparcc <- sparcc(asv, threads = 8, nblocks = 40)
 #' tmp.S <- adj(asv_sparcc, method = "spearman")
@@ -186,7 +171,7 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
     x_occ_list <- apply((x > 0), 2, which)
     x_count_list <- alply(x, .margins=2,
                            .fun=function(x_vec) { x_vec[x_vec > 0] },
-                           .parallel=T)
+                           .parallel=TRUE)
     names(x_occ_list) <- names(x_count_list) <- samples
 
     if (sim_method == "uw_ja") {
@@ -253,7 +238,7 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
                             }, mc.cores = threads)
     }
 
-    file.remove(list.files("/dev/shm/", full.names = T))
+    file.remove(list.files("/dev/shm/", full.names = TRUE))
 
     s <- do.call("rbind", cs_list)
     rownames(s) <- colnames(s) <- samples

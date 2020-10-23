@@ -29,12 +29,10 @@ x An object of the class mina with @norm added.
 Normalize the quantitative table with mina input.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_tab2)
 maize <- norm_tab(maize, method = "total")
 maize <- norm_tab(maize, method = "raref")
 maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
 maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE,
-multi = 99)
-}
+multi = 3)
 }

@@ -29,11 +29,8 @@ Calculate the community dissimilarity / distance matrix of @norm with `mina`
 class object as input.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "total")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
-maize <- com_dis(maize, method = "tina", threads = 8, nblocks = 40)
-}
 }

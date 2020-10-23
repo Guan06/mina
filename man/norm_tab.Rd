@@ -20,16 +20,17 @@ without replacement (\code{FALSE}) when using method `raref`.}
 \item{multi}{Rarefy the table for multiple times, FALSE by default, indicate
 the times of rarefaction want to be repeated, only validate for rarefaction.}
 }
+\value{
+Normalized quantitative table.
+}
 \description{
 Normalize the @tab and obtain @norm for later analysis.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "total")
 maize <- norm_tab(maize, method = "raref")
 maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
 maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE,
 multi = 99)
-}
 }

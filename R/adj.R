@@ -14,16 +14,12 @@
 #' @param nblocks The number of row/column for splitting sub-matrix, 400 by
 #' default.
 #' @examples
-#' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 500, 1 : 300]
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "pearson")
 #' maize <- adj(maize, method = "spearman")
 #' maize <- adj(maize, method = "spearman", sig = FALSE)
-#' maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
-#' }
 #' @return x The same `mina` object with @adj added.
 #' @rdname adj-mina
 #' @exportMethod adj
@@ -73,14 +69,11 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
 #' @param nblocks The number of row/column for splitting sub-matrix, 400 by
 #' default.
 #' @examples
-#' \dontrun{
-#' data(maize_asv)
-#' asv <- maize_asv[1 : 500, 1 : 300]
+#' asv <- maize_asv2
 #' asv_adj <- adj(asv, method = "sparcc", threads = 2, nblocks = 40)
-#' asv_norm <- norm_tab(asv, method = "raref", depth = 100)
+#' asv_norm <- norm_tab(asv, method = "raref", depth = 1000)
 #' asv_adj <- adj(asv_norm, method = "pearson")
 #' asv_adj <- adj(asv_norm, method = "spearman")
-#' }
 #' @return y The adjacency matrix.
 #' @rdname adj-matrix
 #' @exportMethod adj
@@ -141,11 +134,7 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY", "ANY"),
 #' @param nblocks The number of row /column for splitting sub-matrix, 400 by
 #' default.
 #' @examples
-#' \dontrun{
-#' data(maize_asv)
-#' asv <- maize_asv[1 : 500, 1 : 300]
-#' asv_sparcc <- sparcc(asv, threads = 2, nblocks = 40)
-#' }
+#' asv_sparcc <- sparcc(maize_asv2, threads = 2, nblocks = 40)
 #' @return y The adjacency matrix.
 #' @keywords internal
 
@@ -180,7 +169,8 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
 
     # Preallocate T matrix as big.matrix
     x_cor <- big.matrix(nrow = nr, ncol = nr,
-                        dimnames = list(rownames(x), rownames(x)), shared = T)
+                        dimnames = list(rownames(x), rownames(x)),
+                        shared = TRUE)
     x_cor_desc <- describe(x_cor)
 
     # Compute Aitchinson's T matrix iterate through each block combination,
@@ -212,12 +202,12 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
     mat_a <- matrix(data = 1, nrow = nr, ncol = nr)
     diag(mat_a) <- nr - 1
     omega <- sqrt(solve(a = mat_a, b = var))
-    spa <- foreach(i = 1 : nr, .combine = 'rbind', .multicombine = T) %dopar% {
+    spa <- foreach(i = 1 : nr, .combine = 'rbind', .multicombine = TRUE) %dopar% {
               (omega[i] ^ 2 + omega ^ 2 - x_cor[i, ]) / (2 * omega[i] * omega)
     }
 
     rownames(spa) <- rownames(x)
-    file.remove(list.files("/dev/shm/", full.names = T))
+    file.remove(list.files("/dev/shm/", full.names = TRUE))
     return(spa)
 }
 

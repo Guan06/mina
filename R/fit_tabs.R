@@ -8,7 +8,7 @@
 #' @include all_classes.R all_generics.R
 #' @param x An object of class mina.
 #' @examples
-#' \dontrun{
+#' {
 #' data(maize)
 #' maize <- fit_tabs(maize)
 #' maize <- norm_tab(maize, method = "raref")

@@ -19,16 +19,16 @@ Imports:
     apcluster,
     bigmemory,
     doMC,
-    dplyr,
     foreach,
-    gdata,
     ggplot2,
+    parallel,
     parallelDist,
     reshape2,
     plyr,
     biganalytics,
     stringr,
-    Hmisc
+    Hmisc,
+    utils
 LazyData: true
 Suggests:
     knitr,

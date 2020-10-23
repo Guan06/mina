@@ -13,6 +13,9 @@ com_r2(x, group)
 
 \item{group}{The name(s) of column(s) defined as experimental setup group(s).}
 }
+\value{
+Unexplained variance ratio.
+}
 \description{
 Calculate the unexplained variance ratio using formula indicated in:
 Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of

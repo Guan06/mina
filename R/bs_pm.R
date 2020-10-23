@@ -22,12 +22,10 @@
 #' @param out_dir The output directory if `individual` is TRUE, default is the
 #' current working directory
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
-#' maize <- bs_pm(maize, group = "Compartment")
-#' }
+#' maize <- bs_pm(maize, group = "Compartment", per = 0.5)
 #' @return x The same object with @multi and @perm defined.
 #' @rdname bs_pm-mina
 #' @exportMethod bs_pm
@@ -249,11 +247,9 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
 #' @param x The input matrix to be filtered.
 #' @param p The cutoff for non-zero column number.
 #' @return x The same matrix after filtering.
-#' @examples
-#' \dontrun{
+#' @example
 #' data(maize_asv)
 #' maize_asv_filter <- filter_mat(maize_asv, p = 10)
-#' }
 #' @keywords internal
 
 filter_mat <- function(x, p) {

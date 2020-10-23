@@ -18,14 +18,13 @@ method `tina`.}
 \item{nblocks}{The number of row / column for splitted sub-matrix, needed for
 method `tina`.}
 }
+\value{
+The distance / dissimilarity matrix.
+}
 \description{
 Calculate the community dissimilarity / distance matrix of @norm.
 }
 \examples{
-data(maize)
-maize@tab <- maize@tab[1 : 500, 1 : 200]
-maize <- norm_tab(maize, method = "raref", depth = 200)
-maize <- fit_tabs(maize)
-maize <- com_dis(maize, method = "bray")
-maize <- com_dis(maize, method = "tina", threads = 2, nblocks = 40)
+asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
+asv_dis <- com_dis(asv_norm, method = "bray")
 }

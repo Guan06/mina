@@ -32,14 +32,10 @@ Calculate the adjacency matrix of @norm by correlation with `mina` class
 object as input.
 }
 \examples{
-\dontrun{
-data(maize)
-maize@tab <- maize@tab[1 : 500, 1 : 300]
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "pearson")
 maize <- adj(maize, method = "spearman")
 maize <- adj(maize, method = "spearman", sig = FALSE)
-maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
-}
 }

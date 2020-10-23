@@ -14,8 +14,7 @@
 #' shape groups.
 #' @return p The plotted figure.
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv, des = maize_des)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
@@ -30,7 +29,7 @@
 #' "Soil")
 #' p3b <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 4, color =
 #' "Compartment", shape = "Soil")
-#' }
+#' @return The PCoA plot.
 #' @rdname com_plot-mina
 #' @exportMethod com_plot
 
@@ -81,8 +80,7 @@ setMethod("com_plot",
 #' default `NULL`.
 #' @return p The plotted figure.
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
@@ -99,7 +97,7 @@ setMethod("com_plot",
 #' shape = "Soil")
 #' p3b <- pcoa_plot(asv_dmr, des, match = "Sample_ID", d1 = 1, d2 = 4, color =
 #' "Compartment", shape = "Soil")
-#' }
+#' @return The PCoA plot.
 #' @exportMethod pcoa_plot
 
 setMethod("pcoa_plot", signature("list", "data.frame", "character",

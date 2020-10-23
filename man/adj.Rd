@@ -18,17 +18,16 @@ Spearman methods.}
 
 \item{nblocks}{(optional) The number of row / column for splitted sub-matrix.}
 }
+\value{
+Adjacency matrix.
+}
 \description{
 Calculate the adjacacency matrix of @norm by correlation.
 }
 \examples{
-\dontrun{
-data(maize)
-maize@tab <- maize@tab[1 : 500, 1 : 200]
-maize <- norm_tab(maize, method = "raref", depth = 200)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
+maize <- norm_tab(maize, method = "raref", depth = 1000)
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")
 maize <- adj(maize, method = "spearman", sig = FALSE)
-maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
-}
 }

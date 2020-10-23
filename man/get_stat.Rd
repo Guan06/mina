@@ -15,13 +15,11 @@ get_stat(x, p = NULL)
 Function for distance statistic and significance test.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- bs_pm(maize, group = "Compartment")
 maize_bs <- maize@multi
 maize_pm <- maize@perm
 maize_stat <- get_stat(maize_bs, maize_pm)
-}
 }
 \keyword{internal}

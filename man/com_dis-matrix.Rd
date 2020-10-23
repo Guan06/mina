@@ -27,13 +27,6 @@ y The dissimilarity / distance matrix.
 Calculate the community dissimilarity / distance matrix of the input matrix.
 }
 \examples{
-\dontrun{
-data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 200]
-maize <- norm_tab(maize, method = "raref", depth = 100)
-maize <- fit_tabs(maize)
-asv_norm <- maize@norm
+asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
 asv_dis <- com_dis(asv_norm, method = "bray")
-asv_dis <- com_dis(asv_norm, method = "tina", threads = 8, nblocks = 40)
-}
 }

@@ -12,16 +12,17 @@ dmr(x, k = 2)
 
 \item{k}{The dimension number after reduction.}
 }
+\value{
+The dimentionality reduction results.
+}
 \description{
 Dimensionality reduction of community dissimilarity / distance for
 visulization.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 maize <- dmr(maize)
-}
 }

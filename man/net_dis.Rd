@@ -29,16 +29,17 @@ needed.}
 \item{skip}{Whether to skip the comparison when the dimenstion of adjacency
 matrix is smaller than setted `evk`.}
 }
+\value{
+The netowrk comparison result.
+}
 \description{
 Calculate the network distance of @multi and test the significance when @perm
 is defined.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- bs_pm(maize, group = "Compartment")
-maize <- net_dis(maize, method = "spectra")
-}
+maize <- net_dis(maize, method = "spectra", evk = 30)
 }

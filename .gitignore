@@ -1,2 +1,5 @@
 inst/doc
 .Rproj.user
+src/cp_cor.o
+src/RcppExports.o
+src/mina.so

@@ -23,13 +23,11 @@ Same function as `com_r2` with matrix and corresponding descriptive table as
 input.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 x <- maize@dis
 des <- maize@des
 get_r2(x, des, group = c("Compartment", "Soil"))
-}
 }

@@ -25,13 +25,14 @@ default `NULL`.}
 }
 \value{
 p The plotted figure.
+
+The PCoA plot.
 }
 \description{
 Visulization of components distance / dissimilarity in k dimension.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
@@ -48,5 +49,4 @@ p3a <- pcoa_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment",
 shape = "Soil")
 p3b <- pcoa_plot(asv_dmr, des, match = "Sample_ID", d1 = 1, d2 = 4, color =
 "Compartment", shape = "Soil")
-}
 }

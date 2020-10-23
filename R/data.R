@@ -92,3 +92,34 @@ NULL
 #' data(hmp_des)
 #'
 NULL
+
+###############################################################################
+
+#' Subset of ASV table of maize project, ASVs appear in less than 100 samples
+#' were filtered for later analysis.
+#'
+#' @source RECONSTRUCT project, maize microbiome part.
+#' @name maize_asv2
+#' @format A matrix with samples in columns and ASVs in rows. Unormalized table
+#' including 1219 ASVs from 313 samples.
+#' @examples
+#' data(maize_asv2)
+#'
+NULL
+
+#' Subset of design file of maize project, 313 samples are included.
+#'
+#' @source RECONSTRUCT project, maize microbiome part.
+#' @name maize_des2
+#' @format A data frame with columns:
+#' \describe{
+#'  \item{Sample_ID}{The unique ID of the microbial profiling sample.}
+#'  \item{Host_genotype}{The genotype of the plant host maize.}
+#'  \item{Compartment}{The compartment of the microbial sample comes from.}
+#'  \item{Soil}{The soil of the sampled microbiome.}
+#'  \item{Management}{The management of the soil where microbial sample from.}
+#' }
+#' @examples
+#' data(maize_des2)
+#'
+NULL

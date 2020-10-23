@@ -11,14 +11,9 @@
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
 #' `mcl` for clustering. Default FALSE.
 #' @examples
-#' \dontrun{
-#' data(maize_asv)
-#' asv <- maize_asv[1 : 1000, 1 : 500]
-#' asv_norm <- norm_tab(asv, method = "raref", depth = 100)
+#' asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
 #' asv_adj <- adj(asv_norm, method = "spearman")
 #' asv_cls <- net_cls(asv_adj, method = "mcl")
-#' asv_cls <- net_cls(asv_adj, method = "ap")
-#' }
 #' @rdname net_cls-matrix
 #' @return y The cluster table.
 #' @exportMethod net_cls
@@ -91,17 +86,12 @@ setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
 #' `mcl` for clustering. Default FALSE.
 #' @examples
-#' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 500]
-#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
+#' maize <- norm_tab(maize, method = "raref", depth = 1000)
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
-#' maize <- net_cls(maize, method = "mcl")
 #' maize <- net_cls(maize, method = "mcl", cutoff = 0.4, neg = FALSE)
-#' maize <- net_cls(maize, method = "ap")
 #' maize <- net_cls(maize, method = "ap", cutoff = 0.4, neg = FALSE)
-#' }
 #' @return x The same `mina` class with @cls added.
 #' @rdname net_cls-mina
 #' @exportMethod net_cls

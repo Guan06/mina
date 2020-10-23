@@ -12,19 +12,17 @@ net_cls_tab(x, uw = FALSE)
 \item{uw}{By summing up the number of present components of each cluster
 instead of relative abundances, default is FALSE.}
 }
+\value{
+The network cluster relative abundance table.
+}
 \description{
 Get the cluster table @cls_tab from @norm and @cls.
 }
 \examples{
-\dontrun{
-data(maize)
-maize@tab <- maize@tab[1 : 500, 1 : 200]
-maize <- norm_tab(maize, method = "raref", depth = 100)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
+maize <- norm_tab(maize, method = "raref", depth = 1000)
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")
-maize <- net_cls(maize, method = "mcl", cutoff = 0.5)
-maize <- net_cls_tab(maize)
 maize <- net_cls(maize, method = "ap", cutoff = 0.5)
 maize <- net_cls_tab(maize)
-}
 }

@@ -7,13 +7,12 @@ NULL
 #' samples, the intersect samples will be remained.
 #' @param x An object of the class mina with @tab and @des defined or a
 #' quantitative matrix(need parameter des in this case).
+#' @return Same mina object but fitted @tab and @des (as well as @norm if exist)
 #' @examples
-#' \dontrun{
 #' data(maize)
 #' maize <- fit_tabs(maize)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
-#' }
 #' @export
 
 setGeneric("fit_tabs", function(x) {
@@ -32,15 +31,14 @@ setGeneric("fit_tabs", function(x) {
 #' without replacement (\code{FALSE}) when using method `raref`.
 #' @param multi Rarefy the table for multiple times, FALSE by default, indicate
 #' the times of rarefaction want to be repeated, only validate for rarefaction.
+#' @return Normalized quantitative table.
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "total")
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
 #' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE,
 #' multi = 99)
-#' }
 #' @export
 
 setGeneric("norm_tab", function(x, method, depth = 1000,
@@ -59,15 +57,12 @@ setGeneric("norm_tab", function(x, method, depth = 1000,
 #' @param threads (optional) The number of threads used for parallel running.
 #' @param nblocks (optional) The number of row / column for splitted sub-matrix.
 #' @examples
-#' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 500, 1 : 200]
-#' maize <- norm_tab(maize, method = "raref", depth = 200)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
+#' maize <- norm_tab(maize, method = "raref", depth = 1000)
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
 #' maize <- adj(maize, method = "spearman", sig = FALSE)
-#' maize <- adj(maize, method = "sparcc", threads = 2, nblocks = 40)
-#' }
+#' @return Adjacency matrix.
 #' @export
 
 setGeneric("adj", function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
@@ -86,12 +81,9 @@ setGeneric("adj", function(x, method, sig = FALSE, threads = 80, nblocks = 400) 
 #' @param nblocks The number of row / column for splitted sub-matrix, needed for
 #' method `tina`.
 #' @examples
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 500, 1 : 200]
-#' maize <- norm_tab(maize, method = "raref", depth = 200)
-#' maize <- fit_tabs(maize)
-#' maize <- com_dis(maize, method = "bray")
-#' maize <- com_dis(maize, method = "tina", threads = 2, nblocks = 40)
+#' asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
+#' asv_dis <- com_dis(asv_norm, method = "bray")
+#' @return The distance / dissimilarity matrix.
 #' @export
 
 setGeneric("com_dis", function(x, method = "bray", threads = 80, nblocks = 400) {
@@ -116,14 +108,13 @@ setGeneric("com_dis", function(x, method = "bray", threads = 80, nblocks = 400) 
 #' default.
 #' @examples
 #' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
-#' maize <- norm_tab(maize, method = "raref", depth = 100)
-#' maize <- fit_tabs(maize)
-#' asv_norm <- maize@norm
+#' asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
+#' asv_dis <- com_dis(asv_norm, method = "bray")
+#' asv_dis <- com_dis(asv_norm, method = "tina", threads = 8, nblocks = 40)
 #' asv_tina <- tina(asv_norm, cor_method = "spearman", sim_method = "w_ja",
-#' threads = 2, nblocks = 40)
+#' threads = 8, nblocks = 40)
 #' }
+#' @return The output `tina` dissimilarity matrix.
 #' @export
 
 setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",
@@ -145,6 +136,7 @@ setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' com_r2(maize, group = c("Compartment", "Soil", "Host_genotype"))
+#' @return Unexplained variance ratio.
 #' @export
 
 setGeneric("com_r2", function(x, group) {
@@ -161,15 +153,13 @@ setGeneric("com_r2", function(x, group) {
 #' descriptive file.
 #'
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' x <- maize@dis
 #' des <- maize@des
 #' get_r2(x, des, group = c("Compartment", "Soil"))
-#' }
 #' @return r2 The variance ratio cannot be explained by given groups.
 #' @export
 
@@ -185,13 +175,12 @@ setGeneric("get_r2", function(x, des, group) {
 #' @param x An object of class `mina` with @dis defined or a distance matrix.
 #' @param k The dimension number after reduction.
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' maize <- dmr(maize)
-#' }
+#' @return The dimentionality reduction results.
 #' @export
 
 setGeneric("dmr", function(x, k = 2) {
@@ -211,7 +200,7 @@ setGeneric("dmr", function(x, k = 2) {
 #' @param shape The column name in @des to be used for different shape groups,
 #' default is `NULL`.
 #' @examples
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref", depth = 5000)
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
@@ -226,6 +215,7 @@ setGeneric("dmr", function(x, k = 2) {
 #' "Soil")
 #' p3b <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 4, color =
 #' "Compartment", shape = "Soil")
+#' @return The PCoA plot.
 #' @export
 
 setGeneric("com_plot", function(x, match, d1 = 1, d2 = 2, color, shape = NULL) {
@@ -247,8 +237,7 @@ setGeneric("com_plot", function(x, match, d1 = 1, d2 = 2, color, shape = NULL) {
 #' default `NULL`.
 #' @return p The plotted figure.
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
@@ -265,7 +254,6 @@ setGeneric("com_plot", function(x, match, d1 = 1, d2 = 2, color, shape = NULL) {
 #' shape = "Soil")
 #' p3b <- pcoa_plot(asv_dmr, des, match = "Sample_ID", d1 = 1, d2 = 4, color =
 #' "Compartment", shape = "Soil")
-#' }
 #' @export
 
 setGeneric("pcoa_plot", function(x, des, match,
@@ -282,23 +270,17 @@ setGeneric("pcoa_plot", function(x, des, match,
 #' @param cutoff The cutoff for the sparse adjacency matrix, default is 0.4.
 #' @param neg Whether to keep the negative edges, default is `FALSE`.
 #' @examples
-#' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
-#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
+#' maize <- norm_tab(maize, method = "raref", depth = 1000)
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
-#' maize <- net_cls(maize, method = "mcl")
 #' maize <- net_cls(maize, method = "mcl", cutoff = 0.4, neg = FALSE)
-#' maize <- net_cls(maize, method = "ap")
 #' maize <- net_cls(maize, method = "ap", cutoff = 0.4, neg = FALSE)
-#' }
 #' @export
 
 setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
     standardGeneric("net_cls")
 })
-
 
 ################################################################################
 
@@ -312,18 +294,13 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 #' instead of relative abundance, default is FALSE.
 #' @return x_cls The quantitative table with clusters in rows.
 #' @examples
-#' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 1000, 1 : 200]
-#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
+#' maize <- norm_tab(maize, method = "raref", depth = 1000)
 #' maize <- fit_tabs(maize)
 #' maize_norm <- maize@norm
 #' maize_adj <- adj(maize_norm, method = "spearman")
 #' maize_cls <- net_cls(maize_adj, method = "mcl", cutoff = 0.5)
 #' maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
-#' maize_cls <- net_cls(maize_adj, method = "ap", cutoff = 0.5)
-#' maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
-#' }
 #' @exportMethod get_net_cls_tab
 
 setGeneric("get_net_cls_tab", function(x_norm, x_cls, uw = FALSE) {
@@ -336,18 +313,14 @@ setGeneric("get_net_cls_tab", function(x_norm, x_cls, uw = FALSE) {
 #' @param x An object of class `mina` with @norm and @cls defined.
 #' @param uw By summing up the number of present components of each cluster
 #' instead of relative abundances, default is FALSE.
+#' @return The network cluster relative abundance table.
 #' @examples
-#' \dontrun{
-#' data(maize)
-#' maize@tab <- maize@tab[1 : 500, 1 : 200]
-#' maize <- norm_tab(maize, method = "raref", depth = 100)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
+#' maize <- norm_tab(maize, method = "raref", depth = 1000)
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
-#' maize <- net_cls(maize, method = "mcl", cutoff = 0.5)
-#' maize <- net_cls_tab(maize)
 #' maize <- net_cls(maize, method = "ap", cutoff = 0.5)
 #' maize <- net_cls_tab(maize)
-#' }
 #' @export
 
 setGeneric("net_cls_tab", function(x, uw = FALSE) {
@@ -377,12 +350,11 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' @param out_dir The output directory if `individual` is TRUE, default is the
 #' current working directory.
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
-#' maize <- bs_pm(maize, group = "Compartment")
-#' }
+#' maize <- bs_pm(maize, group = "Compartment", per = 0.5)
+#' @return The network bootstrap and permutation result.
 #' @export
 
 setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
@@ -411,13 +383,12 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
 #' matrix is smaller than setted `evk`.
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- bs_pm(maize, group = "Compartment")
-#' maize <- net_dis(maize, method = "spectra")
-#' }
+#' maize <- net_dis(maize, method = "spectra", evk = 30)
+#' @return The netowrk comparison result.
 #' @export
 
 setGeneric("net_dis", function(x, method, evk = 100, egv = TRUE, dir = "./",

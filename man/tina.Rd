@@ -29,6 +29,9 @@ default.}
 \item{nblocks}{The number of row / column for splitted sub-matrix, 400 by
 default.}
 }
+\value{
+The output `tina` dissimilarity matrix.
+}
 \description{
 TINA community dissimilarity used in \code{\link[mina]{com_dis}}.
 Function for `tina` dissimilarity/distance calculation. Modified from Schmidt
@@ -36,12 +39,10 @@ et al., 2016.
 }
 \examples{
 \dontrun{
-data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 200]
-maize <- norm_tab(maize, method = "raref", depth = 100)
-maize <- fit_tabs(maize)
-asv_norm <- maize@norm
+asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
+asv_dis <- com_dis(asv_norm, method = "bray")
+asv_dis <- com_dis(asv_norm, method = "tina", threads = 8, nblocks = 40)
 asv_tina <- tina(asv_norm, cor_method = "spearman", sim_method = "w_ja",
-threads = 2, nblocks = 40)
+threads = 8, nblocks = 40)
 }
 }

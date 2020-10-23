@@ -26,15 +26,10 @@ x The same `mina` class with @cls added.
 Network clustering based on the sparsed adjacacency matrix @adj.
 }
 \examples{
-\dontrun{
-data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 500]
-maize <- norm_tab(maize, method = "raref", depth = 100)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
+maize <- norm_tab(maize, method = "raref", depth = 1000)
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")
-maize <- net_cls(maize, method = "mcl")
 maize <- net_cls(maize, method = "mcl", cutoff = 0.4, neg = FALSE)
-maize <- net_cls(maize, method = "ap")
 maize <- net_cls(maize, method = "ap", cutoff = 0.4, neg = FALSE)
-}
 }

@@ -71,10 +71,8 @@ Inferring the network of different group of samples and test significance by
 permutation.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
-maize <- bs_pm(maize, group = "Compartment")
-}
+maize <- bs_pm(maize, group = "Compartment", per = 0.5)
 }

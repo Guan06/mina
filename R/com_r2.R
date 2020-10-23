@@ -9,13 +9,11 @@
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
 #'
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' com_r2(maize, group = c("Compartment", "Soil", "Host_genotype"))
-#' }
 #' @return r2 The variance ratio cannot be explained by given groups.
 #' @rdname com_r2-mina
 #' @exportMethod com_r2
@@ -49,15 +47,13 @@ setMethod("com_r2", signature("mina", "character"), function(x, group) {
 #' descriptive file.
 #'
 #' @examples
-#' \dontrun{
-#' data(maize)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' x <- maize@dis
 #' des <- maize@des
 #' get_r2(x, des, group = c("Compartment", "Soil"))
-#' }
 #' @return r2 The variance ratio cannot be explained by given groups.
 #' @rdname get_r2-mat
 #' @exportMethod get_r2

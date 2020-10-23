@@ -33,11 +33,9 @@ master/functions.community_similarity.R
 }
 \examples{
 \dontrun{
-data(maize)
-maize@tab <- maize@tab[1 : 1000, 1 : 200]
-maize <- norm_tab(maize, method = "raref", depth = 100)
-maize <- fit_tabs(maize)
-asv <- maize@norm
+data(maize_asv)
+maize_tab <- maize_asv[1 : 1000, 1 : 200]
+asv <- norm_tab(maize_tab, method = "raref", depth = 100)
 asv[is.na(asv)] <- 0
 asv_sparcc <- sparcc(asv, threads = 8, nblocks = 40)
 tmp.S <- adj(asv_sparcc, method = "spearman")
