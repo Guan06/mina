@@ -17,8 +17,6 @@
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
-#' maize <- adj(maize, method = "pearson")
-#' maize <- adj(maize, method = "spearman")
 #' maize <- adj(maize, method = "spearman", sig = FALSE)
 #' @return x The same `mina` object with @adj added.
 #' @rdname adj-mina
@@ -69,11 +67,8 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
 #' @param nblocks The number of row/column for splitting sub-matrix, 400 by
 #' default.
 #' @examples
-#' asv <- maize_asv2
-#' asv_adj <- adj(asv, method = "sparcc", threads = 2, nblocks = 40)
-#' asv_norm <- norm_tab(asv, method = "raref", depth = 1000)
+#' asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
 #' asv_adj <- adj(asv_norm, method = "pearson")
-#' asv_adj <- adj(asv_norm, method = "spearman")
 #' @return y The adjacency matrix.
 #' @rdname adj-matrix
 #' @exportMethod adj
@@ -134,7 +129,9 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY", "ANY"),
 #' @param nblocks The number of row /column for splitting sub-matrix, 400 by
 #' default.
 #' @examples
+#' \dontrun{
 #' asv_sparcc <- sparcc(maize_asv2, threads = 2, nblocks = 40)
+#' }
 #' @return y The adjacency matrix.
 #' @keywords internal
 

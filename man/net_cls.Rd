@@ -24,5 +24,4 @@ maize <- norm_tab(maize, method = "raref", depth = 1000)
 maize <- fit_tabs(maize)
 maize <- adj(maize, method = "spearman")
 maize <- net_cls(maize, method = "mcl", cutoff = 0.4, neg = FALSE)
-maize <- net_cls(maize, method = "ap", cutoff = 0.4, neg = FALSE)
 }

@@ -60,8 +60,7 @@ setGeneric("norm_tab", function(x, method, depth = 1000,
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref", depth = 1000)
 #' maize <- fit_tabs(maize)
-#' maize <- adj(maize, method = "spearman")
-#' maize <- adj(maize, method = "spearman", sig = FALSE)
+##' maize <- adj(maize, method = "spearman", sig = FALSE)
 #' @return Adjacency matrix.
 #' @export
 
@@ -275,7 +274,6 @@ setGeneric("pcoa_plot", function(x, des, match,
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman")
 #' maize <- net_cls(maize, method = "mcl", cutoff = 0.4, neg = FALSE)
-#' maize <- net_cls(maize, method = "ap", cutoff = 0.4, neg = FALSE)
 #' @export
 
 setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
@@ -299,7 +297,7 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 #' maize <- fit_tabs(maize)
 #' maize_norm <- maize@norm
 #' maize_adj <- adj(maize_norm, method = "spearman")
-#' maize_cls <- net_cls(maize_adj, method = "mcl", cutoff = 0.5)
+#' maize_cls <- net_cls(maize_adj, method = "ap", cutoff = 0.5)
 #' maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
 #' @exportMethod get_net_cls_tab
 
@@ -387,7 +385,9 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- bs_pm(maize, group = "Compartment")
+#' \dontrun{
 #' maize <- net_dis(maize, method = "spectra", evk = 30)
+#' }
 #' @return The netowrk comparison result.
 #' @export
 

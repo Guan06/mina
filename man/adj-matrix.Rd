@@ -30,9 +30,6 @@ y The adjacency matrix.
 Calculate the adjacency matrix of @norm by correlation with matrix as input.
 }
 \examples{
-asv <- maize_asv2
-asv_adj <- adj(asv, method = "sparcc", threads = 2, nblocks = 40)
-asv_norm <- norm_tab(asv, method = "raref", depth = 1000)
+asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
 asv_adj <- adj(asv_norm, method = "pearson")
-asv_adj <- adj(asv_norm, method = "spearman")
 }

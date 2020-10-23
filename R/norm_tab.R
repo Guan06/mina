@@ -58,10 +58,7 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY", "ANY"),
 #' @param multi Rarefy the table for multiple times, FALSE by default, indicate
 #' the times of rarefaction want to be repeated, only validate for rarefaction.
 #' @examples
-#' maize <- new("mina", tab = maize_asv2, des = maize_tab2)
-#' maize <- norm_tab(maize, method = "total")
-#' maize <- norm_tab(maize, method = "raref")
-#' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE)
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE,
 #' multi = 3)
 #' @return x An object of the class mina with @norm added.

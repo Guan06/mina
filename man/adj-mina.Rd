@@ -35,7 +35,5 @@ object as input.
 maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
-maize <- adj(maize, method = "pearson")
-maize <- adj(maize, method = "spearman")
 maize <- adj(maize, method = "spearman", sig = FALSE)
 }

@@ -24,9 +24,7 @@
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- bs_pm(maize, group = "Compartment")
-#' maize <- net_dis(maize, method = "spectra")
 #' maize <- net_dis(maize, method = "Jaccard")
-#' maize <- net_dis(maize, method = "spectra", evk = 100, skip = TRUE)
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 

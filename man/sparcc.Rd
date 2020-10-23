@@ -28,6 +28,8 @@ Schmidt et al. 2016, find the scripts
 and the SparCC paper \href{https://doi.org/10.1371/journal.pcbi.1002687}{here}.
 }
 \examples{
+\dontrun{
 asv_sparcc <- sparcc(maize_asv2, threads = 2, nblocks = 40)
+}
 }
 \keyword{internal}
