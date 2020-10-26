@@ -1,25 +1,25 @@
-# **M**icrobial community d**I**versity and **N**etwork **A**nalysis with **MINA**
+# **M**icrobial community d**I**versity and **N**etwork **A**nalysis with **mina**
 
-An increasing number of microbiome datasets have been generated and analyzed with the help of rapidly developing sequencing technologies. At present, analysis of taxonomic profiling data is mainly conducted using composition-based methods, which ignores interactions between community members. Besides this, a lack of efficient ways to compare microbial interaction networks limited the study of community dynamics. To better understand how community diversity is affected by complex interactions between its members, we developed a framework (**M**icrobial community d**I**versity and **N**etwork **A**nalysis, **MINA**), a comprehensive framework for microbial community diversity analysis and network comparison.  By defining and integrating network-derived community features, we greatly reduce noise-to-signal ratio for diversity analyses.  A bootstrap and permutation-based method was implemented to assess community network dissimilarities and extract discriminative features in a statistically principled way.
+An increasing number of microbiome datasets have been generated and analyzed with the help of rapidly developing sequencing technologies. At present, analysis of taxonomic profiling data is mainly conducted using composition-based methods, which ignores interactions between community members. Besides this, a lack of efficient ways to compare microbial interaction networks limited the study of community dynamics. To better understand how community diversity is affected by complex interactions between its members, we developed a framework (**M**icrobial community d**I**versity and **N**etwork **A**nalysis, **mina**), a comprehensive framework for microbial community diversity analysis and network comparison.  By defining and integrating network-derived community features, we greatly reduce noise-to-signal ratio for diversity analyses.  A bootstrap and permutation-based method was implemented to assess community network dissimilarities and extract discriminative features in a statistically principled way.
 
 ## Installation
 
 The official version of `mina` can be installed from github by:
 ```r
-devtools::install_github("Guan06/MINA", dependencies = TRUE)
+devtools::install_github("Guan06/mina", dependencies = TRUE)
 ```
 
 ## Overview of the workflow
-The **MINA** workflow could be divided into two main parts: a) community diversity analysis (green functions shown below) and b) network analysis (blue functions). We define a data structure called mina object, which contains all relevant community features and can be used for every step in the analysis pipeline. Alternatively, the user can perform individual steps on pre-defined feature matrices (e.g. ASV / OTU tables) separately (see further details in the user manual).
+The **mina** workflow could be divided into two main parts: a) community diversity analysis (green functions shown below) and b) network analysis (blue functions). We define a data structure called `mina` object, which contains all relevant community features and can be used for every step in the analysis pipeline. Alternatively, the user can perform individual steps on pre-defined feature matrices (e.g. ASV / OTU tables) separately (see further details in the user manual).
 
-![whole_workflow](https://github.com/Guan06/MINA/blob/master/data-raw/workflow.png)
+![whole_workflow](https://github.com/Guan06/mina/blob/master/data-raw/workflow.png)
 
-**MINA** expects count data such as the commonly used OTU or ASV table to indicate the abundance of each community member in each sample. In addition, a descriptive metadata table is required for downstream analysis (e.g. comparison between treatments). Two example datasets were included in the package.  A detailed demonstration of the workflow, description of the data format, parameters and usage could be found in the accompanying vignette.
+**mina** expects count data such as the commonly used OTU or ASV table to indicate the abundance of each community member in each sample. In addition, a descriptive metadata table is required for downstream analysis (e.g. comparison between treatments). Two example datasets were included in the package.  A detailed demonstration of the workflow, description of the data format, parameters and usage could be found in the accompanying vignette.
 
-## Example of a diversity and network analysis with MINA
+## Example of a diversity and network analysis with mina
 
 ### Loading Input data
-We included an OTU table of downloaded from [Human Microbiome Project](https://www.hmpdacc.org/hmp/HMQCP/) and an ASV table from the maize root microbiome (Bourceret and Guan *et al.*, *in prep*). These two datasets can be used to follow the entire **MINA** workflow with examples.
+We included an OTU table of downloaded from [Human Microbiome Project](https://www.hmpdacc.org/hmp/HMQCP/) and an ASV table from the maize root microbiome (Bourceret and Guan *et al.*, *in prep*). These two datasets can be used to follow the entire **mina** workflow with examples.
 To import the data and create new `mina` object:
 ```r
 hmp <- new("mina", tab = hmp_otu, des = hmp_des)
@@ -47,7 +47,7 @@ Next, we can perform a Principal Coordinates Analysis (PCoA, also referred as Cl
 hmp <- dmr(hmp)
 com_plot(hmp, match = "Sample_ID", color = "Site")
 ```
-<img src="https://github.com/Guan06/MINA/blob/master/data-raw/p1.png" alt="OTUs-based diversity" width="350" height="350">
+<img src="https://github.com/Guan06/mina/blob/master/data-raw/p1.png" alt="OTUs-based diversity" width="350" height="350">
 
 ### Diversity analysis based on network-derived features
 To obtained network-derived features we first need to calculate an adjacency matrix based using the `adj` function after removing low prevalence community members to speed up the calculations.
@@ -75,7 +75,7 @@ get_r2(hmp_nc_dis, hmp_des, group = c("Sex", "Run_center", "Subsite", "Site"))
 hmp_dmr <- dmr(hmp_nc_dis)
 pcoa_plot(hmp_dmr, hmp_des, match = "Sample_ID", color = "Site")
 ```
-<img src = "https://github.com/Guan06/MINA/blob/master/data-raw/p2.png" alt = "Network Clusters-based diversity" width = 350 height = 350>
+<img src = "https://github.com/Guan06/mina/blob/master/data-raw/p2.png" alt = "Network Clusters-based diversity" width = 350 height = 350>
 
 ### Community network comparison
 To test whether differences between community co-occurrence networks are statistically significant, we developed a bootstrap and permutation-based method.
@@ -84,7 +84,7 @@ First, we use a subsampling approach to generate multiple bootstrap instances of
 An empirical P-value is then calculated by estimating how frequently the distance observed between true networks (*F*) is larger than the distance observed between permutated networks (*Fp*):
 *P = (Count Fp > F + 1) / (N + 1)*
 where *N* is the total time of comparison between *Fp* and *F*.
-![workflow](https://github.com/Guan06/MINA/blob/master/data-raw/bs_pm.png)
+![workflow](https://github.com/Guan06/mina/blob/master/data-raw/bs_pm.png)
 Here we can use the dataset from the maize root microbiome as an example where we compare networks from samples obtained from different compartments and host developmental stages. As before, we first normalize the ASV table:
 ```r
 maize <- norm_tab(maize, method = "raref", depth = 1000)
