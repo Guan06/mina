@@ -19,8 +19,6 @@ Check the object and return TRUE if the object includes descriptive table
 contains the same samples as quantitative table.
 }
 \examples{
-\dontrun{
 data(maize)
 check_mina_de(maize)
-}
 }

@@ -16,9 +16,7 @@ TRUE if the object contains quantitative table and is not empty.
 Check the object and return TRUE if the object includes quantitative table.
 }
 \examples{
-\dontrun{
 data(maize)
 check_mina_qu(maize)
-}
 }
 \keyword{internal}

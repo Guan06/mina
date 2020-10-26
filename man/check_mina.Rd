@@ -20,9 +20,7 @@ quantitative and descriptive files of same samples are included (i.e. the
 object is valid).
 }
 \examples{
-\dontrun{
 data(maize)
 check_mina(maize)
-}
 }
 \keyword{internal}

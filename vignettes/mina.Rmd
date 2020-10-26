@@ -15,9 +15,7 @@ abstract: >
     ecological networks and to statistically assess their dissimilarity.
     MINA package version: `r packageVersion("mina")`
 output:
-    rmarkdown::html_vignette:
-        toc: true
-        fig_width: 5
+    rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Microbial dIversity and Network Analysis with MINA}
   %\VignetteEngine{knitr::rmarkdown}
@@ -43,13 +41,14 @@ community profiling results and a descriptive table which indicates the
 information of each sample. In the quantitative table, each row contains one
 composition in the community and each column represents one profiled sample. In
 the descriptive table, same samples as rows in quantitative table should be
-included in the column "**Sample\_ID**".
+included in the column 'Sample\_ID**'.
 
 ## Import data
 Using `new()` to create a new object and then import data into the object.
 The new object could be generated and slots could be imported simultaneously:
 ```{r importData, eval = TRUE}
-    maize <- new("mina", tab = maize_asv, des = maize_des)
+    library(mina)
+    maize <- new("mina", tab = maize_asv2, des = maize_des2)
 ```
 Please be aware that the descriptive table have to contain a column called
 "**Sample_ID**" which includes the same samples indicated in the quantitative
@@ -65,21 +64,10 @@ the descriptive table and each row represent one composition in the community.
 
 ## Check data format and tidy up
 For the format of data, one could take a look at the data included in the
-package as indicated as before. Also functions are developed to double check the
-format of imported data, both quantitative and descriptive table.
-```{r checkData, eval = TRUE}
-    # return TRUE if both quantitative and descriptive files are imported with
-    # right format
-    check_mina(maize)
-    # return error message if @tab of the object doesn't exist
-    check_mina_qu(maize)
-    # return TRUE if @tab or @des both exist and contain the same samples
-    check_mina_de(maize)
-```
-After checking, if there is mismatch between quantitative and descriptive
-tables, `fit_tabs()` could be used to trim two tables.
+package as indicated as before. After checking, if there is mismatch between
+quantitative and descriptive tables, `fit_tabs()` could be implied.
 ```{r fitTabs, eval = TRUE}
-    maize <- fit_tabs(maize2)
+    maize <- fit_tabs(maize)
 ```
 
 # Diversity analysis of the community
@@ -104,20 +92,19 @@ it were given as input.
     # normalized by total sum
     maize <- norm_tab(maize, method = "total")
     # normalized by rarefaction
-    maize <- norm_tab(maize, method = "raref")
-    maize <- norm_tab(maize, method = "raref", depth = 1000)
-    # normalized by rarefaction and bootstrap 99 times
-    maize <- norm_tab(maize, method = "raref", multi = 99)
+    maize <- norm_tab(maize, method = "raref", depth = 5000)
+    # normalized by rarefaction and bootstrap 9 times
+    maize <- norm_tab(maize, method = "raref", depth = 5000, multi = 9)
 ```
 When given a matrix for normalization, the normalized matrix will be returned.
 ```{r rarefData_2, eval = TRUE}
     # normalized by total sum
     maize_asv_norm <- norm_tab(maize_asv, method = "total")
     # normalized by rarefaction
-    maize_asv_norm <- norm_tab(maize_asv, method = "raref")
-    maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 1000)
+    maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 5000)
     # normalized by rarefaction and bootstrap 99 times
-    maize_asv_norm <- norm_tab(maize_asv, method = "raref", multi = 99)
+    maize_asv_norm <- norm_tab(maize_asv, method = "raref", depth = 5000,
+                               multi = 9)
 
 ```
 
@@ -135,7 +122,8 @@ calculated between pairwise samples and used for beta-diversity analysis.
 For *TINA* dissimilarity in `com_dis()` function, *Spearman* correlation and
 weighted Jaccard was used by default, to calculate *TINA* with other options,
 use function `tina()`.
-```{r tina, eval = TRUE}
+
+```{r tina, eval = FALSE}
     # get the TINA dissimilarity of normalized quantitative table
     maize_tina <- tina(maize_asv_norm, cor_method = "spearman", sim_method =
                        "w_ja", threads = 80, nblocks = 400)
@@ -163,12 +151,12 @@ samples from different conditions are compared.
     p1 <- com_plot(maize, match = "Sample_ID", color = "Compartment")
     # plot PCo3 and PCo4
     p2 <- com_plot(maize, match = "Sample_ID", d1 = 3, d2 = 4, color =
-                    "compartment")
+                    "Compartment")
     # in addition, separate samples from different soil type by shape
     p3 <- com_plot(maize, match = "Sample_ID", color = "Compartment", shape =
                     "Soil")
     # plot PCo1 and PCo4
-    p4 <- com_plot(maize, match = "Sample_qID", d1 = 1, d2 = 4, color =
+    p4 <- com_plot(maize, match = "Sample_ID", d1 = 1, d2 = 4, color =
                     "Compartment", shape = "Soil")
 ```
 When using dissimilarity matrix as input, the `dmr()` function is used to reduce
@@ -192,19 +180,14 @@ across samples. When significance test is applied, `rcorr()` from `Hmisc`.
     ? adj_method_list
     # Pearson and Spearman correlation
     maize <- adj(maize, method = "pearson")
-    maize <- adj(maize, method = "spearman")
     # Pearson and Spearman correlation with significance test
     maize <- adj(maize, method = "spearman", sig = TRUE)
-    # Sparcc correlation
-    maize <- adj(maize, method = "sparcc", threads = 20, nblocks = 400)
 ```
 Also the function could be applied to matrix directly, the correlation between
 pairwise rows will be calculated.
 ```{r adj_2, eval = TRUE}
     # Pearson and Spearman correlation
     asv_adj <- adj(maize_asv_norm, method = "pearson")
-    asv_adj <- adj(maize_asv_norm, method = "spearman")
-    asv_adj <- adj(maize_asv_norm, method = "sparcc")
 ```
 
 ## Network clustering
@@ -217,19 +200,15 @@ for network clustering.
     # check available network clustering methods
     ? net_cls_list
     # network clustering by MCL
-    maize <- net_cls(maize, method = "mcl")
-    maize <- net_cls(maize, method = "mcl", cutoff = 0.4)
+    maize <- net_cls(maize, method = "mcl", cutoff = 0.6)
     # network clustering by AP
-    maize <- net_cls(maize, method = "ap")
-    maize <- net_cls(maize, method = "ap", cutoff = 0.4, neg = FALSE)
+    maize <- net_cls(maize, method = "ap", cutoff = 0.6, neg = FALSE)
 ```
 Also it is possible to give a adjacency matrix directly and got the generated
 cluster data frame.
 ```{r cls_2, eval = TRUE}
     # filter the weak correlation by cutoff and cluster by MCL
-    asv_cls <- net_cls(asv_adj, method = "mcl", cutoff = 0.4)
-    # filter and cluster by AP
-    asv_cls <- net_cls(asv_adj, method = "ap")
+    asv_cls <- net_cls(asv_adj, method = "mcl", cutoff = 0.6)
 ```
 
 # Higher-order feature based diversity analysis
@@ -277,7 +256,7 @@ data. Then the metadata of samples is randomly swapped as permutated datasets,
 from which the pseudo correlation coefficient is calculated. By comparing the
 true adjacency matrices with the pseudo ones, the significance of distance is
 obtained.
-```{r bs_pm, eval = TRUE}
+```{r bs_pm, eval = FALSE}
     # compare the networks from different compartments
     maize <- fit_tabs(maize)
     maize <- bs_pm(maize, group = "Compartment")
@@ -293,31 +272,34 @@ definitely smaller than `g_size` and recommendly smaller than half of it. Also
 compositions appear in less than specific percentage of samples could be
 filtered by setting the occupancy threshold `per` and `rm`. By default, the
 compositions which present in less than 10% samples would be filtered.
-```{r bs_pm2, eval = TRUE}
+When the quantitative matrix is too big, one could choose to output the
+bootstrap and permutation results separately for each comparison.
+```{r bs_pm2, eval = FALSE}
     # set the size of group to remove consitions with less sample
     # also larger s_size will lead to more stable results but will consume more
     # computation and time resource
     maize <- bs_pm(maize, group = "Compartment", g_size = 200, s_size = 80)
     # remove the compositions appear in less than 20% of samples
     maize <- bs_pm(maize, group = "Compartment", per = 0.2)
+    
     # set the bootstrap and permutation times. Again the more times bootstrap
     # and permutation, the more reliable the significance, with increased
     # computation and time resource.
     maize <- bs_pm(maize, group = "Compartment", bs = 11, pm = 11)
-```
-When the quantitative matrices are too big, one could choose to output the
-bootstrap and permutation results separately for each comparison. To do this,
-the output directory needed to be defined.
-```{r bs_pm3, eval = TRUE}
+
+    # output the comparison separately to the defined directory
     bs_pm(maize, group = "Compartment", bs = 6, pm = 6,
-          individual = TRUE, out_dir = out_dir)
+    individual = TRUE, out_dir = out_dir)
 ```
 ## Network distance calculation and significance test
 After getting the true and pseudo adjacency matrices, Spectral and Jaccard
 distance defined before is then calculated and p value is obtained by comparing
 the F (the real distance) and Fp (the pseudo distance) following the formula:
 p = $\frac { C_{F_p > F} + 1  }{ N_{dis} + 1 }$
-```{r sig, eval = TRUE}
+For the individual generated network comparison results, the distance
+calculation is implemented by the function `net_dis_indi()`. Same methods are
+available.
+```{r sig, eval = FALSE}
     # check the available methods
     ? net_dis_method_list
     # calculate the distances between matrices
@@ -325,11 +307,7 @@ p = $\frac { C_{F_p > F} + 1  }{ N_{dis} + 1 }$
     maize <- net_dis(maize, method = "Jaccard")
     # check the ditance results and significance (if applicable)
     print(maize@dis_stat)
-```
-For the individual generated network comparison results, the distance
-calculation is implemented by the function `net_dis_indi()`. Same methods are
-available.
-```{r sig2, eval = TRUE}
+    # the comparison stored separately in previous step
     ja <- net_dis_indi(out_dir, method = "Jaccard")
     print(ja@dis_stat)
     spectra <- net_dis_indi(out_dir, method = "spectra")

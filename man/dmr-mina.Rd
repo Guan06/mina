@@ -18,12 +18,10 @@ x The same object with @dmr added.
 Dimensionality reduction of the @dis included in mina.
 }
 \examples{
-\dontrun{
-data(maize)
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 maize <- dmr(maize)
 maize <- dmr(maize, k = 4)
-}
 }
