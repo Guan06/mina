@@ -15,6 +15,9 @@ net_cls(x, method, cutoff = 0.4, neg = FALSE)
 
 \item{neg}{Whether to keep the negative edges, default is `FALSE`.}
 }
+\value{
+The network clustering results.
+}
 \description{
 Network clustering of sparsed adjacacency matrix @adj.
 }

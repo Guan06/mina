@@ -23,4 +23,3 @@ object is valid).
 data(maize)
 check_mina(maize)
 }
-\keyword{internal}

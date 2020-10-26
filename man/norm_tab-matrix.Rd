@@ -21,6 +21,8 @@ or without replacement (\code{FALSE}) when using method `raref`.}
 the times of rarefaction want to be repeated, only validate for rarefaction.}
 }
 \value{
+The normalized quantitative matrix.
+
 x_norm Normalized matrix of the quantitative table.
 }
 \description{

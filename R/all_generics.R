@@ -268,6 +268,7 @@ setGeneric("pcoa_plot", function(x, des, match,
 #' @param method The clustering method used.
 #' @param cutoff The cutoff for the sparse adjacency matrix, default is 0.4.
 #' @param neg Whether to keep the negative edges, default is `FALSE`.
+#' @return The network clustering results.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref", depth = 1000)

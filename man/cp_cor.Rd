@@ -9,6 +9,9 @@ cp_cor(mat)
 \arguments{
 \item{mat}{The input matrix for correlation calculation.}
 }
+\value{
+The correlation coefficient matrix.
+}
 \description{
 Function for correlation coefficient calculation.
 }

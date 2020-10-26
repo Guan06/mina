@@ -167,6 +167,7 @@ When using dissimilarity matrix as input, the `dmr()` function is used to reduce
 the dimension of data and `pcoa_plot()` is used for plotting.
 ```{r pcoa_2, eval = TRUE}
     maize_dmr <- dmr(maize_dis, k = 4)
+    maize_des <- maize_des[maize_des$Sample_ID %in% rownames(maize_dis), ]
     p <- pcoa_plot(maize_dmr, maize_des, match = "Sample_ID", d1 = 3, d2 = 4,
                    color = "Host_genotype")
 ```

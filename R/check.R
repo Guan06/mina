@@ -9,7 +9,7 @@
 #' @examples
 #' data(maize)
 #' check_mina(maize)
-#' @keywords internal
+#' @export
 
 check_mina <- function(x) {
     if (class(x@tab)[1] == "NULL" && class(x@des)[1] == "NULL") {
@@ -32,7 +32,7 @@ check_mina <- function(x) {
 #' @examples
 #' data(maize)
 #' check_mina_qu(maize)
-#' @keywords internal
+#' @export
 
 check_mina_qu <- function(x) {
     errors <- character()

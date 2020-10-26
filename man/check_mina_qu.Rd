@@ -19,4 +19,3 @@ Check the object and return TRUE if the object includes quantitative table.
 data(maize)
 check_mina_qu(maize)
 }
-\keyword{internal}

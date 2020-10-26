@@ -11,6 +11,7 @@
 #' or without replacement (\code{FALSE}) when using method `raref`.
 #' @param multi Rarefy the table for multiple times, FALSE by default, indicate
 #' the times of rarefaction want to be repeated, only validate for rarefaction.
+#' @return The normalized quantitative matrix.
 #' @examples
 #' data(maize_asv2)
 #' maize_asv_norm <- norm_tab(maize_asv2, method = "total")
@@ -154,6 +155,7 @@ norm_by_raref <- function(x, depth = 1000, replace = TRUE) {
 #' @param depth The depth for rarefying, 1000 by default.
 #' @param replace Whether to sample with or without replacement, \code{TRUE} by
 #' default for computational efficiency.
+#' @return The vector rarefied to defined depth.
 #' @keywords internal
 
 rarefaction_subsample <- function(x, depth = 1000, replace = TRUE){

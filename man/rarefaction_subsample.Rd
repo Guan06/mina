@@ -16,6 +16,9 @@ rarefaction_subsample(x, depth = 1000, replace = TRUE)
 \item{replace}{Whether to sample with or without replacement, \code{TRUE} by
 default for computational efficiency.}
 }
+\value{
+The vector rarefied to defined depth.
+}
 \description{
 Rarefaction subsample function, one sample, modified from a internal function
 in \pkg{phyloseq}, find it

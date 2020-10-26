@@ -261,6 +261,7 @@ get_spectra <- function(x,  k = 100){
 #' @importFrom reshape2 melt
 #' @importFrom stringr str_detect
 #' @param x The object of class `dist`.
+#' @return The data frame of distance matrix.
 #' @keywords internal
 
 get_dis_df <- function(x) {
@@ -301,6 +302,7 @@ get_dis_df <- function(x) {
 #' @importFrom stats sd
 #' @param x The bootstrap distance data frame.
 #' @param p The permuation distance data frame.
+#' @return The statistics of network comparison.
 #' @keywords internal
 
 get_stat <- function(x, p = NULL) {

@@ -9,6 +9,9 @@ get_dis_df(x)
 \arguments{
 \item{x}{The object of class `dist`.}
 }
+\value{
+The data frame of distance matrix.
+}
 \description{
 Function for getting distance data frame from `dist`.
 }

@@ -11,6 +11,9 @@ get_stat(x, p = NULL)
 
 \item{p}{The permuation distance data frame.}
 }
+\value{
+The statistics of network comparison.
+}
 \description{
 Function for distance statistic and significance test.
 }
