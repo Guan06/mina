@@ -7,10 +7,8 @@
 #' @param x An object of class mina.
 #' @return TRUE if the object is valid.
 #' @examples
-#' \dontrun{
 #' data(maize)
 #' check_mina(maize)
-#' }
 #' @keywords internal
 
 check_mina <- function(x) {
@@ -32,10 +30,8 @@ check_mina <- function(x) {
 #' @param x An object of class mina with @tab defined.
 #' @return TRUE if the object contains quantitative table and is not empty.
 #' @examples
-#' \dontrun{
 #' data(maize)
 #' check_mina_qu(maize)
-#' }
 #' @keywords internal
 
 check_mina_qu <- function(x) {
@@ -53,10 +49,8 @@ check_mina_qu <- function(x) {
 #' @return TRUE if the object contains non-empty descriptive table and has the
 #' same samples as quantitative table.
 #' @examples
-#' \dontrun{
 #' data(maize)
 #' check_mina_de(maize)
-#' }
 #' @export
 
 check_mina_de <- function(x) {

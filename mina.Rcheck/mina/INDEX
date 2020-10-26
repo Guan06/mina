@@ -1,0 +1,142 @@
+adj                     Calculate the adjacacency matrix of @norm by
+                        correlation.
+adj,matrix,ANY-method   Calculate the adjacency matrix of @norm by
+                        correlation with matrix as input.
+adj_method_list         List of adjacency matix calculation methods/
+                        orrelations supported in 'adj'
+adj,mina,ANY-method     Calculate the adjacency matrix of @norm by
+                        correlation with 'mina' class object as input.
+bs_pm                   Inferring the network of different group of
+                        samples and test significance by permutation.
+bs_pm,mina,ANY-method   Inferring the network of different group of
+                        samples and test significance by permutation.
+check_mina_de           Check the object and return TRUE if the object
+                        includes descriptive table contains the same
+                        samples as quantitative table.
+com_dis                 Calculate the community dissimilarity /
+                        distance matrix of @norm.
+com_dis_list            List of dissimilarity / distance supported in
+                        'com_dis'. Dissimilarity / distance should be
+                        specified by exact string match.
+com_dis,matrix,ANY-method
+                        Calculate the community dissimilarity /
+                        distance matrix of the input matrix.
+com_dis,mina,ANY-method
+                        Calculate the community dissimilarity /
+                        distance matrix of @norm with 'mina' class
+                        object as input.
+com_plot                Visulization of components distance /
+                        dissimilarity in k dimension.
+com_plot,mina,ANY,ANY,ANY,ANY-method
+                        Visulization of components distance /
+                        dissimilarity in k dimension.
+com_r2                  Calculate the unexplained variance ratio using
+                        formula indicated in: Anderson, M.J. 2001. A
+                        new method for non-parametric multivariate
+                        analysis of variance. Austral Ecology, 26:
+                        32-46.
+com_r2,mina,ANY-method
+                        Function for unexplained variance ratio
+                        calculation indicated in Anderson, M.J. 2001. A
+                        new method for non-parametric multivariate
+                        analysis of variance. Austral Ecology, 26:
+                        32-46.
+cp_cor                  Function for correlation coefficient
+                        calculation.
+data-hmp                Internal testing data of HMP project, including
+                        quantitative table (hmp_otu) and descriptive
+                        table (hmp_des) for testing.
+data-maize              Internal testing data of maize project,
+                        vegetative stage samples only, including
+                        quantitative table (maize_asv.rds) and
+                        descriptive table (maize_des.txt) for testing.
+dmr                     Dimensionality reduction of community
+                        dissimilarity / distance for visulization.
+dmr,matrix-method       Dimensionality reduction of the distance
+                        matrix.
+dmr,mina-method         Dimensionality reduction of the @dis included
+                        in mina.
+fit_tabs                Filter the quantitative and descriptive table
+                        to make them have the same samples, the
+                        intersect samples will be remained.
+fit_tabs,mina-method    Filter the quantitative and descriptive table
+                        to make them have the same samples, samples
+                        present in both tables are remained. If @norm
+                        table exist in the 'mina' object, descriptive
+                        table will be filtered again to only keep
+                        samples present in @norm.
+get_net_cls_tab         Get the cluster table @cls_tab from
+                        quantitative table @norm and network clustering
+                        results @cls.
+get_net_cls_tab,matrix,data.frame-method
+                        Get the cluster table @cls_tab from
+                        quantitative table @norm and network clustering
+                        results @cls.
+get_r2                  Same function as 'com_r2' with matrix and
+                        corresponding descriptive table as input.
+get_r2,matrix,ANY,ANY-method
+                        Function for unexplained variance ratio
+                        calculation indicated in Anderson, M.J. 2001. A
+                        new method for non-parametric multivariate
+                        analysis of variance. Austral Ecology, 26:
+                        32-46.
+hmp_des                 Design file for HMP project, including 2711
+                        samples in total.
+hmp_otu                 OTU table of HMP project, data downloaded from
+                        https://www.hmpdacc.org/hmp/HMQCP/
+maize_asv               ASV table of maize project, vegetative stage
+                        samples only.
+maize_asv2              Subset of ASV table of maize project, ASVs
+                        appear in less than 100 samples were filtered
+                        for later analysis.
+maize_des               Design file of maize project, vegetative stage
+                        samples only, including 528 samples in total.
+maize_des2              Subset of design file of maize project, 313
+                        samples are included.
+mina-class              Class "mina" includes the quantitative table
+                        and descriptive table.
+net_cls                 Network clustering of sparsed adjacacency
+                        matrix @adj.
+net_cls,matrix,ANY-method
+                        Network clustering based on the sparsed
+                        adjacacency matrix @adj.
+net_cls,mina,ANY-method
+                        Network clustering based on the sparsed
+                        adjacacency matrix @adj.
+net_cls_tab             Get the cluster table @cls_tab from @norm and
+                        @cls.
+net_cls_tab,mina-method
+                        Get the cluster table @cls_tab from
+                        quantitative table @norm and network clustering
+                        results @cls.
+net_dis                 Calculate the network distance of @multi and
+                        test the significance when @perm is defined.
+net_dis_indi            Calculate the network distance of bootstrap and
+                        permutation when appliable.
+net_dis,mina,ANY-method
+                        Calculate the network distance of @multi and
+                        test the significance when @perm is defined.
+norm_tab                Normalize the @tab and obtain @norm for later
+                        analysis.
+norm_tab,matrix,character-method
+                        Normalize the quantitative matrix.
+norm_tab_method_list    List of normalization methods supported in
+                        'norm_tab'
+norm_tab,mina,ANY-method
+                        Normalize the quantitative table with mina
+                        input.
+pcoa_plot               Visulization of components distance /
+                        dissimilarity in k dimension.
+pcoa_plot,list,data.frame,character,ANY,ANY,character-method
+                        Visulization of components distance /
+                        dissimilarity in k dimension.
+tina                    TINA community dissimilarity used in 'com_dis'.
+                        Function for 'tina' dissimilarity/distance
+                        calculation. Modified from Schmidt et al.,
+                        2016.
+tina,matrix,character,character-method
+                        Function for 'tina' dissimilarity calculation.
+                        Modified from Schmidt et al., 2016. Person and
+                        Spearman could be used for correlation and
+                        weighted and unweighted Jaccard could be used
+                        for similarity calculation.

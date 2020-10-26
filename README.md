@@ -6,9 +6,7 @@ An increasing number of microbiome datasets have been generated and analyzed wit
 
 The official version of `mina` can be installed from github by:
 ```r
-devtools::install_github("Guan06/MINA", dependencies = TRUE,
-                          repos = c("https://cloud.r-project.org/",
-                                    BiocManager::repositories()))
+devtools::install_github("Guan06/MINA", dependencies = TRUE)
 ```
 
 ## Overview of the workflow

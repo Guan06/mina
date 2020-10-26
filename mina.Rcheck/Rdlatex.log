@@ -1,0 +1,2144 @@
+Hmm ... looks like a package
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./Rd2.tex
+LaTeX2e <2017/01/01> patch level 3
+Babel <3.9r> and hyphenation patterns for 3 language(s) loaded.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/bk10.clo))
+(/home/guan/.linuxbrew/Cellar/r/R-4.0.0/share/texmf/tex/latex/Rd.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def)
+kpathsea: Running mktextfm ecrm1000
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ecrm1000.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ecrm1000
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ecrm1000
+
+! I can't find file `ecrm1000'.
+<*> ...ljfour; mag:=1; nonstopmode; input ecrm1000
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input ecrm1000
+                                                  
+Transcript written on mfput.log.
+grep: ecrm1000.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ecrm1000' failed to make ecrm1000.tfm.
+kpathsea: Appending font creation commands to missfont.log.
+
+! Font T1/cmr/m/n/10=ecrm1000 at 10.0pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.105 \fontencoding\encodingdefault\selectfont
+                                              
+) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
+(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu)))
+No file Rd2.aux.
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+kpathsea: Running mktextfm ptmb8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmb8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmb8t
+
+! I can't find file `ptmb8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmb8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t' failed to make ptmb8t.tfm.
+
+kpathsea: Running mktextfm nullfont
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for nullfont.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf nullfont
+
+! I can't find file `nullfont'.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Transcript written on mfput.log.
+grep: nullfont.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont' failed to make nullfont.tfm.
+
+kpathsea: Running mktextfm ptmb8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmb8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmb8t
+
+! I can't find file `ptmb8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmb8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t' failed to make ptmb8t.tfm.
+
+kpathsea: Running mktextfm nullfont
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for nullfont.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf nullfont
+
+! I can't find file `nullfont'.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Transcript written on mfput.log.
+grep: nullfont.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont' failed to make nullfont.tfm.
+
+kpathsea: Running mktextfm ptmb8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmb8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmb8t
+
+! I can't find file `ptmb8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmb8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t' failed to make ptmb8t.tfm.
+
+kpathsea: Running mktextfm nullfont
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for nullfont.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf nullfont
+
+! I can't find file `nullfont'.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Transcript written on mfput.log.
+grep: nullfont.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont' failed to make nullfont.tfm.
+
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+! Font T1/ptm/m/n/10=ptmr8t at 10.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.6 \begin{document}
+                    
+! Font T1/ptm/m/n/24.88=ptmr8t at 24.88pt not loadable: Metric (TFM) file not f
+ound.
+<to be read again> 
+                   relax 
+l.7 \chapter*{}
+               
+! Font T1/ptm/bx/n/24.88=ptmb8t at 24.88pt not loadable: Metric (TFM) file not 
+found.
+<to be read again> 
+                   relax 
+l.7 \chapter*{}
+               
+! Font \T1/ptm/b/n/24.88=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.7 \chapter*{}
+               
+! Font T1/ptm/bx/n/10=ptmb8t at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font \T1/ptm/b/n/10=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font T1/ptm/bx/n/20.74=ptmb8t at 20.74pt not loadable: Metric (TFM) file not 
+found.
+<to be read again> 
+                   relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font \T1/ptm/b/n/20.74=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font T1/ptm/m/n/12=ptmr8t at 12.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.10 \par\bigskip{\large
+                         \today}
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+kpathsea: Running mktextfm ptmr8c
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8c.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8c
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8c
+
+! I can't find file `ptmr8c'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8c
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8c
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8c.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8c' failed to make ptmr8c.tfm.
+
+! Font TS1/ptm/m/n/10=ptmr8c at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.32 ...\_dis.R' 'net\_dis\_indi.R' 'norm\_tab.R'}
+                                                  
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+kpathsea: Running mktextfm pcrr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for pcrr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf pcrr8t
+
+! I can't find file `pcrr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8t
+                                                  
+Transcript written on mfput.log.
+grep: pcrr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8t' failed to make pcrr8t.tfm.
+
+! Font T1/pcr/m/n/10=pcrr8t at 10.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character p).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character s).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character :).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character g).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character i).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character b).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character .).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character c).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character o).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character m).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character G).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character a).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character n).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character 0).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character 6).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character M).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character I).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character N).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character A).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+No file Rd2.toc.
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+kpathsea: Running mktextfm ptmb8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmb8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmb8t
+
+! I can't find file `ptmb8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmb8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t' failed to make ptmb8t.tfm.
+
+kpathsea: Running mktextfm nullfont
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for nullfont.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf nullfont
+
+! I can't find file `nullfont'.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Transcript written on mfput.log.
+grep: nullfont.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont' failed to make nullfont.tfm.
+
+! Font T1/ptm/m/n/14.4=ptmr8t at 14.4pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.42 ...ency matrix of @norm by correlation.}{adj}
+                                                  
+! Font T1/ptm/bx/n/14.4=ptmb8t at 14.4pt not loadable: Metric (TFM) file not fo
+und.
+<to be read again> 
+                   relax 
+l.42 ...ency matrix of @norm by correlation.}{adj}
+                                                  
+! Font \T1/ptm/b/n/14.4=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.42 ...ency matrix of @norm by correlation.}{adj}
+                                                  
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+kpathsea: Running mktextfm phvr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for phvr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input phvr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf phvr8t
+
+! I can't find file `phvr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input phvr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input phvr8t
+                                                  
+Transcript written on mfput.log.
+grep: phvr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input phvr8t' failed to make phvr8t.tfm.
+
+kpathsea: Running mktextfm ptmri8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmri8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmri8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmri8t
+
+! I can't find file `ptmri8t'.
+<*> ...=ljfour; mag:=1; nonstopmode; input ptmri8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...=ljfour; mag:=1; nonstopmode; input ptmri8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmri8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmri8t' failed to make ptmri8t.tfm.
+
+! Font T1/phv/m/n/14.4=phvr8t at 14.4pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.42 ...ency matrix of @norm by correlation.}{adj}
+                                                  
+! Font T1/ptm/m/it/10=ptmri8t at 10.0pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.42 ...ency matrix of @norm by correlation.}{adj}
+                                                  
+[1]
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+kpathsea: Running mktextfm pcrr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for pcrr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf pcrr8t
+
+! I can't find file `pcrr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8t
+                                                  
+Transcript written on mfput.log.
+grep: pcrr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8t' failed to make pcrr8t.tfm.
+
+! Font T1/ptm/m/n/9=ptmr8t at 9.0pt not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   relax 
+l.74 \begin{ExampleCode}
+                        
+! Font T1/pcr/m/n/9=pcrr8t at 9.0pt not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   relax 
+l.74 \begin{ExampleCode}
+                        
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd)
+kpathsea: Running mktextfm pcrr8c
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for pcrr8c.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8c
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf pcrr8c
+
+! I can't find file `pcrr8c'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8c
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8c
+                                                  
+Transcript written on mfput.log.
+grep: pcrr8c.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8c' failed to make pcrr8c.tfm.
+
+! Font TS1/pcr/m/n/10=pcrr8c at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.91 ## S4 method for signature 'matrix,ANY'
+                                            
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+kpathsea: Running mktextfm ptmro8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmro8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmro8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmro8t
+
+! I can't find file `ptmro8t'.
+<*> ...=ljfour; mag:=1; nonstopmode; input ptmro8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...=ljfour; mag:=1; nonstopmode; input ptmro8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmro8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmro8t' failed to make ptmro8t.tfm.
+
+! Font T1/ptm/m/sl/10=ptmro8t at 10.0pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.179 ## S4 method for signature 'mina,ANY'
+                                           
+[2] (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [3]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [4]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [5] [6]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [7]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [8]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [9]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [10]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [11]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [12]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [13]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [14]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [15]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [16]
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character p).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character s).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character :).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character g).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character i).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character b).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character .).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character c).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character o).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character m).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character G).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character a).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character n).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character 0).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character 6).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [17]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [18]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [19]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [20]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [21]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [22]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [23]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [24]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [25] [26] (./Rd2.aux) )
+(see the transcript file for additional information)
+Output written on Rd2.pdf (26 pages, 6024 bytes).
+Transcript written on Rd2.log.
+Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+  unable to run pdflatex on 'Rd2.tex'
+LaTeX errors:
+! Font T1/cmr/m/n/10=ecrm1000 at 10.0pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.105 \fontencoding\encodingdefault\selectfont
+! Font T1/ptm/m/n/10=ptmr8t at 10.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.6 \begin{document}
+! Font T1/ptm/m/n/24.88=ptmr8t at 24.88pt not loadable: Metric (TFM) file not f
+ound.
+<to be read again> 
+                   relax 
+l.7 \chapter*{}
+! Font T1/ptm/bx/n/24.88=ptmb8t at 24.88pt not loadable: Metric (TFM) file not 
+found.
+<to be read again> 
+                   relax 
+l.7 \chapter*{}
+! Font \T1/ptm/b/n/24.88=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.7 \chapter*{}
+               
+! Font T1/ptm/bx/n/10=ptmb8t at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.9 {\textbf{\huge Package `mina'}
+! Font \T1/ptm/b/n/10=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font T1/ptm/bx/n/20.74=ptmb8t at 20.74pt not loadable: Metric (TFM) file not 
+found.
+<to be read again> 
+                   relax 
+l.9 {\textbf{\huge Package `mina'}
+! Font \T1/ptm/b/n/20.74=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font T1/ptm/m/n/12=ptmr8t at 12.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.10 \par\bigskip{\large
+! Font TS1/ptm/m/n/10=ptmr8c at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.32 ...\_dis.R' 'net\_dis\_indi.R' 'norm\_tab.R'}
+! Font T1/pcr/m/n/10=pcrr8t at 10.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character p).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character s).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character :).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character g).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character i).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character b).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character .).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character c).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character o).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character m).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character G).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character a).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character n).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character 0).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character 6).
+\Url@FormatStrin
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./Rd2.tex
+LaTeX2e <2017/01/01> patch level 3
+Babel <3.9r> and hyphenation patterns for 3 language(s) loaded.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/bk10.clo))
+(/home/guan/.linuxbrew/Cellar/r/R-4.0.0/share/texmf/tex/latex/Rd.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def)
+kpathsea: Running mktextfm ecrm1000
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ecrm1000.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ecrm1000
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ecrm1000
+
+! I can't find file `ecrm1000'.
+<*> ...ljfour; mag:=1; nonstopmode; input ecrm1000
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input ecrm1000
+                                                  
+Transcript written on mfput.log.
+grep: ecrm1000.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ecrm1000' failed to make ecrm1000.tfm.
+kpathsea: Appending font creation commands to missfont.log.
+
+! Font T1/cmr/m/n/10=ecrm1000 at 10.0pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.105 \fontencoding\encodingdefault\selectfont
+                                              
+) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
+(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu))) (./Rd2.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+kpathsea: Running mktextfm ptmb8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmb8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmb8t
+
+! I can't find file `ptmb8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmb8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t' failed to make ptmb8t.tfm.
+
+kpathsea: Running mktextfm nullfont
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for nullfont.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf nullfont
+
+! I can't find file `nullfont'.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Transcript written on mfput.log.
+grep: nullfont.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont' failed to make nullfont.tfm.
+
+kpathsea: Running mktextfm ptmb8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmb8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmb8t
+
+! I can't find file `ptmb8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmb8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t' failed to make ptmb8t.tfm.
+
+kpathsea: Running mktextfm nullfont
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for nullfont.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf nullfont
+
+! I can't find file `nullfont'.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Transcript written on mfput.log.
+grep: nullfont.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont' failed to make nullfont.tfm.
+
+kpathsea: Running mktextfm ptmb8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmb8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmb8t
+
+! I can't find file `ptmb8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmb8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t' failed to make ptmb8t.tfm.
+
+kpathsea: Running mktextfm nullfont
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for nullfont.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf nullfont
+
+! I can't find file `nullfont'.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Transcript written on mfput.log.
+grep: nullfont.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont' failed to make nullfont.tfm.
+
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+! Font T1/ptm/m/n/10=ptmr8t at 10.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.6 \begin{document}
+                    
+! Font T1/ptm/m/n/24.88=ptmr8t at 24.88pt not loadable: Metric (TFM) file not f
+ound.
+<to be read again> 
+                   relax 
+l.7 \chapter*{}
+               
+! Font T1/ptm/bx/n/24.88=ptmb8t at 24.88pt not loadable: Metric (TFM) file not 
+found.
+<to be read again> 
+                   relax 
+l.7 \chapter*{}
+               
+! Font \T1/ptm/b/n/24.88=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.7 \chapter*{}
+               
+! Font T1/ptm/bx/n/10=ptmb8t at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font \T1/ptm/b/n/10=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font T1/ptm/bx/n/20.74=ptmb8t at 20.74pt not loadable: Metric (TFM) file not 
+found.
+<to be read again> 
+                   relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font \T1/ptm/b/n/20.74=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font T1/ptm/m/n/12=ptmr8t at 12.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.10 \par\bigskip{\large
+                         \today}
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+kpathsea: Running mktextfm ptmr8c
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8c.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8c
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8c
+
+! I can't find file `ptmr8c'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8c
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8c
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8c.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8c' failed to make ptmr8c.tfm.
+
+! Font TS1/ptm/m/n/10=ptmr8c at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.32 ...\_dis.R' 'net\_dis\_indi.R' 'norm\_tab.R'}
+                                                  
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+kpathsea: Running mktextfm pcrr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for pcrr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf pcrr8t
+
+! I can't find file `pcrr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8t
+                                                  
+Transcript written on mfput.log.
+grep: pcrr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8t' failed to make pcrr8t.tfm.
+
+! Font T1/pcr/m/n/10=pcrr8t at 10.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character p).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character s).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character :).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character g).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character i).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character b).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character .).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character c).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character o).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character m).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character G).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character a).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character n).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character 0).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character 6).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character M).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character I).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character N).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character A).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+(./Rd2.toc
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+kpathsea: Running mktextfm ptmb8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmb8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmb8t
+
+! I can't find file `ptmb8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmb8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmb8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmb8t' failed to make ptmb8t.tfm.
+
+kpathsea: Running mktextfm nullfont
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for nullfont.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf nullfont
+
+! I can't find file `nullfont'.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...ljfour; mag:=1; nonstopmode; input nullfont
+                                                  
+Transcript written on mfput.log.
+grep: nullfont.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input nullfont' failed to make nullfont.tfm.
+
+! Font T1/ptm/m/n/14.4=ptmr8t at 14.4pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.1 \contentsline {subsection}{adj}{1}
+                                      
+! Font T1/ptm/bx/n/14.4=ptmb8t at 14.4pt not loadable: Metric (TFM) file not fo
+und.
+<to be read again> 
+                   relax 
+l.1 \contentsline {subsection}{adj}{1}
+                                      
+! Font \T1/ptm/b/n/14.4=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.1 \contentsline {subsection}{adj}{1}
+                                      
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+kpathsea: Running mktextfm phvr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for phvr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input phvr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf phvr8t
+
+! I can't find file `phvr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input phvr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input phvr8t
+                                                  
+Transcript written on mfput.log.
+grep: phvr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input phvr8t' failed to make phvr8t.tfm.
+
+! Font T1/phv/m/n/14.4=phvr8t at 14.4pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.1 \contentsline {subsection}{adj}{1}
+                                      
+[1]) (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+kpathsea: Running mktextfm ptmri8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmri8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmri8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmri8t
+
+! I can't find file `ptmri8t'.
+<*> ...=ljfour; mag:=1; nonstopmode; input ptmri8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...=ljfour; mag:=1; nonstopmode; input ptmri8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmri8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmri8t' failed to make ptmri8t.tfm.
+
+kpathsea: Running mktextfm ptmro8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmro8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmro8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmro8t
+
+! I can't find file `ptmro8t'.
+<*> ...=ljfour; mag:=1; nonstopmode; input ptmro8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...=ljfour; mag:=1; nonstopmode; input ptmro8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmro8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmro8t' failed to make ptmro8t.tfm.
+
+! Font T1/ptm/m/it/10=ptmri8t at 10.0pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.42 ...ency matrix of @norm by correlation.}{adj}
+                                                  
+! Font T1/ptm/m/sl/10=ptmro8t at 10.0pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.71 \end{Value}
+                
+[2]
+kpathsea: Running mktextfm ptmr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for ptmr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf ptmr8t
+
+! I can't find file `ptmr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input ptmr8t
+                                                  
+Transcript written on mfput.log.
+grep: ptmr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input ptmr8t' failed to make ptmr8t.tfm.
+
+kpathsea: Running mktextfm pcrr8t
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for pcrr8t.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8t
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf pcrr8t
+
+! I can't find file `pcrr8t'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8t
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8t
+                                                  
+Transcript written on mfput.log.
+grep: pcrr8t.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8t' failed to make pcrr8t.tfm.
+
+! Font T1/ptm/m/n/9=ptmr8t at 9.0pt not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   relax 
+l.74 \begin{ExampleCode}
+                        
+! Font T1/pcr/m/n/9=pcrr8t at 9.0pt not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   relax 
+l.74 \begin{ExampleCode}
+                        
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd)
+kpathsea: Running mktextfm pcrr8c
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for pcrr8c.
+/usr/share/texlive/texmf-dist/web2c/mktexnam: Need to update ?
+mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8c
+This is METAFONT, Version 2.7182818 (TeX Live 2016/Debian) (preloaded base=mf)
+
+kpathsea: Running mktexmf pcrr8c
+
+! I can't find file `pcrr8c'.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8c
+                                                  
+Please type another input file name
+! Emergency stop.
+<*> ...:=ljfour; mag:=1; nonstopmode; input pcrr8c
+                                                  
+Transcript written on mfput.log.
+grep: pcrr8c.log: No such file or directory
+mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; nonstopmode; input pcrr8c' failed to make pcrr8c.tfm.
+
+! Font TS1/pcr/m/n/10=pcrr8c at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.91 ## S4 method for signature 'matrix,ANY'
+                                            
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [3]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [4]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [5]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [6] [7]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [8]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [9]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [10]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [11]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [12]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [13]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [14]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [15]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [16]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [17]
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character p).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character s).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character :).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character g).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character i).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character b).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character .).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character c).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character o).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character m).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character G).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character a).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character n).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character 0).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+! \textfont 0 is undefined (character 6).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.1425 Rui Guan \url{https://github.com/Guan06}
+                                               
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [18]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [19]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [20]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [21]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [22]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [23]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [24]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [25]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [26] [27] (./Rd2.aux) )
+(see the transcript file for additional information)
+Output written on Rd2.pdf (27 pages, 6136 bytes).
+Transcript written on Rd2.log.
+Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+  unable to run pdflatex on 'Rd2.tex'
+LaTeX errors:
+! Font T1/cmr/m/n/10=ecrm1000 at 10.0pt not loadable: Metric (TFM) file not fou
+nd.
+<to be read again> 
+                   relax 
+l.105 \fontencoding\encodingdefault\selectfont
+! Font T1/ptm/m/n/10=ptmr8t at 10.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.6 \begin{document}
+! Font T1/ptm/m/n/24.88=ptmr8t at 24.88pt not loadable: Metric (TFM) file not f
+ound.
+<to be read again> 
+                   relax 
+l.7 \chapter*{}
+! Font T1/ptm/bx/n/24.88=ptmb8t at 24.88pt not loadable: Metric (TFM) file not 
+found.
+<to be read again> 
+                   relax 
+l.7 \chapter*{}
+! Font \T1/ptm/b/n/24.88=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.7 \chapter*{}
+               
+! Font T1/ptm/bx/n/10=ptmb8t at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.9 {\textbf{\huge Package `mina'}
+! Font \T1/ptm/b/n/10=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font T1/ptm/bx/n/20.74=ptmb8t at 20.74pt not loadable: Metric (TFM) file not 
+found.
+<to be read again> 
+                   relax 
+l.9 {\textbf{\huge Package `mina'}
+! Font \T1/ptm/b/n/20.74=nullfont not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   \relax 
+l.9 {\textbf{\huge Package `mina'}
+                                  }
+! Font T1/ptm/m/n/12=ptmr8t at 12.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.10 \par\bigskip{\large
+! Font TS1/ptm/m/n/10=ptmr8c at 10.0pt not loadable: Metric (TFM) file not foun
+d.
+<to be read again> 
+                   relax 
+l.32 ...\_dis.R' 'net\_dis\_indi.R' 'norm\_tab.R'}
+! Font T1/pcr/m/n/10=pcrr8t at 10.0pt not loadable: Metric (TFM) file not found
+.
+<to be read again> 
+                   relax 
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character p).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character s).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character :).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character g).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character i).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character t).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character h).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character b).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character .).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character c).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character o).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character m).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character /).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character G).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character u).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character a).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character n).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character 0).
+\Url@FormatString ...\Url@String \UrlRight \m@th $
+                                                  
+l.34 ...AsIs{}\url{https://github.com/Guan06/MINA}
+                                                  \AsIs{}
+! \textfont 0 is undefined (character 6).
+\Url@FormatStrin
+Error in running tools::texi2pdf()
+You may want to clean up by 'rm -Rf /scratch/Rtmp8fq7PH/Rd2pdfb61e49015b4f'

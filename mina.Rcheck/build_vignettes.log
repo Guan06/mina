@@ -1,0 +1,15 @@
+--- re-building ‘mina.Rmd’ using rmarkdown
+Warning in engine$weave(file, quiet = quiet, encoding = enc) :
+  Pandoc (>= 1.12.3) and/or pandoc-citeproc not available. Falling back to R Markdown v1.
+Warning in grDevices::png(f) :
+  unable to open connection to X11 display ''
+Quitting from lines 52-53 (mina.Rmd) 
+Error: processing vignette 'mina.Rmd' failed with diagnostics:
+"mina" is not a defined class
+--- failed re-building ‘mina.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘mina.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
