@@ -53,7 +53,7 @@ com_plot(hmp, match = "Sample_ID", color = "Site")
 To obtained network-derived features we first need to calculate an adjacency matrix based using the `adj` function after removing low prevalence community members to speed up the calculations.
 ```r
 lst <- rownames(hmp@norm)[rowSums(hmp@norm > 0) > 50]
-hmp@norm <- hmp@norm[lst, lst]
+hmp@norm <- hmp@norm[lst, ]
 dim(hmp@norm)
 hmp <- adj(hmp, method = "spearman")
 ```
