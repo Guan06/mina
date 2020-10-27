@@ -53,8 +53,8 @@ com_plot(hmp, match = "Sample_ID", color = "Site")
 To obtained network-derived features we first need to calculate an adjacency matrix based using the `adj` function after removing low prevalence community members to speed up the calculations.
 ```r
 lst <- rownames(hmp@norm)[rowSums(hmp@norm > 0) > 50]
-hmp@adj <- hmp@adj[lst, lst]
-dim(hmp@adj)
+hmp@norm <- hmp@norm[lst, lst]
+dim(hmp@norm)
 hmp <- adj(hmp, method = "spearman")
 ```
 Next, we perform clustering on the community network using the Markov Cluster Algorithm ([MCL](https://micans.org/mcl/)) after removing weak edges in the adjacency matrix (<= 0.4 correlation coefficient) and obtain a sparse matrix representation of the community network. Both steps are performed simultaneously using the function `net_cls`.
