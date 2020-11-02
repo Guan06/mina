@@ -141,7 +141,7 @@ sparcc <- function(x, threads = 80, nblocks = 400) {
     x <- x + pseudocount
 
     # Register cluster
-    registerDoMC(cores = threads)
+    doMC::registerDoMC(cores = threads)
 
     # Preallocate blocks for parallel processing
     # => based on https://gist.github.com/bobthecat/5024079

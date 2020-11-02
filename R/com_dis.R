@@ -165,7 +165,7 @@ setMethod("tina", signature("matrix", "character", "character", "ANY", "ANY"),
 #' @keywords internal
 
 sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
-    registerDoMC(cores = threads)
+    doMC::registerDoMC(cores = threads)
 
     samples <- colnames(x)
     x_occ_list <- apply((x > 0), 2, which)

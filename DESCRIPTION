@@ -16,7 +16,6 @@ Imports:
     RSpectra,
     apcluster,
     bigmemory,
-    doMC,
     foreach,
     ggplot2,
     parallel,
@@ -29,6 +28,7 @@ Imports:
     utils
 LazyData: true
 Suggests:
+    doMC,
     knitr,
     rmarkdown,
     testthat
