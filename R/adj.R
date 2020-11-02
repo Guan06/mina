@@ -118,7 +118,6 @@ setMethod("adj", signature("matrix", "character", "ANY", "ANY", "ANY"),
 #' @include all_classes.R all_generics.R
 #'
 #' @importFrom parallel mclapply
-#' @importFrom doMC registerDoMC
 #' @importFrom bigmemory big.matrix attach.big.matrix describe
 #' @importFrom foreach foreach %dopar%
 #' @importFrom biganalytics colsum

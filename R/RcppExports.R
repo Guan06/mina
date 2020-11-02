@@ -3,7 +3,6 @@
 
 #' Function for correlation coefficient calculation.
 #' @param mat The input matrix for correlation calculation.
-#' @return The correlation coefficient matrix.
 #' @export
 cp_cor <- function(mat) {
     .Call(`_mina_cp_cor`, mat)

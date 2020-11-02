@@ -138,7 +138,6 @@ setMethod("tina", signature("matrix", "character", "character", "ANY", "ANY"),
 #' @importFrom foreach foreach
 #' @importFrom bigmemory big.matrix
 #' @importFrom bigmemory attach.big.matrix
-#' @importFrom doMC registerDoMC
 #' @importFrom plyr alply
 #'
 #' @param x An quantitative matrix.

@@ -30,8 +30,7 @@ LazyData: true
 Suggests:
     doMC,
     knitr,
-    rmarkdown,
-    testthat
+    rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 Collate:
