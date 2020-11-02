@@ -121,13 +121,10 @@ setMethod("net_cls", signature("mina", "character", "ANY", "ANY"),
 #' Modified from https://rdrr.io/github/jefferis/flycircuit/src/R/clustering.R
 #' #sym-as.data.frame.APResult
 #'
-#' @param x an {APResult} object from
-#' \code{\link[apcluster:apcluster]{apcluster::apcluster()}}.
+#' @param x an {APResult} object from \pkg{apcluster}.
 #' @return y A data frame with columns `ID`, `Exemplar`, `Cluster` and
 #' `Cluster_size`.
 #' @keywords internal
-#' @seealso \code{\link[apcluster:apcluster]{apcluster::apcluster()}}
-#' @md
 
 re_format_AP <- function(x) {
     exemplars <- names(x@exemplars)

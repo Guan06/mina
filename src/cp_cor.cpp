@@ -87,6 +87,7 @@ Rcpp::NumericMatrix cp_cor_helper(const Rcpp::NumericMatrix& mat, const int rsta
 
 //' Function for correlation coefficient calculation.
 //' @param mat The input matrix for correlation calculation.
+//' @return The output correlation matrix.
 //' @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix cp_cor(Rcpp::NumericMatrix mat) {
