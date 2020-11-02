@@ -7,17 +7,18 @@
 re_format_AP(x)
 }
 \arguments{
-\item{x}{an {APResult} object from \code{\link[apcluster]{apcluster}}.}
+\item{x}{an {APResult} object from
+\code{\link[apcluster:apcluster]{apcluster::apcluster()}}.}
 }
 \value{
-y A data frame with columns `ID`, `Exemplar`, `Cluster` and
-`Cluster_size`.
+y A data frame with columns \code{ID}, \code{Exemplar}, \code{Cluster} and
+\code{Cluster_size}.
 }
 \description{
 Modified from https://rdrr.io/github/jefferis/flycircuit/src/R/clustering.R
 #sym-as.data.frame.APResult
 }
 \seealso{
-\code{\link[apcluster]{apcluster}} \code{\link[apcluster]{APResult}}
+\code{\link[apcluster:apcluster]{apcluster::apcluster()}}
 }
 \keyword{internal}
