@@ -23,7 +23,6 @@ maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
-asv_dis <- maize@dis
-asv_dis_dmr <- dmr(asv_dis)
+asv_dis <- dis(maize)
 asv_dis_dmr <- dmr(asv_dis, k = 4)
 }

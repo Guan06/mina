@@ -3,7 +3,7 @@
 \name{com_dis,mina,ANY-method}
 \alias{com_dis,mina,ANY-method}
 \alias{com_dis,mina,character-method}
-\title{Calculate the community dissimilarity / distance matrix of @norm with `mina`
+\title{Calculate the community dissimilarity / distance matrix of `norm` with `mina`
 class object as input.}
 \usage{
 \S4method{com_dis}{mina,ANY}(x, method = "bray", threads = 80, nblocks = 400)
@@ -11,7 +11,7 @@ class object as input.}
 \S4method{com_dis}{mina,character}(x, method = "bray", threads = 80, nblocks = 400)
 }
 \arguments{
-\item{x}{An object of the class `mina` with @norm defined.}
+\item{x}{An object of the class `mina` with `norm` defined.}
 
 \item{method}{The dissimilarity / distance method used, default `bray`.}
 
@@ -25,7 +25,7 @@ row / column for splitted sub-matrix.}
 x The same `mina` object with @dis added.
 }
 \description{
-Calculate the community dissimilarity / distance matrix of @norm with `mina`
+Calculate the community dissimilarity / distance matrix of `norm` with `mina`
 class object as input.
 }
 \examples{

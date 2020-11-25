@@ -2,12 +2,12 @@
 % Please edit documentation in R/all_generics.R
 \name{com_dis}
 \alias{com_dis}
-\title{Calculate the community dissimilarity / distance matrix of @norm.}
+\title{Calculate the community dissimilarity / distance matrix.}
 \usage{
 com_dis(x, method = "bray", threads = 80, nblocks = 400)
 }
 \arguments{
-\item{x}{An object of the class mina with @norm defined or any quantitative
+\item{x}{An object of the class mina with `norm` defined or any quantitative
 matrix.}
 
 \item{method}{The dissimilarity / distance method used, default `bray`.}
@@ -22,7 +22,7 @@ method `tina`.}
 The distance / dissimilarity matrix.
 }
 \description{
-Calculate the community dissimilarity / distance matrix of @norm.
+Calculate the community dissimilarity / distance matrix.
 }
 \examples{
 asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)

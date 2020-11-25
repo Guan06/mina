@@ -29,9 +29,9 @@ permutation results should be included in the folder `x`.}
 matrix is smaller than setted `evk`, default TRUE.}
 }
 \value{
-y The `mina` object with @dis_bs, @dis_pm and @dis_stat.
+y The `mina` object with `dis_bs`, `dis_pm` and `dis_stat`.
 
-y The `mina` object with @dis_bs, @dis_pm and @dis_stat.
+y The `mina` object with `dis_bs`, `dis_pm` and `dis_stat`.
 }
 \description{
 Calculate the network distance of bootstrap and permutation when appliable.

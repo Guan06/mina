@@ -3,8 +3,8 @@
 #' Visulization of components distance / dissimilarity in k dimension.
 #'
 #' @import ggplot2
-#' @param x An object of `mina` with list @dmr defined.
-#' @param match The column name of the components IDs in @des with exactly the
+#' @param x An object of `mina` with list `dmr` defined.
+#' @param match The column name of the components IDs in `des` with exactly the
 #' same as rownames in x.
 #' @param d1 The dimension be visualized in x-axis, default `1`.
 #' @param d2 The dimension be visualized in y-axis, default `2`.
@@ -58,7 +58,11 @@ setMethod("com_plot",
 setMethod("com_plot",
           signature("mina", "character", "ANY", "ANY", "character", "ANY"),
           function(x, match, d1 = 1, d2 = 2, color, shape = NULL) {
-              p <- pcoa_plot(x@dmr, x@des, match = match, d1 = d1, d2 = d2,
+              stopifnot(
+                    is.character(c(match, color)),
+                    is.numeric(c(d1, d2))
+              )
+              p <- pcoa_plot(.dmr(x), des(x), match = match, d1 = d1, d2 = d2,
                              color = color, shape = shape)
               return(p)
           }
@@ -85,8 +89,8 @@ setMethod("com_plot",
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' maize <- dmr(maize)
-#' asv_dmr <- maize@dmr
-#' des <- maize@des
+#' asv_dmr <- .dmr(maize)
+#' des <- des(maize)
 #' p1a <- pcoa_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment")
 #' p1b <- pcoa_plot(asv_dmr, des, match = "Sample_ID", d1 = 3, d2 = 4, color =
 #' "Compartment")
@@ -103,6 +107,12 @@ setMethod("com_plot",
 setMethod("pcoa_plot", signature("list", "data.frame", "character",
                                  "ANY", "ANY", "character", "ANY"),
             function(x, des, match, d1 = 1, d2 = 2, color, shape = NULL) {
+    
+                stopifnot(
+                          is.character(c(match, color)),
+                          is.numeric(c(d1, d2))
+                )
+
     points <- x$points
     if (nrow(points) != nrow(des)) {
         stop("Component number in `dmr` and `des` are different!")

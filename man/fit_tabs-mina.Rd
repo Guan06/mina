@@ -3,9 +3,9 @@
 \name{fit_tabs,mina-method}
 \alias{fit_tabs,mina-method}
 \title{Filter the quantitative and descriptive table to make them have the same
-samples, samples present in both tables are remained. If @norm table exist in
+samples, samples present in both tables are remained. If `norm` table exist in
 the `mina` object, descriptive table will be filtered again to only keep
-samples present in @norm.}
+samples present in `norm`.}
 \usage{
 \S4method{fit_tabs}{mina}(x)
 }
@@ -13,20 +13,20 @@ samples present in @norm.}
 \item{x}{An object of class mina.}
 }
 \value{
-x The same object as input with fitted @tab, @des and @norm (if
+x The same object as input with fitted `tab`, `des` and `norm` (if
 defined).
 }
 \description{
 Filter the quantitative and descriptive table to make them have the same
-samples, samples present in both tables are remained. If @norm table exist in
+samples, samples present in both tables are remained. If `norm` table exist in
 the `mina` object, descriptive table will be filtered again to only keep
-samples present in @norm.
+samples present in `norm`.
 }
 \examples{
 {
 data(maize)
 maize <- fit_tabs(maize)
-maize <- norm_tab(maize, method = "raref")
+maize <- norm_tab(maize, method = "total")
 maize <- fit_tabs(maize)
 }
 }

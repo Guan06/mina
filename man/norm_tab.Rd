@@ -2,7 +2,7 @@
 % Please edit documentation in R/all_generics.R
 \name{norm_tab}
 \alias{norm_tab}
-\title{Normalize the @tab and obtain @norm for later analysis.}
+\title{Normalize the slot `tab` for later analysis.}
 \usage{
 norm_tab(x, method, depth = 1000, replace = TRUE, multi = FALSE)
 }
@@ -24,7 +24,7 @@ the times of rarefaction want to be repeated, only validate for rarefaction.}
 Normalized quantitative table.
 }
 \description{
-Normalize the @tab and obtain @norm for later analysis.
+Normalize the slot `tab` for later analysis.
 }
 \examples{
 maize <- new("mina", tab = maize_asv2, des = maize_des2)

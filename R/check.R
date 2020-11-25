@@ -12,7 +12,7 @@
 #' @export
 
 check_mina <- function(x) {
-    if (class(x@tab)[1] == "NULL" && class(x@des)[1] == "NULL") {
+    if (class(tab(x))[1] == "NULL" && class(des(x))[1] == "NULL") {
         stop("An empty (neither @tab or @des) object of the class mina!")
     }
 
@@ -27,7 +27,7 @@ check_mina <- function(x) {
 
 #' Check the object and return TRUE if the object includes quantitative table.
 #'
-#' @param x An object of class mina with @tab defined.
+#' @param x An object of class mina with `tab` defined.
 #' @return TRUE if the object contains quantitative table and is not empty.
 #' @examples
 #' data(maize)
@@ -36,7 +36,7 @@ check_mina <- function(x) {
 
 check_mina_qu <- function(x) {
     errors <- character()
-    if (class(x@tab)[1] == "NULL") stop("The @tab of this object does not exist!")
+    if (class(tab(x))[1] == "NULL") stop("The @tab of this object does not exist!")
     TRUE
 }
 
@@ -45,7 +45,7 @@ check_mina_qu <- function(x) {
 #' Check the object and return TRUE if the object includes descriptive table
 #' contains the same samples as quantitative table.
 #'
-#' @param x An object of class mina with @tab and @des defined.
+#' @param x An object of class mina with `tab` and `des` defined.
 #' @return TRUE if the object contains non-empty descriptive table and has the
 #' same samples as quantitative table.
 #' @examples
@@ -58,12 +58,12 @@ check_mina_de <- function(x) {
 
     if (!check_mina_qu(x)) errors <- c(errors, check_mina_qu(x))
 
-    if(class(x@des)[1] == "NULL") {
+    if(class(des(x))[1] == "NULL") {
         stop("The @des of this object does not exist!")
     }
 
-    samples1 <- as.character(sort(colnames(x@tab)))
-    samples2 <- as.character(sort(x@des$Sample_ID))
+    samples1 <- as.character(sort(colnames(tab(x))))
+    samples2 <- as.character(sort(des(x)$Sample_ID))
 
     if (!identical(samples1, samples2)){
         msg <- "The samples in @tab and @des are different!"

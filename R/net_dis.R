@@ -1,10 +1,10 @@
 ################################################################################
 
-#' Calculate the network distance of @multi and test the significance when @perm
-#' is defined.
+#' Calculate the network distance of `multi` and test the significance when
+#' `perm` is defined.
 #'
 #' @importFrom stats dist
-#' @param x An object of class `mina` with @multi (and @perm if sig is TRUE)
+#' @param x An object of class `mina` with `multi` (and `perm` if sig is TRUE)
 #' defined.
 #' @param method The distance to be calculated, "spectra" and "Jaccard" are
 #' available.
@@ -14,11 +14,11 @@
 #' defult is TRUE, only validate when `method == "spectra"`.
 #' @param dir The folder to output the eigenvectors, only validate when `egv ==
 #' TRUE`.
-#' @param sig Whether to test the significance, if TRUE (by default), @perm is
+#' @param sig Whether to test the significance, if TRUE (by default), `perm` is
 #' needed.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
 #' matrix is smaller than setted `evk`.
-#' @return x The same `mina` object with @net_dis defined.
+#' @return x The same `mina` object with `net_dis` defined.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
@@ -44,8 +44,14 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY",
                                "ANY", "ANY"),
           function(x, method, evk = 100, egv = TRUE, dir = "./",
                    sig = TRUE, skip = TRUE) {
-              y_bs <- x@multi
-              y_pm <- x@perm
+              stopifnot(
+                        method %in% c("spectra", "Jaccard"),
+                        is.numeric(evk),
+                        is.logical(c(egv, sig, skip)),
+                        is.character(dir)
+              )
+              y_bs <- multi(x)
+              y_pm <- perm(x)
               len <- length(y_bs)
               plen <- length(y_pm)
 
@@ -221,8 +227,8 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY",
                   }
               }
 
-              x@dis_bs <- dis_bs
-              x@dis_pm <- dis_pm
+              dis_bs(x) <- dis_bs
+              dis_pm(x) <- dis_pm
 
               ## get the stat table
               if (sig) {
@@ -231,7 +237,7 @@ setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY",
                   dis_stat <- get_stat(dis_bs)
               }
 
-              x@dis_stat <- dis_stat
+              dis_stat(x) <- dis_stat
               return(x)
           }
 )

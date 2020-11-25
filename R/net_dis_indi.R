@@ -15,7 +15,7 @@
 #' permutation results should be included in the folder `x`.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
 #' matrix is smaller than setted `evk`, default TRUE.
-#' @return y The `mina` object with @dis_bs, @dis_pm and @dis_stat.
+#' @return y The `mina` object with `dis_bs`, `dis_pm` and `dis_stat`.
 #' @examples
 #' \dontrun{
 #' data(maize)
@@ -45,6 +45,11 @@ setMethod("net_dis_indi", signature("character", "ANY", "ANY", "ANY", "ANY"),
 setMethod("net_dis_indi", signature("character", "character",
                                     "ANY", "ANY", "ANY"),
           function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
+              stopifnot(
+                        method %in% c("spectra", "Jaccard"),
+                        is.numeric(evk),
+                        is.logical(c(sig, skip))
+              )
               bs1_files <- sort(list.files(x, pattern = "_bs1.rds",
                                            full.names = TRUE))
               bs2_files <- sort(list.files(x, pattern = "_bs2.rds",
@@ -239,8 +244,8 @@ setMethod("net_dis_indi", signature("character", "character",
           write.table(log, paste0(out_dir, "log.txt"))
 
           y <- new("mina")
-          y@dis_bs <- dis_bs
-          y@dis_pm <- dis_pm
+          dis_bs(y) <- dis_bs
+          dis_pm(y) <- dis_pm
 
           ## get the stat table
           if (sig) {
@@ -249,7 +254,7 @@ setMethod("net_dis_indi", signature("character", "character",
               dis_stat <- get_stat(dis_bs)
           }
 
-          y@dis_stat <- dis_stat
+          dis_stat(y) <- dis_stat
           return(y)
         }
 )

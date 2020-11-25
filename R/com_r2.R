@@ -5,7 +5,7 @@
 #' variance. Austral Ecology, 26: 32--46.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An mina object with @dis and @des defined.
+#' @param x An mina object with `dis` and `des` defined.
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
 #'
 #' @examples
@@ -28,7 +28,7 @@ setMethod("com_r2", signature("mina", "ANY"), function(x, group) {
 #' @exportMethod com_r2
 
 setMethod("com_r2", signature("mina", "character"), function(x, group) {
-    r2 <- get_r2(x@dis, des = x@des, group = group)
+    r2 <- get_r2(dis(x), des = des(x), group = group)
     return(r2)
 })
 
@@ -51,8 +51,8 @@ setMethod("com_r2", signature("mina", "character"), function(x, group) {
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
-#' x <- maize@dis
-#' des <- maize@des
+#' x <- dis(maize)
+#' des <- des(maize)
 #' get_r2(x, des, group = c("Compartment", "Soil"))
 #' @return r2 The variance ratio cannot be explained by given groups.
 #' @rdname get_r2-mat

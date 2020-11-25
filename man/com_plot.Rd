@@ -7,10 +7,10 @@
 com_plot(x, match, d1 = 1, d2 = 2, color, shape = NULL)
 }
 \arguments{
-\item{x}{An object of class `mina` with @dmr and @des defined.}
+\item{x}{An object of class `mina` with `dmr` and `des` defined.}
 
-\item{match}{The column name of the components IDs in @des which exactly the
-same indicated in @dmr.}
+\item{match}{The column name of the components IDs in `des` which exactly the
+same indicated in `dmr`.}
 
 \item{d1}{The dimension be visualized in x-axis, default `1`.}
 

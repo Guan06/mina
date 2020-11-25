@@ -20,9 +20,9 @@ bs_pm(
 )
 }
 \arguments{
-\item{x}{An object of class `mina` with @norm and @des defined.}
+\item{x}{An object of class `mina` with `norm` and `des` defined.}
 
-\item{group}{The column name of descriptive file @des for comparison.}
+\item{group}{The column name of descriptive file `des` for comparison.}
 
 \item{g_size}{The cutoff of group size used for filtering, default is 88.}
 

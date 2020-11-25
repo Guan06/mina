@@ -31,6 +31,10 @@ setMethod("com_dis", signature("matrix", "ANY", "ANY", "ANY"),
 
 setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
           function(x, method = "bray", threads = 80, nblocks = 400) {
+              stopifnot(
+                        method %in% unlist(com_dis_list),
+                        is.numeric(c(threads, nblocks))
+              )
               if (method == "tina"){
                   y <- tina(x, cor_method = "spearman", sim_method = "w_ja",
                             threads = threads, nblocks = nblocks)
@@ -48,12 +52,12 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
 
 ###############################################################################
 
-#' Calculate the community dissimilarity / distance matrix of @norm with `mina`
+#' Calculate the community dissimilarity / distance matrix of `norm` with `mina`
 #' class object as input.
 #'
 #' @include all_classes.R all_generics.R
 #' @importFrom parallelDist parDist
-#' @param x An object of the class `mina` with @norm defined.
+#' @param x An object of the class `mina` with `norm` defined.
 #' @param method The dissimilarity / distance method used, default `bray`.
 #' @param threads (optional, only needed when method == "tina") The number of
 #' threads used for parallel running.
@@ -78,10 +82,13 @@ setMethod("com_dis", signature("mina", "ANY", "ANY", "ANY"),
 
 #' @rdname com_dis-mina
 #' @exportMethod com_dis
-
 setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
           function(x, method = "bray", threads = 80, nblocks = 400) {
-              x@dis <- com_dis(x@norm, method = method, threads = threads,
+              stopifnot(
+                        method %in% unlist(com_dis_list),
+                        is.numeric(c(threads, nblocks))
+              )
+              dis(x) <- com_dis(norm(x), method = method, threads = threads,
                                nblocks = nblocks)
               return(x)
           }
@@ -117,6 +124,11 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 setMethod("tina", signature("matrix", "character", "character", "ANY", "ANY"),
     function(x, cor_method = "spearman", sim_method = "w_ja",
                  threads = 80, nblocks = 400) {
+        stopifnot(
+                cor_method %in% c("spearman", "pearson", "sparcc"),
+                sim_method %in% c("w_ja", "uw_ja"),
+                is.numeric(c(threads, nblocks))
+        )
     x_sparcc <- sparcc(x, threads = threads, nblocks = nblocks)
     tmp.S <- adj(x_sparcc, method = cor_method)
 

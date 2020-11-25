@@ -5,9 +5,10 @@ NULL
 
 #' Filter the quantitative and descriptive table to make them have the same
 #' samples, the intersect samples will be remained.
-#' @param x An object of the class mina with @tab and @des defined or a
+#' @param x An object of the class mina with `tab` and `des` defined or a
 #' quantitative matrix(need parameter des in this case).
-#' @return Same mina object but fitted @tab and @des (as well as @norm if exist)
+#' @return Same `mina` object but fitted `tab` and `des` (as well as `norm` if
+#' defined)
 #' @examples
 #' data(maize)
 #' maize <- fit_tabs(maize)
@@ -21,7 +22,7 @@ setGeneric("fit_tabs", function(x) {
 
 ###############################################################################
 
-#' Normalize the @tab and obtain @norm for later analysis.
+#' Normalize the slot `tab` for later analysis.
 #'
 #' @param x The input mina object with quantitative tab / a matrix needed to be
 #' normalized.
@@ -48,9 +49,9 @@ setGeneric("norm_tab", function(x, method, depth = 1000,
 
 ###############################################################################
 
-#' Calculate the adjacacency matrix of @norm by correlation.
+#' Calculate the correlation adjacacency matrix.
 #'
-#' @param x An object of the class mina with @norm defined.
+#' @param x An object of the class mina with `norm` defined.
 #' @param method The correlation coeffient used for adjacacency matrix.
 #' @param sig (optional) The asymtotic P-values, only applicable for Pearson and
 #' Spearman methods.
@@ -70,9 +71,9 @@ setGeneric("adj", function(x, method, sig = FALSE, threads = 80, nblocks = 400) 
 
 ###############################################################################
 
-#' Calculate the community dissimilarity / distance matrix of @norm.
+#' Calculate the community dissimilarity / distance matrix.
 #'
-#' @param x An object of the class mina with @norm defined or any quantitative
+#' @param x An object of the class mina with `norm` defined or any quantitative
 #' matrix.
 #' @param method The dissimilarity / distance method used, default `bray`.
 #' @param threads The number of threads used for parallel running, needed for
@@ -127,7 +128,7 @@ setGeneric("tina", function(x, cor_method = "spearman", sim_method = "w_ja",
 #' Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of
 #' variance. Austral Ecology, 26: 32--46.
 #'
-#' @param x An object of class `mina` with @dis and @des defined.
+#' @param x An object of class `mina` with `dis` and `des` defined.
 #' @param group The name(s) of column(s) defined as experimental setup group(s).
 #' @examples
 #' data(maize)
@@ -156,9 +157,7 @@ setGeneric("com_r2", function(x, group) {
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
-#' x <- maize@dis
-#' des <- maize@des
-#' get_r2(x, des, group = c("Compartment", "Soil"))
+#' get_r2(dis(maize), des(maize), group = c("Compartment", "Soil"))
 #' @return r2 The variance ratio cannot be explained by given groups.
 #' @export
 
@@ -171,7 +170,7 @@ setGeneric("get_r2", function(x, des, group) {
 #' Dimensionality reduction of community dissimilarity / distance for
 #' visulization.
 #'
-#' @param x An object of class `mina` with @dis defined or a distance matrix.
+#' @param x An object of class `mina` with `dis` defined or a distance matrix.
 #' @param k The dimension number after reduction.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
@@ -190,9 +189,9 @@ setGeneric("dmr", function(x, k = 2) {
 
 #' Visulization of components distance / dissimilarity in k dimension.
 #'
-#' @param x An object of class `mina` with @dmr and @des defined.
-#' @param match The column name of the components IDs in @des which exactly the
-#' same indicated in @dmr.
+#' @param x An object of class `mina` with `dmr` and `des` defined.
+#' @param match The column name of the components IDs in `des` which exactly the
+#' same indicated in `dmr`.
 #' @param d1 The dimension be visualized in x-axis, default `1`.
 #' @param d2 The dimension be visualized in y-axis, default `2`.
 #' @param color The column name in @des to be used for different color groups.
@@ -241,9 +240,8 @@ setGeneric("com_plot", function(x, match, d1 = 1, d2 = 2, color, shape = NULL) {
 #' maize <- fit_tabs(maize)
 #' maize <- com_dis(maize, method = "bray")
 #' maize <- dmr(maize)
-#' asv_dmr <- maize@dmr
-#' des <- maize@des
-#' p1a <- pcoa_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment")
+#' asv_dmr <- .dmr(maize)
+#' p1a <- pcoa_plot(asv_dmr, des(maize), match = "Sample_ID", color = "Compartment")
 #' p1b <- pcoa_plot(asv_dmr, des, match = "Sample_ID", d1 = 3, d2 = 4, color =
 #' "Compartment")
 #' p2a <- pcoa_plot(asv_dmr, des, match = "Sample_ID", color = "Host_genotype")
@@ -262,9 +260,9 @@ setGeneric("pcoa_plot", function(x, des, match,
 
 ################################################################################
 
-#' Network clustering of sparsed adjacacency matrix @adj.
+#' Network clustering of sparsed adjacacency matrix.
 #'
-#' @param x An object of class `mina` with @adj defined.
+#' @param x An object of class `mina` with `adj` defined.
 #' @param method The clustering method used.
 #' @param cutoff The cutoff for the sparse adjacency matrix, default is 0.4.
 #' @param neg Whether to keep the negative edges, default is `FALSE`.
@@ -283,8 +281,8 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 
 ################################################################################
 
-#' Get the cluster table @cls_tab from quantitative table @norm and network
-#' clustering results @cls.
+#' Get the cluster table `cls_tab` from quantitative table `norm` and network
+#' clustering results `cls`.
 #'
 #' @param x_norm The normalized quantitative table used for netowrk inference
 #' and clustering.
@@ -296,8 +294,7 @@ setGeneric("net_cls", function(x, method, cutoff = 0.4, neg = FALSE) {
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref", depth = 1000)
 #' maize <- fit_tabs(maize)
-#' maize_norm <- maize@norm
-#' maize_adj <- adj(maize_norm, method = "spearman")
+#' maize_adj <- adj(norm(maize), method = "spearman")
 #' maize_cls <- net_cls(maize_adj, method = "ap", cutoff = 0.5)
 #' maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
 #' @exportMethod get_net_cls_tab
@@ -307,9 +304,9 @@ setGeneric("get_net_cls_tab", function(x_norm, x_cls, uw = FALSE) {
 })
 ################################################################################
 
-#' Get the cluster table @cls_tab from @norm and @cls.
+#' Get the cluster table 'cls_tab' from `norm` and `cls`.
 #'
-#' @param x An object of class `mina` with @norm and @cls defined.
+#' @param x An object of class `mina` with `norm` and `cls` defined.
 #' @param uw By summing up the number of present components of each cluster
 #' instead of relative abundances, default is FALSE.
 #' @return The network cluster relative abundance table.
@@ -331,8 +328,8 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' Inferring the network of different group of samples and test significance by
 #' permutation.
 #'
-#' @param x An object of class `mina` with @norm and @des defined.
-#' @param group The column name of descriptive file @des for comparison.
+#' @param x An object of class `mina` with `norm` and `des` defined.
+#' @param group The column name of descriptive file `des` for comparison.
 #' @param g_size The cutoff of group size used for filtering, default is 88.
 #' @param s_size The number of samples used for network inference during
 #' bootstrap and permutation (when `sig` is TRUE), it should be smaller than
@@ -364,10 +361,10 @@ setGeneric("bs_pm", function(x, group, g_size = 88, s_size = 30, rm = TRUE,
 
 ################################################################################
 
-#' Calculate the network distance of @multi and test the significance when @perm
-#' is defined.
+#' Calculate the network distance of `multi` and test the significance when
+#' `perm` is defined.
 #'
-#' @param x An object of class `mina` with @multi (and @perm if `sig` is TRUE)
+#' @param x An object of class `mina` with `multi` (and `perm` if `sig` is TRUE)
 #' defined.
 #' @param method The distance to be calculated, "spectra" and "Jaccard" are
 #' available.
@@ -410,7 +407,7 @@ setGeneric("net_dis", function(x, method, evk = 100, egv = TRUE, dir = "./",
 #' permutation results should be included in the folder `x`.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
 #' matrix is smaller than setted `evk`.
-#' @return y The `mina` object with @dis_bs, @dis_pm and @dis_stat.
+#' @return y The `mina` object with `dis_bs`, `dis_pm` and `dis_stat`.
 #' @examples
 #' \dontrun{
 #' data(maize)

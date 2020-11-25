@@ -2,20 +2,20 @@
 % Please edit documentation in R/dmr.R
 \name{dmr,mina-method}
 \alias{dmr,mina-method}
-\title{Dimensionality reduction of the @dis included in mina.}
+\title{Dimensionality reduction of the `dis` included in mina.}
 \usage{
 \S4method{dmr}{mina}(x, k = 4)
 }
 \arguments{
-\item{x}{An object of the class `mina` with @dis defined.}
+\item{x}{An object of the class `mina` with `dis` defined.}
 
 \item{k}{The number of dimensionality after reduction, 4 by default.}
 }
 \value{
-x The same object with @dmr added.
+x The same object with `dmr` added.
 }
 \description{
-Dimensionality reduction of the @dis included in mina.
+Dimensionality reduction of the `dis` included in mina.
 }
 \examples{
 maize <- new("mina", tab = maize_asv2, des = maize_des2)
@@ -23,5 +23,4 @@ maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 maize <- dmr(maize)
-maize <- dmr(maize, k = 4)
 }

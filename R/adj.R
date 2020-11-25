@@ -1,11 +1,11 @@
 ###############################################################################
 
-#' Calculate the adjacency matrix of @norm by correlation with `mina` class
+#' Calculate the adjacency matrix of `norm` by correlation with `mina` class
 #' object as input.
 #'
 #' @include all_classes.R all_generics.R
 #' @importFrom Hmisc rcorr
-#' @param x An object of the class `mina` with @norm defined.
+#' @param x An object of the class `mina` with `norm` defined.
 #' @param method The correlation coefficient used for adjacency matrix.
 #' @param sig The asymtotic P-values, only applicable for Pearson and Spearman
 #' methods, FALSE by default.
@@ -18,7 +18,7 @@
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- adj(maize, method = "spearman", sig = FALSE)
-#' @return x The same `mina` object with @adj added.
+#' @return x The same `mina` object with `adj` added.
 #' @rdname adj-mina
 #' @exportMethod adj
 
@@ -35,17 +35,22 @@ setMethod("adj", signature("mina", "ANY", "ANY", "ANY", "ANY"),
 
 setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
           function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
+              stopifnot(
+                        method %in% c("pearson", "spearman", "sparcc"),
+                        is.logical(sig),
+                        is.numeric(c(threads, nblocks))
+              )
               if (sig == TRUE) {
-                  out <- rcorr(t(x@norm), type = method)
+                  out <- rcorr(t(norm(x)), type = method)
                   diag(out$r) <- 0
-                  x@adj <- out$r
+                  .adj(x) <- out$r
 
                   diag(out$P) <- 1
-                  x@adj_sig <- out$P
+                  adj_sig(x) <- out$P
               } else if (method == "pearson" || method == "spearman") {
-                  x@adj <- adj(x@norm, method = method)
+                  .adj(x) <- adj(norm(x), method = method)
               } else if (method == "sparcc") {
-                  x@adj <- adj(x@tab, method = method, threads = threads,
+                  .adj(x) <- adj(tab(x), method = method, threads = threads,
                                nblocks = nblocks)
               }
               return(x)
@@ -54,7 +59,7 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
 
 ###############################################################################
 
-#' Calculate the adjacency matrix of @norm by correlation with matrix as input.
+#' Calculate the adjacency matrix of `norm` by correlation with matrix as input.
 #'
 #' @importFrom Hmisc rcorr
 #' @include all_classes.R all_generics.R
@@ -86,6 +91,11 @@ setMethod("adj", signature("matrix","ANY", "ANY", "ANY", "ANY"),
 
 setMethod("adj", signature("matrix", "character", "ANY", "ANY", "ANY"),
           function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
+              stopifnot(
+                    method %in% c("pearson", "spearman", "sparcc"),
+                    is.logical(sig),
+                    is.numeric(c(threads, nblocks))
+              )
               if (method == "pearson") {
                   x <- t(x)
                   y <- cp_cor(x)

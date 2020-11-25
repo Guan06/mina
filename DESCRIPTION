@@ -40,6 +40,7 @@ Collate:
     'all_classes.R'
     'all_generics.R'
     'adj.R'
+    'all_accessors.R'
     'bs_pm.R'
     'check.R'
     'com_dis.R'

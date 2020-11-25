@@ -2,23 +2,23 @@
 % Please edit documentation in R/net_cls_tab.R
 \name{net_cls_tab,mina-method}
 \alias{net_cls_tab,mina-method}
-\title{Get the cluster table @cls_tab from quantitative table @norm and network
-clustering results @cls.}
+\title{Get the cluster table `cls_tab` from quantitative table `norm` and network
+clustering results `cls`.}
 \usage{
 \S4method{net_cls_tab}{mina}(x, uw = FALSE)
 }
 \arguments{
-\item{x}{An object of class `mina` with @norm and @cls defined.}
+\item{x}{An object of class `mina` with `norm` and `cls` defined.}
 
 \item{uw}{By summing up the number of present components of each cluster
 instead of relative abundance, default is FALSE.}
 }
 \value{
-x The same `mina` object with @cls_tab added.
+x The same `mina` object with `cls_tab` added.
 }
 \description{
-Get the cluster table @cls_tab from quantitative table @norm and network
-clustering results @cls.
+Get the cluster table `cls_tab` from quantitative table `norm` and network
+clustering results `cls`.
 }
 \examples{
 maize <- new("mina", tab = maize_asv2, des = maize_des2)

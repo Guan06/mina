@@ -2,13 +2,13 @@
 % Please edit documentation in R/all_generics.R
 \name{net_dis}
 \alias{net_dis}
-\title{Calculate the network distance of @multi and test the significance when @perm
-is defined.}
+\title{Calculate the network distance of `multi` and test the significance when
+`perm` is defined.}
 \usage{
 net_dis(x, method, evk = 100, egv = TRUE, dir = "./", sig = TRUE, skip = TRUE)
 }
 \arguments{
-\item{x}{An object of class `mina` with @multi (and @perm if `sig` is TRUE)
+\item{x}{An object of class `mina` with `multi` (and `perm` if `sig` is TRUE)
 defined.}
 
 \item{method}{The distance to be calculated, "spectra" and "Jaccard" are
@@ -33,8 +33,8 @@ matrix is smaller than setted `evk`.}
 The netowrk comparison result.
 }
 \description{
-Calculate the network distance of @multi and test the significance when @perm
-is defined.
+Calculate the network distance of `multi` and test the significance when
+`perm` is defined.
 }
 \examples{
 maize <- new("mina", tab = maize_asv2, des = maize_des2)

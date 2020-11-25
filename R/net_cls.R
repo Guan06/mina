@@ -1,6 +1,6 @@
 ################################################################################
 
-#' Network clustering based on the sparsed adjacacency matrix @adj.
+#' Network clustering based on the sparsed adjacacency matrix.
 #'
 #' @include all_classes.R all_generics.R
 #' @importFrom MCL mcl
@@ -31,6 +31,11 @@ setMethod("net_cls", signature("matrix", "ANY", "ANY", "ANY"),
 
 setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
           function(x, method, cutoff = 0.4, neg = FALSE) {
+              stopifnot(
+                        method %in% c("mcl", "ap"),
+                        is.numeric(cutoff),
+                        is.logical(neg)
+              )
               if (method == "mcl" && neg == TRUE) {
                   stop("Only positive edges when using Markov Clustering.")
               }
@@ -75,12 +80,12 @@ setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
 )
 ################################################################################
 
-#' Network clustering based on the sparsed adjacacency matrix @adj.
+#' Network clustering based on the sparsed adjacacency matrix.
 #'
 #' @include all_classes.R all_generics.R
 #' @importFrom MCL mcl
 #' @importFrom apcluster apcluster
-#' @param x An object of class `mina` with @adj defined.
+#' @param x An object of class `mina` with `adj` defined.
 #' @param method The clustering method used.
 #' @param cutoff The cutoff for the sparsed adjacacency matrix, default 0.4.
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
@@ -108,7 +113,12 @@ setMethod("net_cls", signature("mina", "ANY", "ANY", "ANY"),
 
 setMethod("net_cls", signature("mina", "character", "ANY", "ANY"),
           function(x, method, cutoff = 0.4, neg = FALSE) {
-              x@cls <- net_cls(x@adj, method = method, cutoff = cutoff,
+              stopifnot(
+                        method %in% c("mcl", "ap"),
+                        is.numeric(cutoff),
+                        is.logical(neg)
+              )
+              cls(x) <- net_cls(.adj(x), method = method, cutoff = cutoff,
                                neg = FALSE)
               return(x)
           }
@@ -127,10 +137,10 @@ setMethod("net_cls", signature("mina", "character", "ANY", "ANY"),
 #' @keywords internal
 
 re_format_AP <- function(x) {
-    exemplars <- names(x@exemplars)
-    clusterids <- which(names(x@exemplars) %in% exemplars)
+    exemplars <- names(ap_exemplars(x))
+    clusterids <- which(names(ap_exemplars(x)) %in% exemplars)
 
-    clusters <- x@clusters[clusterids]
+    clusters <- ap_clusters(x)[clusterids]
     cls <- sapply(clusters, length)
     ulc <- unlist(clusters)
     y <- data.frame(ID = names(ulc),
@@ -139,6 +149,9 @@ re_format_AP <- function(x) {
                     Cluster_size = rep(cls, cls))
     return(y)
 }
+
+ap_exemplars <- function(x) x@exemplars
+ap_clusters <- function(x) x@clusters
 
 ################################################################################
 

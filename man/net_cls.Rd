@@ -2,12 +2,12 @@
 % Please edit documentation in R/all_generics.R
 \name{net_cls}
 \alias{net_cls}
-\title{Network clustering of sparsed adjacacency matrix @adj.}
+\title{Network clustering of sparsed adjacacency matrix.}
 \usage{
 net_cls(x, method, cutoff = 0.4, neg = FALSE)
 }
 \arguments{
-\item{x}{An object of class `mina` with @adj defined.}
+\item{x}{An object of class `mina` with `adj` defined.}
 
 \item{method}{The clustering method used.}
 
@@ -19,7 +19,7 @@ net_cls(x, method, cutoff = 0.4, neg = FALSE)
 The network clustering results.
 }
 \description{
-Network clustering of sparsed adjacacency matrix @adj.
+Network clustering of sparsed adjacacency matrix.
 }
 \examples{
 maize <- new("mina", tab = maize_asv2, des = maize_des2)

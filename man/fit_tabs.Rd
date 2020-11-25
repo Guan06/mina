@@ -8,11 +8,12 @@ samples, the intersect samples will be remained.}
 fit_tabs(x)
 }
 \arguments{
-\item{x}{An object of the class mina with @tab and @des defined or a
+\item{x}{An object of the class mina with `tab` and `des` defined or a
 quantitative matrix(need parameter des in this case).}
 }
 \value{
-Same mina object but fitted @tab and @des (as well as @norm if exist)
+Same `mina` object but fitted `tab` and `des` (as well as `norm` if
+defined)
 }
 \description{
 Filter the quantitative and descriptive table to make them have the same

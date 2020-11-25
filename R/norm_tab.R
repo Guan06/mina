@@ -23,6 +23,11 @@
 
 setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY", "ANY"),
           function(x, method, depth = 1000, replace = TRUE, multi = FALSE) {
+              stopifnot(
+                        method %in% c("raref", "total"),
+                        is.numeric(depth),
+                        is.logical(c(replace, multi))
+              )
               if (method == "raref") {
                   if (multi == FALSE) {
                     x_norm <- norm_by_raref(x, depth = depth, replace = replace)
@@ -80,9 +85,14 @@ setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY", "ANY"),
 
 setMethod("norm_tab", signature("mina", "character", "ANY", "ANY", "ANY"),
           function(x, method, depth = 1000, replace = TRUE, multi = FALSE) {
-              x@norm <- norm_tab(x@tab, method,
+              stopifnot(
+                        method %in% c("raref", "total"),
+                        is.numeric(depth),
+                        is.logical(c(replace, multi))
+              )
+              norm(x) <- norm_tab(tab(x), method,
                                  depth = depth, replace = replace, multi = multi)
-              x@norm <- as.matrix(x@norm)
+              norm(x) <- as.matrix(norm(x))
               return(x)
           }
 )

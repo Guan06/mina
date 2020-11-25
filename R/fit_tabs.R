@@ -1,9 +1,9 @@
 ###############################################################################
 
 #' Filter the quantitative and descriptive table to make them have the same
-#' samples, samples present in both tables are remained. If @norm table exist in
+#' samples, samples present in both tables are remained. If `norm` table exist in
 #' the `mina` object, descriptive table will be filtered again to only keep
-#' samples present in @norm.
+#' samples present in `norm`.
 #'
 #' @include all_classes.R all_generics.R
 #' @param x An object of class mina.
@@ -11,49 +11,46 @@
 #' {
 #' data(maize)
 #' maize <- fit_tabs(maize)
-#' maize <- norm_tab(maize, method = "raref")
+#' maize <- norm_tab(maize, method = "total")
 #' maize <- fit_tabs(maize)
 #' }
-#' @return x The same object as input with fitted @tab, @des and @norm (if
+#' @return x The same object as input with fitted `tab`, `des` and `norm` (if
 #' defined).
 #' @rdname fit_tabs-mina
 #' @exportMethod fit_tabs
 
 setMethod("fit_tabs", signature("mina"),
           function(x) {
-              if (class(x@tab)[1] == "NULL" || class(x@des)[1] == "NULL") {
+              if (class(tab(x))[1] == "NULL" || class(des(x))[1] == "NULL") {
                   stop("Either @tab or @des of this object is missing!")
               }
 
-              x@tab <- x@tab[rowSums(x@tab) > 0, ]
+              tab(x) <- tab(x)[rowSums(tab(x)) > 0, ]
 
-              samples1 <- as.character(colnames(x@tab))
-              samples2 <- as.character(x@des$Sample_ID)
+              samples1 <- as.character(colnames(tab(x)))
+              samples2 <- as.character(des(x)$Sample_ID)
 
-              x@des$Sample_ID <- as.factor(x@des$Sample_ID)
+              des(x)$Sample_ID <- as.factor(des(x)$Sample_ID)
 
               inter <- intersect(samples1, samples2)
-              x@tab <- x@tab[, colnames(x@tab) %in% inter]
-              x@des <- x@des[x@des$Sample_ID %in% inter, ]
+              tab(x) <- tab(x)[, colnames(tab(x)) %in% inter]
+              des(x) <- des(x)[des(x)$Sample_ID %in% inter, ]
 
               # make the quantitative and descriptive files in the same order
-              x@tab <- x@tab[rowSums(x@tab) > 0,
-                             match(x@des$Sample_ID, colnames(x@tab))]
+              tab(x) <- tab(x)[rowSums(tab(x)) > 0,
+                             match(des(x)$Sample_ID, colnames(tab(x)))]
 
               ## filter the descriptive and quantitative again if @norm exists
-              if (class(x@norm)[1] != "NULL") {
-                  samples3 <- as.character(colnames(x@norm))
-                  samples4 <- as.character(x@des$Sample_ID)
+              if (class(norm(x))[1] != "NULL") {
+                  samples3 <- as.character(colnames(norm(x)))
+                  samples4 <- as.character(des(x)$Sample_ID)
                   inter2 <- intersect(samples3, samples4)
-                  x@norm <- x@norm[, colnames(x@norm) %in% inter2]
-                  #x@tab <- x@tab[, colnames(x@tab) %in% inter2]
-                  x@des <- x@des[x@des$Sample_ID %in% inter2, ]
+                  norm(x) <- norm(x)[, colnames(norm(x)) %in% inter2]
+                  des(x) <- des(x)[des(x)$Sample_ID %in% inter2, ]
 
                   # re-ordering
-                  x@norm <- x@norm[rowSums(x@norm) > 0,
-                                   match(x@des$Sample_ID, colnames(x@norm))]
-                  #x@tab <- x@tab[rowSums(x@tab) > 0,
-                  #               match(x@des$Sample_ID, colnames(x@tab))]
+                  norm(x) <- norm(x)[rowSums(norm(x)) > 0,
+                                   match(des(x)$Sample_ID, colnames(norm(x)))]
               }
               return(x)
           }

@@ -37,8 +37,8 @@ maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- com_dis(maize, method = "bray")
 maize <- dmr(maize)
-asv_dmr <- maize@dmr
-des <- maize@des
+asv_dmr <- .dmr(maize)
+des <- des(maize)
 p1a <- pcoa_plot(asv_dmr, des, match = "Sample_ID", color = "Compartment")
 p1b <- pcoa_plot(asv_dmr, des, match = "Sample_ID", d1 = 3, d2 = 4, color =
 "Compartment")

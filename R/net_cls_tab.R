@@ -1,13 +1,13 @@
 ################################################################################
 
-#' Get the cluster table @cls_tab from quantitative table @norm and network
-#' clustering results @cls.
+#' Get the cluster table `cls_tab` from quantitative table `norm` and network
+#' clustering results `cls`.
 #'
 #' @include all_classes.R all_generics.R
-#' @param x An object of class `mina` with @norm and @cls defined.
+#' @param x An object of class `mina` with `norm` and `cls` defined.
 #' @param uw By summing up the number of present components of each cluster
 #' instead of relative abundance, default is FALSE.
-#' @return x The same `mina` object with @cls_tab added.
+#' @return x The same `mina` object with `cls_tab` added.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref", depth = 1000)
@@ -19,14 +19,15 @@
 
 setMethod("net_cls_tab", signature("mina", "ANY"),
           function(x, uw = FALSE) {
-              x@cls_tab <- get_net_cls_tab(x@norm, x@cls, uw)
+              stopifnot(is.logical(uw))
+              cls_tab(x) <- get_net_cls_tab(norm(x), cls(x), uw)
               return(x)
           }
 )
 ################################################################################
 
-#' Get the cluster table @cls_tab from quantitative table @norm and network
-#' clustering results @cls.
+#' Get the cluster table `cls_tab` from quantitative table `norm` and network
+#' clustering results `cls`.
 #'
 #' @include all_classes.R all_generics.R
 #' @param x_norm The normalized quantitative table used for netowrk inference
@@ -39,7 +40,7 @@ setMethod("net_cls_tab", signature("mina", "ANY"),
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref", depth = 1000)
 #' maize <- fit_tabs(maize)
-#' maize_norm <- maize@norm
+#' maize_norm <- norm(maize)
 #' maize_adj <- adj(maize_norm, method = "spearman")
 #' maize_cls <- net_cls(maize_adj, method = "ap", cutoff = 0.5)
 #' maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
@@ -47,6 +48,7 @@ setMethod("net_cls_tab", signature("mina", "ANY"),
 
 setMethod("get_net_cls_tab", signature("matrix", "data.frame", "ANY"),
           function(x_norm, x_cls, uw = FALSE) {
+              stopifnot(is.logical(uw))
               tab <- x_norm
               cls <- x_cls
 

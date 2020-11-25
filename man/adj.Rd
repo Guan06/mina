@@ -2,12 +2,12 @@
 % Please edit documentation in R/all_generics.R
 \name{adj}
 \alias{adj}
-\title{Calculate the adjacacency matrix of @norm by correlation.}
+\title{Calculate the correlation adjacacency matrix.}
 \usage{
 adj(x, method, sig = FALSE, threads = 80, nblocks = 400)
 }
 \arguments{
-\item{x}{An object of the class mina with @norm defined.}
+\item{x}{An object of the class mina with `norm` defined.}
 
 \item{method}{The correlation coeffient used for adjacacency matrix.}
 
@@ -22,7 +22,7 @@ Spearman methods.}
 Adjacency matrix.
 }
 \description{
-Calculate the adjacacency matrix of @norm by correlation.
+Calculate the correlation adjacacency matrix.
 }
 \examples{
 maize <- new("mina", tab = maize_asv2, des = maize_des2)

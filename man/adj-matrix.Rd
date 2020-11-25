@@ -3,7 +3,7 @@
 \name{adj,matrix,ANY-method}
 \alias{adj,matrix,ANY-method}
 \alias{adj,matrix,character-method}
-\title{Calculate the adjacency matrix of @norm by correlation with matrix as input.}
+\title{Calculate the adjacency matrix of `norm` by correlation with matrix as input.}
 \usage{
 \S4method{adj}{matrix,ANY}(x, method, sig = FALSE, threads = 80, nblocks = 400)
 
@@ -27,7 +27,7 @@ default.}
 y The adjacency matrix.
 }
 \description{
-Calculate the adjacency matrix of @norm by correlation with matrix as input.
+Calculate the adjacency matrix of `norm` by correlation with matrix as input.
 }
 \examples{
 asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)

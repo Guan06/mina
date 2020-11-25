@@ -2,8 +2,8 @@
 % Please edit documentation in R/net_cls_tab.R
 \name{get_net_cls_tab,matrix,data.frame-method}
 \alias{get_net_cls_tab,matrix,data.frame-method}
-\title{Get the cluster table @cls_tab from quantitative table @norm and network
-clustering results @cls.}
+\title{Get the cluster table `cls_tab` from quantitative table `norm` and network
+clustering results `cls`.}
 \usage{
 \S4method{get_net_cls_tab}{matrix,data.frame}(x_norm, x_cls, uw = FALSE)
 }
@@ -20,14 +20,14 @@ instead of relative abundance, default is FALSE.}
 x_cls The quantitative table with clusters in rows.
 }
 \description{
-Get the cluster table @cls_tab from quantitative table @norm and network
-clustering results @cls.
+Get the cluster table `cls_tab` from quantitative table `norm` and network
+clustering results `cls`.
 }
 \examples{
 maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref", depth = 1000)
 maize <- fit_tabs(maize)
-maize_norm <- maize@norm
+maize_norm <- norm(maize)
 maize_adj <- adj(maize_norm, method = "spearman")
 maize_cls <- net_cls(maize_adj, method = "ap", cutoff = 0.5)
 maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)

@@ -9,7 +9,7 @@ variance. Austral Ecology, 26: 32--46.}
 com_r2(x, group)
 }
 \arguments{
-\item{x}{An object of class `mina` with @dis and @des defined.}
+\item{x}{An object of class `mina` with `dis` and `des` defined.}
 
 \item{group}{The name(s) of column(s) defined as experimental setup group(s).}
 }

@@ -2,12 +2,12 @@
 % Please edit documentation in R/all_generics.R
 \name{net_cls_tab}
 \alias{net_cls_tab}
-\title{Get the cluster table @cls_tab from @norm and @cls.}
+\title{Get the cluster table 'cls_tab' from `norm` and `cls`.}
 \usage{
 net_cls_tab(x, uw = FALSE)
 }
 \arguments{
-\item{x}{An object of class `mina` with @norm and @cls defined.}
+\item{x}{An object of class `mina` with `norm` and `cls` defined.}
 
 \item{uw}{By summing up the number of present components of each cluster
 instead of relative abundances, default is FALSE.}
@@ -16,7 +16,7 @@ instead of relative abundances, default is FALSE.}
 The network cluster relative abundance table.
 }
 \description{
-Get the cluster table @cls_tab from @norm and @cls.
+Get the cluster table 'cls_tab' from `norm` and `cls`.
 }
 \examples{
 maize <- new("mina", tab = maize_asv2, des = maize_des2)

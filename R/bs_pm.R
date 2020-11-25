@@ -50,13 +50,18 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
                    sig = TRUE, bs = 6, pm = 6,
                    individual = FALSE, out_dir = "./") {
+              stopifnot(
+                        is.character(group),
+                        is.numeric(c(g_size, s_size, per, bs, pm)),
+                        is.logical(sig)
+              )
 
               if (s_size >= g_size) {
                   stop("`s_size` can not be larger than `g_size`!")
               }
 
-              mat <- x@norm
-              des <- x@des
+              mat <- norm(x)
+              des <- des(x)
 
               mat <- mat[rowSums(mat) > 0, ]
               message(nrow(mat),
@@ -232,8 +237,8 @@ setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
                   }
               }
               if(!individual) {
-                  x@multi <- y_bs
-                  if (sig) x@perm <- y_pm
+                  multi(x) <- y_bs
+                  if (sig) perm(x) <- y_pm
               }
               return(x)
           }

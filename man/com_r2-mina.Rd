@@ -12,7 +12,7 @@ variance. Austral Ecology, 26: 32--46.}
 \S4method{com_r2}{mina,character}(x, group)
 }
 \arguments{
-\item{x}{An mina object with @dis and @des defined.}
+\item{x}{An mina object with `dis` and `des` defined.}
 
 \item{group}{The name(s) of column(s) defined as experimental setup group(s).}
 }

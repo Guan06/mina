@@ -13,9 +13,9 @@
 \S4method{com_plot}{mina,character,ANY,ANY,character}(x, match, d1 = 1, d2 = 2, color, shape = NULL)
 }
 \arguments{
-\item{x}{An object of `mina` with list @dmr defined.}
+\item{x}{An object of `mina` with list `dmr` defined.}
 
-\item{match}{The column name of the components IDs in @des with exactly the
+\item{match}{The column name of the components IDs in `des` with exactly the
 same as rownames in x.}
 
 \item{d1}{The dimension be visualized in x-axis, default `1`.}

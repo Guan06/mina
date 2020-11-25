@@ -8,7 +8,7 @@ contains the same samples as quantitative table.}
 check_mina_de(x)
 }
 \arguments{
-\item{x}{An object of class mina with @tab and @des defined.}
+\item{x}{An object of class mina with `tab` and `des` defined.}
 }
 \value{
 TRUE if the object contains non-empty descriptive table and has the

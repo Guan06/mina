@@ -7,7 +7,7 @@
 check_mina_qu(x)
 }
 \arguments{
-\item{x}{An object of class mina with @tab defined.}
+\item{x}{An object of class mina with `tab` defined.}
 }
 \value{
 TRUE if the object contains quantitative table and is not empty.
