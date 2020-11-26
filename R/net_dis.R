@@ -18,6 +18,7 @@
 #' needed.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
 #' matrix is smaller than setted `evk`.
+#' @param ... Additional parameters.
 #' @return x The same `mina` object with `net_dis` defined.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
@@ -28,9 +29,9 @@
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 
-setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY", "ANY"),
+setMethod("net_dis", signature("mina", "ANY"),
           function(x, method, evk = 100, egv = TRUE, dir = "./",
-                   sig = TRUE, skip = TRUE) {
+                   sig = TRUE, skip = TRUE, ...) {
               stop("Must specify a `method`, see `? net_dis_method_list`.")
           }
 )
@@ -40,10 +41,9 @@ setMethod("net_dis", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY", "ANY")
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 
-setMethod("net_dis", signature("mina", "character", "ANY", "ANY", "ANY",
-                               "ANY", "ANY"),
+setMethod("net_dis", signature("mina", "character"),
           function(x, method, evk = 100, egv = TRUE, dir = "./",
-                   sig = TRUE, skip = TRUE) {
+                   sig = TRUE, skip = TRUE, ...) {
               stopifnot(
                         method %in% c("spectra", "Jaccard"),
                         is.numeric(evk),

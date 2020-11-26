@@ -4,7 +4,7 @@
 \alias{com_plot}
 \title{Visulization of components distance / dissimilarity in k dimension.}
 \usage{
-com_plot(x, match, d1 = 1, d2 = 2, color, shape = NULL)
+com_plot(x, match, ...)
 }
 \arguments{
 \item{x}{An object of class `mina` with `dmr` and `des` defined.}
@@ -12,14 +12,7 @@ com_plot(x, match, d1 = 1, d2 = 2, color, shape = NULL)
 \item{match}{The column name of the components IDs in `des` which exactly the
 same indicated in `dmr`.}
 
-\item{d1}{The dimension be visualized in x-axis, default `1`.}
-
-\item{d2}{The dimension be visualized in y-axis, default `2`.}
-
-\item{color}{The column name in @des to be used for different color groups.}
-
-\item{shape}{The column name in @des to be used for different shape groups,
-default is `NULL`.}
+\item{...}{Additional parameters.}
 }
 \value{
 The PCoA plot.

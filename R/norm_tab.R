@@ -9,8 +9,9 @@
 #' @param depth The depth for rarefying, 1000 by default.
 #' @param replace Whether to sample with replacement (\code{TRUE} by default)
 #' or without replacement (\code{FALSE}) when using method `raref`.
-#' @param multi Rarefy the table for multiple times, FALSE by default, indicate
+#' @param multi Rarefy the table for multiple times, 1 by default, indicate
 #' the times of rarefaction want to be repeated, only validate for rarefaction.
+#' @param ... Additional parameters.
 #' @return The normalized quantitative matrix.
 #' @examples
 #' data(maize_asv2)
@@ -21,15 +22,16 @@
 #' @rdname norm_tab-matrix
 #' @exportMethod norm_tab
 
-setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY", "ANY"),
-          function(x, method, depth = 1000, replace = TRUE, multi = FALSE) {
+setMethod("norm_tab", signature("matrix", "character"),
+          function(x, method,
+                   depth = 1000, replace = TRUE, multi = 1, ...) {
               stopifnot(
                         method %in% c("raref", "total"),
-                        is.numeric(depth),
-                        is.logical(c(replace, multi))
+                        is.numeric(c(depth, multi)),
+                        is.logical(replace)
               )
               if (method == "raref") {
-                  if (multi == FALSE) {
+                  if (multi == 1) {
                     x_norm <- norm_by_raref(x, depth = depth, replace = replace)
                   } else {
                       multi_norm <- norm_by_raref(x, depth = depth,
@@ -63,6 +65,7 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY", "ANY"),
 #' without replacement (\code{FALSE}) when using method `raref`.
 #' @param multi Rarefy the table for multiple times, FALSE by default, indicate
 #' the times of rarefaction want to be repeated, only validate for rarefaction.
+#' @param ... Additional parameters.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref", depth = 1000, replace = TRUE,
@@ -71,8 +74,9 @@ setMethod("norm_tab", signature("matrix", "character", "ANY", "ANY", "ANY"),
 #' @rdname norm_tab-mina
 #' @exportMethod norm_tab
 
-setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY", "ANY"),
-          function(x, method, depth = 1000, replace = TRUE, multi = FALSE) {
+setMethod("norm_tab", signature("mina", "ANY"),
+          function(x, method,
+                   depth = 1000, replace = TRUE, multi = 1, ...) {
              stop("Must specify a `method`. See `? norm_tab_method_list`")
           }
 )
@@ -83,12 +87,13 @@ setMethod("norm_tab", signature("mina", "ANY", "ANY", "ANY", "ANY"),
 #' @rdname norm_tab-mina
 #' @exportMethod norm_tab
 
-setMethod("norm_tab", signature("mina", "character", "ANY", "ANY", "ANY"),
-          function(x, method, depth = 1000, replace = TRUE, multi = FALSE) {
+setMethod("norm_tab", signature("mina", "character"),
+          function(x, method,
+                   depth = 1000, replace = TRUE, multi = 1, ...) {
               stopifnot(
                         method %in% c("raref", "total"),
-                        is.numeric(depth),
-                        is.logical(c(replace, multi))
+                        is.numeric(c(depth, multi)),
+                        is.logical(replace)
               )
               norm(x) <- norm_tab(tab(x), method,
                                  depth = depth, replace = replace, multi = multi)

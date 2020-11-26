@@ -5,14 +5,14 @@
 \alias{adj,matrix,character-method}
 \title{Calculate the adjacency matrix of `norm` by correlation with matrix as input.}
 \usage{
-\S4method{adj}{matrix,ANY}(x, method, sig = FALSE, threads = 80, nblocks = 400)
+\S4method{adj}{matrix,ANY}(x, method, sig = FALSE, threads = 80, nblocks = 400, ...)
 
-\S4method{adj}{matrix,character}(x, method, sig = FALSE, threads = 80, nblocks = 400)
+\S4method{adj}{matrix,character}(x, method, sig = FALSE, threads = 80, nblocks = 400, ...)
 }
 \arguments{
-\item{x}{An matrix for correlation/adjacency matrix calculation.}
+\item{x}{An object of the class mina with `norm` defined or a `norm` matrix.}
 
-\item{method}{The correlation coefficient used for adjacency matrix.}
+\item{method}{The correlation coeffient used for adjacacency matrix.}
 
 \item{sig}{(optional) The asymtotic P-values, only applicable for Pearson
 and Spearman methods with `mina` object as input, alwasy FALSE here.}
@@ -22,6 +22,8 @@ default.}
 
 \item{nblocks}{The number of row/column for splitting sub-matrix, 400 by
 default.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 y The adjacency matrix.

@@ -4,19 +4,14 @@
 \alias{adj}
 \title{Calculate the correlation adjacacency matrix.}
 \usage{
-adj(x, method, sig = FALSE, threads = 80, nblocks = 400)
+adj(x, method, ...)
 }
 \arguments{
-\item{x}{An object of the class mina with `norm` defined.}
+\item{x}{An object of the class mina with `norm` defined or a `norm` matrix.}
 
 \item{method}{The correlation coeffient used for adjacacency matrix.}
 
-\item{sig}{(optional) The asymtotic P-values, only applicable for Pearson and
-Spearman methods.}
-
-\item{threads}{(optional) The number of threads used for parallel running.}
-
-\item{nblocks}{(optional) The number of row / column for splitted sub-matrix.}
+\item{...}{Additional parameters.}
 }
 \value{
 Adjacency matrix.

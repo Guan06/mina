@@ -5,9 +5,9 @@
 \alias{norm_tab,mina,character-method}
 \title{Normalize the quantitative table with mina input.}
 \usage{
-\S4method{norm_tab}{mina,ANY}(x, method, depth = 1000, replace = TRUE, multi = FALSE)
+\S4method{norm_tab}{mina,ANY}(x, method, depth = 1000, replace = TRUE, multi = 1, ...)
 
-\S4method{norm_tab}{mina,character}(x, method, depth = 1000, replace = TRUE, multi = FALSE)
+\S4method{norm_tab}{mina,character}(x, method, depth = 1000, replace = TRUE, multi = 1, ...)
 }
 \arguments{
 \item{x}{An object of the class mina with @tab defined.}
@@ -21,6 +21,8 @@ without replacement (\code{FALSE}) when using method `raref`.}
 
 \item{multi}{Rarefy the table for multiple times, FALSE by default, indicate
 the times of rarefaction want to be repeated, only validate for rarefaction.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 x An object of the class mina with @norm added.

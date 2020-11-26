@@ -26,6 +26,9 @@ dis_stat(x) <- value
 
 \item{value}{The value to set for the slot of the `mina` object `x`.}
 }
+\value{
+The `dis_bs`, `dis_pm` and `dis_stat` slots of the `mina` object.
+}
 \description{
 Setter for the slots 'dis_bs', `dis_pm` and `dis_stat`.
 }

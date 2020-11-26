@@ -31,8 +31,8 @@
 #' @rdname net_dis_indi
 #' @exportMethod net_dis_indi
 
-setMethod("net_dis_indi", signature("character", "ANY", "ANY", "ANY", "ANY"),
-          function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
+setMethod("net_dis_indi", signature("character", "ANY"),
+          function(x, method, evk = 100, sig = TRUE, skip = TRUE, ...) {
               stop("Must specify a `method`, see `? net_dis_method_list`.")
           }
 )
@@ -42,9 +42,8 @@ setMethod("net_dis_indi", signature("character", "ANY", "ANY", "ANY", "ANY"),
 #' @rdname net_dis_indi
 #' @exportMethod net_dis_indi
 
-setMethod("net_dis_indi", signature("character", "character",
-                                    "ANY", "ANY", "ANY"),
-          function(x, method, evk = 100, sig = TRUE, skip = TRUE) {
+setMethod("net_dis_indi", signature("character", "character"),
+          function(x, method, evk = 100, sig = TRUE, skip = TRUE, ...) {
               stopifnot(
                         method %in% c("spectra", "Jaccard"),
                         is.numeric(evk),

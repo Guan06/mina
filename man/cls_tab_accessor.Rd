@@ -14,6 +14,9 @@ cls_tab(x) <- value
 
 \item{value}{The value to set for the slot of the `mina` object `x`.}
 }
+\value{
+The `cls_tab` slot of the `mina` object.
+}
 \description{
 Setter for the slot `cls_tab`.
 }

@@ -6,28 +6,12 @@
 Function for `tina` dissimilarity/distance calculation. Modified from Schmidt
 et al., 2016.}
 \usage{
-tina(
-  x,
-  cor_method = "spearman",
-  sim_method = "w_ja",
-  threads = 80,
-  nblocks = 400
-)
+tina(x, ...)
 }
 \arguments{
 \item{x}{An matrix for dissimilarity calculation.}
 
-\item{cor_method}{The method for correlation, "pearson" and "spearman" are
-available.}
-
-\item{sim_method}{The method for similarity, "w_ja" and "uw_ja" are
-available for weighted and unweighted Jaccard similarity respectively.}
-
-\item{threads}{The number of threads used for parallel running, 80 by
-default.}
-
-\item{nblocks}{The number of row / column for splitted sub-matrix, 400 by
-default.}
+\item{...}{Additional parameters.}
 }
 \value{
 The output `tina` dissimilarity matrix.

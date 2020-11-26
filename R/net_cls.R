@@ -10,6 +10,7 @@
 #' @param cutoff The cutoff for the sparsed adjacacency matrix, default 0.4.
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
 #' `mcl` for clustering. Default FALSE.
+#' @param ... Additional parameters.
 #' @examples
 #' asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
 #' asv_adj <- adj(asv_norm, method = "spearman")
@@ -18,8 +19,8 @@
 #' @return y The cluster table.
 #' @exportMethod net_cls
 
-setMethod("net_cls", signature("matrix", "ANY", "ANY", "ANY"),
-          function(x, method, cutoff = 0.4, neg = FALSE) {
+setMethod("net_cls", signature("matrix", "ANY"),
+          function(x, method, cutoff = 0.4, neg = FALSE, ...) {
               stop("Must specify a `method`, see `? net_cls_list`.")
           }
 )
@@ -29,8 +30,8 @@ setMethod("net_cls", signature("matrix", "ANY", "ANY", "ANY"),
 #' @rdname net_cls-matrix
 #' @exportMethod net_cls
 
-setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
-          function(x, method, cutoff = 0.4, neg = FALSE) {
+setMethod("net_cls", signature("matrix", "character"),
+          function(x, method, cutoff = 0.4, neg = FALSE, ...) {
               stopifnot(
                         method %in% c("mcl", "ap"),
                         is.numeric(cutoff),
@@ -90,6 +91,7 @@ setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
 #' @param cutoff The cutoff for the sparsed adjacacency matrix, default 0.4.
 #' @param neg Whether to keep the negative edges, cannot be TRUE when using
 #' `mcl` for clustering. Default FALSE.
+#' @param ... Additional parameters.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref", depth = 1000)
@@ -101,8 +103,8 @@ setMethod("net_cls", signature("matrix", "character", "ANY", "ANY"),
 #' @rdname net_cls-mina
 #' @exportMethod net_cls
 
-setMethod("net_cls", signature("mina", "ANY", "ANY", "ANY"),
-          function(x, method, cutoff = 0.4, neg = FALSE) {
+setMethod("net_cls", signature("mina", "ANY"),
+          function(x, method, cutoff = 0.4, neg = FALSE, ...) {
               stop("Must specify a `method`, see `? net_cls_list`.")
           }
 )
@@ -111,8 +113,8 @@ setMethod("net_cls", signature("mina", "ANY", "ANY", "ANY"),
 #' @rdname net_cls-mina
 #' @exportMethod net_cls
 
-setMethod("net_cls", signature("mina", "character", "ANY", "ANY"),
-          function(x, method, cutoff = 0.4, neg = FALSE) {
+setMethod("net_cls", signature("mina", "character"),
+          function(x, method, cutoff = 0.4, neg = FALSE, ...) {
               stopifnot(
                         method %in% c("mcl", "ap"),
                         is.numeric(cutoff),

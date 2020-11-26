@@ -5,48 +5,14 @@
 \title{Inferring the network of different group of samples and test significance by
 permutation.}
 \usage{
-bs_pm(
-  x,
-  group,
-  g_size = 88,
-  s_size = 30,
-  rm = TRUE,
-  per = 0.1,
-  sig = TRUE,
-  bs = 6,
-  pm = 6,
-  individual = FALSE,
-  out_dir = "./"
-)
+bs_pm(x, group, ...)
 }
 \arguments{
 \item{x}{An object of class `mina` with `norm` and `des` defined.}
 
 \item{group}{The column name of descriptive file `des` for comparison.}
 
-\item{g_size}{The cutoff of group size used for filtering, default is 88.}
-
-\item{s_size}{The number of samples used for network inference during
-bootstrap and permutation (when `sig` is TRUE), it should be smaller than
-g_size to make sure the randomness; default is 30.}
-
-\item{rm}{Filtering the components present in less than `per` of the samples,
-default is TRUE.}
-
-\item{per}{The percentage of present samples for filtering, default is 0.1.}
-
-\item{sig}{Whether to test the significance, skip the permutation when set as
-FALSE, default is TRUE.}
-
-\item{bs}{The times for bootstrap network inference, default is 6.}
-
-\item{pm}{The times for permutation network inference, default is 6.}
-
-\item{individual}{Whether to output the bootstrap and permutation results of
-each comparison individually, default is FALSE.}
-
-\item{out_dir}{The output directory if `individual` is TRUE, default is the
-current working directory.}
+\item{...}{Additional parameters.}
 }
 \value{
 The network bootstrap and permutation result.

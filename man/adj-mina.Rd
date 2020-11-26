@@ -6,14 +6,14 @@
 \title{Calculate the adjacency matrix of `norm` by correlation with `mina` class
 object as input.}
 \usage{
-\S4method{adj}{mina,ANY}(x, method, sig = FALSE, threads = 80, nblocks = 400)
+\S4method{adj}{mina,ANY}(x, method, sig = FALSE, threads = 80, nblocks = 400, ...)
 
-\S4method{adj}{mina,character}(x, method, sig = FALSE, threads = 80, nblocks = 400)
+\S4method{adj}{mina,character}(x, method, sig = FALSE, threads = 80, nblocks = 400, ...)
 }
 \arguments{
-\item{x}{An object of the class `mina` with `norm` defined.}
+\item{x}{An object of the class mina with `norm` defined or a `norm` matrix.}
 
-\item{method}{The correlation coefficient used for adjacency matrix.}
+\item{method}{The correlation coeffient used for adjacacency matrix.}
 
 \item{sig}{The asymtotic P-values, only applicable for Pearson and Spearman
 methods, FALSE by default.}
@@ -23,6 +23,8 @@ default.}
 
 \item{nblocks}{The number of row/column for splitting sub-matrix, 400 by
 default.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 x The same `mina` object with `adj` added.

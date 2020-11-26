@@ -9,7 +9,12 @@ cls_tab(x)
 \arguments{
 \item{x}{The `mina` object.}
 }
+\value{
+The `cls_tab` slot of the object.
+}
 \description{
 Get the slot `cls_tab`.
 }
-\keyword{internal}
+\examples{
+cls_tab(maize)
+}

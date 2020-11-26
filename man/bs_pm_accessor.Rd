@@ -32,6 +32,9 @@ perm(x)
 
 \item{value}{The value to set for the slot of the `mina` object `x`.}
 }
+\value{
+The `multi` or/and `perm` slot of the `mina` object.
+}
 \description{
 Setter and getter for the slot `multi` and `perm`.
 }

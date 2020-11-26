@@ -21,6 +21,7 @@
 #' each comparison individually, default is FALSE.
 #' @param out_dir The output directory if `individual` is TRUE, default is the
 #' current working directory
+#' @param ... Additional parameters.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
@@ -30,11 +31,10 @@
 #' @rdname bs_pm-mina
 #' @exportMethod bs_pm
 
-setMethod("bs_pm", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY",
-                             "ANY", "ANY", "ANY", "ANY", "ANY"),
+setMethod("bs_pm", signature("mina", "ANY"),
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
                    sig = TRUE, bs = 6, pm = 6,
-                   individual = FALSE, out_dir = "./") {
+                   individual = FALSE, out_dir = "./", ...) {
               stop("Please specify a column in descriptive file for grouping
                    samples!")
           }
@@ -45,11 +45,10 @@ setMethod("bs_pm", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY",
 #' @rdname bs_pm-mina
 #' @exportMethod bs_pm
 
-setMethod("bs_pm", signature("mina", "character", "ANY", "ANY", "ANY", "ANY",
-                            "ANY", "ANY", "ANY", "ANY", "ANY"),
+setMethod("bs_pm", signature("mina", "character"),
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
                    sig = TRUE, bs = 6, pm = 6,
-                   individual = FALSE, out_dir = "./") {
+                   individual = FALSE, out_dir = "./", ...) {
               stopifnot(
                         is.character(group),
                         is.numeric(c(g_size, s_size, per, bs, pm)),

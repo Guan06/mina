@@ -20,8 +20,16 @@ dis(x)
 
 \item{value}{The value to set for the slot of the `mina` object `x`.}
 }
+\value{
+The `dis` slot of the `mina` object.
+}
 \description{
 Setter and getter for the slot `dis`.
 
 Get the slot `dis`
+}
+\examples{
+maize_norm <- norm_tab(maize_asv2, method = "total")
+dis(maize) <- com_dis(maize_norm, method = "bray")
+dis(maize)[1:5, 1:5]
 }

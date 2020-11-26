@@ -6,6 +6,7 @@
 \alias{.adj}
 \alias{adj_sig<-}
 \alias{adj_sig<-,mina-method}
+\alias{adj_sig}
 \title{Setter for the slot `adj` and `adj_sig`, the adjacency matrix of
 `norm` and corresponding significant value matrix with `sig` is `TRUE`.}
 \usage{
@@ -18,21 +19,25 @@
 adj_sig(x) <- value
 
 \S4method{adj_sig}{mina}(x) <- value
+
+adj_sig(x)
 }
 \arguments{
 \item{x}{The `mina` object.}
 
 \item{value}{The value to set for the slot of the `mina` object `x`.}
 }
+\value{
+The `adj` slot of the `mina` object.
+
+The slot `adj_sig` of the object.
+}
 \description{
 Setter for the slot `adj` and `adj_sig`, the adjacency matrix of
 `norm` and corresponding significant value matrix with `sig` is `TRUE`.
 
 Get the slot `adj`.
-}
-\examples{
-norm(maize) <- norm_tab(maize_asv2, method = "total")
-maize <- adj(maize, method = "spearman", sig = TRUE)
-adj_sig(maize)[1:5, 1:5]
+
+Get the slot `adj_sig`.
 }
 \keyword{internal}

@@ -9,6 +9,9 @@ cls(x)
 \arguments{
 \item{x}{The `mina` object.}
 }
+\value{
+The `cls` slot of the object.
+}
 \description{
 Get the slot `cls`.
 }

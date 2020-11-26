@@ -17,7 +17,8 @@ permutation.}
   bs = 6,
   pm = 6,
   individual = FALSE,
-  out_dir = "./"
+  out_dir = "./",
+  ...
 )
 
 \S4method{bs_pm}{mina,character}(
@@ -31,7 +32,8 @@ permutation.}
   bs = 6,
   pm = 6,
   individual = FALSE,
-  out_dir = "./"
+  out_dir = "./",
+  ...
 )
 }
 \arguments{
@@ -62,6 +64,8 @@ each comparison individually, default is FALSE.}
 
 \item{out_dir}{The output directory if `individual` is TRUE, default is the
 current working directory}
+
+\item{...}{Additional parameters.}
 }
 \value{
 x The same object with @multi and @perm defined.

@@ -4,7 +4,7 @@
 \alias{com_dis}
 \title{Calculate the community dissimilarity / distance matrix.}
 \usage{
-com_dis(x, method = "bray", threads = 80, nblocks = 400)
+com_dis(x, method = "bray", ...)
 }
 \arguments{
 \item{x}{An object of the class mina with `norm` defined or any quantitative
@@ -12,11 +12,7 @@ matrix.}
 
 \item{method}{The dissimilarity / distance method used, default `bray`.}
 
-\item{threads}{The number of threads used for parallel running, needed for
-method `tina`.}
-
-\item{nblocks}{The number of row / column for splitted sub-matrix, needed for
-method `tina`.}
+\item{...}{Additional parameters.}
 }
 \value{
 The distance / dissimilarity matrix.

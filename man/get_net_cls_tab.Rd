@@ -27,7 +27,8 @@ clustering results `cls`.
 maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref", depth = 1000)
 maize <- fit_tabs(maize)
-maize_adj <- adj(norm(maize), method = "spearman")
+maize_norm <- norm(maize)
+maize_adj <- adj(maize_norm, method = "spearman")
 maize_cls <- net_cls(maize_adj, method = "ap", cutoff = 0.5)
 maize_cls_tab <- get_net_cls_tab(maize_norm, maize_cls)
 }

@@ -6,11 +6,11 @@
 \alias{net_dis_indi,character,character-method}
 \title{Calculate the network distance of bootstrap and permutation when appliable.}
 \usage{
-net_dis_indi(x, method, evk = 100, sig = TRUE, skip = TRUE)
+net_dis_indi(x, method, ...)
 
-\S4method{net_dis_indi}{character,ANY}(x, method, evk = 100, sig = TRUE, skip = TRUE)
+\S4method{net_dis_indi}{character,ANY}(x, method, evk = 100, sig = TRUE, skip = TRUE, ...)
 
-\S4method{net_dis_indi}{character,character}(x, method, evk = 100, sig = TRUE, skip = TRUE)
+\S4method{net_dis_indi}{character,character}(x, method, evk = 100, sig = TRUE, skip = TRUE, ...)
 }
 \arguments{
 \item{x}{The folder store the network inference results.
@@ -18,6 +18,8 @@ defined.}
 
 \item{method}{The distance to be calculated, "spectra" and "Jaccard" are
 available.}
+
+\item{...}{Additional parameters.}
 
 \item{evk}{The first `evk` eigenvalues will be used for `spectra` distance,
 the default is 100.}

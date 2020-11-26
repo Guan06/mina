@@ -21,6 +21,9 @@ des(x)
 
 \item{value}{The value to set for the slot of the `mina` object `x`.}
 }
+\value{
+The `des` slot of the `mina` object.
+}
 \description{
 Setter and getter for the slot `des`, which is the description and meta data
 of rows in `tab`.

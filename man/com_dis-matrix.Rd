@@ -5,9 +5,9 @@
 \alias{com_dis,matrix,character-method}
 \title{Calculate the community dissimilarity / distance matrix of the input matrix.}
 \usage{
-\S4method{com_dis}{matrix,ANY}(x, method = "bray", threads = 80, nblocks = 400)
+\S4method{com_dis}{matrix,ANY}(x, method = "bray", threads = 80, nblocks = 400, ...)
 
-\S4method{com_dis}{matrix,character}(x, method = "bray", threads = 80, nblocks = 400)
+\S4method{com_dis}{matrix,character}(x, method = "bray", threads = 80, nblocks = 400, ...)
 }
 \arguments{
 \item{x}{A matrix of the quantitative table.}
@@ -19,6 +19,8 @@ threads used for parallel running.}
 
 \item{nblocks}{(optional, only needed when method == "tina") The number of
 row / column for splitted sub-matrix.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 y The dissimilarity / distance matrix.

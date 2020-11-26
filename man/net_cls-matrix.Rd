@@ -5,9 +5,9 @@
 \alias{net_cls,matrix,character-method}
 \title{Network clustering based on the sparsed adjacacency matrix.}
 \usage{
-\S4method{net_cls}{matrix,ANY}(x, method, cutoff = 0.4, neg = FALSE)
+\S4method{net_cls}{matrix,ANY}(x, method, cutoff = 0.4, neg = FALSE, ...)
 
-\S4method{net_cls}{matrix,character}(x, method, cutoff = 0.4, neg = FALSE)
+\S4method{net_cls}{matrix,character}(x, method, cutoff = 0.4, neg = FALSE, ...)
 }
 \arguments{
 \item{x}{Adjacency matrix used for clustering.}
@@ -18,6 +18,8 @@
 
 \item{neg}{Whether to keep the negative edges, cannot be TRUE when using
 `mcl` for clustering. Default FALSE.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 y The cluster table.

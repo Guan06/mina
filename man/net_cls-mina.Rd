@@ -5,9 +5,9 @@
 \alias{net_cls,mina,character-method}
 \title{Network clustering based on the sparsed adjacacency matrix.}
 \usage{
-\S4method{net_cls}{mina,ANY}(x, method, cutoff = 0.4, neg = FALSE)
+\S4method{net_cls}{mina,ANY}(x, method, cutoff = 0.4, neg = FALSE, ...)
 
-\S4method{net_cls}{mina,character}(x, method, cutoff = 0.4, neg = FALSE)
+\S4method{net_cls}{mina,character}(x, method, cutoff = 0.4, neg = FALSE, ...)
 }
 \arguments{
 \item{x}{An object of class `mina` with `adj` defined.}
@@ -18,6 +18,8 @@
 
 \item{neg}{Whether to keep the negative edges, cannot be TRUE when using
 `mcl` for clustering. Default FALSE.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 x The same `mina` class with @cls added.

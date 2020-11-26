@@ -10,7 +10,7 @@
 #' threads used for parallel running.
 #' @param nblocks (optional, only needed when method == "tina") The number of
 #' row / column for splitted sub-matrix.
-#'
+#' @param ... Additional parameters.
 #' @examples
 #' asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
 #' asv_dis <- com_dis(asv_norm, method = "bray")
@@ -18,8 +18,8 @@
 #' @rdname com_dis-matrix
 #' @exportMethod com_dis
 
-setMethod("com_dis", signature("matrix", "ANY", "ANY", "ANY"),
-          function(x, method = "bray", threads = 80, nblocks = 400) {
+setMethod("com_dis", signature("matrix", "ANY"),
+          function(x, method = "bray", threads = 80, nblocks = 400, ...) {
               stop("Must specify a `method`, see `? com_dis_list`.")
           }
 )
@@ -29,8 +29,8 @@ setMethod("com_dis", signature("matrix", "ANY", "ANY", "ANY"),
 #' @rdname com_dis-matrix
 #' @exportMethod com_dis
 
-setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
-          function(x, method = "bray", threads = 80, nblocks = 400) {
+setMethod("com_dis", signature("matrix", "character"),
+          function(x, method = "bray", threads = 80, nblocks = 400, ...) {
               stopifnot(
                         method %in% unlist(com_dis_list),
                         is.numeric(c(threads, nblocks))
@@ -63,6 +63,7 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
 #' threads used for parallel running.
 #' @param nblocks (optional, only needed when method == "tina") The number of
 #' row / column for splitted sub-matrix.
+#' @param ... Additional parameters.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "total")
@@ -72,8 +73,8 @@ setMethod("com_dis", signature("matrix", "character", "ANY", "ANY"),
 #' @rdname com_dis-mina
 #' @exportMethod com_dis
 
-setMethod("com_dis", signature("mina", "ANY", "ANY", "ANY"),
-          function(x, method = "bray", threads = 80, nblocks = 400) {
+setMethod("com_dis", signature("mina", "ANY"),
+          function(x, method = "bray", threads = 80, nblocks = 400, ...) {
               stop("Must specify a `method`, see `? com_dis_list`.")
           }
 )
@@ -82,8 +83,8 @@ setMethod("com_dis", signature("mina", "ANY", "ANY", "ANY"),
 
 #' @rdname com_dis-mina
 #' @exportMethod com_dis
-setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
-          function(x, method = "bray", threads = 80, nblocks = 400) {
+setMethod("com_dis", signature("mina", "character"),
+          function(x, method = "bray", threads = 80, nblocks = 400, ...) {
               stopifnot(
                         method %in% unlist(com_dis_list),
                         is.numeric(c(threads, nblocks))
@@ -110,6 +111,7 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' default.
 #' @param nblocks The number of row and column for splitted sub-matrix, 400 by
 #' default.
+#' @param ... Additional parameters.
 #' @examples
 #' \dontrun{
 #' asv_norm <- norm_tab(maize_asv2, method = "raref", depth = 1000)
@@ -121,9 +123,9 @@ setMethod("com_dis", signature("mina", "character", "ANY", "ANY"),
 #' @return t The output `tina` dissimilarity matrix.
 #' @exportMethod tina
 
-setMethod("tina", signature("matrix", "character", "character", "ANY", "ANY"),
+setMethod("tina", signature("matrix"),
     function(x, cor_method = "spearman", sim_method = "w_ja",
-                 threads = 80, nblocks = 400) {
+                 threads = 80, nblocks = 400, ...) {
         stopifnot(
                 cor_method %in% c("spearman", "pearson", "sparcc"),
                 sim_method %in% c("w_ja", "uw_ja"),
@@ -255,6 +257,9 @@ sim_par <- function(x, y, sim_method = "w_ja", threads = 80, nblocks = 400) {
     rownames(s) <- colnames(s) <- samples
     return(s)
 }
+
+###############################################################################
+
 
 ###############################################################################
 

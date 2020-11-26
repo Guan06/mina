@@ -20,6 +20,9 @@ norm(x)
 
 \item{value}{The value to set for the slot of the `mina` object `x`.}
 }
+\value{
+The `norm` slot of the `mina` object.
+}
 \description{
 Setter and getters for the slot `norm`, normalized `tab` matrix.
 }

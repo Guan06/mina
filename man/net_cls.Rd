@@ -4,16 +4,14 @@
 \alias{net_cls}
 \title{Network clustering of sparsed adjacacency matrix.}
 \usage{
-net_cls(x, method, cutoff = 0.4, neg = FALSE)
+net_cls(x, method, ...)
 }
 \arguments{
 \item{x}{An object of class `mina` with `adj` defined.}
 
 \item{method}{The clustering method used.}
 
-\item{cutoff}{The cutoff for the sparse adjacency matrix, default is 0.4.}
-
-\item{neg}{Whether to keep the negative edges, default is `FALSE`.}
+\item{...}{Additional parameters.}
 }
 \value{
 The network clustering results.

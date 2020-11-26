@@ -20,6 +20,15 @@ tab(x)
 
 \item{value}{The value to set for the slot of the `mina` object `x`.}
 }
+\value{
+The `tab` slot of the `mina` object.
+
+The `tab` slot of the `mina` object.
+
+The `tab` slot of the `mina` object.
+
+The `tab` slot of the `mina` object.
+}
 \description{
 Setter and getter for the slot `tab`.
 }

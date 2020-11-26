@@ -20,7 +20,18 @@
 
 \item{value}{The value to set for the slot of the `mina` object `x`.}
 }
+\value{
+The `dmr` slot of the `mina` object.
+}
 \description{
 Setter and getter for the slot `dmr`.
+}
+\examples{
+maize <- new("mina", tab = maize_asv2, des = maize_des2)
+maize <- norm_tab(maize, method = "raref")
+maize <- fit_tabs(maize)
+maize <- com_dis(maize, method = "bray")
+maize <- dmr(maize)
+asv_dmr <- .dmr(maize)
 }
 \keyword{internal}

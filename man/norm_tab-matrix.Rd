@@ -4,7 +4,7 @@
 \alias{norm_tab,matrix,character-method}
 \title{Normalize the quantitative matrix.}
 \usage{
-\S4method{norm_tab}{matrix,character}(x, method, depth = 1000, replace = TRUE, multi = FALSE)
+\S4method{norm_tab}{matrix,character}(x, method, depth = 1000, replace = TRUE, multi = 1, ...)
 }
 \arguments{
 \item{x}{A quantitative matrix with samples in columns and compositions in
@@ -17,8 +17,10 @@ rows.}
 \item{replace}{Whether to sample with replacement (\code{TRUE} by default)
 or without replacement (\code{FALSE}) when using method `raref`.}
 
-\item{multi}{Rarefy the table for multiple times, FALSE by default, indicate
+\item{multi}{Rarefy the table for multiple times, 1 by default, indicate
 the times of rarefaction want to be repeated, only validate for rarefaction.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 The normalized quantitative matrix.

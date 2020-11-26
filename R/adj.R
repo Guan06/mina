@@ -5,8 +5,7 @@
 #'
 #' @include all_classes.R all_generics.R
 #' @importFrom Hmisc rcorr
-#' @param x An object of the class `mina` with `norm` defined.
-#' @param method The correlation coefficient used for adjacency matrix.
+#' @inheritParams adj
 #' @param sig The asymtotic P-values, only applicable for Pearson and Spearman
 #' methods, FALSE by default.
 #' @param threads The number of threads used for parallel running, 80 by
@@ -22,8 +21,8 @@
 #' @rdname adj-mina
 #' @exportMethod adj
 
-setMethod("adj", signature("mina", "ANY", "ANY", "ANY", "ANY"),
-          function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
+setMethod("adj", signature("mina", "ANY"),
+          function(x, method, sig = FALSE, threads = 80, nblocks = 400, ...) {
               stop("Must specify a `method`, see `? adj_method_list`.")
           }
 )
@@ -33,8 +32,8 @@ setMethod("adj", signature("mina", "ANY", "ANY", "ANY", "ANY"),
 #' @rdname adj-mina
 #' @exportMethod adj
 
-setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
-          function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
+setMethod("adj", signature("mina", "character"),
+          function(x, method, sig = FALSE, threads = 80, nblocks = 400, ...) {
               stopifnot(
                         method %in% c("pearson", "spearman", "sparcc"),
                         is.logical(sig),
@@ -63,8 +62,7 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
 #'
 #' @importFrom Hmisc rcorr
 #' @include all_classes.R all_generics.R
-#' @param x An matrix for correlation/adjacency matrix calculation.
-#' @param method The correlation coefficient used for adjacency matrix.
+#' @inheritParams adj
 #' @param sig (optional) The asymtotic P-values, only applicable for Pearson
 #' and Spearman methods with `mina` object as input, alwasy FALSE here.
 #' @param threads The number of threads used for parallel running, 80 by
@@ -78,8 +76,8 @@ setMethod("adj", signature("mina", "character", "ANY", "ANY", "ANY"),
 #' @rdname adj-matrix
 #' @exportMethod adj
 
-setMethod("adj", signature("matrix","ANY", "ANY", "ANY", "ANY"),
-          function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
+setMethod("adj", signature("matrix","ANY"),
+          function(x, method, sig = FALSE, threads = 80, nblocks = 400, ...) {
               stop("Must specify a `method`, see `? adj_method_list`.")
           }
 )
@@ -89,8 +87,8 @@ setMethod("adj", signature("matrix","ANY", "ANY", "ANY", "ANY"),
 #' @rdname adj-matrix
 #' @exportMethod adj
 
-setMethod("adj", signature("matrix", "character", "ANY", "ANY", "ANY"),
-          function(x, method, sig = FALSE, threads = 80, nblocks = 400) {
+setMethod("adj", signature("matrix", "character"),
+          function(x, method, sig = FALSE, threads = 80, nblocks = 400, ...) {
               stopifnot(
                     method %in% c("pearson", "spearman", "sparcc"),
                     is.logical(sig),

@@ -8,11 +8,13 @@
 #' tab(maize) <- maize_asv2
 #' tab(maize)[1:5, 1:5]
 #' @rdname tab_accessor
+#' @return The `tab` slot of the `mina` object.
 #' @export
 
 setGeneric("tab<-", function(x, value) standardGeneric("tab<-"))
 
 #' @rdname tab_accessor
+#' @return The `tab` slot of the `mina` object.
 #' @exportMethod tab<-
 
 setMethod("tab<-", "mina", function(x, value) {
@@ -21,11 +23,13 @@ setMethod("tab<-", "mina", function(x, value) {
 })
 
 #' @rdname tab_accessor
+#' @return The `tab` slot of the `mina` object.
 #' @export
 
 setGeneric("tab", function(x) standardGeneric("tab"))
 
 #' @rdname tab_accessor
+#' @return The `tab` slot of the `mina` object.
 #' @exportMethod tab
 
 setMethod("tab", "mina", function(x) x@tab)
@@ -38,6 +42,7 @@ setMethod("tab", "mina", function(x) x@tab)
 #' des(maize) <- maize_des2
 #' head(des(maize))
 #' @rdname des_accessor
+#' @return The `des` slot of the `mina` object.
 #' @export
 
 setGeneric("des<-", function(x, value) standardGeneric("des<-"))
@@ -65,6 +70,7 @@ setMethod("des", "mina", function(x) x@des)
 #' @examples
 #' norm(maize) <- norm_tab(maize_asv2, method = "total")
 #' norm(maize)[1:5, 1:5]
+#' @return The `norm` slot of the `mina` object.
 #' @rdname norm_accessor
 #' @export
 
@@ -92,10 +98,7 @@ setMethod("norm", "mina", function(x) x@norm)
 #' `norm` and corresponding significant value matrix with `sig` is `TRUE`.
 #' @param x The `mina` object.
 #' @param value The value to set for the slot of the `mina` object `x`.
-#' @examples
-#' norm(maize) <- norm_tab(maize_asv2, method = "total")
-#' maize <- adj(maize, method = "spearman", sig = TRUE)
-#' adj_sig(maize)[1:5, 1:5]
+#' @return The `adj` slot of the `mina` object.
 #' @rdname adj_accessor
 #' @keywords internal
 
@@ -130,6 +133,8 @@ setMethod("adj_sig<-", "mina", function(x, value) {
 
 #' Get the slot `adj_sig`.
 #' @param x The `mina` object.
+#' @return The slot `adj_sig` of the object.
+#' @rdname adj_accessor
 #' @keywords internal
 
 adj_sig <- function(x) x@adj_sig
@@ -137,6 +142,7 @@ adj_sig <- function(x) x@adj_sig
 #' Setter for the slot `cls`.
 #' @param x The `mina` object.
 #' @param value The value to set for the slot of the `mina` object `x`.
+#' @return The `cls` slot of the `mina` object.
 #' @rdname cls_accessor
 #' @keywords internal
 
@@ -152,6 +158,7 @@ setMethod("cls<-", "mina", function(x, value) {
 
 #' Get the slot `cls`.
 #' @param x The `mina` object.
+#' @return The `cls` slot of the object.
 #' @keywords internal
 
 cls <- function(x) x@cls
@@ -159,6 +166,7 @@ cls <- function(x) x@cls
 #' Setter for the slot `cls_tab`.
 #' @param x The `mina` object.
 #' @param value The value to set for the slot of the `mina` object `x`.
+#' @return The `cls_tab` slot of the `mina` object.
 #' @rdname cls_tab_accessor
 #' @keywords internal
 
@@ -174,19 +182,27 @@ setMethod("cls_tab<-", "mina", function(x, value) {
 
 #' Get the slot `cls_tab`.
 #' @param x The `mina` object.
-#' @keywords internal
+#' @return The `cls_tab` slot of the object.
+#' @examples
+#' cls_tab(maize)
+#' @export
 
 cls_tab <- function(x) x@cls_tab
 
 #' Setter and getter for the slot `dis`.
 #' @param x The `mina` object.
 #' @param value The value to set for the slot of the `mina` object `x`.
+#' @return The `dis` slot of the `mina` object.
 #' @rdname dis_accessor
 #' @export
 
 setGeneric("dis<-", function(x, value) standardGeneric("dis<-"))
 
 #' @rdname dis_accessor
+#' @examples
+#' maize_norm <- norm_tab(maize_asv2, method = "total")
+#' dis(maize) <- com_dis(maize_norm, method = "bray")
+#' dis(maize)[1:5, 1:5]
 #' @export
 
 setGeneric("dis", function(x) standardGeneric("dis"))
@@ -209,6 +225,7 @@ setMethod("dis", "mina", function(x) x@dis)
 #' Setter and getter for the slot `dmr`.
 #' @param x The `mina` object.
 #' @param value The value to set for the slot of the `mina` object `x`.
+#' @return The `dmr` slot of the `mina` object.
 #' @rdname dmr_accessor
 
 setGeneric(".dmr<-", function(x, value) standardGeneric(".dmr<-"))
@@ -226,13 +243,21 @@ setMethod(".dmr<-", "mina", function(x, value) {
 })
 
 #' @rdname dmr_accessor
-#' @keywords internal
+#' @examples
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
+#' maize <- com_dis(maize, method = "bray")
+#' maize <- dmr(maize)
+#' asv_dmr <- .dmr(maize)
+#' @export
 
 setMethod(".dmr", "mina", function(x) x@dmr)
 
 #' Setter and getter for the slot `multi` and `perm`.
 #' @param x The `mina` object.
 #' @param value The value to set for the slot of the `mina` object `x`.
+#' @return The `multi` or/and `perm` slot of the `mina` object.
 #' @rdname bs_pm_accessor
 
 setGeneric("multi<-", function(x, value) standardGeneric("multi<-"))
@@ -278,6 +303,7 @@ setMethod("perm", "mina", function(x) x@perm)
 #' Setter for the slots 'dis_bs', `dis_pm` and `dis_stat`.
 #' @param x The `mina` object.
 #' @param value The value to set for the slot of the `mina` object `x`.
+#' @return The `dis_bs`, `dis_pm` and `dis_stat` slots of the `mina` object.
 #' @rdname net_dis_accessor
 #' @keywords internal
 
@@ -317,8 +343,26 @@ setMethod("dis_stat<-", "mina", function(x, value) {
 
 #' Getter for the slots `dis_bs`, `dis_pm` and `dis_stat`.
 #' @param x The `mina` object.
+#' @return The `dis_bs`, `dis_pm` and `dis_stat` slots of the `mina` object.
+#' @examples
+#' maize <- new("mina", tab = maize_asv2, des = maize_des2)
+#' maize <- norm_tab(maize, method = "raref")
+#' maize <- fit_tabs(maize)
+#' maize <- bs_pm(maize, group = "Compartment", per = 0.5)
+#' maize <- net_dis(maize, method = "Jaccard")
+#' dis_bs(maize)
+#' dis_pm(maize)
+#' dis_stat(maize)
+#' @rdname dis_stat_accessor
 #' @export
 
 dis_bs <- function(x) x@dis_bs
+
+#' @rdname dis_stat_accessor
+#' @export
+
 dis_pm <- function(x) x@dis_pm
+
+#' @rdname dis_stat_accessor
+#' @export
 dis_stat <- function(x) x@dis_stat

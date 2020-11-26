@@ -139,7 +139,7 @@ variance that could not be explained by any factors was calculated.
     # group information indicated in descriptive table.
     com_r2(maize, group = c("Compartment", "Soil", "Host_genotype"))
     # use tables as input
-    maize_dis <- maize@dis
+    maize_dis <- dis(maize)
     get_r2(maize_dis, maize_des, group = c("Compartment", "Soil", "Host_genotype"))
 ```
 
@@ -237,7 +237,7 @@ Same diversity analysis could be applied to cluster table and compared with
 composition based table.
 ```{r cls_diversity, eval = TRUE}
     # dissimilarity between samples based on cluster table
-    maize_cls_tab <- maize@cls_tab
+    maize_cls_tab <- cls_tab(maize)
     maize_cls_dis <- com_dis(maize_cls_tab, method = "bray")
     get_r2(maize_cls_dis, maize_des, group = c("Compartment", "Soil",
                                                "Host_genotype"))
@@ -311,10 +311,10 @@ available.
     maize <- net_dis(maize, method = "spectra")
     maize <- net_dis(maize, method = "Jaccard")
     # check the ditance results and significance (if applicable)
-    print(maize@dis_stat)
+    dis_stat(maize)
     # the comparison stored separately in previous step
     ja <- net_dis_indi(out_dir, method = "Jaccard")
-    print(ja@dis_stat)
+    dis_stat(ja)
     spectra <- net_dis_indi(out_dir, method = "spectra")
-    print(spectra@dis_stat)
+    dis_stat(spectra)
 ```

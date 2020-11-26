@@ -8,10 +8,10 @@
 #' same as rownames in x.
 #' @param d1 The dimension be visualized in x-axis, default `1`.
 #' @param d2 The dimension be visualized in y-axis, default `2`.
-#' @param color The column name in @des to be used for different color groups.
-#' @param shape The column name in @des to be used for different shape groups,
+#' @param color The column name in `des` to be used for different color groups.
+#' @param shape The column name in `des` to be used for different shape groups,
 #' default `NULL`.
-#' shape groups.
+#' @param ... Additional parameters.
 #' @return p The plotted figure.
 #' @examples
 #' maize <- new("mina", tab = maize_asv, des = maize_des)
@@ -33,8 +33,8 @@
 #' @rdname com_plot-mina
 #' @exportMethod com_plot
 
-setMethod("com_plot", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY"),
-          function(x, match, d1 = 1, d2 = 2, color, shape = NULL) {
+setMethod("com_plot", signature("mina", "ANY"),
+          function(x, match, d1 = 1, d2 = 2, color, shape = NULL, ...) {
               stop("Mush specify a `match` column.")
           }
 )
@@ -44,8 +44,8 @@ setMethod("com_plot", signature("mina", "ANY", "ANY", "ANY", "ANY", "ANY"),
 #' @exportMethod com_plot
 
 setMethod("com_plot",
-          signature("mina", "character", "ANY", "ANY", "ANY", "ANY"),
-          function(x, match, d1 = 1, d2 = 2, color, shape = NULL) {
+          signature("mina", "character"),
+          function(x, match, d1 = 1, d2 = 2, color, shape = NULL, ...) {
               stop("Mush specify a column for `color`.")
           }
 )
@@ -56,8 +56,8 @@ setMethod("com_plot",
 #' @exportMethod com_plot
 
 setMethod("com_plot",
-          signature("mina", "character", "ANY", "ANY", "character", "ANY"),
-          function(x, match, d1 = 1, d2 = 2, color, shape = NULL) {
+          signature("mina", "character"),
+          function(x, match, d1 = 1, d2 = 2, color, shape = NULL, ...) {
               stopifnot(
                     is.character(c(match, color)),
                     is.numeric(c(d1, d2))
@@ -82,7 +82,9 @@ setMethod("com_plot",
 #' @param color The column name in `des` to be used for different color groups.
 #' @param shape The column name in `des` to be used for different shape groups,
 #' default `NULL`.
-#' @return p The plotted figure.
+#' @param ... Additional parameters.
+#' @return p The plotted PCoA.
+#' @rdname pcoa_plot
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
@@ -101,12 +103,11 @@ setMethod("com_plot",
 #' shape = "Soil")
 #' p3b <- pcoa_plot(asv_dmr, des, match = "Sample_ID", d1 = 1, d2 = 4, color =
 #' "Compartment", shape = "Soil")
-#' @return The PCoA plot.
 #' @exportMethod pcoa_plot
 
-setMethod("pcoa_plot", signature("list", "data.frame", "character",
-                                 "ANY", "ANY", "character", "ANY"),
-            function(x, des, match, d1 = 1, d2 = 2, color, shape = NULL) {
+setMethod("pcoa_plot", signature("list", "data.frame", "character"),
+            function(x, des, match, d1 = 1, d2 = 2,
+                     color, shape = NULL, ...) {
     
                 stopifnot(
                           is.character(c(match, color)),

@@ -6,9 +6,27 @@
 \title{Calculate the network distance of `multi` and test the significance when
 `perm` is defined.}
 \usage{
-\S4method{net_dis}{mina,ANY}(x, method, evk = 100, egv = TRUE, dir = "./", sig = TRUE, skip = TRUE)
+\S4method{net_dis}{mina,ANY}(
+  x,
+  method,
+  evk = 100,
+  egv = TRUE,
+  dir = "./",
+  sig = TRUE,
+  skip = TRUE,
+  ...
+)
 
-\S4method{net_dis}{mina,character}(x, method, evk = 100, egv = TRUE, dir = "./", sig = TRUE, skip = TRUE)
+\S4method{net_dis}{mina,character}(
+  x,
+  method,
+  evk = 100,
+  egv = TRUE,
+  dir = "./",
+  sig = TRUE,
+  skip = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class `mina` with `multi` (and `perm` if sig is TRUE)
@@ -31,6 +49,8 @@ needed.}
 
 \item{skip}{Whether to skip the comparison when the dimenstion of adjacency
 matrix is smaller than setted `evk`.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 x The same `mina` object with `net_dis` defined.
