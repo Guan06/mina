@@ -77,6 +77,10 @@ setMethod("bs_pm", signature("mina", "character"),
               lst <- levels(des[[group]])
               len <- length(lst)
 
+#              lapply(seq_len(len), function(i) {
+#                    if (sum(des[[group]] == lst[i]) < g_size) lst[i] <- NA
+#              })
+
               for (i in 1 : len) {
                   g <- lst[i]
                   size <- sum(des[[group]] == g)
@@ -98,13 +102,13 @@ setMethod("bs_pm", signature("mina", "character"),
                   y_pm <- list()
               }
 
-              for (m in 1 : len) {
+              lapply(seq_len(len), function(m){
                   group_m <- lst[m]
                   des_m <- des[des[[group]] == group_m, ]
                   mat_m <- mat[, colnames(mat) %in% des_m$Sample_ID]
                   num_m <- nrow(des_m)
 
-                  for (n in m : len) {
+                  lapply(m:len, function(n){
                       if (n == m) {
                           group_n <- group_m
                           this_mat_m <- this_mat_n <- mat_m
@@ -132,7 +136,7 @@ setMethod("bs_pm", signature("mina", "character"),
 
                           # filter if rm is TRUE
                           if (rm) {
-                              mat_mn <- filter_mat(mat_mn, p = size * per * 2)
+                              mat_mn <- filter_mat(mat_mn, p = s_size * per * 2)
                               this_mat_m <- mat_mn[, colnames(mat_mn) %in%
                                               des_m$Sample_ID]
                               this_mat_n <- mat_mn[, colnames(mat_mn) %in%
@@ -155,12 +159,13 @@ setMethod("bs_pm", signature("mina", "character"),
 
                       # re-normalization
                       mat_mn <- apply(mat_mn, 2, function(x) x / sum(x))
+                      num_mn <- ncol(mat_mn)
 
                       # start bootstrap
                       MLST <- list()
                       NLST <- list()
 
-                      for (b in 1 : bs) {
+                      lapply(seq_len(bs), function(b){
                           bs_m <- sample.int(num_m, s_size)
                           bs_n <- sample.int(num_n, s_size)
 
@@ -177,7 +182,7 @@ setMethod("bs_pm", signature("mina", "character"),
                           NLST[[b]] <- cor_n
                           names(MLST)[b] <- paste0(group_m, "_", b)
                           names(NLST)[b] <- paste0(group_n, "_", b)
-                      }
+                      })
 
                       if (individual) {
                           prefix <- paste0(out_dir, group_m, "_vs_", group_n)
@@ -197,7 +202,7 @@ setMethod("bs_pm", signature("mina", "character"),
                           MPLST <- list()
                           NPLST <- list()
 
-                          for (p in 1 : pm) {
+                          lapply(seq_len(pm), function(p) {
                               pm_mn <- sample.int(num_mn, s_size * 2)
                               pm_m <- pm_mn[1 : s_size]
                               pm_n <- pm_mn[(s_size + 1) : (s_size * 2)]
@@ -215,7 +220,7 @@ setMethod("bs_pm", signature("mina", "character"),
                               NPLST[[p]] <- cor_pn
                               names(MPLST)[p] <- paste0(group_m, "_", p)
                               names(NPLST)[p] <- paste0(group_n, "_", p)
-                          }
+                          })
 
                           if (individual) {
                               prefix <- paste0(out_dir, group_m, "_vs_",
@@ -233,8 +238,8 @@ setMethod("bs_pm", signature("mina", "character"),
                           gc(reset = TRUE)
                       }
                       if (!individual) index <- index + 2
-                  }
-              }
+                  })
+              })
               if(!individual) {
                   multi(x) <- y_bs
                   if (sig) perm(x) <- y_pm
