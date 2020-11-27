@@ -64,5 +64,5 @@ maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
 maize <- bs_pm(maize, group = "Compartment")
-maize <- net_dis(maize, method = "Jaccard")
+maize <- net_dis(maize, sig = FALSE, method = "Jaccard")
 }
