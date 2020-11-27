@@ -25,7 +25,7 @@
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
 #' maize <- bs_pm(maize, group = "Compartment")
-#' maize <- net_dis(maize, sig = FALSE, method = "Jaccard")
+#' maize <- net_dis(maize, method = "Jaccard")
 #' @rdname net_dis-mina
 #' @exportMethod net_dis
 
@@ -228,10 +228,10 @@ setMethod("net_dis", signature("mina", "character"),
               }
 
               dis_bs(x) <- dis_bs
-              dis_pm(x) <- dis_pm
 
               ## get the stat table
               if (sig) {
+                  dis_pm(x) <- dis_pm
                   dis_stat <- get_stat(dis_bs, dis_pm)
               } else {
                   dis_stat <- get_stat(dis_bs)
