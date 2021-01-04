@@ -52,9 +52,9 @@ com_plot(hmp, match = "Sample_ID", color = "Site")
 ### Diversity analysis based on network-derived features
 To obtained network-derived features we first need to calculate an adjacency matrix based using the `adj` function after removing low prevalence community members to speed up the calculations.
 ```r
-lst <- rownames(hmp@norm)[rowSums(hmp@norm > 0) > 50]
-hmp@norm <- hmp@norm[lst, ]
-dim(hmp@norm)
+lst <- rownames(norm(hmp))[rowSums(norm(hmp) > 0) > 50]
+norm(hmp) <- norm(hmp)[lst, ]
+dim(norm(hmp))
 hmp <- adj(hmp, method = "spearman")
 ```
 Next, we perform clustering on the community network using the Markov Cluster Algorithm ([MCL](https://micans.org/mcl/)) after removing weak edges in the adjacency matrix (<= 0.4 correlation coefficient) and obtain a sparse matrix representation of the community network. Both steps are performed simultaneously using the function `net_cls`.
@@ -67,7 +67,7 @@ hmp <- net_cls_tab(hmp)
 ```
 This new table represents the abundance of each network cluster in each sample. We can obtain network-based distance or dissimilarity matrices for diversity analyses as performed before:
 ```r
-hmp_nc <- hmp@cls_tab
+hmp_nc <- cls_tab(hmp)
 hmp_nc_dis <- com_dis(hmp_nc, method = "bhjattacharyya")
 ```
 By calculating performing dimensionality reduction and calculating the percentage of unexplained variance using this feature table instead of the initial ASV/OTU table, we can see a marked increase in the signal-to-noise ratio:
@@ -101,7 +101,7 @@ maize <- net_dis(maize, method = "Jaccard")
 ```
 We can then explore the results by accessing the `dis_stat` slot in the mina object:
 ```r
-maize@dis_stat
+dis_stat(maize)
 ```
 
 | Compare                 | Distance_Mean | Distance_SD | Distance_PM_Mean | Distance_PM_SD | N    | p           |

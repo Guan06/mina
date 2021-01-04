@@ -48,7 +48,7 @@ setMethod("net_cls", signature("matrix", "character"),
                   x[x < cutoff] <- 0
               }
 
-              x <- x[rowSums(x) > 0 , colSums(x) > 0]
+              x <- x[rowSums(x) != 0 , colSums(x) != 0]
 
               nr_after <- nrow(x)
               n_rm <- nr_before - nr_after
