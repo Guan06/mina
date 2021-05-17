@@ -66,7 +66,7 @@ setMethod("net_cls", signature("matrix", "character"),
               if (method == "ap") {
                   # Get the degree of nodes for AP clustering.
                   x_bi <- x
-                  x_bi[x_bi > 0] <- 1
+                  x_bi[x_bi != 0] <- 1
                   degree <- rowSums(x_bi)
                   degree_norm <- degree / max(degree)
 

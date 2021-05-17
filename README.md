@@ -8,6 +8,16 @@ The official version of `mina` can be installed from github by:
 ```r
 devtools::install_github("Guan06/mina", dependencies = TRUE)
 ```
+Or from BioConductor:
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# The following initializes usage of Bioc devel
+BiocManager::install(version='devel')
+
+BiocManager::install("mina")
+```
 
 ## Overview of the workflow
 The **mina** workflow could be divided into two main parts: a) community diversity analysis (green functions shown below) and b) network analysis (blue functions). We define a data structure called `mina` object, which contains all relevant community features and can be used for every step in the analysis pipeline. Alternatively, the user can perform individual steps on pre-defined feature matrices (e.g. ASV / OTU tables) separately (see further details in the user manual).
@@ -50,7 +60,7 @@ com_plot(hmp, match = "Sample_ID", color = "Site")
 <img src="https://github.com/Guan06/mina/blob/master/data-raw/p1.png" alt="OTUs-based diversity" width="350" height="350">
 
 ### Diversity analysis based on network-derived features
-To obtained network-derived features we first need to calculate an adjacency matrix based using the `adj` function after removing low prevalence community members to speed up the calculations.
+To obtain network-derived features we first need to calculate an adjacency matrix based using the `adj` function after removing low prevalence community members to speed up the calculations.
 ```r
 lst <- rownames(norm(hmp))[rowSums(norm(hmp) > 0) > 50]
 norm(hmp) <- norm(hmp)[lst, ]
@@ -70,7 +80,7 @@ This new table represents the abundance of each network cluster in each sample. 
 hmp_nc <- cls_tab(hmp)
 hmp_nc_dis <- com_dis(hmp_nc, method = "bhjattacharyya")
 ```
-By calculating performing dimensionality reduction and calculating the percentage of unexplained variance using this feature table instead of the initial ASV/OTU table, we can see a marked increase in the signal-to-noise ratio:
+By performing dimensionality reduction and calculating the percentage of unexplained variance using this feature table instead of the initial ASV/OTU table, we can see a marked increase in the signal-to-noise ratio:
 ```r
 get_r2(hmp_nc_dis, hmp_des, group = c("Sex", "Run_center", "Subsite", "Site"))
 hmp_dmr <- dmr(hmp_nc_dis)
