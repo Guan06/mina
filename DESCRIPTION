@@ -1,7 +1,7 @@
 Package: mina
 Title: Microbial community dIversity and Network Analysis
 
-Version: 1.2.0
+Version: 1.1.10
 
 Authors@R: c(person("Rui", "Guan", email = "guan@mpipz.mpg.de", role = c("aut", "cre")),
     person("Ruben", "Garrido-Oter", email = "garridoo@mpipz.mpg.de", role = "ctb"))
