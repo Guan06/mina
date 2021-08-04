@@ -1,5 +1,5 @@
 ---
-title: "Microbial dIversity and Network Analysis with *MINA*"
+title: "Microbial dIversity and Network Analysis with *mina*"
 author: "Rui Guan"
 date: "`r Sys.Date()`"
 abstract: >
@@ -7,13 +7,13 @@ abstract: >
     number of microbiome datasets are generated and analysed. At present,
     diversity analysis of taxonomic profiling data is mainly conducted using
     composition-based methods, which ignores the interactions between community
-    members and limits the study of community dynamics.The goal of *MINA* is to
+    members and limits the study of community dynamics.The goal of *mina* is to
     provide a framework for microbial community analysis based on higher order
     community structures to better understand the principles that govern the
     establishment of those communities. In addition, a bootstrap-permutation
     based network comparison method was developed to compare global and local
     ecological networks and to statistically assess their dissimilarity.
-    MINA package version: `r packageVersion("mina")`
+    *mina* package version: `r packageVersion("mina")`
 output:
     rmarkdown::html_vignette
 vignette: >
@@ -36,12 +36,12 @@ The package is used for microbial profiling data analysis, including community
 similarity / dissimilarity / distance calculation and network comparison.
 
 # Input data
-*MINA* package expects count data (e.g. OTU table or ASV table) to represent
+*mina* package expects count data (e.g. OTU table or ASV table) to represent
 community profiling results and a descriptive table which indicates the
 information of each sample. In the quantitative table, each row contains one
 composition in the community and each column represents one profiled sample. In
 the descriptive table, same samples as rows in quantitative table should be
-included in the column 'Sample\_ID**'.
+included in the column "**Sample\_ID**".
 
 ## Import data
 Using `new()` to create a new object and then import data into the object.
@@ -121,9 +121,9 @@ calculated between pairwise samples and used for beta-diversity analysis.
     # TINA dissimilarity in Schmidt_et_al_2016
     # maize <- com_dis(maize, method = "tina")
 ```
-For *TINA* dissimilarity in `com_dis()` function, *Spearman* correlation and
-weighted Jaccard was used by default, to calculate *TINA* with other options,
-use function `tina()`.
+For *TINA* dissimilarity described in Schmidt *et al.* 2017, in `com_dis()`
+function, *Spearman* correlation and weighted Jaccard was used by default, to
+calculate *TINA* with other options, use function `tina()`.
 
 ```{r tina, eval = FALSE}
     # get the TINA dissimilarity of normalized quantitative table
@@ -132,7 +132,7 @@ use function `tina()`.
 ```
 
 ## Unexplained variance of community diversity
-To evaluate the biological meaningful variance and noise ratio, the ratio of
+To evaluate the biological meaningful variance to noise ratio, the percentage of
 variance that could not be explained by any factors was calculated.
 ```{r getR2, eval = TRUE}
     # get the unexplained variance ratio of quantitative table according to the
@@ -199,7 +199,7 @@ pairwise rows will be calculated.
 By removing the non-significant(waiting for update) and weak correlations, the
 network of each adjacency matrix is generated and closely related nodes will be
 inferred by clustering methods. In the package, Markov Cluster Algorithm (MCL,
-Dongen, 2000) and Affinity Propagation (AP, Frey _et al_, 2007) are integrated
+Dongen, 2000) and Affinity Propagation (AP, Frey _et al_, 2007) are implemented
 for network clustering.
 ```{r cls, eval = TRUE}
     # check available network clustering methods
@@ -268,12 +268,12 @@ obtained.
     # only get the distance, no significance test
     maize <- bs_pm(maize, group = "Compartment", sig = FALSE)
 ```
-When the compsition number is big, the bootstrap-permutation could take very
+When the composition number is big, the bootstrap-permutation could take very
 long time, thus pre-filtering is needed. `g_size` is the minimum number of
 samples for groups defined by `group`. Conditions with less than `g_size` would
 be removed for later analysis and this is set as 88 by default. `s_size` is the
-subsampling size for bootstrap and permutation, 30 by default. `s_size` should
-definitely smaller than `g_size` and recommendly smaller than half of it. Also
+sub-sampling size for bootstrap and permutation, 30 by default. `s_size` should
+definitely smaller than `g_size` and preferably smaller than half of it. Also
 compositions appear in less than specific percentage of samples could be
 filtered by setting the occupancy threshold `per` and `rm`. By default, the
 compositions which present in less than 10% samples would be filtered.
@@ -299,7 +299,7 @@ bootstrap and permutation results separately for each comparison.
 ## Network distance calculation and significance test
 After getting the true and pseudo adjacency matrices, Spectral and Jaccard
 distance defined before is then calculated and p value is obtained by comparing
-the F (the real distance) and Fp (the pseudo distance) following the formula:
+the *F* (the real distance) and *Fp* (the pseudo distance) following the formula:
 p = $\frac { C_{F_p > F} + 1  }{ N_{dis} + 1 }$
 For the individual generated network comparison results, the distance
 calculation is implemented by the function `net_dis_indi()`. Same methods are
