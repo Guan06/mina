@@ -98,8 +98,8 @@ setMethod("net_dis", signature("mina", "character"),
                        }
                       if (flag) next
                       seqs <- seq(1 : bs_len)
-                      rownames(spectra_m) <- paste0(group_m, "_b", seqs)
-                      rownames(spectra_n) <- paste0(group_n, "_b", seqs)
+                      rownames(spectra_m) <- paste0(group_m, "_bs", seqs)
+                      rownames(spectra_n) <- paste0(group_n, "_bs", seqs)
                       spectra_mn <- rbind(spectra_m, spectra_n)
 
                       if (egv) {
@@ -124,13 +124,13 @@ setMethod("net_dis", signature("mina", "character"),
                           adj_m <- unlist(this_m[[j1]])
                           adj_m[is.na(adj_m)] <- 0
 
-                          m_j1 <- paste0(group_m, "_b", j1)
+                          m_j1 <- paste0(group_m, "_bs", j1)
 
                           for (j2 in 1 : bs_len) {
                               adj_n <- unlist(this_n[[j2]])
                               adj_n[is.na(adj_n)] <- 0
 
-                              n_j2 <- paste0(group_n, "_b", j2)
+                              n_j2 <- paste0(group_n, "_bs", j2)
 
                               contrast <- sum(abs(adj_m - adj_n))
                               max <- sum(pmax(abs(adj_m), abs(adj_n)))
@@ -177,8 +177,8 @@ setMethod("net_dis", signature("mina", "character"),
 
                           if (flag) next
                           seqs <- seq(1 : pm_len)
-                          rownames(spectra_mp) <- paste0(group_m, "_p", seqs)
-                          rownames(spectra_np) <- paste0(group_n, "_p", seqs)
+                          rownames(spectra_mp) <- paste0(group_m, "_pm", seqs)
+                          rownames(spectra_np) <- paste0(group_n, "_pm", seqs)
                           spectra_mnp <- rbind(spectra_mp, spectra_np)
                           if (egv) {
                               saveRDS(spectra_mnp,
@@ -201,13 +201,13 @@ setMethod("net_dis", signature("mina", "character"),
                               adj_mp <- unlist(this_mp[[k1]])
                               adj_mp[is.na(adj_mp)] <- 0
 
-                              mp_k1 <- paste0(group_m, "_p", k1)
+                              mp_k1 <- paste0(group_m, "_pm", k1)
 
                               for (k2 in 1 : pm_len) {
                                   adj_np <- unlist(this_np[[k2]])
                                   adj_np[is.na(adj_np)] <- 0
 
-                                  np_k2 <- paste0(group_n, "_p", k2)
+                                  np_k2 <- paste0(group_n, "_pm", k2)
 
                                   contrast <- sum(abs(adj_mp - adj_np))
                                   max <- sum(pmax(abs(adj_mp), abs(adj_np)))
@@ -281,19 +281,19 @@ get_dis_df <- function(x) {
 
     if (str_detect(x$C1, "_b")) {
         x <- cbind(x, do.call("rbind",
-                              strsplit(as.character(x$C1), "_b")))
+                              strsplit(as.character(x$C1), "_bs")))
         x <- x[, 1 : 4]
 
         x <- cbind(x, do.call("rbind",
-                              strsplit(as.character(x$C2), "_b")))
+                              strsplit(as.character(x$C2), "_bs")))
         x <- x[, 1 : 5]
     } else if (str_detect(x$C1, "_p")) {
         x <- cbind(x, do.call("rbind",
-                              strsplit(as.character(x$C1), "_p")))
+                              strsplit(as.character(x$C1), "_pm")))
         x <- x[, 1 : 4]
 
         x <- cbind(x, do.call("rbind",
-                              strsplit(as.character(x$C2), "_p")))
+                              strsplit(as.character(x$C2), "_pm")))
         x <- x[, 1 : 5]
     }
     colnames(x)[4:5] <- c("Group1", "Group2")

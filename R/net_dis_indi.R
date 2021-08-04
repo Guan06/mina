@@ -15,12 +15,17 @@
 #' permutation results should be included in the folder `x`.
 #' @param skip Whether to skip the comparison when the dimenstion of adjacency
 #' matrix is smaller than setted `evk`, default TRUE.
+#' @param egv Wheather to output the eigenvectors for Spectral distance, the
+#' defult is TRUE, only validate when `method == "spectra"`.
+#' @param dir The folder to output the eigenvectors, only validate when `egv ==
+#' TRUE`.
 #' @return y The `mina` object with `dis_bs`, `dis_pm` and `dis_stat`.
 #' @examples
 #' \dontrun{
 #' data(maize)
-#' maize <- norm_tab(maize, method = "raref")
+#' norm(maize) <- maize_asv2
 #' maize <- fit_tabs(maize)
+#' maize <- get_rep(maize)
 #' maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
 #' "./individual_bs_pm/")
 #' maize_stat1 <- net_dis_indi("./individual_bs_pm/", method = "spectra")
@@ -32,7 +37,8 @@
 #' @exportMethod net_dis_indi
 
 setMethod("net_dis_indi", signature("character", "ANY"),
-          function(x, method, evk = 100, sig = TRUE, skip = TRUE, ...) {
+          function(x, method, evk = 100, sig = TRUE, skip = TRUE,
+                   egv = TRUE, dir = "./", ...) {
               stop("Must specify a `method`, see `? net_dis_method_list`.")
           }
 )
@@ -43,7 +49,8 @@ setMethod("net_dis_indi", signature("character", "ANY"),
 #' @exportMethod net_dis_indi
 
 setMethod("net_dis_indi", signature("character", "character"),
-          function(x, method, evk = 100, sig = TRUE, skip = TRUE, ...) {
+          function(x, method, evk = 100, sig = TRUE, skip = TRUE,
+                   egv = TRUE, dir = "./", ...) {
               stopifnot(
                         method %in% c("spectra", "Jaccard"),
                         is.numeric(evk),
@@ -107,9 +114,15 @@ setMethod("net_dis_indi", signature("character", "character"),
                        }
                       if (flag) next
                       seqs <- seq(1 : bs_len)
-                      rownames(spectra_m) <- paste0(group_m, "_b", seqs)
-                      rownames(spectra_n) <- paste0(group_n, "_b", seqs)
+                      rownames(spectra_m) <- paste0(group_m, "_bs", seqs)
+                      rownames(spectra_n) <- paste0(group_n, "_bs", seqs)
                       spectra_mn <- rbind(spectra_m, spectra_n)
+
+                      if (egv) {
+                          saveRDS(spectra_mn,
+                                  file = paste0(dir, "/spectra_bs_", group_m,
+                                                "_vs_", group_n, ".rds"))
+                      }
 
                       this_dis_bs <- get_dis_df(dist(spectra_mn))
 
@@ -130,13 +143,13 @@ setMethod("net_dis_indi", signature("character", "character"),
                           log <- rbind(log,
                                 paste0(group_mn, " bs_", j1, ": ", nrow(adj_m)))
 
-                          m_j1 <- paste0(group_m, "_b", j1)
+                          m_j1 <- paste0(group_m, "_bs", j1)
 
                           for (j2 in 1 : bs_len) {
                               adj_n <- unlist(this_n[[j2]])
                               adj_n[is.na(adj_n)] <- 0
 
-                              n_j2 <- paste0(group_n, "_b", j2)
+                              n_j2 <- paste0(group_n, "_bs", j2)
 
                               contrast <- sum(abs(adj_m - adj_n))
                               max <- sum(pmax(abs(adj_m), abs(adj_n)))
@@ -192,9 +205,16 @@ setMethod("net_dis_indi", signature("character", "character"),
 
                           if (flag) next
                           seqs <- seq(1 : pm_len)
-                          rownames(spectra_mp) <- paste0(group_m, "_p", seqs)
-                          rownames(spectra_np) <- paste0(group_n, "_p", seqs)
+                          rownames(spectra_mp) <- paste0(group_m, "_pm", seqs)
+                          rownames(spectra_np) <- paste0(group_n, "_pm", seqs)
                           spectra_mnp <- rbind(spectra_mp, spectra_np)
+
+                          if (egv) {
+                              saveRDS(spectra_mnp,
+                                      file = paste0(dir, "/spectra_pm_", group_m,
+                                                    "_vs_", group_n, ".rds"))
+                          }
+
                           this_dis_pm <- get_dis_df(dist(spectra_mnp))
 
                           # filter intra group network comparison when
@@ -214,13 +234,13 @@ setMethod("net_dis_indi", signature("character", "character"),
                               log <- rbind(log, paste0(group_mn, " pm_", k1,
                                                 ": ", nrow(adj_mp)))
 
-                              mp_k1 <- paste0(group_m, "_p", k1)
+                              mp_k1 <- paste0(group_m, "_pm", k1)
 
                               for (k2 in 1 : pm_len) {
                                   adj_np <- unlist(this_np[[k2]])
                                   adj_np[is.na(adj_np)] <- 0
 
-                                  np_k2 <- paste0(group_n, "_p", k2)
+                                  np_k2 <- paste0(group_n, "_pm", k2)
 
                                   contrast <- sum(abs(adj_mp - adj_np))
                                   max <- sum(pmax(abs(adj_mp), abs(adj_np)))
@@ -240,7 +260,8 @@ setMethod("net_dis_indi", signature("character", "character"),
                   }
                 gc(reset = T)
               }
-          write.table(log, paste0(out_dir, "log.txt"))
+          print(log)
+          #write.table(log, paste0(out_dir, "log.txt"))
 
           y <- new("mina")
           dis_bs(y) <- dis_bs

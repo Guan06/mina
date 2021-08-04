@@ -8,13 +8,10 @@ The official version of `mina` can be installed from github by:
 ```r
 devtools::install_github("Guan06/mina", dependencies = TRUE)
 ```
-Or from BioConductor:
+Or from Bioconductor:
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-
-# The following initializes usage of Bioc devel
-BiocManager::install(version='devel')
 
 BiocManager::install("mina")
 ```
