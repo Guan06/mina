@@ -25,5 +25,6 @@ permutation.
 maize <- new("mina", tab = maize_asv2, des = maize_des2)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
+maize <- get_rep(maize)
 maize <- bs_pm(maize, group = "Compartment", per = 0.5)
 }

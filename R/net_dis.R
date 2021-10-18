@@ -279,7 +279,7 @@ get_dis_df <- function(x) {
     colnames(x) <- c("C1", "C2", "Distance")
     x <- x[!is.na(x$Distance), ]
 
-    if (str_detect(x$C1, "_b")) {
+    if (str_detect(x$C1, "_bs")) {
         x <- cbind(x, do.call("rbind",
                               strsplit(as.character(x$C1), "_bs")))
         x <- x[, 1 : 4]
@@ -287,7 +287,7 @@ get_dis_df <- function(x) {
         x <- cbind(x, do.call("rbind",
                               strsplit(as.character(x$C2), "_bs")))
         x <- x[, 1 : 5]
-    } else if (str_detect(x$C1, "_p")) {
+    } else if (str_detect(x$C1, "_pm")) {
         x <- cbind(x, do.call("rbind",
                               strsplit(as.character(x$C1), "_pm")))
         x <- x[, 1 : 4]
@@ -315,7 +315,9 @@ get_stat <- function(x, p = NULL) {
     lst <- unique(x$Group1)
     len <- length(lst)
 
+    grp_map <- c()
     y <- c()
+
     for ( i in 1 : len) {
         c1 <- lst[i]
         for (j in i : len) {
@@ -331,6 +333,8 @@ get_stat <- function(x, p = NULL) {
 
             d$Compare <- paste0(c1, "_", c2)
             d <- d[, c("Compare", "Distance")]
+
+            grp_map <- rbind(grp_map, c(paste0(c1, "_", c2), c1, c2))
 
             this_y <- data.frame(Compare = unique(d$Compare),
                                  Distance_Mean = mean(d$Distance),
@@ -361,6 +365,7 @@ get_stat <- function(x, p = NULL) {
             y <- rbind(y, this_y)
         }
     }
-
+    colnames(d) <- c("Compare", "Group1", "Group2")
+    y <- merge(y, d)
     return(y)
 }

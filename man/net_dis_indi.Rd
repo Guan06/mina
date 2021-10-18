@@ -8,9 +8,27 @@
 \usage{
 net_dis_indi(x, method, ...)
 
-\S4method{net_dis_indi}{character,ANY}(x, method, evk = 100, sig = TRUE, skip = TRUE, ...)
+\S4method{net_dis_indi}{character,ANY}(
+  x,
+  method,
+  evk = 100,
+  sig = TRUE,
+  skip = TRUE,
+  egv = TRUE,
+  dir = "./",
+  ...
+)
 
-\S4method{net_dis_indi}{character,character}(x, method, evk = 100, sig = TRUE, skip = TRUE, ...)
+\S4method{net_dis_indi}{character,character}(
+  x,
+  method,
+  evk = 100,
+  sig = TRUE,
+  skip = TRUE,
+  egv = TRUE,
+  dir = "./",
+  ...
+)
 }
 \arguments{
 \item{x}{The folder store the network inference results.
@@ -29,6 +47,12 @@ permutation results should be included in the folder `x`.}
 
 \item{skip}{Whether to skip the comparison when the dimenstion of adjacency
 matrix is smaller than setted `evk`, default TRUE.}
+
+\item{egv}{Wheather to output the eigenvectors for Spectral distance, the
+defult is TRUE, only validate when `method == "spectra"`.}
+
+\item{dir}{The folder to output the eigenvectors, only validate when `egv ==
+TRUE`.}
 }
 \value{
 y The `mina` object with `dis_bs`, `dis_pm` and `dis_stat`.
@@ -45,6 +69,7 @@ Calculate the network distance of bootstrap and permutation when appliable.
 data(maize)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
+maize <- get_rep(maize)
 maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
 "./individual_bs_pm/")
 maize_stat1 <- net_dis_indi(x = "./individual_bs_pm/", method = "spectra")
@@ -54,8 +79,9 @@ evk = 100, skip = TRUE)
 }
 \dontrun{
 data(maize)
-maize <- norm_tab(maize, method = "raref")
+norm(maize) <- maize_asv2
 maize <- fit_tabs(maize)
+maize <- get_rep(maize)
 maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
 "./individual_bs_pm/")
 maize_stat1 <- net_dis_indi("./individual_bs_pm/", method = "spectra")
