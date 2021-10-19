@@ -47,7 +47,7 @@ setMethod("get_rep", signature("matrix", "ANY"),
 #' @return The same object with @norm replaced by the representative members.
 #' @examples
 #' maize <- new("mina", tab = maize_asv, des = maize_des)
-#' maize <- get_rep(maize)
+#' maize <- get_rep(maize, top = 5)
 #' @rdname get_rep-mima
 #' @exportMethod get_rep
 
