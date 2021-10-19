@@ -56,6 +56,9 @@ setMethod("net_grp_cmp", signature("character", "ANY", "ANY", "ANY"),
 
             for (j2 in 1 : bs_len) {
                 adj_n <- unlist(this_n[[j2]])
+                adj_n[is.na(adj_n)] <- 0i
+
+                adj_m[is.na(adj_m)] <- 0
                 adj_n[is.na(adj_n)] <- 0
 
                 if (cmp == "contrast") {
@@ -129,13 +132,14 @@ setMethod("net_grp_cmp", signature("character", "ANY", "ANY", "ANY"),
 #' @keywords internal
 
 get_contrast_grp <- function(x, y, grp) {
+    grp$Group[is.na(grp$Group)] <- "Unassigned"
     group <- grp$Group
+
     x <- x[match(grp$ID, rownames(x)), ]
     y <- y[match(grp$ID, rownames(y)), ]
     z <- abs(x - y)
 
-    contrast <- apply(z, 2, function(i) rowsum(i, group))
-    rownames(contrast) <- unique(group)
+    contrast <- rowsum(z, group)
     contrast <- rowSums(contrast)
 }
 
@@ -154,11 +158,13 @@ get_ja_grp <- function(x, y, grp) {
 
     t1 <- abs(x - y)
     t2 <- pmax(x, y)
+    
+    grp$Group[is.na(grp$Group)] <- "Unassigned"
     group <- grp$Group
-    t11 <- apply(t1, 2, function(i) rowsum(i, group))
-    t22 <- apply(t2, 2, function(i) rowsum(i, group))
 
-    rownames(t11) <- rownames(t22) <- unique(group)
+    t11 <- rowsum(t1, group)
+    t22 <- rowsum(t2, group)
+
     this <- rowSums(t11) / rowSums(t22)
 }
 ###############################################################################
@@ -177,10 +183,11 @@ get_ja0_grp <- function(x, y, grp){
     t1 <- abs(x - y)
     t2 <- pmax(abs(x), abs(y))
 
+    grp$Group[is.na(grp$Group)] <- "Unassigned"
     group <- grp$Group
-    t11 <- apply(t1, 2, function(i) rowsum(i, group))
-    t22 <- apply(t2, 2, function(i) rowsum(i, group))
 
-    rownames(t11) <- rownames(t22) <- unique(group)
+    t11 <- rowsum(t1, group)
+    t22 <- rowsum(t2, group)
+
     this <- rowSums(t11) / rowSums(t22)
 }
