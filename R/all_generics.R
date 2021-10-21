@@ -371,17 +371,16 @@ setGeneric("net_dis_indi", function(x, method, ...) {
 #' prevalent compositions.
 #' @param x A quantitative matrix with samples in columns and compositions in
 #' rows.
-#'
-#' @param top The percent of the most abundant and prevalent members.
+#' @param ... Additional parameters.
 #' @return The matrix with samples in columns and representative compositions in
 #' rows.
 #' @examples
 #' data(maize_asv)
-#' maize_asv_rep <- get_rep(maize_asv, top = 5)
+#' maize_asv_rep <- get_rep(maize_asv)
 #' @rdname get_rep-matrix
 #' @export
 
-setGeneric("get_rep", function(x, top = 5) {
+setGeneric("get_rep", function(x, ...) {
     standardGeneric("get_rep")
 })
 
@@ -391,8 +390,8 @@ setGeneric("get_rep", function(x, top = 5) {
 #'
 #' @import ggplot2
 #' @param x An object of `mina` with slot `dis_stat` defined.
-#' @param sig If `TRUE`, indicating significant distance with gold guild.
 #' @param d The distance to be plotted, could be "BS" or "PM".
+#' @param ... Additional parameters.
 #' @return p The plotted figure.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)

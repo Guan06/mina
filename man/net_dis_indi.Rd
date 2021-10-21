@@ -69,7 +69,7 @@ Calculate the network distance of bootstrap and permutation when appliable.
 data(maize)
 maize <- norm_tab(maize, method = "raref")
 maize <- fit_tabs(maize)
-maize <- get_rep(maize)
+maize <- get_rep(maize, top = 5)
 maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
 "./individual_bs_pm/")
 maize_stat1 <- net_dis_indi(x = "./individual_bs_pm/", method = "spectra")
@@ -81,7 +81,7 @@ evk = 100, skip = TRUE)
 data(maize)
 norm(maize) <- maize_asv2
 maize <- fit_tabs(maize)
-maize <- get_rep(maize)
+maize <- get_rep(maize, top= 5)
 maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
 "./individual_bs_pm/")
 maize_stat1 <- net_dis_indi("./individual_bs_pm/", method = "spectra")

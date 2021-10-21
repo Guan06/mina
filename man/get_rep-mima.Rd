@@ -19,5 +19,6 @@ Get the representative community members.
 }
 \examples{
 maize <- new("mina", tab = maize_asv, des = maize_des)
-maize <- get_rep(maize)
+maize <- norm_tab(maize, method = "raref")
+maize <- get_rep(maize, top = 5)
 }

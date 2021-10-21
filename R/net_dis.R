@@ -47,9 +47,8 @@ setMethod("net_dis", signature("mina", "character"),
               stopifnot(
                         method %in% c("spectra", "Jaccard"),
                         is.numeric(evk),
-                        is.logical(c(egv, sig, skip)),
-                        is.character(dir)
-              )
+                        is.logical(c(egv, sig, skip))
+                )
               y_bs <- multi(x)
               y_pm <- perm(x)
               len <- length(y_bs)
@@ -279,7 +278,7 @@ get_dis_df <- function(x) {
     colnames(x) <- c("C1", "C2", "Distance")
     x <- x[!is.na(x$Distance), ]
 
-    if (str_detect(x$C1, "_bs")) {
+    if (str_detect(x$C1[1], "_bs")) {
         x <- cbind(x, do.call("rbind",
                               strsplit(as.character(x$C1), "_bs")))
         x <- x[, 1 : 4]
@@ -287,7 +286,7 @@ get_dis_df <- function(x) {
         x <- cbind(x, do.call("rbind",
                               strsplit(as.character(x$C2), "_bs")))
         x <- x[, 1 : 5]
-    } else if (str_detect(x$C1, "_pm")) {
+    } else if (str_detect(x$C1[1], "_pm")) {
         x <- cbind(x, do.call("rbind",
                               strsplit(as.character(x$C1), "_pm")))
         x <- x[, 1 : 4]

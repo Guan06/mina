@@ -14,7 +14,7 @@
 #' @rdname get_rep-matrix
 #' @exportMethod get_rep
 
-setMethod("get_rep", signature("matrix", "ANY"),
+setMethod("get_rep", signature("matrix"),
           function(x, top = 5) {
     stopifnot(is.numeric(top))
     asv <- x
@@ -47,11 +47,12 @@ setMethod("get_rep", signature("matrix", "ANY"),
 #' @return The same object with @norm replaced by the representative members.
 #' @examples
 #' maize <- new("mina", tab = maize_asv, des = maize_des)
+#' maize <- norm_tab(maize, method = "raref")
 #' maize <- get_rep(maize, top = 5)
 #' @rdname get_rep-mima
 #' @exportMethod get_rep
 
-setMethod("get_rep", signature("mina", "ANY"),
+setMethod("get_rep", signature("mina"),
           function(x, top = 5) {
     
               stopifnot(is.numeric(top))

@@ -14,6 +14,8 @@ net_dis_plot(x, d = "BS", ...)
 
 \item{d}{The distance to be plotted, could be "BS" or "PM".}
 
+\item{...}{Additional parameters.}
+
 \item{sig}{If `TRUE`, indicating significant distance with gold guild.}
 }
 \value{

@@ -6,13 +6,15 @@
 \title{Get the representative community members by extracting the most abundant and
 prevalent compositions.}
 \usage{
-get_rep(x, top = 5)
+get_rep(x, ...)
 
 \S4method{get_rep}{matrix}(x, top = 5)
 }
 \arguments{
 \item{x}{A quantitative matrix with samples in columns and compositions in
 rows.}
+
+\item{...}{Additional parameters.}
 
 \item{top}{The percent of the most abundant and prevalent members.}
 }
@@ -31,7 +33,7 @@ Get the representative community members.
 }
 \examples{
 data(maize_asv)
-maize_asv_rep <- get_rep(maize_asv, top = 5)
+maize_asv_rep <- get_rep(maize_asv)
 data(maize_asv)
 maize_asv_rep <- get_rep(maize_asv, top = 5)
 }
