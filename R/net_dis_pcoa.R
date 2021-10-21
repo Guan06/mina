@@ -11,7 +11,7 @@
 #' data(maize)
 #' maize <- norm_tab(maize)
 #' maize <- fit_tabs(maize)
-#' maize <- get_rep(maize)
+#' maize <- get_rep(maize, top = 5)
 #' maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
 #' "./individual_bs_pm/")
 #' maize <- net_dis_indi("./individual_bs_pm/", method = "spectra", egv = TRUE,

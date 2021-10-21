@@ -1,6 +1,6 @@
 Package: mina
 Title: Microbial community dIversity and Network Analysis
-Version: 1.1.10
+Version: 1.1.11
 Authors@R: c(person("Rui", "Guan", email = "guan@mpipz.mpg.de", role = c("aut", "cre")),
     person("Ruben", "Garrido-Oter", email = "garridoo@mpipz.mpg.de", role = "ctb"))
 Description: An increasing number of microbiome datasets have been generated and analyzed with the help of rapidly developing sequencing technologies. At present, analysis of taxonomic profiling data is mainly conducted using composition-based methods, which ignores interactions between community members. Besides this, a lack of efficient ways to compare microbial interaction networks limited the study of community dynamics. To better understand how community diversity is affected by complex interactions between its members, we developed a framework (Microbial community dIversity and Network Analysis, mina), a comprehensive framework for microbial community diversity analysis and network comparison. By defining and integrating network-derived community features, we greatly reduce noise-to-signal ratio for diversity analyses. A bootstrap and permutation-based method was implemented to assess community network dissimilarities and extract discriminative features in a statistically principled way.

@@ -55,7 +55,7 @@ setMethod("get_rep", signature("mina", "ANY"),
           function(x, top = 5) {
     
               stopifnot(is.numeric(top))
-              norm(x) <- get_rep(norm(x))
+              norm(x) <- get_rep(norm(x), top = top)
               return(x)
     }
 )

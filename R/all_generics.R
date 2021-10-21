@@ -304,7 +304,7 @@ setGeneric("net_cls_tab", function(x, uw = FALSE) {
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
-#' maize <- get_rep(maize)
+#' maize <- get_rep(maize, top = 5)
 #' maize <- bs_pm(maize, group = "Compartment", per = 0.5)
 #' @return The network bootstrap and permutation result.
 #' @export
@@ -327,7 +327,7 @@ setGeneric("bs_pm", function(x, group, ...) {
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
-#' maize <- get_rep(maize)
+#' maize <- get_rep(maize, top = 5)
 #' maize <- bs_pm(maize, group = "Compartment")
 #' maize <- net_dis(maize, method = "spectra", evk = 30)
 #' @return The netowrk comparison result.
@@ -351,7 +351,7 @@ setGeneric("net_dis", function(x, method, ...) {
 #' data(maize)
 #' maize <- norm_tab(maize, method = "raref")
 #' maize <- fit_tabs(maize)
-#' maize <- get_rep(maize)
+#' maize <- get_rep(maize, top = 5)
 #' maize <- bs_pm(maize, group = "Compartment", individual = TRUE, out_dir =
 #' "./individual_bs_pm/")
 #' maize_stat1 <- net_dis_indi(x = "./individual_bs_pm/", method = "spectra")
