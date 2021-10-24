@@ -27,6 +27,7 @@ Imports:
     Hmisc,
     utils
 LazyData: true
+LazyDataCompression: true
 Suggests:
     knitr,
     rmarkdown
