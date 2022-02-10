@@ -364,7 +364,5 @@ get_stat <- function(x, p = NULL) {
             y <- rbind(y, this_y)
         }
     }
-    colnames(d) <- c("Compare", "Group1", "Group2")
-    y <- merge(y, d)
     return(y)
 }
