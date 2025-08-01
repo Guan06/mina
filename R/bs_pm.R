@@ -21,6 +21,7 @@
 #' each comparison individually, default is FALSE.
 #' @param out_dir The output directory if `individual` is TRUE, default is the
 #' current working directory
+#' @param seed Set seed for bootstrap and permutation, default TRUE.
 #' @param ... Additional parameters.
 #' @examples
 #' maize <- new("mina", tab = maize_asv2, des = maize_des2)
@@ -34,7 +35,7 @@
 setMethod("bs_pm", signature("mina", "ANY"),
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
                    sig = TRUE, bs = 6, pm = 6,
-                   individual = FALSE, out_dir = "./", ...) {
+                   individual = FALSE, out_dir = "./", seed = TRUE, ...) {
               stop("Please specify a column in descriptive file for grouping
                    samples!")
           }
@@ -48,7 +49,7 @@ setMethod("bs_pm", signature("mina", "ANY"),
 setMethod("bs_pm", signature("mina", "character"),
           function(x, group, g_size = 88, s_size = 30, rm = TRUE, per = 0.1,
                    sig = TRUE, bs = 6, pm = 6,
-                   individual = FALSE, out_dir = "./", ...) {
+                   individual = FALSE, out_dir = "./", seed = TRUE, ...) {
               stopifnot(
                         is.character(group),
                         is.numeric(c(g_size, s_size, per, bs, pm)),
@@ -161,7 +162,9 @@ setMethod("bs_pm", signature("mina", "character"),
                       NLST <- list()
 
                       for (b in 1 : bs) {
+                          if (seed) set.seed(828)
                           bs_m <- sample.int(num_m, s_size)
+                          if (seed) set.seed(829)
                           bs_n <- sample.int(num_n, s_size)
 
                           mat_bs_m <- this_mat_m[, bs_m]
@@ -198,6 +201,7 @@ setMethod("bs_pm", signature("mina", "character"),
                           NPLST <- list()
 
                           for (p in 1 : pm) {
+                              if (seed) set.seed(830)
                               pm_mn <- sample.int(num_mn, s_size * 2)
                               pm_m <- pm_mn[1 : s_size]
                               pm_n <- pm_mn[(s_size + 1) : (s_size * 2)]
