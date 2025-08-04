@@ -19,7 +19,8 @@
 #' defult is TRUE, only validate when `method == "spectra"`.
 #' @param dir The folder to output the eigenvectors, only validate when `egv ==
 #' TRUE`.
-#' @return y The `mina` object with `dis_bs`, `dis_pm` and `dis_stat`.
+#' @return y The new `mina` object with `dis_bs`, `dis_pm` and `dis_stat`. 
+#' Attention: the returned `mina` object will not have the `norm` and `des` slots.
 #' @examples
 #' \dontrun{
 #' data(maize)
