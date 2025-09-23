@@ -16,6 +16,10 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("mina")
 ```
 
+## Citation
+
+Guan R, Garrido-Oter R. Integrated diversity and network analyses reveal drivers of microbiome dynamics. mSystems:e00564-25. [https://doi.org/10.1128/msystems.00564-25](https://journals.asm.org/doi/full/10.1128/msystems.00564-25)
+
 ## Overview of the workflow
 The **mina** workflow could be divided into two main parts: a) community diversity analysis (green functions shown below) and b) network analysis (blue functions). We define a data structure called `mina` object, which contains all relevant community features and can be used for every step in the analysis pipeline. Alternatively, the user can perform individual steps on pre-defined feature matrices (e.g. ASV / OTU tables) separately (see further details in the user manual).
 
